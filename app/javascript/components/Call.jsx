@@ -18,9 +18,9 @@ export class Call extends React.Component {
         this.openMessage = this.openMessage.bind(this);
         this.toggleSharing = this.toggleSharing.bind(this);
     }
-  toggleVideo() {
+    toggleVideo() {
         this.setState({video: !this.state.video});        
-  }
+    }
 
     toggleAudio() {
         this.setState({audio: !this.state.audio});    
@@ -49,7 +49,7 @@ export class Call extends React.Component {
             <Grid container spacing={1}>
                 <CallControl {...panelProps}/>
                 {
-                    (audio || video) && <LocalVideo audio={audio} video={video}/>
+                    <LocalVideo audio={audio} video={video}/>
                 }
             </Grid>
         </div>
