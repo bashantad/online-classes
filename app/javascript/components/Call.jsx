@@ -1,8 +1,9 @@
 import React from 'react';
+import Grid from '@material-ui/core/Grid';
 
 import CallControl from '../components/CallControl';
 import LocalVideo from '../components/LocalVideo';
-import Grid from '@material-ui/core/Grid';
+import Header from '../components/Header';
 
 export class Call extends React.Component {
     state = {
@@ -46,7 +47,8 @@ export class Call extends React.Component {
         }
         
         return <div className = 'call-page'>
-            <Grid container spacing={1}>
+            <Header />
+            <Grid container spacing={0}>
                 <CallControl {...panelProps}/>
                 {
                     <LocalVideo audio={audio} video={video}/>

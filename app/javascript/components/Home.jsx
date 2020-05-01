@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import Header from '../components/Header';
 const Home = () => (
-    <div>  
+    <div>
+        <Header />
         <h1 className="display-4">Welcome to virtual classroom</h1>
         <p className="lead">
             Search the virtual classes that are running now.
