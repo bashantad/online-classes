@@ -19,9 +19,9 @@
   "version": "0.1.0",
   "devDependencies": {
     "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "jest-enzyme": "^7.1.2",
     "jest-fetch-mock": "^3.0.3",
-    "enzyme-adapter-react-16": "^1.15.2",
     "webpack-dev-server": "^3.10.3"
   }
 }

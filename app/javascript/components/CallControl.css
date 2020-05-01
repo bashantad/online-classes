@@ -1,0 +1,22 @@
+.call-control-icon {
+	width: 3rem;
+	border: 2px solid #fff;
+	background: #ddd;
+	margin: 1rem 0;
+	padding: 1rem;
+	border-radius: 50%;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.call-control-icon:hover {
+	background: #efefef;
+	cursor: pointer;
+}
+
+.call-control-bar {
+	background: #ccc;
+	height: calc(100vh - 90px);
+	width: 6rem;
+	padding:1rem;
+}

@@ -7,13 +7,12 @@ const Home = () => (
         <p className="lead">
             Search the virtual classes that are running now.
         </p>
-        <hr />
         <Link
-            to="/classroom"
+            to="/calls/join"
             className="btn btn-lg custom-button"
             role="button"
         >
-            View classes
+            Join class
         </Link>
   </div>
 );
