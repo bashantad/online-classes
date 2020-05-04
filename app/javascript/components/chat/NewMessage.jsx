@@ -2,25 +2,28 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 
+import chatApi from './chatApi';
+
 export default class NewMessage extends React.Component {
 	state = {
-		message: ''
+		content: ''
 	};
 
 	handleMessageChange = (event) => {
-		this.setState({message: event.target.value});
+		this.setState({content: event.target.value});
 	}
 
 	handleMessageSendClick = () => {
-		this.props.sendMessage({
-			message: this.state.message
+		chatApi.create({
+			content: this.state.content,
+			conversation_id: this.props.conversationId,
 		});
-		this.setState({message: ''});
+		this.setState({content: ''});
 	}
 	render() {
 		return (
 			<div className='message-box'>
-                <textarea className='message-input' placeholder='Type your message' onChange={this.handleMessageChange} value={this.state.message}></textarea>
+                <textarea className='message-input' placeholder='Type your message' onChange={this.handleMessageChange} value={this.state.content}></textarea>
                 <Button variant="contained" color="primary" onClick={this.handleMessageSendClick}>
                  	Send
             	</Button>
@@ -30,5 +33,5 @@ export default class NewMessage extends React.Component {
 }
 
 NewMessage.propTypes = {
-	sendMessage: PropTypes.func.isRequired,
-};
+	conversationId: PropTypes.number.isRequired,
+}

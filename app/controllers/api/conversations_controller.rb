@@ -1,13 +1,17 @@
 class Api::ConversationsController < ApplicationController
 	def index
 		conversations = Conversation.all
-		render json: conversations
+		render json: conversations.to_json(include: :messages)
 	end
 
 	def create
 		conversation = Conversation.new
 		if conversation.save
-			ActionCable.server.broadcast 'conversations_channel', conversation.to_json
+			serialized_data = ActiveModelSerializers::Adapter::Json.new(
+		    	ConversationSerializer.new(conversation)
+		    ).serializable_hash
+
+		    ActionCable.server.broadcast 'conversations_channel', serialized_data
 			head :ok
 		end
 	end

@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 
 import CallControl from '../components/CallControl';
 import LocalVideo from '../components/LocalVideo';
-import Chat from '../components/Chat';
+import ChatWrapper from '../components/ChatWrapper';
 import Header from '../components/Header';
 
 export class Call extends React.Component {
@@ -15,18 +15,18 @@ export class Call extends React.Component {
     }
     constructor(props) {
         super(props);
-        
+
         this.toggleAudio = this.toggleAudio.bind(this);
         this.toggleVideo = this.toggleVideo.bind(this);
         this.toggleSharing = this.toggleSharing.bind(this);
         this.toggleMessage = this.toggleMessage.bind(this);
     }
     toggleVideo() {
-        this.setState({video: !this.state.video});        
+        this.setState({video: !this.state.video});
     }
 
     toggleAudio() {
-        this.setState({audio: !this.state.audio});    
+        this.setState({audio: !this.state.audio});
     }
 
     toggleSharing() {
@@ -52,10 +52,10 @@ export class Call extends React.Component {
             open: chat,
             handleClose: this.toggleMessage
         };
-        
+
         return <div className = 'call-page'>
             <Header />
-            <Chat {...chatProps} />
+            <ChatWrapper {...chatProps} />
             <Grid container spacing={0}>
                 <CallControl {...panelProps}/>
                 {

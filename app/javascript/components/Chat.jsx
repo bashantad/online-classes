@@ -10,9 +10,6 @@ import ConversationList from '../components/chat/ConversationList';
 import NewMessage from '../components/chat/NewMessage';
 
 export default class Chat extends React.Component {
-    sendMessage = (message) => {
-        console.log('send message to the server', message);
-    }
     render() {
         const {open, handleClose} = this.props;
         return (
@@ -24,12 +21,12 @@ export default class Chat extends React.Component {
                     <DialogContent dividers>
                         <Grid container spacing={1}>
                             <Grid item xs={4}>
-                                <PeopleInTheChat />           
+                                <PeopleInTheChat />
                             </Grid>
-                            
+
                             <Grid item xs={8}>
                                 <ConversationList />
-                                <NewMessage sendMessage={this.sendMessage}/>
+                                <NewMessage conversationId={1}/>
                             </Grid>
                         </Grid>
                     </DialogContent>
@@ -40,6 +37,6 @@ export default class Chat extends React.Component {
 };
 
 Chat.propTypes = {
-  open: PropTypes.bool.isRequired,
-  handleClose: PropTypes.func.isRequired
+    open: PropTypes.bool.isRequired,
+    handleClose: PropTypes.func.isRequired
 };
