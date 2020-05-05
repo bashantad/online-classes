@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  	devise_for :users
 	namespace :api, constraints: { format: 'json' } do
 		resources :conversations
 		resources :messages
@@ -6,7 +7,7 @@ Rails.application.routes.draw do
 			get :join
 		end
 	end
-	root 'home#index'
+	root :to => 'home#index'
 	mount ActionCable.server => '/cable'
 	get '/*path' => 'home#index'
 end

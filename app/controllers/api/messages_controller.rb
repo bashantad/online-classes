@@ -13,6 +13,7 @@ class Api::MessagesController < ApplicationController
 	end
 
 	private
+
 	def message_params
 		params.require(:message).permit(:content, :conversation_id)
 	end
