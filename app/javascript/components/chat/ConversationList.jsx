@@ -54,7 +54,7 @@ export default class ConversationList extends React.Component {
                                 return (
                                     <div className='conversation-item' key={message.id}>
                                         <div className='person'>
-                                            <span> <AccountCircleIcon /> Bashanta Dahal</span>
+                                            <span> <AccountCircleIcon /> {message.sender.full_name}</span>
                                         </div>
                                         <div className='messages'>
                                             {message.content}

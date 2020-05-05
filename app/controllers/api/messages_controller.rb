@@ -1,6 +1,9 @@
 class Api::MessagesController < ApplicationController
 	def create
-		message = Message.new(message_params)
+		message = current_user.messages.new(message_params)
+		# TODO find a way to authorize conversation
+		# An example of this could be as follows
+		# current_user.conversations.where(conversation_id: message_params[:conversation_id])
 		conversation = Conversation.find(message_params[:conversation_id])
 		if message.save
 			serialized_data = ActiveModelSerializers::Adapter::Json.new(
