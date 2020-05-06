@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  	resources :courses
+  	resources :categories
   	devise_for :users
 	namespace :api, constraints: { format: 'json' } do
 		resources :conversations

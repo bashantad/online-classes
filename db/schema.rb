@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_05_062216) do
+ActiveRecord::Schema.define(version: 2020_05_06_023400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.boolean "active", default: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "class_rooms", force: :cascade do |t|
     t.string "title"
@@ -34,6 +42,20 @@ ActiveRecord::Schema.define(version: 2020_05_05_062216) do
   create_table "conversations", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string "name"
+    t.text "body"
+    t.bigint "user_id", null: false
+    t.string "website"
+    t.text "course_for"
+    t.float "price"
+    t.bigint "category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_courses_on_category_id"
+    t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -64,6 +86,8 @@ ActiveRecord::Schema.define(version: 2020_05_05_062216) do
     t.string "unconfirmed_email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_admin", default: false
+    t.string "application_status"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -71,5 +95,7 @@ ActiveRecord::Schema.define(version: 2020_05_05_062216) do
 
   add_foreign_key "conversation_users", "conversations"
   add_foreign_key "conversation_users", "users"
+  add_foreign_key "courses", "categories"
+  add_foreign_key "courses", "users"
   add_foreign_key "messages", "conversations"
 end
