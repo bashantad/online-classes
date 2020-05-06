@@ -6,4 +6,8 @@ class Conversation < ApplicationRecord
 
 	scope :individual, -> { where(course_id: nil) }
 	scope :groups, -> { where.not(course_id: nil) }
+
+	def is_group
+		self.course_id.present?
+	end
 end

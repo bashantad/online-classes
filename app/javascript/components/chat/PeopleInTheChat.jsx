@@ -1,51 +1,50 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Group from '@material-ui/icons/Group';
 
 import courseApi from './courseApi';
 
-const PEOPLE_IN_THE_CHAT = [
-    'John Smith',
-    'Bashanta Dahal',
-    'Josh Aresty',
-    'Prashant Khadka',
-    'Brad Larsen',
-    'Martin Patel',
-    'George Regan',
-    'Alex Kutcher'
-];
-
 export class PeopleInTheChat extends React.Component {
     state = {
-        courseDetails: null,
+        conversations: [],
+        enrolled_users: [],
     }
     componentDidMount() {
         courseApi.getById(this.props.match.params.id)
             .then(res => res.json())
             .then(courseDetails => {
-                this.setState({courseDetails});
+                const {conversations, enrolled_users} = courseDetails;
+                this.setState({conversations, enrolled_users});
             });
     }
-	render() {
+    render() {
+        const {conversations, enrolled_users} = this.state;
         return (
 			<ul className='people-list'>
-                <li className='conversation-person'>
-                    <Group /> <span>Classroom</span>
-                </li>
-                <li className='conversation-person'>
-                    <Group /> <span>My group</span>
-                </li>
                 {
-                    PEOPLE_IN_THE_CHAT.map((person, index) =>
-                        <li className='conversation-person' key={`person-${index}`}>
-                            <AccountCircleIcon /> <span> {person} </span>
+                    conversations.map((conversation) => (
+                        <li className='conversation-person' key={conversation.id} onClick={() => this.props.handleConversationClick(conversation.id)}>
+                            <Group /> <span> {conversation.title}</span>
+                        </li>
+                    ))
+                }
+                {
+                    enrolled_users.map((person) =>
+                        <li className='conversation-person' key={`person-${person.id}`} onClick={() => this.props.handlePersonClick(person.id)}>
+                            <AccountCircleIcon /> <span> {person.full_name} </span>
                         </li>
                     )
                 }
             </ul>
 		);
 	}
+}
+
+PeopleInTheChat.propTypes = {
+    handleConversationClick: PropTypes.func.isRequired,
+    handlePersonClick: PropTypes.func.isRequired,
 }
 
 export default withRouter(PeopleInTheChat);
