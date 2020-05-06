@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_06_023400) do
+ActiveRecord::Schema.define(version: 2020_05_06_045203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,9 @@ ActiveRecord::Schema.define(version: 2020_05_06_023400) do
   create_table "conversations", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "course_id"
+    t.string "title"
+    t.index ["course_id"], name: "index_conversations_on_course_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -54,6 +57,7 @@ ActiveRecord::Schema.define(version: 2020_05_06_023400) do
     t.bigint "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "approved", default: false
     t.index ["category_id"], name: "index_courses_on_category_id"
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
@@ -95,6 +99,7 @@ ActiveRecord::Schema.define(version: 2020_05_06_023400) do
 
   add_foreign_key "conversation_users", "conversations"
   add_foreign_key "conversation_users", "users"
+  add_foreign_key "conversations", "courses"
   add_foreign_key "courses", "categories"
   add_foreign_key "courses", "users"
   add_foreign_key "messages", "conversations"

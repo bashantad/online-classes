@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+	namespace :admin do
+		resources :courses, :only => [:index] do
+			get :approve
+			get :disapprove
+		end
+	end
   	resources :courses
   	resources :categories
   	devise_for :users
