@@ -1,12 +1,14 @@
 class Course < ApplicationRecord
-	belongs_to :user
+	belongs_to :owner, foreign_key: :user_id, class_name: 'User'
 	belongs_to :category
 	has_many :conversations
+	has_many :enrolled_course_users
+	has_many :enrolled_users, through: :enrolled_course_users, source: :user
 	scope :approved, -> { where(approved: true) }
 
 	def approve
 		unless self.conversations.exists?
-			_create_general_conversation
+			_enroll_in_general_conversation
 		end
 		update(:approved => true)
 	end
@@ -21,7 +23,9 @@ class Course < ApplicationRecord
 
 	private
 
-	def _create_general_conversation
-		self.conversations.create(title: 'General')
+	def _enroll_in_general_conversation
+		self.enrolled_course_users.create(user_id: self.owner.id)
+		conversation = self.conversations.create(title: 'General')
+		conversation.conversation_users.create(user_id: self.owner.id)
 	end
 end

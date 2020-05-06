@@ -9,7 +9,7 @@ const Home = () => (
             Search the virtual classes that are running now.
         </p>
         <Link
-            to="/calls/join"
+            to="/classroom/1"
             className="btn btn-lg custom-button"
             role="button"
         >

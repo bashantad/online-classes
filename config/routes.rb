@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 	namespace :admin do
-		resources :courses, :only => [:index] do
+		resources :courses, only: [:index] do
 			get :approve
 			get :disapprove
 		end
@@ -9,9 +9,10 @@ Rails.application.routes.draw do
   	resources :categories
   	devise_for :users
 	namespace :api, constraints: { format: 'json' } do
+		resources :courses, only: [:index, :show]
 		resources :conversations
 		resources :messages
-		resources :calls, :only => [:create, :new, :show] do
+		resources :calls, only: [:create, :new, :show] do
 			get :join
 		end
 	end

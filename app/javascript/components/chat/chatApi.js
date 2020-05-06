@@ -1,8 +1,8 @@
 import {HEADERS, API_ROOT} from '../../constants';
-const createUrl = `${API_ROOT}/messages`;
+
 const chatApi = {
 	create: (message) => {
-		fetch(createUrl, {
+		fetch(`${API_ROOT}/messages`, {
 			method: "POST",
 			headers: HEADERS,
 			body: JSON.stringify(message)

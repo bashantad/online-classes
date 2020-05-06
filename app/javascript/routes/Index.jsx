@@ -7,6 +7,7 @@ export default (
   <Router>
     <Switch>
       <Route path="/" exact component={Home} />
+      <Route path="/classroom/:id" exact component={Call} />
       <Route path="/calls/:id" exact component={Call} />
     </Switch>
   </Router>
