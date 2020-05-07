@@ -21,10 +21,11 @@ export default class NewMessage extends React.Component {
 		this.setState({content: ''});
 	}
 	render() {
+		const disabled = this.props.conversationId === null;
 		return (
 			<div className='message-box'>
                 <textarea className='message-input' placeholder='Type your message' onChange={this.handleMessageChange} value={this.state.content}></textarea>
-                <Button variant="contained" color="primary" onClick={this.handleMessageSendClick}>
+                <Button variant="contained" color="primary" disabled={disabled} onClick={this.handleMessageSendClick}>
                  	Send
             	</Button>
             </div>
@@ -33,5 +34,5 @@ export default class NewMessage extends React.Component {
 }
 
 NewMessage.propTypes = {
-	conversationId: PropTypes.number.isRequired,
+	conversationId: PropTypes.number,
 }

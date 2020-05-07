@@ -1,9 +1,4 @@
 class Api::ConversationsController < ApplicationController
-	def index
-		@conversations = current_user.conversations
-		render json: @conversations, include: ['messages', 'messages.sender']
-	end
-
 	def create
 		conversation = _find_or_create_conversation
 		if conversation
