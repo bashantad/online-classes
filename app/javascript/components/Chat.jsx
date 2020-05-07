@@ -70,12 +70,12 @@ export class Chat extends React.Component {
                     />
                     : null
                 }
-                <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+                <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} fullWidth>
                     <DialogTitle id="customized-dialog-title" onClose={handleClose}>
                         Computer science classroom
                     </DialogTitle>
                     <DialogContent dividers>
-                        <Grid container spacing={1}>
+                        <Grid container spacing={1} className='chat-window'>
                             <Grid item xs={4}>
                                 <PeopleInTheChat {...peopleInTheChatProps}/>
                             </Grid>

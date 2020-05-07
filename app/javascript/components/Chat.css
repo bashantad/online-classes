@@ -1,3 +1,6 @@
+.chat-window {
+	min-height: 600px;
+}
 ul.people-list {
 	padding: 0px;
 	margin: 0px;
@@ -44,8 +47,14 @@ ul.people-list li span {
 	background: #eee;
 }
 
-.conversation-item span {
+.conversation-item .person-name {
 	font-size: 20px;
+}
+
+.conversation-item .message-created-time {
+	font-size: 14px;
+	color: #888;
+	padding-left: 10px;
 }
 
 .message-wrapper {
