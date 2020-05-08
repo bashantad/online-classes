@@ -14,10 +14,7 @@ export default class NewMessage extends React.Component {
 	}
 
 	handleMessageSendClick = () => {
-		chatApi.create({
-			content: this.state.content,
-			conversation_id: this.props.conversationId,
-		});
+		chatApi.create(this.props.conversationId, this.state.content);
 		this.setState({content: ''});
 	}
 	render() {

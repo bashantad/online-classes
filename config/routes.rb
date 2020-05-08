@@ -12,7 +12,9 @@ Rails.application.routes.draw do
 		resources :courses, only: [:index, :show] do
 			resources :conversations
 		end
-		resources :messages
+		resources :conversations, only: [] do
+			resources :messages
+		end
 		resources :calls, only: [:create, :new, :show] do
 			get :join
 		end

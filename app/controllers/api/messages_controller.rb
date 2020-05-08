@@ -1,7 +1,7 @@
 class Api::MessagesController < Api::BaseController
 	def create
-		message = current_user.messages.new(message_params)
-		conversation = current_user.conversations.find(message_params[:conversation_id])
+		message = current_user.messages.new(message_params.merge(conversation_id: params[:conversation_id]))
+		conversation = current_user.conversations.find(params[:conversation_id])
 		if message.save
 			serialized_data = ActiveModelSerializers::Adapter::Json.new(
         		MessageSerializer.new(message)
@@ -9,12 +9,14 @@ class Api::MessagesController < Api::BaseController
 
       		MessagesChannel.broadcast_to conversation, serialized_data
       		head :ok
+		else
+			render json: message.errors
 		end
 	end
 
 	private
 
 	def message_params
-		params.require(:message).permit(:content, :conversation_id)
+		params.require(:message).permit(:content)
 	end
 end

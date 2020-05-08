@@ -58,7 +58,16 @@ export class Chat extends React.Component {
         conversationApi.create(this._getCourseId(), userId)
             .then(res => res.json())
             .then(response => {
-                this.setState({activeConversationId: response.conversation.id});
+                const conversation = response.conversation;
+                const update_attributes = {
+                    activeConversationId: conversation.id
+                };
+                const doesConversationExist = this.state.conversations.some(item => item.id === conversation.id);
+                if(!doesConversationExist) {
+                    const conversations = [...this.state.conversations, conversation];
+                    update_attributes.conversations = conversations;
+                }
+                this.setState(update_attributes);
             });
     }
     render() {
