@@ -1,5 +1,4 @@
 class Admin::CoursesController < ApplicationController
-	before_action :authenticate_admin!
 	before_action :set_course, only: [:approve, :disapprove]
 
 	def index

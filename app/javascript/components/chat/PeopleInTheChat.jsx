@@ -8,11 +8,19 @@ import courseApi from './courseApi';
 export default class PeopleInTheChat extends React.Component {
     render() {
         const {conversations, enrolledUsers} = this.props;
+        const groupConversations = conversations.filter(conv => conv.is_group);
+        const personalConversations = conversations.filter(conv => !conv.is_group);
+        const personalConversationMap = personalConversations.reduce((accumulator, conversation) => {
+            conversation.conversation_users.forEach((convUser) => {
+                accumulator[convUser.user_id] = convUser.conversation_id
+            })
+            return accumulator;
+        }, {});
         const {handleConversationClick, handlePersonClick} = this.props;
         return (
 			<ul className='people-list'>
                 {
-                    conversations.map((conversation) => (
+                    groupConversations.map((conversation) => (
                         <li className='conversation-person' key={conversation.id} onClick={() => handleConversationClick(conversation.id)}>
                             <Group /> <span> {conversation.title}</span>
                         </li>

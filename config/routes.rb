@@ -9,8 +9,9 @@ Rails.application.routes.draw do
   	resources :categories
   	devise_for :users
 	namespace :api, constraints: { format: 'json' } do
-		resources :courses, only: [:index, :show]
-		resources :conversations
+		resources :courses, only: [:index, :show] do
+			resources :conversations
+		end
 		resources :messages
 		resources :calls, only: [:create, :new, :show] do
 			get :join

@@ -25,7 +25,7 @@ class Course < ApplicationRecord
 
 	def _enroll_in_general_conversation
 		self.enrolled_course_users.create(user_id: self.owner.id)
-		conversation = self.conversations.create(title: 'General')
+		conversation = self.conversations.create(title: 'General', is_group: true)
 		conversation.conversation_users.create(user_id: self.owner.id)
 	end
 end

@@ -10,6 +10,7 @@ import PeopleInTheChat from '../components/chat/PeopleInTheChat';
 import ActiveMessageArea from '../components/chat/ActiveMessageArea';
 import NewMessage from '../components/chat/NewMessage';
 import courseApi from './chat/courseApi';
+import conversationApi from './chat/conversationApi';
 import Cable from './chat/Cable';
 
 export class Chat extends React.Component {
@@ -19,8 +20,12 @@ export class Chat extends React.Component {
         enrolledUsers: []
     };
 
+    _getCourseId = () => {
+        return this.props.match.params.id;
+    }
+
     componentDidMount = () => {
-        courseApi.getById(this.props.match.params.id)
+        courseApi.getById(this._getCourseId())
             .then(res => res.json())
             .then(courseDetails => {
                 const {conversations, enrolled_users} = courseDetails;
@@ -48,8 +53,13 @@ export class Chat extends React.Component {
     handleConversationClick = (conversationId) => {
         this.setState({activeConversationId: conversationId})
     }
-    handlePersonClick = (personId) => {
-        console.log('initiating chat with personId', personId);
+
+    handlePersonClick = (userId) => {
+        conversationApi.create(this._getCourseId(), userId)
+            .then(res => res.json())
+            .then(response => {
+                this.setState({activeConversationId: response.conversation.id});
+            });
     }
     render() {
         const {conversations, enrolledUsers, activeConversationId} = this.state;
