@@ -20,12 +20,23 @@ export default class PeopleInTheChat extends React.Component {
 
     _getMappingPersonToConversation = (conversations) => {
         const personalConversations = conversations.filter(conv => !conv.is_group);
-        return personalConversations.reduce((accumulator, conversation) => {
-            conversation.conversation_users.forEach((convUser) => {
+        const currentUserMapping = {};
+        const mapping =  personalConversations.reduce((accumulator, conversation) => {
+            const conversationUsers = conversation.conversation_users;
+            if(conversationUsers.length === 1) {
+                const conversationUser = conversationUsers[0];
+                currentUserMapping[conversationUser.user_id] = conversationUser.conversation_id;
+            }
+            conversationUsers.forEach((convUser) => {
                 accumulator[convUser.user_id] = convUser.conversation_id
             })
             return accumulator;
         }, {});
+        const currentUserKey = Object.keys(currentUserMapping)[0];
+        if(currentUserKey) {
+            mapping[currentUserKey] = currentUserMapping[currentUserKey];
+        }
+        return mapping;
     }
 
     getActiveClass = (conversationId) => {
