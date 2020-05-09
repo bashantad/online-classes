@@ -5,11 +5,7 @@ class Api::ConversationsController < Api::BaseController
 		other_user = @course.enrolled_users.find(message_params[:other_user_id])
 		conversation = CourseService.new(@course).find_or_create_one_on_one_conversation(current_user, other_user)
 		if conversation
-			serialized_data = ActiveModelSerializers::Adapter::Json.new(
-		    	ConversationSerializer.new(conversation)
-		    ).serializable_hash
-
-		    render json: serialized_data
+			render json: conversation, include: ['conversation_users', 'messages', 'messages.sender']
 		end
 	end
 

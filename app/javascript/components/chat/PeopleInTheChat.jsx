@@ -6,30 +6,55 @@ import Group from '@material-ui/icons/Group';
 import courseApi from './courseApi';
 
 export default class PeopleInTheChat extends React.Component {
-    render() {
-        const {conversations, enrolledUsers} = this.props;
-        const groupConversations = conversations.filter(conv => conv.is_group);
+    handleConversationClick = (conversationId) => {
+        this.props.handleConversationClick(conversationId);
+    }
+    handleUserClick = (mappingPersonToConversation, userId) => {
+        const conversationId = mappingPersonToConversation[userId];
+        if(conversationId) {
+            this.handleConversationClick(conversationId);
+        } else {
+            this.props.handleUserClick(userId);
+        }
+    }
+
+    _getMappingPersonToConversation = (conversations) => {
         const personalConversations = conversations.filter(conv => !conv.is_group);
-        const personalConversationMap = personalConversations.reduce((accumulator, conversation) => {
+        return personalConversations.reduce((accumulator, conversation) => {
             conversation.conversation_users.forEach((convUser) => {
                 accumulator[convUser.user_id] = convUser.conversation_id
             })
             return accumulator;
         }, {});
-        const {handleConversationClick, handlePersonClick} = this.props;
+    }
+
+    getActiveClass = (conversationId) => {
+        return conversationId === this.props.activeConversationId ? 'active' : ''
+    }
+
+    render() {
+        const {conversations, enrolledUsers} = this.props;
+        const groupConversations = conversations.filter(conv => conv.is_group);
+        const mappingPersonToConversation = this._getMappingPersonToConversation(conversations);
         return (
 			<ul className='people-list'>
                 {
                     groupConversations.map((conversation) => (
-                        <li className='conversation-person' key={conversation.id} onClick={() => handleConversationClick(conversation.id)}>
+                        <li className={`conversation-actor ${this.getActiveClass(conversation.id)}`}
+                            key={conversation.id}
+                            onClick={() => this.handleConversationClick(conversation.id)}
+                        >
                             <Group /> <span> {conversation.title}</span>
                         </li>
                     ))
                 }
                 {
-                    enrolledUsers.map((person) =>
-                        <li className='conversation-person' key={`person-${person.id}`} onClick={() => handlePersonClick(person.id)}>
-                            <AccountCircleIcon /> <span> {person.full_name} </span>
+                    enrolledUsers.map((user) =>
+                        <li className={`conversation-actor ${this.getActiveClass(mappingPersonToConversation[user.id])}`}
+                            key={`person-${user.id}`}
+                            onClick={() => this.handleUserClick(mappingPersonToConversation, user.id)}
+                        >
+                            <AccountCircleIcon /> <span> {user.full_name} </span>
                         </li>
                     )
                 }
@@ -40,7 +65,7 @@ export default class PeopleInTheChat extends React.Component {
 
 PeopleInTheChat.propTypes = {
     handleConversationClick: PropTypes.func.isRequired,
-    handlePersonClick: PropTypes.func.isRequired,
+    handleUserClick: PropTypes.func.isRequired,
     conversations: PropTypes.array.isRequired,
     enrolledUsers: PropTypes.array.isRequired,
 };

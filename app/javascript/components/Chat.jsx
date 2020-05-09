@@ -54,11 +54,10 @@ export class Chat extends React.Component {
         this.setState({activeConversationId: conversationId})
     }
 
-    handlePersonClick = (userId) => {
+    handleUserClick = (userId) => {
         conversationApi.create(this._getCourseId(), userId)
             .then(res => res.json())
-            .then(response => {
-                const conversation = response.conversation;
+            .then(conversation => {
                 const update_attributes = {
                     activeConversationId: conversation.id
                 };
@@ -76,8 +75,9 @@ export class Chat extends React.Component {
         const peopleInTheChatProps = {
             conversations: conversations,
             enrolledUsers: enrolledUsers,
+            activeConversationId: activeConversationId,
             handleConversationClick: this.handleConversationClick,
-            handlePersonClick: this.handlePersonClick,
+            handleUserClick: this.handleUserClick,
         };
         return (
             <div>
