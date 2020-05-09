@@ -17,7 +17,8 @@ export class Chat extends React.Component {
     state = {
         conversations: [],
         activeConversationId: null,
-        enrolledUsers: []
+        enrolledUsers: [],
+        name: null,
     };
 
     _getCourseId = () => {
@@ -28,9 +29,13 @@ export class Chat extends React.Component {
         courseApi.getById(this._getCourseId())
             .then(res => res.json())
             .then(courseDetails => {
-                const {conversations, enrolled_users} = courseDetails;
-                const activeConversationId = conversations[0].id;
-                this.setState({conversations, enrolledUsers: enrolled_users, activeConversationId});
+                const {conversations, enrolled_users, name} = courseDetails;
+                this.setState({
+                    conversations: conversations,
+                    enrolledUsers: enrolled_users,
+                    activeConversationId: conversations[0].id,
+                    name: name,
+                 });
             });
     }
 
@@ -70,7 +75,7 @@ export class Chat extends React.Component {
             });
     }
     render() {
-        const {conversations, enrolledUsers, activeConversationId} = this.state;
+        const {conversations, enrolledUsers, activeConversationId, name} = this.state;
         const {open, handleClose} = this.props;
         const peopleInTheChatProps = {
             conversations: conversations,
@@ -79,6 +84,7 @@ export class Chat extends React.Component {
             handleConversationClick: this.handleConversationClick,
             handleUserClick: this.handleUserClick,
         };
+
         return (
             <div>
                 {
@@ -91,7 +97,7 @@ export class Chat extends React.Component {
                 }
                 <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} fullWidth>
                     <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                        Computer science classroom
+                        {name}
                     </DialogTitle>
                     <DialogContent dividers>
                         <Grid container spacing={1} className='chat-window'>

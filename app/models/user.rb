@@ -9,5 +9,7 @@ class User < ApplicationRecord
     has_many :enrolled_course_users
     has_many :enrolled_courses, through: :enrolled_course_users, source: :course
     has_many :messages, foreign_key: :sender_id
+    has_many :user_message_notifications
+    has_many :notification_messages, through: :user_message_notifications, source: :message
     has_many :courses
 end

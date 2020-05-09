@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_08_061601) do
+ActiveRecord::Schema.define(version: 2020_05_09_231413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,16 @@ ActiveRecord::Schema.define(version: 2020_05_08_061601) do
     t.index ["sender_id"], name: "index_messages_on_sender_id"
   end
 
+  create_table "user_message_notifications", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "message_id", null: false
+    t.boolean "read", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["message_id"], name: "index_user_message_notifications_on_message_id"
+    t.index ["user_id"], name: "index_user_message_notifications_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "full_name", default: "", null: false
     t.string "email", default: "", null: false
@@ -116,4 +126,6 @@ ActiveRecord::Schema.define(version: 2020_05_08_061601) do
   add_foreign_key "enrolled_course_users", "courses"
   add_foreign_key "enrolled_course_users", "users"
   add_foreign_key "messages", "conversations"
+  add_foreign_key "user_message_notifications", "messages"
+  add_foreign_key "user_message_notifications", "users"
 end

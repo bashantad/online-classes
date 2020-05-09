@@ -3,6 +3,7 @@ class Api::MessagesController < Api::BaseController
 		message = current_user.messages.new(message_params.merge(conversation_id: params[:conversation_id]))
 		conversation = current_user.conversations.find(params[:conversation_id])
 		if message.save
+			message.add_notification_to_its_readers
 			serialized_data = ActiveModelSerializers::Adapter::Json.new(
         		MessageSerializer.new(message)
       		).serializable_hash
