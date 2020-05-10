@@ -11,6 +11,7 @@ import ActiveMessageArea from '../components/chat/ActiveMessageArea';
 import NewMessage from '../components/chat/NewMessage';
 import courseApi from './chat/courseApi';
 import conversationApi from './chat/conversationApi';
+import userApi from './chat/userApi';
 import Cable from './chat/Cable';
 
 export class Chat extends React.Component {
@@ -18,7 +19,11 @@ export class Chat extends React.Component {
         conversations: [],
         activeConversationId: null,
         enrolledUsers: [],
-        name: null,
+        courseName: null,
+        fullName: null,
+        currentUserId: null,
+        enrolledCourses: [],
+        messageNotifications: []
     };
 
     _getCourseId = () => {
@@ -26,6 +31,17 @@ export class Chat extends React.Component {
     }
 
     componentDidMount = () => {
+        userApi.getCurrentUserState()
+        .then(res => res.json())
+        .then(user => {
+            const {id, full_name, enrolled_courses, user_message_notifications} = user;
+            this.setState({
+                fullName: full_name,
+                currentUserId: id,
+                enrolledCourses: enrolled_courses,
+                messageNotifications: user_message_notifications
+            })
+        });
         courseApi.getById(this._getCourseId())
             .then(res => res.json())
             .then(courseDetails => {
@@ -34,7 +50,7 @@ export class Chat extends React.Component {
                     conversations: conversations,
                     enrolledUsers: enrolled_users,
                     activeConversationId: conversations[0].id,
-                    name: name,
+                    courseName: name,
                  });
             });
     }
@@ -75,7 +91,7 @@ export class Chat extends React.Component {
             });
     }
     render() {
-        const {conversations, enrolledUsers, activeConversationId, name} = this.state;
+        const {conversations, enrolledUsers, activeConversationId, courseName} = this.state;
         const {open, handleClose} = this.props;
         const peopleInTheChatProps = {
             conversations: conversations,
@@ -97,7 +113,7 @@ export class Chat extends React.Component {
                 }
                 <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} fullWidth>
                     <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                        {name}
+                        {courseName}
                     </DialogTitle>
                     <DialogContent dividers>
                         <Grid container spacing={1} className='chat-window'>

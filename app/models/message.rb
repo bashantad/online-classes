@@ -9,7 +9,10 @@ class Message < ApplicationRecord
 	end
 
 	def add_notification_to_its_readers
-		notify_users = self.conversation.users.select{ |user| user.id != self.sender_id }
-		self.notification_users << notify_users
+		self.conversation.users.each do |user|
+			if user.id != self.sender_id
+				self.user_message_notifications.create(:user_id => user.id, :sender_id => self.sender_id)
+			end
+		end
 	end
 end
