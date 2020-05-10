@@ -78,6 +78,8 @@ export class Chat extends React.Component {
 
     handleConversationClick = (conversationId) => {
         this.setState({activeConversationId: conversationId});
+        const activeConversation = this.findActiveConversation();
+
         userApi.markMessagesRead(conversationId);
     }
 
@@ -105,6 +107,7 @@ export class Chat extends React.Component {
             messageNotificationMap,
             currentUserId,
             individualConversations,
+            fullName,
         } = this.state;
 
         const {open, handleClose} = this.props;
@@ -131,7 +134,7 @@ export class Chat extends React.Component {
                 }
                 <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} fullWidth>
                     <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                        {courseName}
+                        {fullName} - {courseName}
                     </DialogTitle>
                     <DialogContent dividers>
                         <Grid container spacing={1} className='chat-window'>

@@ -11,7 +11,6 @@ export default class PeopleInTheChat extends React.Component {
     }
     handleUserClick = (mappingPersonToConversation, userId) => {
         const conversationId = mappingPersonToConversation[userId];
-        console.log(mappingPersonToConversation);
         if(conversationId) {
             this.handleConversationClick(conversationId);
         } else {
@@ -46,9 +45,9 @@ export default class PeopleInTheChat extends React.Component {
     }
 
     render() {
-        const {conversations, enrolledUsers, messageNotificationMap} = this.props;
+        const {conversations, enrolledUsers, messageNotificationMap, individualConversations} = this.props;
         const groupConversations = conversations.filter(conv => conv.is_group);
-        const mappingPersonToConversation = this._getMappingPersonToConversation(conversations);
+        const mappingPersonToConversation = this._getMappingPersonToConversation(individualConversations);
         return (
 			<ul className='people-list'>
                 {
