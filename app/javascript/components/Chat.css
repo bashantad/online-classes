@@ -24,6 +24,14 @@ ul.people-list li:hover {
 	font-weight: bold;
 }
 
+.no-of-messages {
+	background: red;
+	color: #fff;
+	padding:4px 8px;
+	border-radius: 50%;
+	text-align: right;
+}
+
 ul.people-list li span {
 	font-size: 20px;
 }

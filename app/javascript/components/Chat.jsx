@@ -16,6 +16,8 @@ import Cable from './chat/Cable';
 
 export class Chat extends React.Component {
     state = {
+        groupConversations: [],
+        individualConversations: [],
         conversations: [],
         activeConversationId: null,
         enrolledUsers: [],
@@ -23,7 +25,7 @@ export class Chat extends React.Component {
         fullName: null,
         currentUserId: null,
         enrolledCourses: [],
-        messageNotifications: []
+        messageNotificationMap: {}
     };
 
     _getCourseId = () => {
@@ -31,15 +33,17 @@ export class Chat extends React.Component {
     }
 
     componentDidMount = () => {
-        userApi.getCurrentUserState()
+        userApi.getCurrentUserInfo()
         .then(res => res.json())
         .then(user => {
-            const {id, full_name, enrolled_courses, user_message_notifications} = user;
+            const {id, full_name, enrolled_courses, user_message_notifications, conversations} = user;
             this.setState({
                 fullName: full_name,
                 currentUserId: id,
                 enrolledCourses: enrolled_courses,
-                messageNotifications: user_message_notifications
+                individualConversations: conversations,
+                conversations: [...this.state.conversations, ...conversations],
+                messageNotificationMap: user_message_notifications
             })
         });
         courseApi.getById(this._getCourseId())
@@ -47,7 +51,8 @@ export class Chat extends React.Component {
             .then(courseDetails => {
                 const {conversations, enrolled_users, name} = courseDetails;
                 this.setState({
-                    conversations: conversations,
+                    groupConversations: conversations,
+                    conversations: [...this.state.conversations, ...conversations],
                     enrolledUsers: enrolled_users,
                     activeConversationId: conversations[0].id,
                     courseName: name,
@@ -72,31 +77,44 @@ export class Chat extends React.Component {
     }
 
     handleConversationClick = (conversationId) => {
-        this.setState({activeConversationId: conversationId})
+        this.setState({activeConversationId: conversationId});
+        userApi.markMessagesRead(conversationId);
     }
 
     handleUserClick = (userId) => {
         conversationApi.create(this._getCourseId(), userId)
             .then(res => res.json())
             .then(conversation => {
-                const update_attributes = {
+                const updateAttributes = {
                     activeConversationId: conversation.id
                 };
                 const doesConversationExist = this.state.conversations.some(item => item.id === conversation.id);
                 if(!doesConversationExist) {
                     const conversations = [...this.state.conversations, conversation];
-                    update_attributes.conversations = conversations;
+                    updateAttributes.conversations = conversations;
                 }
-                this.setState(update_attributes);
+                this.setState(updateAttributes);
             });
     }
     render() {
-        const {conversations, enrolledUsers, activeConversationId, courseName} = this.state;
+        const {
+            conversations,
+            enrolledUsers,
+            activeConversationId,
+            courseName,
+            messageNotificationMap,
+            currentUserId,
+            individualConversations,
+        } = this.state;
+
         const {open, handleClose} = this.props;
         const peopleInTheChatProps = {
             conversations: conversations,
+            individualConversations: individualConversations,
             enrolledUsers: enrolledUsers,
             activeConversationId: activeConversationId,
+            currentUserId: currentUserId,
+            messageNotificationMap: messageNotificationMap,
             handleConversationClick: this.handleConversationClick,
             handleUserClick: this.handleUserClick,
         };

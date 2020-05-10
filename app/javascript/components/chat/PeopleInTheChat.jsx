@@ -11,6 +11,7 @@ export default class PeopleInTheChat extends React.Component {
     }
     handleUserClick = (mappingPersonToConversation, userId) => {
         const conversationId = mappingPersonToConversation[userId];
+        console.log(mappingPersonToConversation);
         if(conversationId) {
             this.handleConversationClick(conversationId);
         } else {
@@ -18,17 +19,18 @@ export default class PeopleInTheChat extends React.Component {
         }
     }
 
-    _getMappingPersonToConversation = (conversations) => {
-        const personalConversations = conversations.filter(conv => !conv.is_group);
+    _getMappingPersonToConversation = (individualConversations) => {
         const currentUserMapping = {};
-        const mapping =  personalConversations.reduce((accumulator, conversation) => {
+        const mapping =  individualConversations.reduce((accumulator, conversation) => {
             const conversationUsers = conversation.conversation_users;
             if(conversationUsers.length === 1) {
                 const conversationUser = conversationUsers[0];
                 currentUserMapping[conversationUser.user_id] = conversationUser.conversation_id;
             }
             conversationUsers.forEach((convUser) => {
-                accumulator[convUser.user_id] = convUser.conversation_id
+                if(convUser.user_id != this.props.currentUserId) {
+                    accumulator[convUser.user_id] = convUser.conversation_id
+                }
             })
             return accumulator;
         }, {});
@@ -40,11 +42,11 @@ export default class PeopleInTheChat extends React.Component {
     }
 
     getActiveClass = (conversationId) => {
-        return conversationId === this.props.activeConversationId ? 'active' : ''
+        return conversationId === this.props.activeConversationId ? 'active' : '';
     }
 
     render() {
-        const {conversations, enrolledUsers} = this.props;
+        const {conversations, enrolledUsers, messageNotificationMap} = this.props;
         const groupConversations = conversations.filter(conv => conv.is_group);
         const mappingPersonToConversation = this._getMappingPersonToConversation(conversations);
         return (
@@ -62,10 +64,14 @@ export default class PeopleInTheChat extends React.Component {
                 {
                     enrolledUsers.map((user) =>
                         <li className={`conversation-actor ${this.getActiveClass(mappingPersonToConversation[user.id])}`}
-                            key={`person-${user.id}`}
+                            key={`person-${user.id}-conversation-${mappingPersonToConversation[user.id]}`}
+                            data-convo={`${mappingPersonToConversation[user.id]}`}
                             onClick={() => this.handleUserClick(mappingPersonToConversation, user.id)}
                         >
                             <AccountCircleIcon /> <span> {user.full_name} </span>
+                            {
+                                messageNotificationMap[user.id] &&<span className='no-of-messages'>{messageNotificationMap[user.id].length}</span>
+                            }
                         </li>
                     )
                 }
@@ -78,5 +84,8 @@ PeopleInTheChat.propTypes = {
     handleConversationClick: PropTypes.func.isRequired,
     handleUserClick: PropTypes.func.isRequired,
     conversations: PropTypes.array.isRequired,
+    individualConversations: PropTypes.array.isRequired,
     enrolledUsers: PropTypes.array.isRequired,
+    currentUserId: PropTypes.number,
+    messageNotificationMap: PropTypes.object.isRequired,
 };

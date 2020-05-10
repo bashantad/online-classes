@@ -22,7 +22,8 @@ Rails.application.routes.draw do
 		end
 		resources :users, only: [] do
 			collection do
-				get :current_user_state
+				get :current_user_info
+				get '/:conversation_id/mark_messages_read', to: 'users#mark_messages_read'
 			end
 		end
 		resources :calls, only: [:create, :new, :show] do
