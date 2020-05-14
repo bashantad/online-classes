@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Group from '@material-ui/icons/Group';
 
-import courseApi from './courseApi';
-
 export default class PeopleInTheChat extends React.Component {
     handleConversationClick = (conversationId) => {
         this.props.handleConversationClick(conversationId);
@@ -27,7 +25,7 @@ export default class PeopleInTheChat extends React.Component {
                 currentUserMapping[conversationUser.user_id] = conversationUser.conversation_id;
             }
             conversationUsers.forEach((convUser) => {
-                if(convUser.user_id != this.props.currentUserId) {
+                if(convUser.user_id !== this.props.currentUserId) {
                     accumulator[convUser.user_id] = convUser.conversation_id
                 }
             })
@@ -44,6 +42,44 @@ export default class PeopleInTheChat extends React.Component {
         return conversationId === this.props.activeConversationId ? 'active' : '';
     }
 
+    renderIndividualPerson = (user, mappingPersonToConversation) => {
+        const conversationId = mappingPersonToConversation[user.id];
+        return (
+            <li className={`conversation-actor ${this.getActiveClass(conversationId)}`}
+                key={`person-${user.id}-conversation-${conversationId}`}
+                onClick={() => this.handleUserClick(mappingPersonToConversation, user.id)}
+            >
+                <AccountCircleIcon /> <span> {user.full_name} </span>
+                {
+                    this.renderNotification(conversationId)
+                }
+            </li>
+        );
+    }
+
+    renderNotification = (conversationId) => {
+        const {messageNotificationMap} = this.props;
+        return (
+            messageNotificationMap[conversationId] &&
+                <span className='no-of-messages'>
+                    {messageNotificationMap[conversationId].length}
+                </span>
+        );
+    }
+
+    renderGroupConversation = (conversation) => {
+        const {title, id} = conversation;
+        return (
+            <li className={`conversation-actor ${this.getActiveClass(id)}`}
+                key={id}
+                onClick={() => this.handleConversationClick(id)}
+            >
+                <Group /> <span> {title}</span>
+                {this.renderNotification(id)}
+            </li>
+        );
+    }
+
     render() {
         const {conversations, enrolledUsers, messageNotificationMap, individualConversations} = this.props;
         const groupConversations = conversations.filter(conv => conv.is_group);
@@ -51,28 +87,10 @@ export default class PeopleInTheChat extends React.Component {
         return (
 			<ul className='people-list'>
                 {
-                    groupConversations.map((conversation) => (
-                        <li className={`conversation-actor ${this.getActiveClass(conversation.id)}`}
-                            key={conversation.id}
-                            onClick={() => this.handleConversationClick(conversation.id)}
-                        >
-                            <Group /> <span> {conversation.title}</span>
-                        </li>
-                    ))
+                    groupConversations.map(conversation => this.renderGroupConversation(conversation, messageNotificationMap))
                 }
                 {
-                    enrolledUsers.map((user) =>
-                        <li className={`conversation-actor ${this.getActiveClass(mappingPersonToConversation[user.id])}`}
-                            key={`person-${user.id}-conversation-${mappingPersonToConversation[user.id]}`}
-                            data-convo={`${mappingPersonToConversation[user.id]}`}
-                            onClick={() => this.handleUserClick(mappingPersonToConversation, user.id)}
-                        >
-                            <AccountCircleIcon /> <span> {user.full_name} </span>
-                            {
-                                messageNotificationMap[user.id] &&<span className='no-of-messages'>{messageNotificationMap[user.id].length}</span>
-                            }
-                        </li>
-                    )
+                    enrolledUsers.map(user => this.renderIndividualPerson(user, mappingPersonToConversation))
                 }
             </ul>
 		);

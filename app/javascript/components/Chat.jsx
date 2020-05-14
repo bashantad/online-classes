@@ -78,9 +78,7 @@ export class Chat extends React.Component {
 
     handleConversationClick = (conversationId) => {
         this.setState({activeConversationId: conversationId});
-        const activeConversation = this.findActiveConversation();
-
-        userApi.markMessagesRead(conversationId);
+        this.state.messageNotificationMap[conversationId] && userApi.markMessagesRead(conversationId);
     }
 
     handleUserClick = (userId) => {

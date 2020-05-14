@@ -7,10 +7,12 @@ class UserMessageNotification < ApplicationRecord
 
   def self.hashify_message_notification(object)
   	arr = {}
-  	object.user_message_notifications.unread.each do |notification|
-  		arr[notification.sender_id] ||= []
-  		arr[notification.sender_id] << notification.message_id
-  	end
+    notifications = object.user_message_notifications.unread
+    message_ids = notifications.collect(&:message_id)
+    Message.where(id: message_ids).each do |message|
+      arr[message.conversation_id] ||= []
+      arr[message.conversation_id] << message.id
+    end
   	arr
   end
 

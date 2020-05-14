@@ -5,6 +5,6 @@ class UserSerializer < ActiveModel::Serializer
   	end
   	has_many :enrolled_courses
   	has_many :user_message_notifications do
-		UserMessageNotification.hashify_message_notification(object)
+			UserMessageNotification.hashify_message_notification(object)
   	end
 end

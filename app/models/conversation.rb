@@ -17,7 +17,7 @@ class Conversation < ApplicationRecord
 	end
 
 	def mark_messages_read(user)
-		message_ids = self.messages.collect(&:id)
+		message_ids = self.messages.where.not(sender_id: user.id).collect(&:id)
 		unread_notifications = user.user_message_notifications.unread.where(message_id: message_ids)
 		unread_notifications.each(&:mark_as_read)
 	end
