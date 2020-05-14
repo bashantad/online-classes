@@ -14,8 +14,11 @@ export default class NewMessage extends React.Component {
 	}
 
 	handleMessageSendClick = () => {
-		chatApi.create(this.props.conversationId, this.state.content);
-		this.setState({content: ''});
+		const {content} = this.state;
+		if(!!content) {
+			chatApi.create(this.props.conversationId, content);
+			this.setState({content: ''});
+		}
 	}
 	render() {
 		const disabled = this.props.conversationId === null;

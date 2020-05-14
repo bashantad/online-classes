@@ -62,12 +62,16 @@ export class Chat extends React.Component {
 
     handleReceivedMessage = (response) => {
         const {message} = response;
-        const {conversations} = this.state;
+        const {user_message_notifications} = message;
+        const {conversations, messageNotificationMap} = this.state;
         const conversation = conversations.find(
             item => item.id === message.conversation_id
         );
+
+        messageNotificationMap[conversation.id] = messageNotificationMap[conversation.id] || [];
+        messageNotificationMap[conversation.id] = messageNotificationMap[conversation.id].concat(user_message_notifications[conversation.id])
         conversation.messages = [...conversation.messages, message];
-        this.setState({conversations});
+        this.setState({conversations, messageNotificationMap});
     }
 
     findActiveConversation = () => {
@@ -77,8 +81,11 @@ export class Chat extends React.Component {
     }
 
     handleConversationClick = (conversationId) => {
-        this.setState({activeConversationId: conversationId});
-        this.state.messageNotificationMap[conversationId] && userApi.markMessagesRead(conversationId);
+        const {messageNotificationMap} = this.state;
+        const hasUnreadMessages = !!messageNotificationMap[conversationId];
+        delete messageNotificationMap[conversationId];
+        this.setState({activeConversationId: conversationId, messageNotificationMap});
+        hasUnreadMessages && userApi.markMessagesRead(conversationId);
     }
 
     handleUserClick = (userId) => {
