@@ -35,7 +35,11 @@ export default class UpdateMembers extends React.Component {
     }
     handleSave = () => {
         const {courseId, conversation} = this.props;
-        conversationApi.updateMembers(courseId, conversation.id, Object.keys(this.state.enrolledUsersMap));
+        conversationApi.updateMembers(courseId, conversation.id, Object.keys(this.state.enrolledUsersMap))
+            .then(res => res.json())
+            .then(res => {
+                this.props.handleUpdateMembersSuccess(conversation);
+            });
     }
 
     componentDidUpdate(prevProps) {
@@ -80,4 +84,5 @@ UpdateMembers.propTypes = {
     conversation: PropTypes.object.isRequired,
     courseId: PropTypes.string.isRequired,
     allUsers: PropTypes.array.isRequired,
+    handleUpdateMembersSuccess: PropTypes.func.isRequired,
 };

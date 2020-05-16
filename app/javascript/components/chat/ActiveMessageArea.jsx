@@ -27,6 +27,9 @@ export default class ActiveMessageArea extends React.Component {
                 {
                     activeConversation && <div className='conversation-wrapper'>
                         {
+                            activeConversation.title && <div className='conversation-title'>{activeConversation.title}</div>
+                        }
+                        {
                             activeConversation.messages.map((message) => {
                                 return (
                                     <div className='conversation-item' key={`conv-${activeConversation.id}-message-${message.id}`}>

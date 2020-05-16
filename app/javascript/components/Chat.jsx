@@ -29,6 +29,7 @@ export class Chat extends React.Component {
         enrolledCourses: [],
         messageNotificationMap: {},
         showNewGroupForm: false,
+        showUpdateMembers: false,
     };
 
     _getCourseId = () => {
@@ -79,6 +80,27 @@ export class Chat extends React.Component {
         this.setState({conversations, messageNotificationMap});
     }
 
+    handleSuccessGroupCreate = (conversation) => {
+        let newAttributes = {
+            conversations: [...this.state.conversations, conversation],
+            showUpdateMembers: true,
+            showNewGroupForm: false,
+        };
+        if(conversation.is_group) {
+            newAttributes.groupConversations = {...this.state.groupConversations, conversation};
+        } else {
+            newAttributes.individualConversations = {...this.state.individualConversations, conversation};
+        }
+        this.setState(newAttributes);
+    }
+
+    handleUpdateMembersSuccess = (conversation) => {
+        this.setState({
+            showUpdateMembers: false,
+            activeConversationId: conversation.id
+        });
+    }
+
     findActiveConversation = () => {
         return this.state.conversations.find(
             conversation => conversation.id === this.state.activeConversationId
@@ -125,6 +147,7 @@ export class Chat extends React.Component {
             individualConversations,
             fullName,
             showNewGroupForm,
+            showUpdateMembers
         } = this.state;
 
         const {open, handleClose} = this.props;
@@ -163,15 +186,19 @@ export class Chat extends React.Component {
 
                             <Grid item xs={8}>
                                 {
-                                    showNewGroupForm ?
+                                    showNewGroupForm || showUpdateMembers ?
                                         <div>
-                                            <NewGroupForm courseId={this._getCourseId()}/>
-
-                                            {/* Add this to update the members in a group.
-                                            <UpdateMembers
-                                                courseId={this._getCourseId()}
-                                                allUsers={enrolledUsers}
-                                                conversation={activeConversation} />*/}
+                                            {
+                                                showNewGroupForm ?
+                                                    <NewGroupForm
+                                                        courseId={this._getCourseId()}
+                                                        handleSuccessGroupCreate={this.handleSuccessGroupCreate} />
+                                                    : <UpdateMembers
+                                                        courseId={this._getCourseId()}
+                                                        allUsers={enrolledUsers}
+                                                        conversation={activeConversation}
+                                                        handleUpdateMembersSuccess={this.handleUpdateMembersSuccess}/>
+                                            }
                                         </div>
                                         : <div>
                                             <ActiveMessageArea activeConversation={activeConversation}/>

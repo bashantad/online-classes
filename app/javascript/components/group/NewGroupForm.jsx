@@ -30,6 +30,7 @@ export default class NewGroupForm extends React.Component {
                         this.setState({errors: errors})
                     } else {
                         this.setState({title: ''});
+                        this.props.handleSuccessGroupCreate(response);
                     }
                 });
         }
@@ -73,4 +74,5 @@ export default class NewGroupForm extends React.Component {
 
 NewGroupForm.propTypes = {
     courseId: PropTypes.string.isRequired,
+    handleSuccessGroupCreate: PropTypes.func.isRequired,
 };
