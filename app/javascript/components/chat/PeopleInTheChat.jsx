@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Group from '@material-ui/icons/Group';
+import AddCircle from '@material-ui/icons/AddCircle';
 
 export default class PeopleInTheChat extends React.Component {
     handleConversationClick = (conversationId) => {
@@ -86,6 +87,9 @@ export default class PeopleInTheChat extends React.Component {
         const mappingPersonToConversation = this._getMappingPersonToConversation(individualConversations);
         return (
 			<ul className='people-list'>
+                <li onClick={() => this.props.handleCreateCourseGroup()}>
+                    <AddCircle /> <span> Create a new group </span>
+                </li>
                 {
                     groupConversations.map(conversation => this.renderGroupConversation(conversation, messageNotificationMap))
                 }
@@ -98,6 +102,7 @@ export default class PeopleInTheChat extends React.Component {
 }
 
 PeopleInTheChat.propTypes = {
+    handleCreateCourseGroup: PropTypes.func.isRequired,
     handleConversationClick: PropTypes.func.isRequired,
     handleUserClick: PropTypes.func.isRequired,
     conversations: PropTypes.array.isRequired,

@@ -16,6 +16,12 @@ class CourseService
 		conversation
 	end
 
+	def add_members(user_ids)
+		@course.enrolled_users.where(:id => user_ids).each do |user|
+			@course.conversation_users.create(user_id: user.id)
+		end
+	end
+
 	def _find_conversation_with_yourself(first_user)
 		first_user.conversations.individuals.detect do |user_conversation|
 			user_conversation.conversation_users.count == 1

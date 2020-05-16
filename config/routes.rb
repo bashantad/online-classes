@@ -15,7 +15,12 @@ Rails.application.routes.draw do
   	# Routes for API
 	namespace :api, constraints: { format: 'json' } do
 		resources :courses, only: [:index, :show] do
-			resources :conversations
+			resources :conversations do
+				collection do
+					post :create_group
+				end
+				post :update_members
+			end
 		end
 		resources :conversations, only: [] do
 			resources :messages

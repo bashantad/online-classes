@@ -29,7 +29,7 @@ export default class ActiveMessageArea extends React.Component {
                         {
                             activeConversation.messages.map((message) => {
                                 return (
-                                    <div className='conversation-item' key={`message-${message.id}`}>
+                                    <div className='conversation-item' key={`conv-${activeConversation.id}-message-${message.id}`}>
                                         <div className='person-wrapper'>
                                             <span className='person-name'>
                                                 <AccountCircleIcon /> {message.sender.full_name}

@@ -13,6 +13,8 @@ import courseApi from './chat/courseApi';
 import conversationApi from './chat/conversationApi';
 import userApi from './chat/userApi';
 import Cable from './chat/Cable';
+import NewGroupForm from "./group/NewGroupForm";
+import UpdateMembers from "./group/UpdateMembers";
 
 export class Chat extends React.Component {
     state = {
@@ -25,7 +27,8 @@ export class Chat extends React.Component {
         fullName: null,
         currentUserId: null,
         enrolledCourses: [],
-        messageNotificationMap: {}
+        messageNotificationMap: {},
+        showNewGroupForm: false,
     };
 
     _getCourseId = () => {
@@ -90,6 +93,12 @@ export class Chat extends React.Component {
         hasUnreadMessages && userApi.markMessagesRead(conversationId);
     }
 
+    handleCreateCourseGroup = () => {
+        this.setState({
+            showNewGroupForm: true
+        })
+    }
+
     handleUserClick = (userId) => {
         conversationApi.create(this._getCourseId(), userId)
             .then(res => res.json())
@@ -115,6 +124,7 @@ export class Chat extends React.Component {
             currentUserId,
             individualConversations,
             fullName,
+            showNewGroupForm,
         } = this.state;
 
         const {open, handleClose} = this.props;
@@ -127,7 +137,9 @@ export class Chat extends React.Component {
             messageNotificationMap: messageNotificationMap,
             handleConversationClick: this.handleConversationClick,
             handleUserClick: this.handleUserClick,
+            handleCreateCourseGroup: this.handleCreateCourseGroup,
         };
+        const activeConversation = this.findActiveConversation();
 
         return (
             <div>
@@ -150,8 +162,22 @@ export class Chat extends React.Component {
                             </Grid>
 
                             <Grid item xs={8}>
-                                <ActiveMessageArea activeConversation={this.findActiveConversation()}/>
-                                <NewMessage conversationId={activeConversationId}/>
+                                {
+                                    showNewGroupForm ?
+                                        <div>
+                                            <NewGroupForm courseId={this._getCourseId()}/>
+
+                                            {/* Add this to update the members in a group.
+                                            <UpdateMembers
+                                                courseId={this._getCourseId()}
+                                                allUsers={enrolledUsers}
+                                                conversation={activeConversation} />*/}
+                                        </div>
+                                        : <div>
+                                            <ActiveMessageArea activeConversation={activeConversation}/>
+                                            <NewMessage conversationId={activeConversationId}/>
+                                        </div>
+                                }
                             </Grid>
                         </Grid>
                     </DialogContent>
