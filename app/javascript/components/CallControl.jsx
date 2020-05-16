@@ -10,7 +10,6 @@ import ScreenShare from '@material-ui/icons/ScreenShare';
 import StopScreenShare from '@material-ui/icons/StopScreenShare';
 import Assignment from '@material-ui/icons/Assignment';
 import Notes from '@material-ui/icons/Notes';
-import Icon from '@material-ui/core/Icon';
 import './CallControl.css';
 
 const CallControl = ({isAudioOn, isVideoOn, isSharingOn, onAudioClick, onVideoClick, onMessageClick, onSharingClick}) => {

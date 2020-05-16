@@ -63,13 +63,15 @@ export class Chat extends React.Component {
     handleReceivedMessage = (response) => {
         const {message} = response;
         const {user_message_notifications} = message;
-        const {conversations, messageNotificationMap} = this.state;
+        const {conversations, messageNotificationMap, activeConversationId} = this.state;
         const conversation = conversations.find(
             item => item.id === message.conversation_id
         );
 
-        messageNotificationMap[conversation.id] = messageNotificationMap[conversation.id] || [];
-        messageNotificationMap[conversation.id] = messageNotificationMap[conversation.id].concat(user_message_notifications[conversation.id])
+        if(activeConversationId !== conversation.id) {
+            messageNotificationMap[conversation.id] = messageNotificationMap[conversation.id] || [];
+            messageNotificationMap[conversation.id] = messageNotificationMap[conversation.id].concat(user_message_notifications[conversation.id])
+        }
         conversation.messages = [...conversation.messages, message];
         this.setState({conversations, messageNotificationMap});
     }
@@ -157,7 +159,7 @@ export class Chat extends React.Component {
             </div>
         );
     }
-};
+}
 
 Chat.propTypes = {
     open: PropTypes.bool.isRequired,
