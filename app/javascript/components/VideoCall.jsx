@@ -8,10 +8,10 @@ class VideoCall extends React.Component{
     constructor(props){
         super(props);
         this.pcPeers = {};
-        this.remoteVideoRef = React.createRef()
         this.localVideoRef = React.createRef();
-        this.userId = Math.floor(Math.random() * 10000);
+        this.senderId = Math.floor(Math.random() * 10000);
     }
+
     _getConversationId = () => {
         return this.props.match.params.id;
     }
@@ -28,35 +28,39 @@ class VideoCall extends React.Component{
                 this.localVideoRef.current.srcObject = stream;
             }).catch(error => { console.log(error) });
     }
-    joinCall(e){
-        consumer.subscriptions.create(
-            { channel: "CallsChannel" },
-            { connected: () => {
-                    console.log('CONNECTED');
-                    this.broadCast({ type: JOIN_CALL, from: this.userId });
-                },
-                received: data => {
-                    console.log("RECEIVED: ", data);
-                    if (data.from === this.userId) return;
 
-                    switch (data.type) {
-                        case JOIN_CALL:
-                            return this.join(data);
-                        case EXCHANGE:
-                            if (data.to !== this.userId) return;
-                            return this.exchange(data);
-                        case LEAVE_CALL:
-                            return this.removeUser(data);
-                        default:
-                            return;
-                    }
+    joinCall(e){
+        consumer.subscriptions.create({
+            channel: "CallsChannel"
+        },
+        {
+            connected: () => {
+                console.log('CONNECTED');
+                this.broadCast({ type: JOIN_CALL, from: this.senderId });
+            },
+            received: (data) => {
+                console.log("RECEIVED: ", data);
+                if (data.from === this.senderId) return;
+
+                switch (data.type) {
+                    case JOIN_CALL:
+                        return this.join(data);
+                    case EXCHANGE:
+                        if (data.to !== this.senderId) return;
+                        return this.exchange(data);
+                    case LEAVE_CALL:
+                        return this.removeUser(data);
+                    default:
+                        return;
                 }
-            });
+            }
+        });
     }
 
     join(data){
         this.createPC(data.from, true)
     }
+
     removeUser(data){
         let video = document.getElementById(`remoteVideoContainer+${data.from}`);
         video && video.remove();
@@ -65,51 +69,65 @@ class VideoCall extends React.Component{
         delete peers[data.from]
     }
 
+    createOffer = (pc, userId) => {
+        pc.createOffer().then(offer => {
+            pc.setLocalDescription(offer).then(() => {
+                setTimeout(() => {
+                    this.broadCast({
+                        type: EXCHANGE,
+                        from: this.senderId,
+                        to: userId,
+                        sdp: JSON.stringify(pc.localDescription),
+                    })
+                }, 0);
+            })
+        })
+    }
+
     createPC(userId, offerBool){
         const pc = new RTCPeerConnection(ice);
 
         this.pcPeers[userId] = pc;
         this.localStream.getTracks().forEach(track => pc.addTrack(track, this.localStream));
         if (offerBool) {
-            pc.createOffer().then(offer => {
-                pc.setLocalDescription(offer).then(() => {
-                    setTimeout( ()=>{
-                        this.broadCast({
-                            type: EXCHANGE,
-                            from: this.userId,
-                            to: userId,
-                            sdp: JSON.stringify(pc.localDescription),
-                        })
-
-                    }, 0);
-                })
-            })
+            this.createOffer(pc, userId);
         }
-        pc.onicecandidate = (e) => {
-            this.broadCast({
-                type: EXCHANGE,
-                from: this.userId,
-                to: userId,
-                sdp: JSON.stringify(e.candidate)
-            })
-        };
-        pc.ontrack = (e) => {
-            const remoteVid = document.createElement("video");
-            remoteVid.id = `remoteVideoContainer+${userId}`;
-            remoteVid.autoplay = "autoplay";
-            remoteVid.srcObject = e.streams[0];
-            this.remoteVideoContainer.appendChild(remoteVid);
-        };
-        pc.oniceconnectionstatechange = (e) => {
-            if (pc.iceConnectionState === 'disconnected') {
-                this.broadCast({
-                    type: LEAVE_CALL,
-                    from: userId,
-                });
-            }
-        }
+        this.handlePCEvents(pc, userId);
         return pc;
     };
+
+    handlePCEvents(pc, userId) {
+        pc.onicecandidate = (e) => this.exchangeCandidate(userId, e);
+        pc.ontrack = (e) => this.appendRemoteVideo(userId, e);
+        pc.oniceconnectionstatechange = (e) => this.disconnectCall(pc, userId);
+    }
+
+    disconnectCall(pc, userId) {
+        if (pc.iceConnectionState === 'disconnected') {
+            this.broadCast({
+                type: LEAVE_CALL,
+                from: userId,
+            });
+        }
+    }
+
+    exchangeCandidate(userId, e) {
+        this.broadCast({
+            type: EXCHANGE,
+            from: this.senderId,
+            to: userId,
+            sdp: JSON.stringify(e.candidate)
+        })
+    }
+
+    appendRemoteVideo(userId, e) {
+        const remoteVid = document.createElement("video");
+        remoteVid.id = `remoteVideoContainer+${userId}`;
+        remoteVid.autoplay = "autoplay";
+        remoteVid.srcObject = e.streams[0];
+        this.remoteVideoContainer.appendChild(remoteVid);
+    }
+
     leaveCall(e){
         const pcKeys = Object.keys(this.pcPeers);
         for (let i = 0; i < pcKeys.length; i++) {
@@ -124,18 +142,14 @@ class VideoCall extends React.Component{
         this.remoteVideoContainer.innerHTML = "";
         this.broadCast({
             type: LEAVE_CALL,
-            from: this.userId
+            from: this.senderId
         });
     }
 
 
+
     exchange(data) {
-        let pc;
-        if (this.pcPeers[data.from]) {
-            pc = this.pcPeers[data.from];
-        } else {
-            pc = this.createPC(data.from, false);
-        }
+        const pc = this.getPeerConnection(data);
         if (data.candidate) {
             let candidate = JSON.parse(data.candidate)
             pc.addIceCandidate(new RTCIceCandidate(candidate))
@@ -143,35 +157,47 @@ class VideoCall extends React.Component{
         if (data.sdp) {
             const sdp = JSON.parse(data.sdp);
             if (sdp && !sdp.candidate) {
-                pc.setRemoteDescription(sdp)
-                    .then(() => {
-                        if (sdp.type === 'offer') {
-                            pc.createAnswer()
-                                .then(answer => {
-                                    pc.setLocalDescription(answer)
-                                        .then(() => {
-
-                                            this.broadCast({
-                                                type: EXCHANGE,
-                                                from: this.userId,
-                                                to: data.from,
-                                                sdp: JSON.stringify(pc.localDescription)
-                                            });
-
-                                        })
-                                })
-                        }
-                    })
+                pc.setRemoteDescription(sdp).then(() => {
+                    if (sdp.type === 'offer') {
+                        this.createAnswer(pc, data);
+                    }
+                })
             }
         }
     }
+
+    getPeerConnection(data) {
+        let pc;
+        if (this.pcPeers[data.from]) {
+            pc = this.pcPeers[data.from];
+        } else {
+            pc = this.createPC(data.from, false);
+        }
+        return pc;
+    }
+
+    createAnswer = (pc, data) => {
+        pc.createAnswer().then(answer => {
+            pc.setLocalDescription(answer).then(() => {
+                this.broadCast({
+                    type: EXCHANGE,
+                    from: this.senderId,
+                    to: data.from,
+                    sdp: JSON.stringify(pc.localDescription)
+                });
+            })
+        })
+    }
+
     render() {
-        return(<div className="VideoCall">
-            <div id="remote-calls-container"></div>
-            <video ref={this.localVideoRef} autoPlay></video>
-            <button onClick={this.joinCall.bind(this)}>Join Call</button>
-            <button onClick={this.leaveCall.bind(this)}>Leave Call</button>
-        </div>)
+        return (
+            <div className="VideoCall">
+                <div id="remote-calls-container"></div>
+                <video ref={this.localVideoRef} autoPlay></video>
+                <button onClick={this.joinCall.bind(this)}>Join Call</button>
+                <button onClick={this.leaveCall.bind(this)}>Leave Call</button>
+            </div>
+        );
     }
 }
 
