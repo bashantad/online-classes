@@ -30,34 +30,31 @@ class VideoCall extends React.Component{
     }
 
     joinCall(e){
-        consumer.subscriptions.create({
-            channel: "CallsChannel"
-        },
-        {
-            connected: () => {
-                console.log('CONNECTED');
-                this.broadCast({ type: JOIN_CALL, from: this.senderId });
-            },
-            received: (data) => {
-                console.log("RECEIVED: ", data);
-                if (data.from === this.senderId) return;
-
-                switch (data.type) {
-                    case JOIN_CALL:
-                        return this.join(data);
-                    case EXCHANGE:
-                        if (data.to !== this.senderId) return;
-                        return this.exchange(data);
-                    case LEAVE_CALL:
-                        return this.removeUser(data);
-                    default:
-                        return;
-                }
+        consumer.subscriptions.create({channel: "CallsChannel"},
+            {
+                connected: () => this.broadCast({type: JOIN_CALL, from: this.senderId}),
+                received: (data) => this.handleReceived(data),
             }
-        });
+        )
     }
 
-    join(data){
+    handleReceived(data) {
+        if (data.from === this.senderId) return;
+
+        switch (data.type) {
+            case JOIN_CALL:
+                return this.join(data);
+            case EXCHANGE:
+                if (data.to !== this.senderId) return;
+                return this.exchange(data);
+            case LEAVE_CALL:
+                return this.removeUser(data);
+            default:
+                return;
+        }
+    }
+
+    join(data) {
         this.createPC(data.from, true)
     }
 
@@ -85,10 +82,7 @@ class VideoCall extends React.Component{
     }
 
     createPC(userId, offerBool){
-        const pc = new RTCPeerConnection(ice);
-
-        this.pcPeers[userId] = pc;
-        this.localStream.getTracks().forEach(track => pc.addTrack(track, this.localStream));
+        const pc = this.initiatePC(userId);
         if (offerBool) {
             this.createOffer(pc, userId);
         }
@@ -96,10 +90,18 @@ class VideoCall extends React.Component{
         return pc;
     };
 
+    initiatePC(userId) {
+        const pc = new RTCPeerConnection(ice);
+
+        this.pcPeers[userId] = pc;
+        this.localStream.getTracks().forEach(track => pc.addTrack(track, this.localStream));
+        return pc;
+    }
+
     handlePCEvents(pc, userId) {
         pc.onicecandidate = (e) => this.exchangeCandidate(userId, e);
         pc.ontrack = (e) => this.appendRemoteVideo(userId, e);
-        pc.oniceconnectionstatechange = (e) => this.disconnectCall(pc, userId);
+        pc.oniceconnectionstatechange = () => this.disconnectCall(pc, userId);
     }
 
     disconnectCall(pc, userId) {
@@ -134,19 +136,17 @@ class VideoCall extends React.Component{
             this.pcPeers[pcKeys[i]].close();
         }
         this.pcPeers = {};
-        this.localVideo.srcObject.getTracks().forEach(function (track) {
+        this.localVideo.srcObject.getTracks().forEach((track) => {
             track.stop();
         })
         this.localVideo.srcObject = null;
-        App.cable.subscriptions.subscriptions = [];
+        consumer.subscriptions.subscriptions = [];
         this.remoteVideoContainer.innerHTML = "";
         this.broadCast({
             type: LEAVE_CALL,
             from: this.senderId
         });
     }
-
-
 
     exchange(data) {
         const pc = this.getPeerConnection(data);
