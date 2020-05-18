@@ -2,18 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { JOIN_CALL, LEAVE_CALL, EXCHANGE, ice } from '../utils/VideoCallUtil'
-import callApi from "./calls/callApi";
 import consumer from "../channels/consumer";
+import BroadCast from './BroadCast';
 
 export default class VideoCall extends React.Component{
     constructor(props){
         super(props);
         this.pcPeers = {};
         this.localVideoRef = React.createRef();
-    }
-
-    broadCast = (data) => {
-        callApi.broadcast(this.props.conversationId, data);
+        this.broadcast = new BroadCast(props.conversationId, props.currentUserId);
     }
 
     componentDidMount(){
@@ -28,7 +25,7 @@ export default class VideoCall extends React.Component{
     joinCall(e){
         consumer.subscriptions.create({channel: "CallsChannel"},
             {
-                connected: () => this.broadCast({type: JOIN_CALL, from: this.props.currentUserId}),
+                connected: () => this.broadcast.makeApiCall({type: JOIN_CALL, from: this.props.currentUserId}),
                 received: (data) => this.handleReceived(data),
             }
         )
@@ -53,7 +50,7 @@ export default class VideoCall extends React.Component{
     join(data) {
         const senderId = data.from;
         const pc = this.initializePC(senderId);
-        this.createOffer(pc, senderId);
+        this.broadcast.createOffer(pc, senderId);
         this.handlePCEvents(pc, senderId);
     }
 
@@ -65,21 +62,6 @@ export default class VideoCall extends React.Component{
         delete peers[data.from]
     }
 
-    createOffer = (pc, receiverId) => {
-        pc.createOffer().then(offer => {
-            pc.setLocalDescription(offer).then(() => {
-                setTimeout(() => {
-                    this.broadCast({
-                        type: EXCHANGE,
-                        from: this.props.currentUserId,
-                        to: receiverId,
-                        sdp: JSON.stringify(pc.localDescription),
-                    })
-                }, 0);
-            })
-        })
-    }
-
     handlePCEvents(pc, userId) {
         pc.onicecandidate = (e) => this.exchangeCandidate(userId, e);
         pc.ontrack = (e) => this.appendRemoteVideo(userId, e);
@@ -88,7 +70,7 @@ export default class VideoCall extends React.Component{
 
     disconnectCall(pc, senderId) {
         if (pc.iceConnectionState === 'disconnected') {
-            this.broadCast({
+            this.broadcast.makeApiCall({
                 type: LEAVE_CALL,
                 from: senderId,
             });
@@ -96,7 +78,7 @@ export default class VideoCall extends React.Component{
     }
 
     exchangeCandidate(userId, e) {
-        this.broadCast({
+        this.broadcast.makeApiCall({
             type: EXCHANGE,
             from: this.props.currentUserId,
             to: userId,
@@ -124,7 +106,7 @@ export default class VideoCall extends React.Component{
         this.localVideo.srcObject = null;
         consumer.subscriptions.subscriptions = [];
         this.remoteVideoContainer.innerHTML = "";
-        this.broadCast({
+        this.broadcast.makeApiCall({
             type: LEAVE_CALL,
             from: this.props.currentUserId
         });
@@ -132,25 +114,11 @@ export default class VideoCall extends React.Component{
 
     exchange(data) {
         const pc = this.getPeerConnection(data);
-        if (data.candidate) {
-            let candidate = JSON.parse(data.candidate)
-            pc.addIceCandidate(new RTCIceCandidate(candidate))
-        }
-        if (data.sdp) {
-            const sdp = JSON.parse(data.sdp);
-            if (sdp && !sdp.candidate) {
-                pc.setRemoteDescription(sdp).then(() => {
-                    if (sdp.type === 'offer') {
-                        this.createAnswer(pc, data);
-                    }
-                })
-            }
-        }
+        this.broadcast.exchangeData(pc, data);
     }
 
     initializePC(userId) {
         const pc = new RTCPeerConnection(ice);
-
         this.pcPeers[userId] = pc;
         this.localStream.getTracks().forEach(track => pc.addTrack(track, this.localStream));
         return pc;
@@ -170,19 +138,6 @@ export default class VideoCall extends React.Component{
             pc = this.createPC(data.from);
         }
         return pc;
-    }
-
-    createAnswer = (pc, data) => {
-        pc.createAnswer().then(answer => {
-            pc.setLocalDescription(answer).then(() => {
-                this.broadCast({
-                    type: EXCHANGE,
-                    from: this.props.currentUserId,
-                    to: data.from,
-                    sdp: JSON.stringify(pc.localDescription)
-                });
-            })
-        })
     }
 
     render() {
