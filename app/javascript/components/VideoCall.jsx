@@ -1,23 +1,19 @@
 import React from 'react';
-import { withRouter } from 'react-router';
+import PropTypes from 'prop-types';
+
 import { JOIN_CALL, LEAVE_CALL, EXCHANGE, ice } from '../utils/VideoCallUtil'
 import callApi from "./calls/callApi";
 import consumer from "../channels/consumer";
 
-class VideoCall extends React.Component{
+export default class VideoCall extends React.Component{
     constructor(props){
         super(props);
         this.pcPeers = {};
         this.localVideoRef = React.createRef();
-        this.senderId = Math.floor(Math.random() * 10000);
-    }
-
-    _getConversationId = () => {
-        return this.props.match.params.id;
     }
 
     broadCast = (data) => {
-        callApi.broadcast(this._getConversationId(), data);
+        callApi.broadcast(this.props.conversationId, data);
     }
 
     componentDidMount(){
@@ -32,20 +28,20 @@ class VideoCall extends React.Component{
     joinCall(e){
         consumer.subscriptions.create({channel: "CallsChannel"},
             {
-                connected: () => this.broadCast({type: JOIN_CALL, from: this.senderId}),
+                connected: () => this.broadCast({type: JOIN_CALL, from: this.props.currentUserId}),
                 received: (data) => this.handleReceived(data),
             }
         )
     }
 
     handleReceived(data) {
-        if (data.from === this.senderId) return;
+        if (data.from === this.props.currentUserId) return;
 
         switch (data.type) {
             case JOIN_CALL:
                 return this.join(data);
             case EXCHANGE:
-                if (data.to !== this.senderId) return;
+                if (data.to !== this.props.currentUserId) return;
                 return this.exchange(data);
             case LEAVE_CALL:
                 return this.removeUser(data);
@@ -55,7 +51,10 @@ class VideoCall extends React.Component{
     }
 
     join(data) {
-        this.createPC(data.from, true)
+        const senderId = data.from;
+        const pc = this.initializePC(senderId);
+        this.createOffer(pc, senderId);
+        this.handlePCEvents(pc, senderId);
     }
 
     removeUser(data){
@@ -66,36 +65,19 @@ class VideoCall extends React.Component{
         delete peers[data.from]
     }
 
-    createOffer = (pc, userId) => {
+    createOffer = (pc, receiverId) => {
         pc.createOffer().then(offer => {
             pc.setLocalDescription(offer).then(() => {
                 setTimeout(() => {
                     this.broadCast({
                         type: EXCHANGE,
-                        from: this.senderId,
-                        to: userId,
+                        from: this.props.currentUserId,
+                        to: receiverId,
                         sdp: JSON.stringify(pc.localDescription),
                     })
                 }, 0);
             })
         })
-    }
-
-    createPC(userId, offerBool){
-        const pc = this.initiatePC(userId);
-        if (offerBool) {
-            this.createOffer(pc, userId);
-        }
-        this.handlePCEvents(pc, userId);
-        return pc;
-    };
-
-    initiatePC(userId) {
-        const pc = new RTCPeerConnection(ice);
-
-        this.pcPeers[userId] = pc;
-        this.localStream.getTracks().forEach(track => pc.addTrack(track, this.localStream));
-        return pc;
     }
 
     handlePCEvents(pc, userId) {
@@ -104,11 +86,11 @@ class VideoCall extends React.Component{
         pc.oniceconnectionstatechange = () => this.disconnectCall(pc, userId);
     }
 
-    disconnectCall(pc, userId) {
+    disconnectCall(pc, senderId) {
         if (pc.iceConnectionState === 'disconnected') {
             this.broadCast({
                 type: LEAVE_CALL,
-                from: userId,
+                from: senderId,
             });
         }
     }
@@ -116,7 +98,7 @@ class VideoCall extends React.Component{
     exchangeCandidate(userId, e) {
         this.broadCast({
             type: EXCHANGE,
-            from: this.senderId,
+            from: this.props.currentUserId,
             to: userId,
             sdp: JSON.stringify(e.candidate)
         })
@@ -144,7 +126,7 @@ class VideoCall extends React.Component{
         this.remoteVideoContainer.innerHTML = "";
         this.broadCast({
             type: LEAVE_CALL,
-            from: this.senderId
+            from: this.props.currentUserId
         });
     }
 
@@ -166,12 +148,26 @@ class VideoCall extends React.Component{
         }
     }
 
+    initializePC(userId) {
+        const pc = new RTCPeerConnection(ice);
+
+        this.pcPeers[userId] = pc;
+        this.localStream.getTracks().forEach(track => pc.addTrack(track, this.localStream));
+        return pc;
+    }
+
+    createPC(userId){
+        const pc = this.initializePC(userId);
+        this.handlePCEvents(pc, userId);
+        return pc;
+    };
+
     getPeerConnection(data) {
         let pc;
         if (this.pcPeers[data.from]) {
             pc = this.pcPeers[data.from];
         } else {
-            pc = this.createPC(data.from, false);
+            pc = this.createPC(data.from);
         }
         return pc;
     }
@@ -181,7 +177,7 @@ class VideoCall extends React.Component{
             pc.setLocalDescription(answer).then(() => {
                 this.broadCast({
                     type: EXCHANGE,
-                    from: this.senderId,
+                    from: this.props.currentUserId,
                     to: data.from,
                     sdp: JSON.stringify(pc.localDescription)
                 });
@@ -201,4 +197,8 @@ class VideoCall extends React.Component{
     }
 }
 
-export default withRouter(VideoCall);
+VideoCall.propTypes = {
+    conversationId: PropTypes.string.isRequired,
+    currentUserId: PropTypes.number.isRequired,
+    currentUserName: PropTypes.string.isRequired,
+};

@@ -5,6 +5,6 @@ class Api::CallsController < Api::BaseController
   end
 
   def call_params
-    params.permit(:call, :type, :from, :to, :sdp)
+    params.permit(:call, :type, :from, :to, :sdp, :conversation_id)
   end
 end
