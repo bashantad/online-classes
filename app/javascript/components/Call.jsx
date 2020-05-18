@@ -2,7 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 
 import CallControl from '../components/CallControl';
-import LocalVideo from '../components/LocalVideo';
+import LocalVideo from './calls/LocalVideo';
 import ChatWrapper from '../components/ChatWrapper';
 import Header from '../components/Header';
 
@@ -11,7 +11,7 @@ export class Call extends React.Component {
         video: false,
         audio: false,
         sharing: false,
-        chat: true,
+        chat: false,
     }
     constructor(props) {
         super(props);

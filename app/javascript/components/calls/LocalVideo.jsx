@@ -3,10 +3,7 @@ import React from 'react';
 export default class LocalVideo extends React.Component {
 	constructor(props) {
         super(props);
-        this.state = {
-            localStream: null,            
-        }
-        this.videoRef = React.createRef()
+        this.localVideoRef = React.createRef();
         this.hasMediaProps = this.hasMediaProps.bind(this);
     }
 
@@ -16,11 +13,13 @@ export default class LocalVideo extends React.Component {
         }
         navigator.mediaDevices.getUserMedia(this.props)
         .then(stream => {
-            this.videoRef.current.srcObject = stream;
-        }).catch(err => console.log(err));
+            this.localVideoRef.current.srcObject = stream;
+        }).catch(err => {
+            console.log(err);
+        });
     }
 
-    hasMediaProps({audio, video}){
+    hasMediaProps({audio, video}) {
         return audio || video;
     }
 
@@ -29,7 +28,7 @@ export default class LocalVideo extends React.Component {
         return (
             <>
                 {
-                    hasMedia && <video ref={this.videoRef} autoPlay></video>
+                    hasMedia && <video ref={this.localVideoRef} autoPlay></video>
                 }
             </>
     	)

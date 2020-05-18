@@ -24,15 +24,13 @@ Rails.application.routes.draw do
 		end
 		resources :conversations, only: [] do
 			resources :messages
+			resources :calls, only: [:create]
 		end
 		resources :users, only: [] do
 			collection do
 				get :current_user_info
 				get '/:conversation_id/mark_messages_read', to: 'users#mark_messages_read'
 			end
-		end
-		resources :calls, only: [:create, :new, :show] do
-			get :join
 		end
 	end
 	root :to => 'home#index'
