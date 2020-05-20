@@ -23,13 +23,6 @@ ActiveRecord::Schema.define(version: 2020_05_10_002314) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "class_rooms", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "conversation_users", force: :cascade do |t|
     t.bigint "conversation_id", null: false
     t.bigint "user_id", null: false
@@ -40,10 +33,10 @@ ActiveRecord::Schema.define(version: 2020_05_10_002314) do
   end
 
   create_table "conversations", force: :cascade do |t|
+    t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "course_id"
-    t.string "title"
     t.boolean "is_group", default: false
     t.index ["course_id"], name: "index_conversations_on_course_id"
   end

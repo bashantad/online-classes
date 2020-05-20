@@ -21,10 +21,14 @@ class Course < ApplicationRecord
 		approved ? 'Yes' : 'No'
 	end
 
+	def general_conversation
+		self.conversations.find_or_create_by(title: 'General', is_group: true)
+	end
+
 	#TODO move this to CourseService, but we need to make sure it can be called from here
 	def _enroll_in_general_conversation(user)
 		self.enrolled_course_users.create(user_id: user.id)
-		conversation = self.conversations.find_or_create_by(title: 'General', is_group: true)
+		conversation = self.general_conversation
 		conversation.conversation_users.create(user_id: user.id)
 	end
 end
