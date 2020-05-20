@@ -7,7 +7,7 @@ class Conversation < ApplicationRecord
 	scope :groups, -> { where(is_group: true) }
 	scope :individuals, -> { where(is_group: false) }
 
-	validates_uniqueness_of :title, scope: %i[course_id]
+	validates_uniqueness_of :title, scope: %i[course_id], if: -> {  title.present? }
 
 	#TODO: remove For testing purpose only
 	def self.wipe_out_the_data

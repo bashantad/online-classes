@@ -85,6 +85,7 @@ export class Chat extends React.Component {
             conversations: [...this.state.conversations, conversation],
             showUpdateMembers: true,
             showNewGroupForm: false,
+            activeConversationId: conversation.id,
         };
         if(conversation.is_group) {
             newAttributes.groupConversations = {...this.state.groupConversations, conversation};
