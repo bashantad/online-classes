@@ -11,7 +11,7 @@ class Api::ConversationsController < Api::BaseController
 	def create_group
 		@conversation = @course.conversations.new(title: params[:title], is_group: true)
 		if @conversation.save
-			@conversation.conversation_users.create(user_id: current_user.id)
+			@conversation.conversation_enrolled_users.create(user_id: current_user.id)
 			render_conversation
 		else
 			render json: {errors: @conversation.errors}
@@ -28,7 +28,7 @@ class Api::ConversationsController < Api::BaseController
 
 	def render_conversation
 		if @conversation
-			render json: @conversation, include: ['conversation_users', 'messages', 'messages.sender']
+			render json: @conversation, include: ['conversation_enrolled_users', 'messages', 'messages.sender']
 		end
 	end
 

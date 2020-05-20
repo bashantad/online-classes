@@ -45,7 +45,7 @@ export default class UpdateMembers extends React.Component {
     componentDidUpdate(prevProps) {
         const {conversation} = this.props;
         if(prevProps.conversation !== conversation && conversation) {
-            const enrolledUsersMap = this._getEnrolledUsersMap(conversation.conversation_users);
+            const enrolledUsersMap = this._getEnrolledUsersMap(conversation.conversation_enrolled_users);
             this.setState({enrolledUsersMap: enrolledUsersMap});
         }
     }

@@ -2,7 +2,7 @@ class Api::UsersController < Api::BaseController
 	def current_user_info
 		render json: current_user, include: [
 			'conversations',
-			'conversations.conversation_users',
+			'conversations.conversation_enrolled_users',
 			'conversations.messages',
 			'conversations.messages.sender',
 			'user_message_notifications',

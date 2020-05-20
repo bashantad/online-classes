@@ -20,12 +20,12 @@ export default class PeopleInTheChat extends React.Component {
     _getMappingPersonToConversation = (individualConversations) => {
         const currentUserMapping = {};
         const mapping =  individualConversations.reduce((accumulator, conversation) => {
-            const conversationUsers = conversation.conversation_users;
-            if(conversationUsers.length === 1) {
-                const conversationUser = conversationUsers[0];
-                currentUserMapping[conversationUser.user_id] = conversationUser.conversation_id;
+            const conversationEnrolledUsers = conversation.conversation_enrolled_users;
+            if(conversationEnrolledUsers.length === 1) {
+                const conversationEnrolledUser = conversationEnrolledUsers[0];
+                currentUserMapping[conversationEnrolledUser.user_id] = conversationEnrolledUser.conversation_id;
             }
-            conversationUsers.forEach((convUser) => {
+            conversationEnrolledUsers.forEach((convUser) => {
                 if(convUser.user_id !== this.props.currentUserId) {
                     accumulator[convUser.user_id] = convUser.conversation_id
                 }

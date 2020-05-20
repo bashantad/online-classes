@@ -1,8 +1,8 @@
 class Conversation < ApplicationRecord
 	belongs_to :course
 	has_many :messages
-	has_many :conversation_users
-	has_many :users, through: :conversation_users
+	has_many :conversation_enrolled_users
+	has_many :users, through: :conversation_enrolled_users
 
 	scope :groups, -> { where(is_group: true) }
 	scope :individuals, -> { where(is_group: false) }
@@ -14,7 +14,7 @@ class Conversation < ApplicationRecord
 		return unless Rails.env.development?
 		UserMessageNotification.delete_all
 		Message.delete_all
-		ConversationUser.delete_all
+		ConversationEnrolledUser.delete_all
 		Conversation.individuals.delete_all
 	end
 
@@ -28,11 +28,11 @@ class Conversation < ApplicationRecord
 	def update_members(user_ids)
 		course = self.course
 		user_ids_to_be_enrolled = course.enrolled_users.where(id: user_ids).collect(&:id)
-		existing_conversation_user_ids = self.conversation_users.collect(&:user_id)
-		user_ids_to_be_removed = existing_conversation_user_ids - user_ids_to_be_enrolled
+		existing_conversation_enrolled_user_ids = self.conversation_enrolled_users.collect(&:user_id)
+		user_ids_to_be_removed = existing_conversation_enrolled_user_ids - user_ids_to_be_enrolled
 		user_ids_to_be_enrolled.each do |user_id_to_be_enrolled|
-			self.conversation_users.create(user_id: user_id_to_be_enrolled)
+			self.conversation_enrolled_users.create(user_id: user_id_to_be_enrolled)
 		end
-		self.conversation_users.where(user_id: user_ids_to_be_removed).destroy_all
+		self.conversation_enrolled_users.where(user_id: user_ids_to_be_removed).destroy_all
 	end
 end
