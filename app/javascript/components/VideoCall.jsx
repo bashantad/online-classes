@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
 
 import { JOIN_CALL, LEAVE_CALL, EXCHANGE, ice } from '../utils/VideoCallUtil'
 import consumer from "../channels/consumer";
@@ -11,6 +12,9 @@ export default class VideoCall extends React.Component{
         this.pcPeers = {};
         this.localVideoRef = React.createRef();
         this.broadcast = new BroadCast(props.conversationId, props.currentUserId);
+        this.state = {
+            hasJoinedTheCall: false,
+        }
     }
 
     componentDidMount(){
@@ -25,10 +29,15 @@ export default class VideoCall extends React.Component{
     joinCall(e){
         consumer.subscriptions.create({channel: "CallsChannel"},
             {
-                connected: () => this.broadcast.makeApiCall({type: JOIN_CALL, from: this.props.currentUserId}),
+                connected: () => this.connectCall(),
                 received: (data) => this.handleReceived(data),
             }
         )
+    }
+
+    connectCall() {
+        this.setState({hasJoinedTheCall: true});
+        this.broadcast.makeApiCall({type: JOIN_CALL, from: this.props.currentUserId})
     }
 
     handleReceived(data) {
@@ -55,7 +64,7 @@ export default class VideoCall extends React.Component{
     }
 
     removeUser(data){
-        let video = document.getElementById(`remoteVideoContainer+${data.from}`);
+        let video = document.getElementById(`remote-video-box-${data.from}`);
         video && video.remove();
 
         let peers = this.pcPeers
@@ -88,8 +97,9 @@ export default class VideoCall extends React.Component{
 
     appendRemoteVideo(userId, e) {
         const remoteVid = document.createElement("video");
-        remoteVid.id = `remoteVideoContainer+${userId}`;
+        remoteVid.id = `remote-video-box-${userId}`;
         remoteVid.autoplay = "autoplay";
+        remoteVid.className = "remote-video-participant";
         remoteVid.srcObject = e.streams[0];
         this.remoteVideoContainer.appendChild(remoteVid);
     }
@@ -100,10 +110,11 @@ export default class VideoCall extends React.Component{
             this.pcPeers[pcKeys[i]].close();
         }
         this.pcPeers = {};
-        this.localVideo.srcObject.getTracks().forEach((track) => {
+        this.localVideoRef.srcObject.getTracks().forEach((track) => {
             track.stop();
         })
-        this.localVideo.srcObject = null;
+        this.setState({hasJoinedTheCall: true});
+        this.localVideoRef.srcObject = null;
         consumer.subscriptions.subscriptions = [];
         this.remoteVideoContainer.innerHTML = "";
         this.broadcast.makeApiCall({
@@ -113,40 +124,50 @@ export default class VideoCall extends React.Component{
     }
 
     exchange(data) {
-        const pc = this.getPeerConnection(data);
-        this.broadcast.exchangeData(pc, data);
+        const peerConnection = this.getPeerConnection(data);
+        this.broadcast.exchangeData(peerConnection, data);
     }
 
     initializePC(userId) {
-        const pc = new RTCPeerConnection(ice);
-        this.pcPeers[userId] = pc;
-        this.localStream.getTracks().forEach(track => pc.addTrack(track, this.localStream));
-        return pc;
+        const peerConnection = new RTCPeerConnection(ice);
+        this.pcPeers[userId] = peerConnection;
+        this.localStream.getTracks().forEach(track => peerConnection.addTrack(track, this.localStream));
+        return peerConnection;
     }
 
-    createPC(userId){
-        const pc = this.initializePC(userId);
-        this.handlePCEvents(pc, userId);
-        return pc;
+    createPeerConnection(userId){
+        const peerConnection = this.initializePC(userId);
+        this.handlePCEvents(peerConnection, userId);
+        return peerConnection;
     };
 
     getPeerConnection(data) {
-        let pc;
+        let peerConnection;
         if (this.pcPeers[data.from]) {
-            pc = this.pcPeers[data.from];
+            peerConnection = this.pcPeers[data.from];
         } else {
-            pc = this.createPC(data.from);
+            peerConnection = this.createPeerConnection(data.from);
         }
-        return pc;
+        return peerConnection;
     }
 
     render() {
+        const {hasJoinedTheCall} = this.state;
         return (
             <div className="VideoCall">
                 <div id="remote-calls-container"></div>
                 <video ref={this.localVideoRef} autoPlay></video>
-                <button onClick={this.joinCall.bind(this)}>Join Call</button>
-                <button onClick={this.leaveCall.bind(this)}>Leave Call</button>
+                {
+                    !hasJoinedTheCall && <Button variant="contained" color="primary" onClick={this.joinCall.bind(this)}>
+                        Join call
+                    </Button>
+                }
+
+                {
+                    hasJoinedTheCall && <Button variant="contained" color="secondary" onClick={this.leaveCall.bind(this)}>
+                        Leave call
+                    </Button>
+                }
             </div>
         );
     }
