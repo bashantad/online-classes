@@ -1,5 +1,5 @@
-import callApi from "../apis/callApi";
-import {EXCHANGE} from "../utils/VideoCallUtil";
+import callApi from "../../apis/callApi";
+import {EXCHANGE} from "../../utils/VideoCallUtil";
 
 export default class BroadCast {
     constructor(conversationId, senderId) {

@@ -2,6 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 
+import './NewMessage.scss';
 import chatApi from '../../apis/chatApi';
 
 export default class NewMessage extends React.Component {
@@ -23,7 +24,7 @@ export default class NewMessage extends React.Component {
 	render() {
 		const disabled = this.props.conversationId === null;
 		return (
-			<div className='message-box'>
+			<div className='new-message-box-container'>
                 <textarea className='message-input' placeholder='Type your message' onChange={this.handleMessageChange} value={this.state.content}></textarea>
                 <Button variant="contained" color="primary" disabled={disabled} onClick={this.handleMessageSendClick}>
                  	Send

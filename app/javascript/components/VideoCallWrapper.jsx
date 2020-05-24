@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 
-import VideoCall from "./VideoCall";
+import VideoCall from "./calls/VideoCall";
 import userApi from "../apis/userApi";
 
 class VideoCallWrapper extends React.Component{

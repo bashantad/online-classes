@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 
-import { JOIN_CALL, LEAVE_CALL, EXCHANGE, ice } from '../utils/VideoCallUtil'
-import consumer from "../channels/consumer";
+import { JOIN_CALL, LEAVE_CALL, EXCHANGE, ice } from '../../utils/VideoCallUtil'
+import consumer from "../../channels/consumer";
 import BroadCast from './BroadCast';
+import './VideoCall.scss';
 
 export default class VideoCall extends React.Component{
     constructor(props){

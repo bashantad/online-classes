@@ -10,6 +10,7 @@ We are building a virtual classroom, teachers can organise live classroom remote
 * Install ruby version `ruby-2.5.8` using `rvm install 2.5.8` followed by `rvm use 2.5.8`
 * Install `postgresql` database. Instructions varies depending on your operating system
 * Install node `nvm install 13.1` followed by `nvm use 13.1`
+* Install yarn `npm install yarn`
 
 ### Install Dependencies
 * Install `bundler` and other necessary gems needed for the rails project to work 
@@ -17,9 +18,9 @@ We are building a virtual classroom, teachers can organise live classroom remote
     gem install bundler
     bundle install
 ```
-* Install `javascript` dependencies by using following command. Alternatively, we can also use yarn to install js dependencies
+* Install `javascript` dependencies by using following command.
 ```
-    npm install
+    yarn install
 ```
 
 ### Database Setup

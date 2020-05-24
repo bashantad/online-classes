@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import Grid from '@material-ui/core/Grid';
 
-import './message.css';
+import './message.scss';
 import PeopleInTheChat from '../components/messages/PeopleInTheChat';
 import ActiveMessageArea from '../components/messages/ActiveMessageArea';
 import NewMessage from '../components/messages/NewMessage';

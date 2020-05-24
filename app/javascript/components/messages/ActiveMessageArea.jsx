@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import './ActiveMessageArea.scss';
 
 export default class ActiveMessageArea extends React.Component {
     constructor(props) {
@@ -53,9 +54,9 @@ export default class ActiveMessageArea extends React.Component {
     render() {
         const {activeConversation} = this.props;
         return (
-            <div className='message-wrapper'>
+            <div className='active-conversation-wrapper'>
                 {
-                    activeConversation && <div className='conversation-wrapper'>
+                    activeConversation && <div>
                         {
                             activeConversation.title && <div className='conversation-title'>{activeConversation.title}</div>
                         }

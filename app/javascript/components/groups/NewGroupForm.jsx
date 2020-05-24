@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Button from "@material-ui/core/Button";
 import Input from '@material-ui/core/Input';
 import conversationApi from "../../apis/conversationApi";
-import './Group.css'
+import './Group.scss'
 
 export default class NewGroupForm extends React.Component {
     state = {

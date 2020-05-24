@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Group from '@material-ui/icons/Group';
 import AddCircle from '@material-ui/icons/AddCircle';
+import './PeopleInTheChat.scss';
 
 export default class PeopleInTheChat extends React.Component {
     handleConversationClick = (conversationId) => {
