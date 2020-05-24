@@ -1,3 +1,8 @@
+.message-header {
+	font-size: 20px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #ccc;
+}
 ul.people-list {
 	padding: 0px;
 	margin: 0px;

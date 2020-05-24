@@ -19,7 +19,7 @@ export default class NewGroupForm extends React.Component {
         });
     }
 
-    handleTitleSendClick = () => {
+    handleSendClick = () => {
         const {title} = this.state;
         if(!!title) {
             conversationApi.createGroup(this.props.courseId, title)
@@ -34,6 +34,10 @@ export default class NewGroupForm extends React.Component {
                     }
                 });
         }
+    }
+
+    handleCancelClick = () => {
+        this.props.handleCancelGroupCreate();
     }
 
     renderError = () => {
@@ -64,8 +68,12 @@ export default class NewGroupForm extends React.Component {
                 <Button variant="contained"
                         color="primary"
                         disabled={disabled}
-                        onClick={this.handleTitleSendClick}>
+                        onClick={this.handleSendClick}>
                     Create
+                </Button>
+                <Button variant="contained"
+                        onClick={this.handleCancelClick}>
+                    Cancel
                 </Button>
             </div>
         );
@@ -75,4 +83,5 @@ export default class NewGroupForm extends React.Component {
 NewGroupForm.propTypes = {
     courseId: PropTypes.string.isRequired,
     handleSuccessGroupCreate: PropTypes.func.isRequired,
+    handleCancelGroupCreate: PropTypes.func.isRequired,
 };

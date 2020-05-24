@@ -92,6 +92,13 @@ export class Message extends React.Component {
         this.setState(newAttributes);
     }
 
+    handleCancelGroupCreate = () => {
+        this.setState({
+            showUpdateMembers: false,
+            showNewGroupForm: false,
+        })
+    }
+
     handleUpdateMembersSuccess = (conversation) => {
         this.setState({
             showUpdateMembers: false,
@@ -109,7 +116,7 @@ export class Message extends React.Component {
         const {messageNotificationMap} = this.state;
         const hasUnreadMessages = !!messageNotificationMap[conversationId];
         delete messageNotificationMap[conversationId];
-        this.setState({activeConversationId: conversationId, messageNotificationMap});
+        this.setState({activeConversationId: conversationId, messageNotificationMap, showNewGroupForm: false, showUpdateMembers: false});
         hasUnreadMessages && userApi.markMessagesRead(conversationId);
     }
 
@@ -177,10 +184,10 @@ export class Message extends React.Component {
                     </div>
                     <div className='message-body'>
                         <Grid container spacing={1} className='chat-window'>
-                            <Grid item xs={4} className="chat-left-panel">
+                            <Grid item xs={3} className="chat-left-panel">
                                 <PeopleInTheChat {...peopleInTheChatProps}/>
                             </Grid>
-                            <Grid item xs={8}>
+                            <Grid item xs={9}>
                                 {
                                     showNewGroupForm || showUpdateMembers ?
                                         <div>
@@ -188,7 +195,8 @@ export class Message extends React.Component {
                                                 showNewGroupForm ?
                                                     <NewGroupForm
                                                         courseId={this._getCourseId()}
-                                                        handleSuccessGroupCreate={this.handleSuccessGroupCreate} />
+                                                        handleSuccessGroupCreate={this.handleSuccessGroupCreate}
+                                                        handleCancelGroupCreate={this.handleCancelGroupCreate} />
                                                     : <UpdateMembers
                                                         courseId={this._getCourseId()}
                                                         allUsers={enrolledUsers}

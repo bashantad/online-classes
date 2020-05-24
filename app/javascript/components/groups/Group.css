@@ -7,3 +7,7 @@
 .enroll-user {
     list-style: none;
 }
+
+.create-group-form button {
+    margin-right: 10px;
+}
