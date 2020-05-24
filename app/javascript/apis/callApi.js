@@ -1,4 +1,4 @@
-import {HEADERS, API_ROOT} from '../../constants';
+import {HEADERS, API_ROOT} from '../constants';
 
 const callApi = {
     broadcast: (conversationId, data) => {

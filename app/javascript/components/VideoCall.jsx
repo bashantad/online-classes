@@ -19,8 +19,10 @@ export default class VideoCall extends React.Component{
 
     componentDidMount(){
         this.remoteVideoContainer = document.getElementById("remote-calls-container")
-        navigator.mediaDevices.getUserMedia({ audio: false, video: true })
-            .then(stream => {
+        navigator.mediaDevices.getUserMedia({
+            audio: false,
+            video: true,
+        }).then(stream => {
                 this.localStream = stream;
                 this.localVideoRef.current.srcObject = stream;
             }).catch(error => { console.log(error) });
@@ -164,9 +166,9 @@ export default class VideoCall extends React.Component{
                 }
 
                 {
-                    hasJoinedTheCall && <Button variant="contained" color="secondary" onClick={this.leaveCall.bind(this)}>
+                    hasJoinedTheCall && <><Button variant="contained" color="secondary" onClick={this.leaveCall.bind(this)}>
                         Leave call
-                    </Button>
+                    </Button></>
                 }
             </div>
         );
