@@ -1,6 +1,3 @@
-.chat-window {
-	min-height: 600px;
-}
 ul.people-list {
 	padding: 0px;
 	margin: 0px;
@@ -38,16 +35,17 @@ ul.people-list li span {
 
 .message-box {
 	bottom: 0;
-	position: absolute;
+	position: fixed;
+	width: 100%;
 	padding-bottom: 5px;
 }
 
 .message-input {
 	border: 1px solid #eee;
 	margin: 0px;
-	height: 60px;
+	height: 80px;
 	background: #ddd;
-	width: 390px;
+	width: 100%;
 }
 
 .conversation-item {
@@ -56,10 +54,6 @@ ul.people-list li span {
 
 .conversation-item.message-owner {
 	text-align: right;
-}
-
-.message-item-wrapper {
-	margin: 10px;
 }
 
 .message-content {
@@ -72,8 +66,12 @@ ul.people-list li span {
 
 .conversation-item.message-owner .message-content{
 	background: #2f75c1;
-	margin: 5px 10px;
+	margin: 0 10px;
 	color: #fff;
+}
+
+.sender-changed.conversation-item {
+	margin-top: 10px;
 }
 
 .conversation-item .person-name {

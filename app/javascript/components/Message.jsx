@@ -1,22 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import Grid from '@material-ui/core/Grid';
-import Dialog from '@material-ui/core/Dialog';
 
-import './Chat.css';
-import { DialogTitle, DialogContent } from '../components/chat/ChatStyle';
-import PeopleInTheChat from '../components/chat/PeopleInTheChat';
-import ActiveMessageArea from '../components/chat/ActiveMessageArea';
-import NewMessage from '../components/chat/NewMessage';
+import './message.css';
+import PeopleInTheChat from '../components/messages/PeopleInTheChat';
+import ActiveMessageArea from '../components/messages/ActiveMessageArea';
+import NewMessage from '../components/messages/NewMessage';
 import courseApi from '../apis/courseApi';
-import conversationApi from './chat/conversationApi';
+import conversationApi from '../apis/conversationApi';
 import userApi from '../apis/userApi';
-import Cable from './chat/Cable';
-import NewGroupForm from "./group/NewGroupForm";
-import UpdateMembers from "./group/UpdateMembers";
+import Cable from './messages/Cable';
+import NewGroupForm from "./groups/NewGroupForm";
+import UpdateMembers from "./groups/UpdateMembers";
 
-export class Chat extends React.Component {
+export class Message extends React.Component {
     state = {
         groupConversations: [],
         individualConversations: [],
@@ -33,7 +30,7 @@ export class Chat extends React.Component {
     };
 
     _getCourseId = () => {
-        return this.props.match.params.id;
+        return this.props.match.params.course_id;
     }
 
     componentDidMount = () => {
@@ -151,7 +148,6 @@ export class Chat extends React.Component {
             showUpdateMembers
         } = this.state;
 
-        const {open, handleClose} = this.props;
         const peopleInTheChatProps = {
             conversations: conversations,
             individualConversations: individualConversations,
@@ -175,16 +171,15 @@ export class Chat extends React.Component {
                     />
                     : null
                 }
-                <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} fullWidth>
-                    <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                <div>
+                    <div className='message-header'>
                         {fullName} - {courseName}
-                    </DialogTitle>
-                    <DialogContent dividers>
+                    </div>
+                    <div className='message-body'>
                         <Grid container spacing={1} className='chat-window'>
-                            <Grid item xs={4}>
+                            <Grid item xs={4} className="chat-left-panel">
                                 <PeopleInTheChat {...peopleInTheChatProps}/>
                             </Grid>
-
                             <Grid item xs={8}>
                                 {
                                     showNewGroupForm || showUpdateMembers ?
@@ -208,16 +203,11 @@ export class Chat extends React.Component {
                                 }
                             </Grid>
                         </Grid>
-                    </DialogContent>
-                </Dialog>
+                    </div>
+                </div>
             </div>
         );
     }
 }
 
-Chat.propTypes = {
-    open: PropTypes.bool.isRequired,
-    handleClose: PropTypes.func.isRequired
-};
-
-export default withRouter(Chat);
+export default withRouter(Message);

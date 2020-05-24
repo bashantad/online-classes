@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from "@material-ui/core/Button";
-import conversationApi from "../chat/conversationApi";
+import conversationApi from "../../apis/conversationApi";
 
 export default class UpdateMembers extends React.Component {
     state = {

@@ -23,14 +23,15 @@ export default class ActiveMessageArea extends React.Component {
     renderMessage = (message, lastSenderId) => {
         const {currentUserId, activeConversation} = this.props;
         const {sender, created_time, content} = message;
-        const messageClass = currentUserId === sender.id ? 'message-owner' : '';
+        const messageOwnerClass = currentUserId === sender.id ? 'message-owner' : '';
         const messageKey = `conv-${activeConversation.id}-message-${message.id}`;
+        const isSenderChanged = lastSenderId !== sender.id;
+        const senderChangedClass = isSenderChanged ? 'sender-changed' : '';
         return (
-            <div className={`conversation-item ${messageClass}`} key={messageKey}>
-
+            <div className={`conversation-item ${messageOwnerClass} ${senderChangedClass}`} key={messageKey}>
                 <div className='person-wrapper'>
                     {
-                        lastSenderId !== sender.id &&
+                        isSenderChanged &&
                             <span className='person-name'>
                                 <AccountCircleIcon/> {sender.full_name}
                             </span>

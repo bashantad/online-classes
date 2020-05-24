@@ -15,6 +15,22 @@ const Home = () => (
         >
             Join class
         </Link>
+        <br />
+        <Link
+            to="/courses/1/messages"
+            className="btn btn-lg custom-button"
+            role="button"
+        >
+            Join Messages
+        </Link>
+        <br />
+        <Link
+            to="/calls/1"
+            className="btn btn-lg custom-button"
+            role="button"
+        >
+            Join Calls
+        </Link>
   </div>
 );
 
