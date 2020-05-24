@@ -20,6 +20,35 @@ export default class ActiveMessageArea extends React.Component {
         currentMessageEnd && currentMessageEnd.scrollIntoView({ behavior: 'smooth' })
     }
 
+    renderMessage = (message, lastSenderId) => {
+        const {currentUserId, activeConversation} = this.props;
+        const {sender, created_time, content} = message;
+        const messageClass = currentUserId === sender.id ? 'message-owner' : '';
+        const messageKey = `conv-${activeConversation.id}-message-${message.id}`;
+        return (
+            <div className={`conversation-item ${messageClass}`} key={messageKey}>
+
+                <div className='person-wrapper'>
+                    {
+                        lastSenderId !== sender.id &&
+                            <span className='person-name'>
+                                <AccountCircleIcon/> {sender.full_name}
+                            </span>
+                    }
+                </div>
+                <div className='message-item-wrapper'>
+                    <div className='message-content'>
+                        {content}
+                    </div>
+                    <div className='message-created-time'>
+                        {created_time}
+                    </div>
+                </div>
+
+            </div>
+        );
+    }
+
     render() {
         const {activeConversation} = this.props;
         return (
@@ -30,22 +59,12 @@ export default class ActiveMessageArea extends React.Component {
                             activeConversation.title && <div className='conversation-title'>{activeConversation.title}</div>
                         }
                         {
-                            activeConversation.messages.map((message) => {
-                                return (
-                                    <div className='conversation-item' key={`conv-${activeConversation.id}-message-${message.id}`}>
-                                        <div className='person-wrapper'>
-                                            <span className='person-name'>
-                                                <AccountCircleIcon /> {message.sender.full_name}
-                                            </span>
-                                            <span className='message-created-time'>
-                                                {message.created_time}
-                                            </span>
-                                        </div>
-                                        <div className='messages'>
-                                            {message.content}
-                                        </div>
-                                    </div>
-                                );
+                            activeConversation.messages.map((message, index) => {
+                                let lastSenderId = null;
+                                if(index > 0) {
+                                    lastSenderId = activeConversation.messages[index - 1].sender.id;
+                                }
+                                return this.renderMessage(message, lastSenderId)
                             })
                         }
                         <div ref={this.messagesEndRef} />
@@ -57,5 +76,6 @@ export default class ActiveMessageArea extends React.Component {
 }
 
 ActiveMessageArea.propTypes = {
-    activeConversation: PropTypes.object
+    activeConversation: PropTypes.object,
+    currentUserId: PropTypes.number,
 };

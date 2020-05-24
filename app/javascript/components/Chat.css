@@ -51,13 +51,29 @@ ul.people-list li span {
 }
 
 .conversation-item {
-	border-bottom: 1px solid #eee;
-	padding: 10px 0;
 	color: #333;
 }
 
-.conversation-item:hover {
+.conversation-item.message-owner {
+	text-align: right;
+}
+
+.message-item-wrapper {
+	margin: 10px;
+}
+
+.message-content {
+	padding: 10px;
+	border-radius: 8px;
 	background: #eee;
+	display: inline-block;
+	max-width: 70%;
+}
+
+.conversation-item.message-owner .message-content{
+	background: #2f75c1;
+	margin: 5px 10px;
+	color: #fff;
 }
 
 .conversation-item .person-name {
@@ -65,9 +81,10 @@ ul.people-list li span {
 }
 
 .conversation-item .message-created-time {
-	font-size: 14px;
+	font-size: 11px;
 	color: #888;
-	padding-left: 10px;
+	padding-left: 6px;
+	padding-right: 10px;
 }
 
 .message-wrapper {

@@ -202,7 +202,7 @@ export class Chat extends React.Component {
                                             }
                                         </div>
                                         : <div>
-                                            <ActiveMessageArea activeConversation={activeConversation}/>
+                                            <ActiveMessageArea activeConversation={activeConversation} currentUserId={currentUserId}/>
                                             <NewMessage conversationId={activeConversationId}/>
                                         </div>
                                 }
