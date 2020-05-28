@@ -113,17 +113,18 @@ export default class VideoCall extends React.Component{
             this.pcPeers[pcKeys[i]].close();
         }
         this.pcPeers = {};
-        this.localVideoRef.srcObject.getTracks().forEach((track) => {
+        this.localVideoRef.current.srcObject.getTracks().forEach((track) => {
             track.stop();
         })
         this.setState({hasJoinedTheCall: true});
-        this.localVideoRef.srcObject = null;
+        this.localVideoRef.current.srcObject = null;
         consumer.subscriptions.subscriptions = [];
         this.remoteVideoContainer.innerHTML = "";
         this.broadcast.makeApiCall({
             type: LEAVE_CALL,
             from: this.props.currentUserId
         });
+        this.setState({hasJoinedTheCall: false});
     }
 
     exchange(data) {
@@ -157,7 +158,7 @@ export default class VideoCall extends React.Component{
     render() {
         const {hasJoinedTheCall} = this.state;
         return (
-            <div className="VideoCall">
+            <div className="video-call-container">
                 <div id="remote-calls-container"></div>
                 <video ref={this.localVideoRef} autoPlay></video>
                 {

@@ -69,7 +69,9 @@ export class Message extends React.Component {
             item => item.id === message.conversation_id
         );
 
-        if(activeConversationId !== conversation.id) {
+        if(activeConversationId === conversation.id) {
+            userApi.markMessagesRead(conversation.id);
+        } else {
             messageNotificationMap[conversation.id] = messageNotificationMap[conversation.id] || [];
             messageNotificationMap[conversation.id] = messageNotificationMap[conversation.id].concat(user_message_notifications[conversation.id])
         }

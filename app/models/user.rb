@@ -12,4 +12,6 @@ class User < ApplicationRecord
     has_many :user_message_notifications
     has_many :notification_messages, through: :user_message_notifications, source: :message
     has_many :courses
+
+    validates :full_name, presence: true
 end
