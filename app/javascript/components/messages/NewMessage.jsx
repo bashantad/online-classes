@@ -25,7 +25,10 @@ export default class NewMessage extends React.Component {
 		const disabled = this.props.conversationId === null;
 		return (
 			<div className='new-message-box-container'>
-                <textarea className='message-input' placeholder='Type your message' onChange={this.handleMessageChange} value={this.state.content}></textarea>
+                <textarea className='message-input'
+						  placeholder='Type your message'
+						  onChange={this.handleMessageChange}
+						  value={this.state.content}></textarea>
                 <Button variant="contained" color="primary" disabled={disabled} onClick={this.handleMessageSendClick}>
                  	Send
             	</Button>

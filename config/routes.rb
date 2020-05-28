@@ -1,18 +1,21 @@
 Rails.application.routes.draw do
 	# Routes for admin pages
 	namespace :admin do
-		resources :courses, only: [:index] do
+		resources :courses, only: [:index, :show] do
 			get :approve
 			get :disapprove
-		end
-	end
+			get :enrollment
+			post :enroll_users
+			get :enrolled_users
+    end
+  end
 
 	# Routes for onboarding Rails pages
-  	resources :courses
-  	resources :categories
-  	devise_for :users
+  resources :courses
+  resources :categories
+  devise_for :users
 
-  	# Routes for API
+  # Routes for API
 	namespace :api, constraints: { format: 'json' } do
 		resources :courses, only: [:index, :show] do
 			resources :conversations do

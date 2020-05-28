@@ -1,5 +1,5 @@
-class Admin::CoursesController < ApplicationController
-	before_action :set_course, only: [:approve, :disapprove]
+class Admin::CoursesController < Admin::BaseController
+	before_action :set_course, except: [:index]
 
 	def index
 		@courses = Course.all
@@ -15,6 +15,10 @@ class Admin::CoursesController < ApplicationController
 		@course.disapprove
 		flash[:notice] = "#{@course.name} has been disapproved"
 		redirect_to admin_courses_path
+	end
+
+	def enrollment
+
 	end
 
 	private
