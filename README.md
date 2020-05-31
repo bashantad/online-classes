@@ -7,7 +7,7 @@ We are building a virtual classroom, teachers can organise live classroom remote
 ### Pre-requisite to run the project
 * Install `rvm`(or `rbenv`) to manage ruby versions
 * Install `nvm` to manage node versions
-* Install ruby version `ruby-2.5.8` using `rvm install 2.5.8` followed by `rvm use 2.5.8`
+* Install ruby version `ruby-2.7.1` using `rvm install 2.7.1` followed by `rvm use 2.5.8`
 * Install `postgresql` database. Instructions varies depending on your operating system
 * Install node `nvm install 13.1` followed by `nvm use 13.1`
 * Install yarn `npm install yarn`
