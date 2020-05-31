@@ -23,6 +23,8 @@ We are building a virtual classroom, teachers can organise live classroom remote
     yarn install
 ```
 
+Ask for the `development.key` file and put it under `config/credentials/development.key`
+
 ### Database Setup
 Before running following commands make sure you have `postgresql` installed and is running on your computer.
 Make sure you can login to postgresql by entering `psql` on command line.

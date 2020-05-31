@@ -65,6 +65,7 @@ namespace :deploy do
   task :config_symlink do
     on roles(:app) do
       execute "cp #{shared_path}/database.yml #{release_path}/config/database.yml"
+        #execute "cp #{shared_path}/production.key #{release_path}/config/credentials/production.key"
     end
   end
 
