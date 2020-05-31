@@ -2,7 +2,7 @@
 server '45.79.99.103', port: 22, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:bashantad/vcroom.git'
-set :application,     'virtual-classroom'
+set :application,     'vcroom'
 set :user,            'bash'
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
