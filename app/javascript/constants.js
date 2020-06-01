@@ -1,5 +1,5 @@
-export const API_ROOT = 'http://localhost:3000/api';
-export const API_WS_ROOT = 'ws://localhost:3000/cable';
+export const API_ROOT = process.env.API_HOST
+export const API_WS_ROOT = process.env.API_WS_ROOT
 
 export const HEADERS = {
   'Content-Type': 'application/json',
