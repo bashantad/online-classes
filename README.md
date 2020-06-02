@@ -48,7 +48,15 @@ Run the following command to start the server at http://localhost:3000/
 ```
 Also make sure to run `./bin/webpack-dev-server` to compile JS in the background upon saving.
 
-Note: If you run into issues while this project, you are welcome to suggest changes on README so that future developers wouldn't have to go through the same issues.
+Note: If you run into issues while this project, you are welcome to suggest changes on README so that future developers 
+wouldn't have to go through the same issues.
+
+### Development
+We mainly have two kinds of pages
+1. React pages and this utilizes core.html.erb layout 
+2. Other CMS style pages and this utilizes application.html.erb (anything you write in `app/assets/stylesheets/` folder is automatically imported for these pages)
+And these two don't share css/javascript files implicitly. If we want to share common css files across both of these pages,
+we need to manually import css
 
 Happy coding!! 
 ```
