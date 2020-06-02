@@ -36,3 +36,5 @@ todo.txt
 /config/credentials/production.key
 
 /config/credentials/development.key
+
+/config/database.yml
