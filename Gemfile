@@ -34,7 +34,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'wdm', '>= 0.1.0'
+  gem 'wdm', '>= 0.1.0' unless ENV['WINDOWS_ONLY']
 end
 
 group :development do
