@@ -50,13 +50,13 @@ export default class PeopleInTheChat extends React.Component {
     }
 
     getActiveClass = (conversationId) => {
-        return conversationId === this.props.activeConversationId ? 'active' : '';
+        return conversationId === this.props.activeConversationId;
     }
 
     renderIndividualPerson = (user, mappingPersonToConversation) => {
         const conversationId = mappingPersonToConversation[user.id];
         return (
-            <ListItem button key={`person-${user.id}-conversation-${conversationId}`} onClick={() => this.handleUserClick(mappingPersonToConversation, user.id)}  className='message-list-item'>
+            <ListItem button key={`person-${user.id}-conversation-${conversationId}`} onClick={() => this.handleUserClick(mappingPersonToConversation, user.id)}  className='message-list-item' selected={this.getActiveClass(conversationId)}>
     <ListItemIcon><AccountCircleIcon /></ListItemIcon>
         <ListItemText primary={user.full_name} className="list-title"/>
                 {this.renderNotification(conversationId)}
@@ -71,6 +71,7 @@ export default class PeopleInTheChat extends React.Component {
             messageNotificationMap[conversationId] &&
                 <span className='no-of-messages'>
                     {messageNotificationMap[conversationId].length}
+
                 </span>
         );
     }
@@ -78,7 +79,7 @@ export default class PeopleInTheChat extends React.Component {
     renderGroupConversation = (conversation) => {
         const {title, id} = conversation;
         return (
-            <ListItem button key={id} onClick={() => this.handleConversationClick(id)} className='message-list-item'>
+            <ListItem button key={id} onClick={() => this.handleConversationClick(id)} className='message-list-item' selected={this.getActiveClass(id)}>
     <ListItemIcon><GroupIcon /></ListItemIcon>
         <ListItemText primary={title} className="list-title" />
                 {this.renderNotification(id)}
