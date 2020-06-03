@@ -13,6 +13,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import GroupIcon from '@material-ui/icons/Group';
 import Divider from '@material-ui/core/Divider';
+import Toolbar from '@material-ui/core/Toolbar';
+
 
 export default class PeopleInTheChat extends React.Component {
     handleConversationClick = (conversationId) => {
@@ -94,6 +96,7 @@ export default class PeopleInTheChat extends React.Component {
 
         return (
             <Drawer variant="permanent"  className="drawer">
+                <Toolbar />
                 <div className="drawer-container">
                 <List>
                     <ListItem button onClick={() => this.props.handleCreateCourseGroup()}  className='message-list-item'>
