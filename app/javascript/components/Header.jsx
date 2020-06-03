@@ -31,7 +31,7 @@ export default function Header() {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
-                        Pskul
+                        VCRoom
                     </Typography>
                     <Link to='/users/sign_out'>
                             Logout
