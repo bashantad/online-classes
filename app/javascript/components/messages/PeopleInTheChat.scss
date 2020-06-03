@@ -35,27 +35,23 @@ ul.people-list {
 }
 
 .drawer{
-    height: 90vh;
+    width: 250px;
+    flex-shrink: 0;
+    z-index: 1;
 }
-
-.drawer .MuiDrawer-paper{
-    position: initial;
-}
-.drawer-container{
+.drawerContainer{
     overflow: auto;
 }
 
-.MuiDrawer-paper{
-    top: 64px !important;
-}
-
 .drawer .MuiSvgIcon-root{
-    font-size: 1.6rem;
+    font-size: 40px;
     color: #3769b5 !important;
 }
 
 .list-title .MuiTypography-body1{
     font-size: .8rem !important;
+    font-weight: 400;
+    letter-spacing: .4px;
 }
 
 .no-of-messages{

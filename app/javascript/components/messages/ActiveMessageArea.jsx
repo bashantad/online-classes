@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import Divider from '@material-ui/core/Divider';
+import Typography from '@material-ui/core/Typography';
 import './ActiveMessageArea.scss';
 
 export default class ActiveMessageArea extends React.Component {
@@ -58,8 +60,10 @@ export default class ActiveMessageArea extends React.Component {
                 {
                     activeConversation && <div>
                         {
-                            activeConversation.title && <div className='conversation-title'>{activeConversation.title}</div>
+                            activeConversation.title && <div className='conversation-title'><Typography variant="h5">{activeConversation.title}</Typography></div>
                         }
+
+                        <Divider />
                         {
                             activeConversation.messages.map((message, index) => {
                                 let lastSenderId = null;

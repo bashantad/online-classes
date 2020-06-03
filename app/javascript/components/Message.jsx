@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router';
+import {withRouter} from 'react-router';
 import Grid from '@material-ui/core/Grid';
 
 import './message.scss';
@@ -13,11 +13,18 @@ import Cable from './messages/Cable';
 import NewGroupForm from "./groups/NewGroupForm";
 import UpdateMembers from "./groups/UpdateMembers";
 
+import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
+import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import MailIcon from '@material-ui/icons/Mail';
 
 export class Message extends React.Component {
     state = {
@@ -41,18 +48,18 @@ export class Message extends React.Component {
 
     componentDidMount = () => {
         userApi.getCurrentUserInfo()
-        .then(res => res.json())
-        .then(user => {
-            const {id, full_name, enrolled_courses, user_message_notifications, conversations} = user;
-            this.setState({
-                fullName: full_name,
-                currentUserId: id,
-                enrolledCourses: enrolled_courses,
-                individualConversations: conversations,
-                conversations: [...this.state.conversations, ...conversations],
-                messageNotificationMap: user_message_notifications
-            })
-        });
+            .then(res => res.json())
+            .then(user => {
+                const {id, full_name, enrolled_courses, user_message_notifications, conversations} = user;
+                this.setState({
+                    fullName: full_name,
+                    currentUserId: id,
+                    enrolledCourses: enrolled_courses,
+                    individualConversations: conversations,
+                    conversations: [...this.state.conversations, ...conversations],
+                    messageNotificationMap: user_message_notifications
+                })
+            });
         courseApi.getById(this._getCourseId())
             .then(res => res.json())
             .then(courseDetails => {
@@ -63,7 +70,7 @@ export class Message extends React.Component {
                     enrolledUsers: enrolled_users,
                     activeConversationId: conversations[0].id,
                     courseName: name,
-                 });
+                });
             });
     }
 
@@ -75,7 +82,7 @@ export class Message extends React.Component {
             item => item.id === message.conversation_id
         );
 
-        if(activeConversationId === conversation.id) {
+        if (activeConversationId === conversation.id) {
             userApi.markMessagesRead(conversation.id);
         } else {
             messageNotificationMap[conversation.id] = messageNotificationMap[conversation.id] || [];
@@ -92,7 +99,7 @@ export class Message extends React.Component {
             showNewGroupForm: false,
             activeConversationId: conversation.id,
         };
-        if(conversation.is_group) {
+        if (conversation.is_group) {
             newAttributes.groupConversations = {...this.state.groupConversations, conversation};
         } else {
             newAttributes.individualConversations = {...this.state.individualConversations, conversation};
@@ -124,7 +131,12 @@ export class Message extends React.Component {
         const {messageNotificationMap} = this.state;
         const hasUnreadMessages = !!messageNotificationMap[conversationId];
         delete messageNotificationMap[conversationId];
-        this.setState({activeConversationId: conversationId, messageNotificationMap, showNewGroupForm: false, showUpdateMembers: false});
+        this.setState({
+            activeConversationId: conversationId,
+            messageNotificationMap,
+            showNewGroupForm: false,
+            showUpdateMembers: false
+        });
         hasUnreadMessages && userApi.markMessagesRead(conversationId);
     }
 
@@ -142,13 +154,14 @@ export class Message extends React.Component {
                     activeConversationId: conversation.id
                 };
                 const doesConversationExist = this.state.conversations.some(item => item.id === conversation.id);
-                if(!doesConversationExist) {
+                if (!doesConversationExist) {
                     const conversations = [...this.state.conversations, conversation];
                     updateAttributes.conversations = conversations;
                 }
                 this.setState(updateAttributes);
             });
     }
+
     render() {
         const {
             conversations,
@@ -180,53 +193,46 @@ export class Message extends React.Component {
             <div>
                 {
                     conversations.length ?
-                    <Cable
-                        conversations={conversations}
-                        handleReceivedMessage={this.handleReceivedMessage}
-                    />
-                    : null
+                        <Cable
+                            conversations={conversations}
+                            handleReceivedMessage={this.handleReceivedMessage}
+                        />
+                        : null
                 }
-                <div>
-                    <AppBar position="static" className='message-appBar'>
+                <div className='root'>
+                    <CssBaseline/>
+                    <AppBar position="fixed" className='appbar'>
                         <Toolbar>
-                            <IconButton edge="start" color="inherit" aria-label="menu">
-                                <MenuIcon />
-                            </IconButton>
                             <Typography variant="h6" color="inherit">
                                 {fullName} - {courseName}
                             </Typography>
                         </Toolbar>
                     </AppBar>
-                    <div className='message-body'>
-                        <Grid container className='chat-window'>
-                            <Grid item lg={2} md={3} className="chat-left-panel">
-                                <PeopleInTheChat {...peopleInTheChatProps}/>
-                            </Grid>
-                            <Grid item lg={9} md={10}>
-                                {
-                                    showNewGroupForm || showUpdateMembers ?
-                                        <div>
-                                            {
-                                                showNewGroupForm ?
-                                                    <NewGroupForm
-                                                        courseId={this._getCourseId()}
-                                                        handleSuccessGroupCreate={this.handleSuccessGroupCreate}
-                                                        handleCancelGroupCreate={this.handleCancelGroupCreate} />
-                                                    : <UpdateMembers
-                                                        courseId={this._getCourseId()}
-                                                        allUsers={enrolledUsers}
-                                                        conversation={activeConversation}
-                                                        handleUpdateMembersSuccess={this.handleUpdateMembersSuccess}/>
-                                            }
-                                        </div>
-                                        : <div>
-                                            <ActiveMessageArea activeConversation={activeConversation} currentUserId={currentUserId}/>
-                                            <NewMessage conversationId={activeConversationId}/>
-                                        </div>
-                                }
-                            </Grid>
-                        </Grid>
-                    </div>
+                    <PeopleInTheChat {...peopleInTheChatProps}/>
+                    <main className='content'>
+                        <Toolbar />
+                        {
+                            showNewGroupForm || showUpdateMembers ?
+                                <div>
+                                    {
+                                        showNewGroupForm ?
+                                            <NewGroupForm
+                                                courseId={this._getCourseId()}
+                                                handleSuccessGroupCreate={this.handleSuccessGroupCreate}
+                                                handleCancelGroupCreate={this.handleCancelGroupCreate} />
+                                            : <UpdateMembers
+                                                courseId={this._getCourseId()}
+                                                allUsers={enrolledUsers}
+                                                conversation={activeConversation}
+                                                handleUpdateMembersSuccess={this.handleUpdateMembersSuccess}/>
+                                    }
+                                </div>
+                                : <div className='message-body'>
+                                    <ActiveMessageArea activeConversation={activeConversation} currentUserId={currentUserId}/>
+                                    <NewMessage conversationId={activeConversationId}/>
+                                </div>
+                        }
+                    </main>
                 </div>
             </div>
         );

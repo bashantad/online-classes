@@ -3,3 +3,14 @@
 	padding-bottom: 10px;
 	border-bottom: 1px solid #ccc;
 }
+
+.root{
+	display: flex;
+}
+
+.MuiDrawer-paper{
+	width: 250px;
+}
+.content{
+	flex-grow: 1;
+}
