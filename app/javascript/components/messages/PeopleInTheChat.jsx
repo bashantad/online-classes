@@ -5,6 +5,15 @@ import Group from '@material-ui/icons/Group';
 import AddCircle from '@material-ui/icons/AddCircle';
 import './PeopleInTheChat.scss';
 
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import GroupIcon from '@material-ui/icons/Group';
+import Divider from '@material-ui/core/Divider';
+
 export default class PeopleInTheChat extends React.Component {
     handleConversationClick = (conversationId) => {
         this.props.handleConversationClick(conversationId);
@@ -47,15 +56,12 @@ export default class PeopleInTheChat extends React.Component {
     renderIndividualPerson = (user, mappingPersonToConversation) => {
         const conversationId = mappingPersonToConversation[user.id];
         return (
-            <li className={`conversation-actor ${this.getActiveClass(conversationId)}`}
-                key={`person-${user.id}-conversation-${conversationId}`}
-                onClick={() => this.handleUserClick(mappingPersonToConversation, user.id)}
-            >
-                <AccountCircleIcon /> <span> {user.full_name} </span>
-                {
-                    this.renderNotification(conversationId)
-                }
-            </li>
+            <ListItem button key={`person-${user.id}-conversation-${conversationId}`} onClick={() => this.handleUserClick(mappingPersonToConversation, user.id)}  className='message-list-item'>
+    <ListItemIcon><AccountCircleIcon /></ListItemIcon>
+        <ListItemText primary={user.full_name} className="list-title"/>
+                {this.renderNotification(conversationId)}
+        </ListItem>
+
         );
     }
 
@@ -72,13 +78,11 @@ export default class PeopleInTheChat extends React.Component {
     renderGroupConversation = (conversation) => {
         const {title, id} = conversation;
         return (
-            <li className={`conversation-actor ${this.getActiveClass(id)}`}
-                key={id}
-                onClick={() => this.handleConversationClick(id)}
-            >
-                <Group /> <span> {title}</span>
+            <ListItem button key={id} onClick={() => this.handleConversationClick(id)} className='message-list-item'>
+    <ListItemIcon><GroupIcon /></ListItemIcon>
+        <ListItemText primary={title} className="list-title" />
                 {this.renderNotification(id)}
-            </li>
+        </ListItem>
         );
     }
 
@@ -86,18 +90,26 @@ export default class PeopleInTheChat extends React.Component {
         const {conversations, enrolledUsers, messageNotificationMap, individualConversations} = this.props;
         const groupConversations = conversations.filter(conv => conv.is_group);
         const mappingPersonToConversation = this._getMappingPersonToConversation(individualConversations);
+
         return (
-			<ul className='people-list'>
-                <li onClick={() => this.props.handleCreateCourseGroup()}>
-                    <AddCircle /> <span> Create a new group </span>
-                </li>
+            <Drawer variant="permanent"  className="drawer">
+                <div className="drawer-container">
+                <List>
+                    <ListItem button key='1' onClick={() => this.props.handleCreateCourseGroup()}  className='message-list-item'>
+                        <ListItemIcon><AddCircleIcon /></ListItemIcon>
+                        <ListItemText primary='Create a new group' className="list-title"/>
+                    </ListItem>
+                    <Divider />
                 {
                     groupConversations.map(conversation => this.renderGroupConversation(conversation, messageNotificationMap))
                 }
+                    <Divider />
                 {
                     enrolledUsers.map(user => this.renderIndividualPerson(user, mappingPersonToConversation))
                 }
-            </ul>
+                </List>
+                </div>
+            </Drawer>
 		);
 	}
 }

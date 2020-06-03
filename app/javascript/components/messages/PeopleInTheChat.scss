@@ -33,3 +33,27 @@ ul.people-list {
         font-weight: bold;
     }
 }
+
+.drawer{
+    height: 90vh;
+}
+
+.drawer .MuiDrawer-paper{
+    position: initial;
+}
+.drawer-container{
+    overflow: auto;
+}
+
+.MuiDrawer-paper{
+    top: 64px !important;
+}
+
+.drawer .MuiSvgIcon-root{
+    font-size: 1.6rem;
+    color: #3769b5 !important;
+}
+
+.list-title .MuiTypography-body1{
+    font-size: .8rem !important;
+}

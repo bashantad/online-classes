@@ -13,6 +13,12 @@ import Cable from './messages/Cable';
 import NewGroupForm from "./groups/NewGroupForm";
 import UpdateMembers from "./groups/UpdateMembers";
 
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+
 export class Message extends React.Component {
     state = {
         groupConversations: [],
@@ -181,15 +187,22 @@ export class Message extends React.Component {
                     : null
                 }
                 <div>
-                    <div className='message-header'>
-                        {fullName} - {courseName}
-                    </div>
+                    <AppBar position="static" className='message-appBar'>
+                        <Toolbar>
+                            <IconButton edge="start" color="inherit" aria-label="menu">
+                                <MenuIcon />
+                            </IconButton>
+                            <Typography variant="h6" color="inherit">
+                                {fullName} - {courseName}
+                            </Typography>
+                        </Toolbar>
+                    </AppBar>
                     <div className='message-body'>
-                        <Grid container spacing={1} className='chat-window'>
-                            <Grid item xs={3} className="chat-left-panel">
+                        <Grid container className='chat-window'>
+                            <Grid item lg={2} md={3} className="chat-left-panel">
                                 <PeopleInTheChat {...peopleInTheChatProps}/>
                             </Grid>
-                            <Grid item xs={9}>
+                            <Grid item lg={9} md={10}>
                                 {
                                     showNewGroupForm || showUpdateMembers ?
                                         <div>
