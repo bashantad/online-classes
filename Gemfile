@@ -45,10 +45,10 @@ group :development do
   gem 'spring'
   gem 'pry'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'capistrano', '~> 3.6'
-  gem 'capistrano-bundler', '~> 1.6'
+  gem 'capistrano',         require: false
   gem 'capistrano-rvm',     require: false
   gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
   gem 'capistrano3-puma',   require: false
 end
 
