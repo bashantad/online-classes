@@ -13,7 +13,7 @@ gem 'puma', '~> 4.1'
 gem 'sass-rails', '>= 6'
 gem 'react-rails'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '~> 4.0'
+gem 'webpacker', '~> 5.x'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -45,10 +45,10 @@ group :development do
   gem 'spring'
   gem 'pry'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'capistrano',         require: false
+  gem 'capistrano', '~> 3.6'
+  gem 'capistrano-bundler', '~> 1.6'
   gem 'capistrano-rvm',     require: false
   gem 'capistrano-rails',   require: false
-  gem 'capistrano-bundler', require: false
   gem 'capistrano3-puma',   require: false
 end
 
