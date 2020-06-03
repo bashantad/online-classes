@@ -95,7 +95,7 @@ export default class PeopleInTheChat extends React.Component {
             <Drawer variant="permanent"  className="drawer">
                 <div className="drawer-container">
                 <List>
-                    <ListItem button key='1' onClick={() => this.props.handleCreateCourseGroup()}  className='message-list-item'>
+                    <ListItem button onClick={() => this.props.handleCreateCourseGroup()}  className='message-list-item'>
                         <ListItemIcon><AddCircleIcon /></ListItemIcon>
                         <ListItemText primary='Create a new group' className="list-title"/>
                     </ListItem>
