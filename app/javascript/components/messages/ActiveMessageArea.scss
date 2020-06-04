@@ -1,5 +1,6 @@
 .conversation-item {
     color: #333;
+    padding: 0 15px;
     .message-content {
         padding: 10px;
         border-radius: 8px;
@@ -43,13 +44,37 @@
 }
 
 .active-conversation-wrapper {
-    padding: 10px;
+    //padding: 10px;
+    height: 75vh;
+    overflow: auto;
 }
 
 .conversation-title{
-    margin: 1rem;
+    width: 100%;
+    background-color: white;
+    padding: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .message-item-wrapper{
     margin: 8px 0;
+}
+
+@media only screen and (max-device-height: 750px ) {
+    .active-conversation-wrapper{
+        height: 68vh;
+    }
+
+}
+
+@media only screen and (max-device-height: 650px ) {
+    .active-conversation-wrapper{
+        height: 60vh;
+    }
+
+}@media only screen and (max-device-height: 550px ) {
+    .active-conversation-wrapper{
+        height: 48vh;
+    }
+
 }
