@@ -13,18 +13,10 @@ import Cable from './messages/Cable';
 import NewGroupForm from "./groups/NewGroupForm";
 import UpdateMembers from "./groups/UpdateMembers";
 
-import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 
 export class Message extends React.Component {
     state = {
@@ -210,7 +202,7 @@ export class Message extends React.Component {
                     </AppBar>
                     <PeopleInTheChat {...peopleInTheChatProps}/>
                     <main className='content'>
-                        <Toolbar />
+                        <Toolbar/>
                         {
                             showNewGroupForm || showUpdateMembers ?
                                 <div>
@@ -219,7 +211,7 @@ export class Message extends React.Component {
                                             <NewGroupForm
                                                 courseId={this._getCourseId()}
                                                 handleSuccessGroupCreate={this.handleSuccessGroupCreate}
-                                                handleCancelGroupCreate={this.handleCancelGroupCreate} />
+                                                handleCancelGroupCreate={this.handleCancelGroupCreate}/>
                                             : <UpdateMembers
                                                 courseId={this._getCourseId()}
                                                 allUsers={enrolledUsers}
@@ -228,8 +220,12 @@ export class Message extends React.Component {
                                     }
                                 </div>
                                 : <div className='message-body'>
-                                    <ActiveMessageArea activeConversation={activeConversation} currentUserId={currentUserId}/>
-                                    <NewMessage conversationId={activeConversationId}/>
+                                    <div>
+                                        <ActiveMessageArea activeConversation={activeConversation}
+                                                           currentUserId={currentUserId}/>
+                                    </div>
+                                    <div><NewMessage conversationId={activeConversationId}/></div>
+
                                 </div>
                         }
                     </main>
