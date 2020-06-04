@@ -9,6 +9,7 @@
     }
     .person-name {
         font-size: 20px;
+        display: inline-flex;
     }
     .message-created-time {
         font-size: 11px;
@@ -28,14 +29,27 @@
     }
 }
 
+.person-name-item{
+    margin-left: 4px;
+}
+
+.person-icon{
+    font-size: 1.8rem !important;
+    color: #3769b5;
+}
+
 .sender-changed.conversation-item {
     margin-top: 10px;
 }
 
 .active-conversation-wrapper {
-    overflow: scroll;
+    padding: 10px;
 }
 
 .conversation-title{
     margin: 1rem;
+}
+
+.message-item-wrapper{
+    margin: 8px 0;
 }

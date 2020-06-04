@@ -36,7 +36,7 @@ export default class ActiveMessageArea extends React.Component {
                     {
                         isSenderChanged &&
                             <span className='person-name'>
-                                <AccountCircleIcon/> {sender.full_name}
+                                <AccountCircleIcon className='person-icon'/><span className='person-name-item'>{sender.full_name}</span>
                             </span>
                     }
                 </div>
