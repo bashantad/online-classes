@@ -1,80 +1,99 @@
 .conversation-item {
-    color: #333;
-    padding: 0 15px;
-    .message-content {
-        padding: 10px;
-        border-radius: 12px;
-        background: #eee;
-        display: inline-block;
-        max-width: 70%;
-    }
-    .person-name {
-        font-size: 20px;
-        display: inline-flex;
-    }
-    .message-created-time {
-        font-size: 11px;
-        color: #888;
-        padding-left: 6px;
-        padding-right: 10px;
-    }
+  color: #333;
+  padding: 0 15px;
+
+  .message-content {
+    padding: 10px;
+    border-radius: 12px;
+    background: #eee;
+    display: inline-block;
+    max-width: 70%;
+  }
+
+  .person-name {
+    font-size: 20px;
+    display: inline-flex;
+  }
+
+  .message-created-time {
+    font-size: 11px;
+    color: #888;
+    padding-left: 6px;
+    padding-right: 10px;
+  }
 }
 
 .conversation-item.message-owner {
-    text-align: right;
-    .message-content{
-        background: #2f75c1;
-        margin: 0 10px;
-        color: #fff;
-        border-bottom-right-radius: 0;
-    }
+  text-align: right;
+
+  .message-content {
+    background: #2f75c1;
+    margin: 0 10px;
+    color: #fff;
+    border-bottom-right-radius: 0;
+  }
 }
+
 .conversation-item.sender-owner {
-    .message-content{
-        border-bottom-left-radius: 0;
-    }
+  .message-content {
+    border-bottom-left-radius: 0;
+  }
 }
 
-.person-name-item{
-    margin-left: 4px;
+.person-name-item {
+  margin-left: 4px;
 }
 
-.person-icon{
-    font-size: 1.8rem !important;
-    color: #3769b5;
+.person-icon {
+  font-size: 1.8rem !important;
+  color: #3769b5;
 }
 
 .sender-changed.conversation-item {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
-.conversation-title{
-    background-color: white;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-    position: fixed !important;
-    width: 100%;
+.conversation-title {
+  background-color: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  position: fixed !important;
+  width: 100%;
 }
 
-.message-item-wrapper{
-    margin: 8px 0;
+.message-item-wrapper {
+  margin: 8px 0;
 }
 
-.message-card{
-    padding: 1.5rem;
-    margin: 5rem 1rem 1rem 1rem;
+.message-card {
+  padding: 1.5rem;
+  margin: 5rem 1rem 1rem 1rem;
 }
 
-.active-conversation{
-    display: flex;
-    flex-flow: column nowrap;
+.active-conversation {
+  display: flex;
+  flex-flow: column nowrap;
 }
- .no-message{
-     text-align: center;
-     margin-top: 10% !important;
- }
- .no-message-card{
-     width: 10%;
-     margin: auto;
-     padding: 10px 0;
-     color: #3f51b5!important;
- }
+
+.no-message {
+  text-align: center;
+  margin-top: 10% !important;
+}
+
+.no-message-card {
+  width: 10%;
+  margin: auto;
+  padding: 10px 0;
+  color: #3f51b5 !important;
+}
+
+@media only screen and (max-width: 1500px) {
+  .no-message-card {
+    width: 20%;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .no-message-card {
+    width: 40%;
+  }
+}
