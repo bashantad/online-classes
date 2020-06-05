@@ -1,3 +1,5 @@
+$accent-color: #26a69a;
+
 ul.people-list {
     padding: 0px;
     margin: 0px;
@@ -55,10 +57,11 @@ ul.people-list {
 }
 
 .no-of-messages{
-    background: #3f51b5;
+    background: $accent-color;
     color: white;
     padding: 4px;
-    width: 16px;
+    width: 24px;
+    height: 24px;
     font-size: 12px;
     border-radius: 12px;
     text-align: center;
