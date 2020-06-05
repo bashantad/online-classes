@@ -41,11 +41,6 @@ export class Call extends React.Component {
             onSharingClick: this.toggleSharing,
         }
 
-        const chatProps = {
-            open: chat,
-            handleClose: this.toggleMessage
-        };
-
         return <div className = 'call-page'>
             <Header />
             <Grid container spacing={0}>

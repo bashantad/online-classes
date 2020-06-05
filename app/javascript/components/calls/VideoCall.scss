@@ -2,3 +2,22 @@
   border: 1px solid red;
   margin: 20px;
 }
+.video-call-control-icon {
+  width: 3rem;
+  border: 2px solid #fff;
+  background: #ddd;
+  margin: 0 1rem;
+  padding: 1rem;
+  border-radius: 50%;
+  vertical-align: middle;
+  text-align: center;
+}
+.video-call-control-icon:hover {
+  background: #efefef;
+  cursor: pointer;
+}
+.video-call-control-bar {
+  background: #eee;
+  padding:10px;
+  display: flex;
+}

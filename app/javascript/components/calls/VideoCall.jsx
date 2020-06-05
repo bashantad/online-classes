@@ -6,30 +6,33 @@ import { JOIN_CALL, LEAVE_CALL, EXCHANGE, ice } from '../../utils/VideoCallUtil'
 import consumer from "../../channels/consumer";
 import BroadCast from './BroadCast';
 import './VideoCall.scss';
+import VideoControl from "./VideoControl";
 
 export default class VideoCall extends React.Component{
-    constructor(props){
+    constructor(props) {
         super(props);
         this.pcPeers = {};
         this.localVideoRef = React.createRef();
         this.broadcast = new BroadCast(props.conversationId, props.currentUserId);
         this.state = {
             hasJoinedTheCall: false,
+            audio: true,
+            video: true,
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.remoteVideoContainer = document.getElementById("remote-calls-container")
         navigator.mediaDevices.getUserMedia({
             audio: false,
             video: true,
         }).then(stream => {
-                this.localStream = stream;
-                this.localVideoRef.current.srcObject = stream;
-            }).catch(error => { console.log(error) });
+            this.localStream = stream;
+            this.localVideoRef.current.srcObject = stream;
+        }).catch(error => { console.log(error) });
     }
 
-    joinCall(e){
+    joinCall = () => {
         consumer.subscriptions.create({channel: "CallsChannel"},
             {
                 connected: () => this.connectCall(),
@@ -66,7 +69,7 @@ export default class VideoCall extends React.Component{
         this.handlePCEvents(pc, senderId);
     }
 
-    removeUser(data){
+    removeUser(data) {
         let video = document.getElementById(`remote-video-box-${data.from}`);
         video && video.remove();
 
@@ -107,7 +110,7 @@ export default class VideoCall extends React.Component{
         this.remoteVideoContainer.appendChild(remoteVid);
     }
 
-    leaveCall(e){
+    leaveCall = () => {
         const pcKeys = Object.keys(this.pcPeers);
         for (let i = 0; i < pcKeys.length; i++) {
             this.pcPeers[pcKeys[i]].close();
@@ -139,7 +142,7 @@ export default class VideoCall extends React.Component{
         return peerConnection;
     }
 
-    createPeerConnection(userId){
+    createPeerConnection(userId) {
         const peerConnection = this.initializePC(userId);
         this.handlePCEvents(peerConnection, userId);
         return peerConnection;
@@ -155,22 +158,36 @@ export default class VideoCall extends React.Component{
         return peerConnection;
     }
 
+    toggleAudio = () => {
+
+    }
+
+    toggleVideo = () => {
+
+    }
+
     render() {
-        const {hasJoinedTheCall} = this.state;
+        const {hasJoinedTheCall, audio, video} = this.state;
+        const callProps = {
+            isAudioOn: audio,
+            isVideoOn: video,
+            onAudioClick: this.toggleAudio,
+            onVideoClick: this.toggleVideo,
+            onCallEndClick: this.leaveCall,
+        };
+
         return (
             <div className="video-call-container">
                 <div id="remote-calls-container"></div>
                 <video ref={this.localVideoRef} autoPlay></video>
                 {
-                    !hasJoinedTheCall && <Button variant="contained" color="primary" onClick={this.joinCall.bind(this)}>
+                    !hasJoinedTheCall && <Button variant="contained" color="primary" onClick={this.joinCall}>
                         Join call
                     </Button>
                 }
 
                 {
-                    hasJoinedTheCall && <><Button variant="contained" color="secondary" onClick={this.leaveCall.bind(this)}>
-                        Leave call
-                    </Button></>
+                    hasJoinedTheCall && <VideoControl {...callProps} />
                 }
             </div>
         );
