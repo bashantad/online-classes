@@ -5,6 +5,10 @@ import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import Hidden from '@material-ui/core/Hidden';
+import MenuIcon from '@material-ui/icons/Menu';
+import Drawer from '@material-ui/core/Drawer';
 
 import PeopleInTheChat from '../components/messages/PeopleInTheChat';
 import ActiveMessageArea from '../components/messages/ActiveMessageArea';
@@ -32,6 +36,7 @@ export class Message extends React.Component {
         messageNotificationMap: {},
         showNewGroupForm: false,
         showUpdateMembers: false,
+        mobileOpen: false,
     };
 
     _getCourseId = () => {
@@ -154,6 +159,12 @@ export class Message extends React.Component {
             });
     }
 
+    handleDrawerToggle = () => {
+        this.setState({
+            mobileOpen: !this.state.mobileOpen
+        })
+    };
+
     render() {
         const {
             conversations,
@@ -181,6 +192,8 @@ export class Message extends React.Component {
         };
         const activeConversation = this.findActiveConversation();
 
+        // const container = window !== undefined ? () => Window().document.body : undefined;
+
         return (
             <div>
                 {
@@ -195,12 +208,40 @@ export class Message extends React.Component {
                     <CssBaseline/>
                     <AppBar position="fixed" className='appbar'>
                         <Toolbar>
-                            <Typography variant="h6" color="inherit">
+                            <Hidden smUp>
+                                <IconButton
+                                    color="inherit"
+                                    aria-label="open drawer"
+                                    edge="start"
+                                    onClick={this.handleDrawerToggle}
+                                >
+                                    <MenuIcon/>
+                                </IconButton>
+                            </Hidden>
+                            <Typography variant="h6" color="inherit" className='app-header'>
                                 {fullName} - {courseName}
                             </Typography>
                         </Toolbar>
                     </AppBar>
-                    <PeopleInTheChat {...peopleInTheChatProps}/>
+                    <Hidden>
+                        <nav>
+                            <Hidden smUp implementation="css">
+                                <Drawer
+                                    variant="temporary"
+                                    anchor={'left'}
+                                    open={this.state.mobileOpen}
+                                    onClose={this.handleDrawerToggle}
+                                    ModalProps={{
+                                        keepMounted: true, // Better open performance on mobile.
+                                    }}
+                                >
+                                    <PeopleInTheChat {...peopleInTheChatProps}/>
+                                </Drawer>
+                            </Hidden>
+                        </nav>
+                    </Hidden>
+                    <Hidden xsDown><PeopleInTheChat {...peopleInTheChatProps}/></Hidden>
+
                     <main className='content'>
                         {
                             showNewGroupForm || showUpdateMembers ?
