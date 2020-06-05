@@ -3,7 +3,7 @@
     padding: 0 15px;
     .message-content {
         padding: 10px;
-        border-radius: 8px;
+        border-radius: 12px;
         background: #eee;
         display: inline-block;
         max-width: 70%;
@@ -22,11 +22,16 @@
 
 .conversation-item.message-owner {
     text-align: right;
-
     .message-content{
         background: #2f75c1;
         margin: 0 10px;
         color: #fff;
+        border-bottom-right-radius: 0;
+    }
+}
+.conversation-item.sender-owner {
+    .message-content{
+        border-bottom-left-radius: 0;
     }
 }
 
@@ -44,15 +49,11 @@
 }
 
 .active-conversation-wrapper {
-    //padding: 10px;
-    height: 75vh;
-    overflow: auto;
+
 }
 
 .conversation-title{
-    width: 100%;
     background-color: white;
-    padding: 10px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 

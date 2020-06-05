@@ -1,7 +1,5 @@
 .new-message-box-container {
-	bottom: 0;
 	width: 100%;
-	position: fixed;
 	padding: 2rem;
 	background-color: white;
 	border-top: 1px solid rgba(0, 0, 0, 0.12);
@@ -19,11 +17,5 @@
 }
 
 .MuiFormControl-root{
-	width: 80%;
-}
-
-@media only screen and (max-width: 1214px) {
-	.MuiFormControl-root{
-		width: 50%;
-	}
+	width: 100%;
 }

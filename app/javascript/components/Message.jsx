@@ -202,7 +202,6 @@ export class Message extends React.Component {
                     </AppBar>
                     <PeopleInTheChat {...peopleInTheChatProps}/>
                     <main className='content'>
-                        <Toolbar/>
                         {
                             showNewGroupForm || showUpdateMembers ?
                                 <div>
@@ -219,13 +218,15 @@ export class Message extends React.Component {
                                                 handleUpdateMembersSuccess={this.handleUpdateMembersSuccess}/>
                                     }
                                 </div>
-                                : <div className='message-body'>
-                                    <div>
-                                        <ActiveMessageArea activeConversation={activeConversation}
-                                                           currentUserId={currentUserId}/>
+                                : <div>
+                                    <div className='message-body'>
+                                        <Toolbar/>
+                                        <div className='message-main'><ActiveMessageArea
+                                            activeConversation={activeConversation}
+                                            currentUserId={currentUserId}/></div>
+                                        <div className='message-text'><NewMessage conversationId={activeConversationId}/>
+                                        </div>
                                     </div>
-                                    <div><NewMessage conversationId={activeConversationId}/></div>
-
                                 </div>
                         }
                     </main>
