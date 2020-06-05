@@ -1,22 +1,22 @@
 import React from 'react';
 import {withRouter} from 'react-router';
-import Grid from '@material-ui/core/Grid';
-
 import './message.scss';
-import PeopleInTheChat from '../components/messages/PeopleInTheChat';
-import ActiveMessageArea from '../components/messages/ActiveMessageArea';
-import NewMessage from '../components/messages/NewMessage';
-import courseApi from '../apis/courseApi';
-import conversationApi from '../apis/conversationApi';
-import userApi from '../apis/userApi';
-import Cable from './messages/Cable';
-import NewGroupForm from "./groups/NewGroupForm";
-import UpdateMembers from "./groups/UpdateMembers";
-
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+
+import PeopleInTheChat from '../components/messages/PeopleInTheChat';
+import ActiveMessageArea from '../components/messages/ActiveMessageArea';
+import NewMessage from '../components/messages/NewMessage';
+import Cable from './messages/Cable';
+import NewGroupForm from "./groups/NewGroupForm";
+import UpdateMembers from "./groups/UpdateMembers";
+
+import courseApi from '../apis/courseApi';
+import conversationApi from '../apis/conversationApi';
+import userApi from '../apis/userApi';
+
 
 export class Message extends React.Component {
     state = {
@@ -221,9 +221,11 @@ export class Message extends React.Component {
                                 : <div>
                                     <div className='message-body'>
                                         <Toolbar/>
+
                                         <div className='message-main'><ActiveMessageArea
                                             activeConversation={activeConversation}
-                                            currentUserId={currentUserId}/></div>
+                                            currentUserId={currentUserId}
+                                        /></div>
                                         <div className='message-text'><NewMessage conversationId={activeConversationId}/>
                                         </div>
                                     </div>

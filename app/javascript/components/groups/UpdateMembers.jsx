@@ -1,8 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from "@material-ui/core/Button";
+
 import conversationApi from "../../apis/conversationApi";
+import Container from "@material-ui/core/Container";
+import Toolbar from "@material-ui/core/Toolbar";
+import Paper from "@material-ui/core/Paper";
 
 export default class UpdateMembers extends React.Component {
     state = {
@@ -64,7 +69,9 @@ export default class UpdateMembers extends React.Component {
         const {allUsers} = this.props;
         const {enrolledUsersMap} = this.state;
         return (
-            <div>
+            <Container maxWidthSm>
+                <Toolbar/>
+                <Paper className='create-group-form'>
                 <ul>
                     {
                         allUsers.map(user => this.renderUser(user, enrolledUsersMap))
@@ -73,9 +80,10 @@ export default class UpdateMembers extends React.Component {
                 <Button variant="contained"
                         color="primary"
                         onClick={this.handleSave}>
-                    Save
+                    Add
                 </Button>
-            </div>
+                </Paper>
+            </Container>
         )
     }
 }

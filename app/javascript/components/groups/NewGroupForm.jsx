@@ -1,10 +1,15 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import './Group.scss'
 
 import Button from "@material-ui/core/Button";
-import Input from '@material-ui/core/Input';
+import Toolbar from '@material-ui/core/Toolbar';
+import Container from '@material-ui/core/Container';
+import Paper from '@material-ui/core/Paper';
+import TextField from '@material-ui/core/TextField';
+
 import conversationApi from "../../apis/conversationApi";
-import './Group.scss'
+
 
 export default class NewGroupForm extends React.Component {
     state = {
@@ -53,10 +58,12 @@ export default class NewGroupForm extends React.Component {
         const disabled = !title.trim();
         const hasError = !!errors;
         return (
-            <div className='create-group-form'>
+            <Container maxWidthSm>
+                <Toolbar/>
+                <Paper className='create-group-form'>
                 <div className='input-box'>
-                    <Input className='new-group-input'
-                           placeholder='Enter your group name'
+                    <TextField  className='new-group-input'
+                           label="Enter a group name" variant="outlined"
                            onChange={this.handleTitleChange}
                            fullWidth={true}
                            error={hasError}
@@ -71,11 +78,12 @@ export default class NewGroupForm extends React.Component {
                         onClick={this.handleSendClick}>
                     Create
                 </Button>
-                <Button variant="contained"
+                <Button color="secondary"
                         onClick={this.handleCancelClick}>
                     Cancel
                 </Button>
-            </div>
+                </Paper>
+            </Container>
         );
     }
 }

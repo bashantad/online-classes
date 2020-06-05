@@ -48,34 +48,33 @@
     margin-top: 10px;
 }
 
-.active-conversation-wrapper {
-
-}
-
 .conversation-title{
     background-color: white;
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    position: fixed !important;
+    width: 100%;
 }
 
 .message-item-wrapper{
     margin: 8px 0;
 }
 
-@media only screen and (max-device-height: 750px ) {
-    .active-conversation-wrapper{
-        height: 68vh;
-    }
-
+.message-card{
+    padding: 1.5rem;
+    margin: 5rem 1rem 1rem 1rem;
 }
 
-@media only screen and (max-device-height: 650px ) {
-    .active-conversation-wrapper{
-        height: 60vh;
-    }
-
-}@media only screen and (max-device-height: 550px ) {
-    .active-conversation-wrapper{
-        height: 48vh;
-    }
-
+.active-conversation{
+    display: flex;
+    flex-flow: column nowrap;
 }
+ .no-message{
+     text-align: center;
+     margin-top: 10% !important;
+ }
+ .no-message-card{
+     width: 10%;
+     margin: auto;
+     padding: 10px 0;
+     color: #3f51b5!important;
+ }
