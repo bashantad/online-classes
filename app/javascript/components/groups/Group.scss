@@ -1,10 +1,16 @@
 .create-group-form {
+    padding: 2rem;
+    margin: auto;
+    width: 50%;
+    margin-top: 2rem;
     .input-box {
         margin-bottom: 10px
     }
-
+    ul{
+        padding: 0;
+    }
     button {
-        margin-right: 10px;
+        margin-left: 12px;
     }
 }
 

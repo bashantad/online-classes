@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import Group from '@material-ui/icons/Group';
-import AddCircle from '@material-ui/icons/AddCircle';
 import './PeopleInTheChat.scss';
 
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
