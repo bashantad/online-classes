@@ -24,7 +24,7 @@ export default class VideoCall extends React.Component{
     componentDidMount() {
         this.remoteVideoContainer = document.getElementById("remote-calls-container")
         navigator.mediaDevices.getUserMedia({
-            audio: false,
+            audio: true,
             video: true,
         }).then(stream => {
             this.localStream = stream;
@@ -159,15 +159,33 @@ export default class VideoCall extends React.Component{
     }
 
     toggleAudio = () => {
-
+        const audioTracks = this.localStream.getAudioTracks();
+        if(audioTracks.length > 0) {
+            const audio = this._toggleMediaTrack(audioTracks[0]);
+            this.setState({audio: audio});
+            this.localVideoRef.current.srcObject = this.localStream;
+        }
     }
 
     toggleVideo = () => {
-        const videoTrack = this.localStream.getVideoTracks();
-        if(videoTrack.length > 0) {
-            this.localStream.removeTrack(videoTrack[0]);
+        const videoTracks = this.localStream.getVideoTracks();
+        if(videoTracks.length > 0) {
+            const video = this._toggleMediaTrack(videoTracks[0]);
+            this.setState({video: video});
+            this.localVideoRef.current.srcObject = this.localStream;
         }
-        this.localVideoRef.current.srcObject = this.localStream;
+    }
+
+    _toggleMediaTrack = (mediaTrack) => {
+        let isMediaOn;
+        if(mediaTrack.enabled) {
+            mediaTrack.enabled = false;
+            isMediaOn = false;
+        } else {
+            mediaTrack.enabled = true;
+            isMediaOn = true;
+        }
+        return isMediaOn;
     }
 
     render() {
