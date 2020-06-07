@@ -5,7 +5,6 @@ import './NewMessage.scss';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import SendRoundedIcon from '@material-ui/icons/SendRounded';
-import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 
 import chatApi from '../../apis/chatApi';
@@ -28,7 +27,9 @@ export default class NewMessage extends React.Component {
     }
 
     render() {
-        const disabled = this.props.conversationId === null;
+        const {content} = this.state;
+        const disabled = !content.trim();
+
         return (
             <Paper className='new-message-box-container'>
                 {/*<textarea className='message-input'*/}

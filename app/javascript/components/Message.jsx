@@ -5,9 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
 import Hidden from '@material-ui/core/Hidden';
-import MenuIcon from '@material-ui/icons/Menu';
 import Drawer from '@material-ui/core/Drawer';
 
 import PeopleInTheChat from '../components/messages/PeopleInTheChat';
@@ -210,18 +208,8 @@ export class Message extends React.Component {
                 }
                 <div className='root'>
                     <CssBaseline/>
-                    <AppBar position="fixed" className='appbar'>
+                    <AppBar position="fixed" className='app-bar'>
                         <Toolbar>
-                            <Hidden smUp>
-                                <IconButton
-                                    color="inherit"
-                                    aria-label="open drawer"
-                                    edge="start"
-                                    onClick={this.handleDrawerToggle}
-                                >
-                                    <MenuIcon/>
-                                </IconButton>
-                            </Hidden>
                             <Typography variant="h6" color="inherit" className='app-header'>
                                 {fullName} - {courseName}
                             </Typography>
@@ -266,15 +254,16 @@ export class Message extends React.Component {
                                 : <div>
                                     <div className='message-body'>
                                         <Toolbar/>
+
                                         <div className='message-main'>
                                             <ActiveMessageArea
-                                                userIdToNameMapping={userIdToNameMapping(enrolledUsers)}
                                                 activeConversation={activeConversation}
                                                 currentUserId={currentUserId}
+                                                handleDrawerToggle={this.handleDrawerToggle}
+                                                userIdToNameMapping={userIdToNameMapping(enrolledUsers)}
                                             />
                                         </div>
-                                        <div className='message-text'>
-                                            <NewMessage conversationId={activeConversationId}/>
+                                        <div className='message-text'><NewMessage conversationId={activeConversationId}/>
                                         </div>
                                     </div>
                                 </div>

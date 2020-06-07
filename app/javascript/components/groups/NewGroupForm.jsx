@@ -58,7 +58,7 @@ export default class NewGroupForm extends React.Component {
         const disabled = !title.trim();
         const hasError = !!errors;
         return (
-            <Container maxWidthSm>
+            <Container maxWidth="md">
                 <Toolbar/>
                 <Paper className='create-group-form'>
                 <div className='input-box'>

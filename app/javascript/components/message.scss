@@ -21,7 +21,10 @@
 }
 .message-main{
 	flex-grow: 1;
-	overflow: auto;
+}
+
+.app-bar{
+	z-index: 10000!important;
 }
 
 @media only screen and (max-width: 390px) {

@@ -19,6 +19,7 @@
     font-size: 11px;
     color: #888;
     padding-left: 6px;
+    padding-top: 2px;
     padding-right: 10px;
   }
 }
@@ -65,13 +66,19 @@
 }
 
 .message-card {
-  padding: 1.5rem;
-  margin: 5rem 1rem 1rem 1rem;
+  //margin: 5rem 1rem 1rem 1rem;
 }
 
 .active-conversation {
   display: flex;
+  height: 65vh;
+  overflow: auto;
   flex-flow: column nowrap;
+}
+
+.active-conversation-paper{
+  margin: 1rem;
+  overflow: hidden;
 }
 
 .no-message {
@@ -84,6 +91,31 @@
   margin: auto;
   padding: 10px 0;
   color: #3f51b5 !important;
+}
+
+.dummy-toolbar{
+  visibility: hidden;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 @media only screen and (max-width: 1500px) {

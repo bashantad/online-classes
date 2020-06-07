@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import './ActiveMessageArea.scss';
 
@@ -7,6 +7,9 @@ import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import Paper from '@material-ui/core/Paper';
 import SpeakerNotesOffIcon from '@material-ui/icons/SpeakerNotesOff';
+import IconButton from "@material-ui/core/IconButton";
+import MenuOpenIcon from '@material-ui/icons/MenuOpen';
+import Hidden from "@material-ui/core/Hidden";
 
 export default class ActiveMessageArea extends React.Component {
     constructor(props) {
@@ -35,25 +38,28 @@ export default class ActiveMessageArea extends React.Component {
         const isSenderChanged = lastSenderId !== sender.id;
         const senderChangedClass = isSenderChanged ? 'sender-changed' : '';
         return (
-            <div className={`conversation-item ${messageOwnerClass} ${senderChangedClass}`} key={messageKey}>
-                <div className='person-wrapper'>
-                    {
-                        isSenderChanged &&
-                        <span className='person-name'>
-                            <AccountCircleIcon className='person-icon'/><span
-                            className='person-name-item'>{sender.full_name}</span>
-                        </span>
-                    }
-                </div>
-                <div className='message-item-wrapper'>
-                    <div className='message-content'>
-                        {content}
+            <Fragment key={messageKey}>
+                <div className={`conversation-item ${messageOwnerClass} ${senderChangedClass}`} >
+                    <div className='person-wrapper'>
+                        {
+                            isSenderChanged &&
+                            <div className='person-name'>
+                                <AccountCircleIcon className='person-icon'/><span
+                                className='person-name-item'>{sender.full_name}</span>
+                            </div>
+                        }
                     </div>
-                    <div className='message-created-time'>
-                        {created_time}
+                    <div className='message-item-wrapper'>
+                        <Paper className='message-content'>
+                            {content}
+                        </Paper>
+                        <div className='message-created-time'>
+                            {created_time}
+                        </div>
                     </div>
+
                 </div>
-            </div>
+            </Fragment>
         );
     };
 
@@ -73,22 +79,33 @@ export default class ActiveMessageArea extends React.Component {
     }
 
     render() {
-        const {activeConversation} = this.props;
+        const {activeConversation, handleDrawerToggle} = this.props;
+
         return (
             <div>
                 {
-                    activeConversation && <Toolbar className='conversation-title'>
-                        <Typography variant="h5">
-                            {this.displayTitle()}
-                        </Typography>
-                    </Toolbar>
+                    activeConversation && <Toolbar className='conversation-title'><Hidden smUp>
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            edge="start"
+                            onClick={handleDrawerToggle}
+                        >
+                            <MenuOpenIcon/>
+                        </IconButton>
+                    </Hidden>
+                     <Typography variant="h5">
+                         {this.displayTitle()}
+                     </Typography></Toolbar>
                 }
                 <div className='active-conversation-wrapper'>
+                    <Toolbar className='dummy-toolbar'/>
+                    <Paper className='active-conversation-paper'>
                     {
                         activeConversation && <div className='active-conversation'>
                             {
                                 Array.isArray(activeConversation.messages) && activeConversation.messages.length ?
-                                    <Paper className='message-card'>
+                                    <div className='message-card'>
                                         {
                                             activeConversation.messages.map((message, index) => {
                                                 let lastSenderId = null;
@@ -98,13 +115,16 @@ export default class ActiveMessageArea extends React.Component {
                                                 return this.renderMessage(message, lastSenderId)
                                             })
                                         }
-                                    </Paper> : <div className='message-card no-message' >
-                                        <Paper className='no-message-card'><SpeakerNotesOffIcon/> <div>No Messages</div></Paper>
+                                    </div> : <div className='message-card no-message'>
+                                        <div className='no-message-card'><SpeakerNotesOffIcon/>
+                                            <div>No Messages</div>
+                                        </div>
                                     </div>
                             }
                             <div ref={this.messagesEndRef}/>
                         </div>
                     }
+                    </Paper>
                 </div>
             </div>
 
