@@ -1,4 +1,77 @@
-body{
-    margin: 0;
-    height: 100vh;
+$accent-color: #26a69a;
+
+body {
+  margin: 0;
+  height: 100vh;
+}
+
+.welcome{
+  text-align: center;
+}
+.welcome-main{
+  margin-top: 4rem;
+  padding: 1rem;
+}
+
+.welcome-title{
+  margin: 1rem !important;
+}
+
+.lead{
+  margin: 1rem !important;
+}
+
+.search{
+  position: relative;
+  margin: auto;
+  width: 18rem;
+  color: white;
+  background-color: #3f51b5;
+  border-radius: 20px;
+  input{
+    color: white;
+  }
+}
+
+.searchIcon{
+  padding-left: 8px;
+  height: 100%;
+  position: absolute;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome-paper{
+  margin-top: 2rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+.welcome-buttons{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  margin-top: 2rem;
+}
+
+.welcome-btn
+{
+  a{
+    color: white;
+    text-decoration: none;
+  }
+}
+
+@media only screen and (max-width: 540px){
+  .search{
+    width: inherit;
+    .MuiInputBase-root{
+      width: 65%;
+    }
+  }
+  .welcome-btn{
+    margin: 1rem!important;
+  }
 }
