@@ -7,17 +7,24 @@ class Admin::CoursesController < Admin::BaseController
 
 	def approve
 		@course.approve
-		flash[:notice] = "#{@course.name} has been approved"
+		flash[:notice] = "#{@course.title} has been approved"
 		redirect_to admin_courses_path
 	end
 
 	def disapprove
 		@course.disapprove
-		flash[:notice] = "#{@course.name} has been disapproved"
+		flash[:notice] = "#{@course.title} has been disapproved"
 		redirect_to admin_courses_path
 	end
 
 	def enrollment
+
+	end
+
+	def enroll_users
+	end
+
+	def enrolled_users
 
 	end
 

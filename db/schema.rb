@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_20_065647) do
+ActiveRecord::Schema.define(version: 2020_06_07_061738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2020_05_20_065647) do
   end
 
   create_table "courses", force: :cascade do |t|
-    t.string "name"
+    t.string "title"
     t.text "body"
     t.bigint "user_id", null: false
     t.string "website"
@@ -54,6 +54,17 @@ ActiveRecord::Schema.define(version: 2020_05_20_065647) do
     t.boolean "approved", default: false
     t.index ["category_id"], name: "index_courses_on_category_id"
     t.index ["user_id"], name: "index_courses_on_user_id"
+  end
+
+  create_table "enroll_requests", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "course_id", null: false
+    t.string "full_name"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_enroll_requests_on_course_id"
+    t.index ["user_id"], name: "index_enroll_requests_on_user_id"
   end
 
   create_table "enrolled_course_users", force: :cascade do |t|
@@ -118,6 +129,8 @@ ActiveRecord::Schema.define(version: 2020_05_20_065647) do
   add_foreign_key "conversations", "courses"
   add_foreign_key "courses", "categories"
   add_foreign_key "courses", "users"
+  add_foreign_key "enroll_requests", "courses"
+  add_foreign_key "enroll_requests", "users"
   add_foreign_key "enrolled_course_users", "courses"
   add_foreign_key "enrolled_course_users", "users"
   add_foreign_key "messages", "conversations"

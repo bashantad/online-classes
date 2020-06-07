@@ -1,2 +1,26 @@
-Enrollment form here
-full name, email
+<h3>Enroll at <%= @course.title %></h3>
+<%= form_with(url: admin_course_enroll_users_path(@course), local: true) do |form| %>
+  <table>
+    <thead>
+      <tr>
+        <td>Full name</td>
+        <td>Email</td>
+        <td>Phone(optional)</td>
+      </tr>
+    </thead>
+    <% (0..4).to_a.each do |row| %>
+      <tr>
+        <td>
+          <input type="text" name="enroll_request[<%= row %>][full_name]">
+        </td>
+        <td>
+          <input type="text" name="enroll_request[<%= row %>][email]">
+        </td>
+        <td>
+          <input type="text" name="enroll_request[<%= row %>][phone]">
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <button>Add</button>
+<% end %>

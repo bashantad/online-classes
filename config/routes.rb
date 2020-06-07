@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     end
   end
 
-	# Routes for onboarding Rails pages
+	# Routes for on-boarding Rails pages
   resources :courses
   resources :categories
   devise_for :users
