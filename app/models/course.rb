@@ -3,6 +3,7 @@ class Course < ApplicationRecord
 	belongs_to :category
 	has_many :conversations
 	has_many :enrolled_course_users
+	has_many :enroll_requests
 	has_many :enrolled_users, through: :enrolled_course_users, source: :user
 	scope :approved, -> { where(approved: true) }
 

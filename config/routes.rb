@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 			get :disapprove
 			get :enrollment
 			post :enroll_users
-			get :enrolled_users
+			get :enrollment_requests
     end
   end
 

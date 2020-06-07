@@ -1,0 +1,28 @@
+<h3>Enrollment requests for <%= @course.title %></h3>
+<%= link_to 'Add more people', admin_course_enrollment_path(@course) %>
+<table>
+  <thead>
+  <tr>
+    <td>Full name</td>
+    <td>Email</td>
+    <td>Phone(optional)</td>
+    <td>Status</td>
+  </tr>
+  </thead>
+  <% @enroll_user_requests.each do |enroll_request| %>
+    <tr>
+      <td>
+        <%= enroll_request.full_name %>
+      </td>
+      <td>
+        <%= enroll_request.email %>
+      </td>
+      <td>
+        <%= enroll_request.phone %>
+      </td>
+      <td>
+        <%= enroll_request.user ? 'Accepted' : 'Not accepted' %>
+      </td>
+    </tr>
+  <% end %>
+</table>
