@@ -66,13 +66,13 @@ export class Message extends React.Component {
         courseApi.getById(this._getCourseId())
             .then(res => res.json())
             .then(courseDetails => {
-                const {conversations, enrolled_users, name} = courseDetails;
+                const {conversations, enrolled_users, title} = courseDetails;
                 this.setState({
                     groupConversations: conversations,
                     conversations: [...this.state.conversations, ...conversations],
                     enrolledUsers: enrolled_users,
                     activeConversationId: conversations[0].id,
-                    courseName: name,
+                    courseName: title,
                 });
             });
     }
