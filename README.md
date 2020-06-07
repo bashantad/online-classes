@@ -58,7 +58,43 @@ We mainly have two kinds of pages
 And these two don't share css/javascript files implicitly. If we want to share common css files across both of these pages,
 we need to manually import css
 
-Happy coding!! 
+### General guidelines on git
+When pulling(if you are on master branch)
+```
+git pull --rebase origin master
+```
+If you are in other branches but want to apply changes from origin master(from github). It is recommended to do the followings
+before creating PR as well, so that you branch is always on top of master.
+```
+    git fetch;
+    git rebase origin/master
+    # if you get conflict while doing this, resolve the conflict, then do following
+    git add .;
+    git rebase --continue
+    # if you might get conflict again after you resolve once, but keep resolving conflict 
+    # followed by git add .; and git rebase --continue until the conflicts are finished.
+```
+Pushing your changes to remote. Always make sure you are in the right branch
+```
+    git branch; # Make sure the branch name is yours(not master)
+    git status;
+    # if it says diverged
+        # double make sure you are in a right branch(you don't want to do this in master branch)
+        git push -f # this will force push your local changes.
+    # else
+        git push -u # if you are pushing for the first time
+        git push # if it's not your first time
+    end
+
+```
+Upon creating a new branch, checkout to master, pull and create a new branch
+```
+    git checkout master
+    git pull origin master
+    git checkout -b new_branch_name(the name of the branch you want to create) 
+```
+
+Happy coding!!
 ```
     Let's make the education affordable and inclusive for everyone.
 ```
