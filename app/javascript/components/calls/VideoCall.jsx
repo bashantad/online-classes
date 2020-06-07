@@ -163,7 +163,11 @@ export default class VideoCall extends React.Component{
     }
 
     toggleVideo = () => {
-
+        const videoTrack = this.localStream.getVideoTracks();
+        if(videoTrack.length > 0) {
+            this.localStream.removeTrack(videoTrack[0]);
+        }
+        this.localVideoRef.current.srcObject = this.localStream;
     }
 
     render() {

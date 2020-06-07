@@ -21,6 +21,12 @@ import courseApi from '../apis/courseApi';
 import conversationApi from '../apis/conversationApi';
 import userApi from '../apis/userApi';
 
+const userIdToNameMapping = (users) => {
+    return users.reduce((acc, user) => {
+        acc[user.id] = user.full_name;
+        return acc;
+    }, {});
+}
 
 export class Message extends React.Component {
     state = {
@@ -192,8 +198,6 @@ export class Message extends React.Component {
         };
         const activeConversation = this.findActiveConversation();
 
-        // const container = window !== undefined ? () => Window().document.body : undefined;
-
         return (
             <div>
                 {
@@ -262,12 +266,15 @@ export class Message extends React.Component {
                                 : <div>
                                     <div className='message-body'>
                                         <Toolbar/>
-
-                                        <div className='message-main'><ActiveMessageArea
-                                            activeConversation={activeConversation}
-                                            currentUserId={currentUserId}
-                                        /></div>
-                                        <div className='message-text'><NewMessage conversationId={activeConversationId}/>
+                                        <div className='message-main'>
+                                            <ActiveMessageArea
+                                                userIdToNameMapping={userIdToNameMapping(enrolledUsers)}
+                                                activeConversation={activeConversation}
+                                                currentUserId={currentUserId}
+                                            />
+                                        </div>
+                                        <div className='message-text'>
+                                            <NewMessage conversationId={activeConversationId}/>
                                         </div>
                                     </div>
                                 </div>

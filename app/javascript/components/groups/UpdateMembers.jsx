@@ -65,6 +65,7 @@ export default class UpdateMembers extends React.Component {
             return {};
         }
     }
+
     render() {
         const {allUsers} = this.props;
         const {enrolledUsersMap} = this.state;

@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './ActiveMessageArea.scss';
 
@@ -31,43 +31,57 @@ export default class ActiveMessageArea extends React.Component {
         const {currentUserId, activeConversation} = this.props;
         const {sender, created_time, content} = message;
         const messageOwnerClass = currentUserId === sender.id ? 'message-owner' : 'sender-owner';
-        const messageKey = `conv-${activeConversation.id}-message-${message.id}`;
+        const messageKey = `conversation-${activeConversation.id}-message-${message.id}`;
         const isSenderChanged = lastSenderId !== sender.id;
         const senderChangedClass = isSenderChanged ? 'sender-changed' : '';
         return (
-            <Fragment>
-                <div className={`conversation-item ${messageOwnerClass} ${senderChangedClass}`} key={messageKey}>
-                    <div className='person-wrapper'>
-                        {
-                            isSenderChanged &&
-                            <span className='person-name'>
-                                <AccountCircleIcon className='person-icon'/><span
-                                className='person-name-item'>{sender.full_name}</span>
-                            </span>
-                        }
-                    </div>
-                    <div className='message-item-wrapper'>
-                        <div className='message-content'>
-                            {content}
-                        </div>
-                        <div className='message-created-time'>
-                            {created_time}
-                        </div>
-                    </div>
-
+            <div className={`conversation-item ${messageOwnerClass} ${senderChangedClass}`} key={messageKey}>
+                <div className='person-wrapper'>
+                    {
+                        isSenderChanged &&
+                        <span className='person-name'>
+                            <AccountCircleIcon className='person-icon'/><span
+                            className='person-name-item'>{sender.full_name}</span>
+                        </span>
+                    }
                 </div>
-            </Fragment>
+                <div className='message-item-wrapper'>
+                    <div className='message-content'>
+                        {content}
+                    </div>
+                    <div className='message-created-time'>
+                        {created_time}
+                    </div>
+                </div>
+            </div>
         );
     };
 
+    displayTitle = () => {
+        const {activeConversation, currentUserId, userIdToNameMapping} = this.props;
+        if(!!activeConversation.title) {
+            return activeConversation.title;
+        } else {
+            const conversation_users = activeConversation.conversation_enrolled_users;
+            let userId = currentUserId;
+            if(conversation_users.length > 1){
+                const conversation_user = conversation_users.find(conversation_user => conversation_user.user_id !== currentUserId);
+                userId = conversation_user.user_id;
+            }
+            return userIdToNameMapping[userId];
+        }
+    }
+
     render() {
         const {activeConversation} = this.props;
-
         return (
             <div>
                 {
-                    activeConversation && <Toolbar className='conversation-title'><Typography
-                        variant="h5">{activeConversation.title ? activeConversation.title : 'Messages'}</Typography></Toolbar>
+                    activeConversation && <Toolbar className='conversation-title'>
+                        <Typography variant="h5">
+                            {this.displayTitle()}
+                        </Typography>
+                    </Toolbar>
                 }
                 <div className='active-conversation-wrapper'>
                     {
@@ -100,5 +114,6 @@ export default class ActiveMessageArea extends React.Component {
 
 ActiveMessageArea.propTypes = {
     activeConversation: PropTypes.object,
+    userIdToNameMapping: PropTypes.object,
     currentUserId: PropTypes.number,
 };
