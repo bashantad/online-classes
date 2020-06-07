@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
 
 import { JOIN_CALL, LEAVE_CALL, EXCHANGE, ice } from '../../utils/VideoCallUtil'
 import consumer from "../../channels/consumer";
@@ -102,10 +101,14 @@ export default class VideoCall extends React.Component{
     }
 
     appendRemoteVideo(userId, e) {
+        const documentId = `remote-video-box-${userId}`;
+        if(document.getElementById(documentId)) {
+            return;
+        }
         const remoteVid = document.createElement("video");
-        remoteVid.id = `remote-video-box-${userId}`;
+        remoteVid.id = documentId;
         remoteVid.autoplay = "autoplay";
-        remoteVid.className = "remote-video-participant";
+        remoteVid.className = "remote-video-participant video-component";
         remoteVid.srcObject = e.streams[0];
         this.remoteVideoContainer.appendChild(remoteVid);
     }
@@ -163,7 +166,6 @@ export default class VideoCall extends React.Component{
         if(audioTracks.length > 0) {
             const audio = this._toggleMediaTrack(audioTracks[0]);
             this.setState({audio: audio});
-            this.localVideoRef.current.srcObject = this.localStream;
         }
     }
 
@@ -172,7 +174,6 @@ export default class VideoCall extends React.Component{
         if(videoTracks.length > 0) {
             const video = this._toggleMediaTrack(videoTracks[0]);
             this.setState({video: video});
-            this.localVideoRef.current.srcObject = this.localStream;
         }
     }
 
@@ -193,24 +194,21 @@ export default class VideoCall extends React.Component{
         const callProps = {
             isAudioOn: audio,
             isVideoOn: video,
+            hasJoinedTheCall: hasJoinedTheCall,
             onAudioClick: this.toggleAudio,
             onVideoClick: this.toggleVideo,
             onCallEndClick: this.leaveCall,
+            onJoinClick: this.joinCall,
         };
 
         return (
             <div className="video-call-container">
-                <div id="remote-calls-container"></div>
-                <video ref={this.localVideoRef} autoPlay></video>
-                {
-                    !hasJoinedTheCall && <Button variant="contained" color="primary" onClick={this.joinCall}>
-                        Join call
-                    </Button>
-                }
-
-                {
-                    hasJoinedTheCall && <VideoControl {...callProps} />
-                }
+                <div id="remote-calls-container">
+                </div>
+                <div className='local-video-container'>
+                    <video ref={this.localVideoRef} autoPlay className='video-component local-video'></video>
+                    <VideoControl {...callProps} className='local-video-control'/>
+                </div>
             </div>
         );
     }

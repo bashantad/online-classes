@@ -13,7 +13,6 @@ import GroupIcon from '@material-ui/icons/Group';
 import Divider from '@material-ui/core/Divider';
 import Toolbar from '@material-ui/core/Toolbar';
 
-
 export default class PeopleInTheChat extends React.Component {
     handleConversationClick = (conversationId) => {
         this.props.handleConversationClick(conversationId);
@@ -56,12 +55,17 @@ export default class PeopleInTheChat extends React.Component {
     renderIndividualPerson = (user, mappingPersonToConversation) => {
         const conversationId = mappingPersonToConversation[user.id];
         return (
-            <ListItem button key={`person-${user.id}-conversation-${conversationId}`} onClick={() => this.handleUserClick(mappingPersonToConversation, user.id)}  className='message-list-item' selected={this.getActiveClass(conversationId)}>
-    <ListItemIcon><AccountCircleIcon /></ListItemIcon>
-        <ListItemText primary={user.full_name} className="list-title"/>
-                {this.renderNotification(conversationId)}
-        </ListItem>
-
+            <ListItem button
+                      key={`person-${user.id}-conversation-${conversationId}`}
+                      onClick={() => this.handleUserClick(mappingPersonToConversation, user.id)}
+                      className='message-list-item'
+                      selected={this.getActiveClass(conversationId)}>
+                <ListItemIcon>
+                    <AccountCircleIcon />
+                </ListItemIcon>
+                <ListItemText primary={user.full_name} className="list-title"/>
+                    {this.renderNotification(conversationId)}
+            </ListItem>
         );
     }
 
@@ -80,10 +84,12 @@ export default class PeopleInTheChat extends React.Component {
         const {title, id} = conversation;
         return (
             <ListItem button key={id} onClick={() => this.handleConversationClick(id)} className='message-list-item' selected={this.getActiveClass(id)}>
-    <ListItemIcon><GroupIcon /></ListItemIcon>
-        <ListItemText primary={title} className="list-title" />
-                {this.renderNotification(id)}
-        </ListItem>
+                <ListItemIcon>
+                    <GroupIcon />
+                </ListItemIcon>
+                <ListItemText primary={title} className="list-title" />
+                    {this.renderNotification(id)}
+            </ListItem>
         );
     }
 

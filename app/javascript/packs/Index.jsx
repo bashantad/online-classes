@@ -1,4 +1,6 @@
 import React from "react";
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 import { render } from "react-dom";
 import App from "../App";
 import { Provider } from "react-redux";

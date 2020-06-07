@@ -1,6 +1,6 @@
 .video-call-container {
-  border: 1px solid red;
-  margin: 20px;
+  margin: 2px;
+  display: flex;
 }
 .video-call-control-icon {
   width: 3rem;
@@ -11,13 +11,25 @@
   border-radius: 50%;
   vertical-align: middle;
   text-align: center;
+  opacity: 0.75;
 }
 .video-call-control-icon:hover {
   background: #efefef;
   cursor: pointer;
 }
+
+.video-component {
+  border: 4px solid #ccc;
+}
+
+.local-video-container {
+  position: relative;
+}
+
 .video-call-control-bar {
-  background: #eee;
   padding:10px;
   display: flex;
+  position: absolute;
+  bottom: 0;
+  margin: 10px;
 }

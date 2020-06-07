@@ -5,8 +5,9 @@ import MicOff from '@material-ui/icons/MicOff';
 import VideocamIcon from '@material-ui/icons/Videocam';
 import VideocamOff from '@material-ui/icons/VideocamOff';
 import CallEnd from '@material-ui/icons/CallEnd';
+import Call from '@material-ui/icons/Call';
 
-const VideoControl = ({isAudioOn, isVideoOn, onAudioClick, onVideoClick, onCallEndClick}) => {
+const VideoControl = ({isAudioOn, isVideoOn, hasJoinedTheCall, onAudioClick, onVideoClick, onCallEndClick, onJoinClick}) => {
     const commonProps = {
         fontSize: 'large',
         color: 'primary'
@@ -29,7 +30,11 @@ const VideoControl = ({isAudioOn, isVideoOn, onAudioClick, onVideoClick, onCallE
                 }
             </div>
             <div className='video-call-control-icon'>
-                <CallEnd {...commonProps} color='secondary' onClick={onCallEndClick}/>
+                {
+                    hasJoinedTheCall ?
+                        <CallEnd {...commonProps} color='secondary' onClick={onCallEndClick}/>
+                        : <Call {...commonProps} onClick={onJoinClick} />
+                }
             </div>
         </div>
     );
@@ -39,6 +44,7 @@ VideoControl.propTypes = {
     onVideoClick: PropTypes.func.isRequired,
     onAudioClick: PropTypes.func.isRequired,
     onCallEndClick: PropTypes.func.isRequired,
+    onJoinClick: PropTypes.func.isRequired,
 }
 
 export default VideoControl;
