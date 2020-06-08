@@ -121,8 +121,7 @@ export default class VideoCall extends React.Component{
         this.pcPeers = {};
         this.localVideoRef.current.srcObject.getTracks().forEach((track) => {
             track.stop();
-        })
-        this.setState({hasJoinedTheCall: true});
+        });
         this.localVideoRef.current.srcObject = null;
         consumer.subscriptions.subscriptions = [];
         this.remoteVideoContainer.innerHTML = "";

@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
   </div>
 
   <div class="field">
@@ -42,6 +42,8 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <button class="mdc-button mdc-button--raised">
+      <span class="mdc-button__ripple"></span> Save
+    </button>
   </div>
 <% end %>
