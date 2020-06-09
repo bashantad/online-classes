@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { JOIN_CALL, LEAVE_CALL, EXCHANGE, ice } from '../../utils/VideoCallUtil'
+import {JOIN_CALL, LEAVE_CALL, EXCHANGE, ice} from '../../utils/VideoCallUtil'
 import consumer from "../../channels/consumer";
 import BroadCast from './BroadCast';
 import './VideoCall.scss';
 import VideoControl from "./VideoControl";
 
-export default class VideoCall extends React.Component{
+import Paper from '@material-ui/core/Paper';
+
+export default class VideoCall extends React.Component {
     constructor(props) {
         super(props);
         this.pcPeers = {};
@@ -28,7 +30,9 @@ export default class VideoCall extends React.Component{
         }).then(stream => {
             this.localStream = stream;
             this.localVideoRef.current.srcObject = stream;
-        }).catch(error => { console.log(error) });
+        }).catch(error => {
+            console.log(error)
+        });
     }
 
     joinCall = () => {
@@ -102,7 +106,7 @@ export default class VideoCall extends React.Component{
 
     appendRemoteVideo(userId, e) {
         const documentId = `remote-video-box-${userId}`;
-        if(document.getElementById(documentId)) {
+        if (document.getElementById(documentId)) {
             return;
         }
         const remoteVid = document.createElement("video");
@@ -162,7 +166,7 @@ export default class VideoCall extends React.Component{
 
     toggleAudio = () => {
         const audioTracks = this.localStream.getAudioTracks();
-        if(audioTracks.length > 0) {
+        if (audioTracks.length > 0) {
             const audio = this._toggleMediaTrack(audioTracks[0]);
             this.setState({audio: audio});
         }
@@ -170,7 +174,7 @@ export default class VideoCall extends React.Component{
 
     toggleVideo = () => {
         const videoTracks = this.localStream.getVideoTracks();
-        if(videoTracks.length > 0) {
+        if (videoTracks.length > 0) {
             const video = this._toggleMediaTrack(videoTracks[0]);
             this.setState({video: video});
         }
@@ -178,7 +182,7 @@ export default class VideoCall extends React.Component{
 
     _toggleMediaTrack = (mediaTrack) => {
         let isMediaOn;
-        if(mediaTrack.enabled) {
+        if (mediaTrack.enabled) {
             mediaTrack.enabled = false;
             isMediaOn = false;
         } else {
@@ -202,10 +206,17 @@ export default class VideoCall extends React.Component{
 
         return (
             <div className="video-call-container">
-                <div id="remote-calls-container">
-                </div>
                 <div className='local-video-container'>
-                    <video ref={this.localVideoRef} autoPlay className='video-component local-video'></video>
+                    <div className='video-main'>
+                        <div className='video-paper'>
+                            <div className='flex-video'>
+                                <video ref={this.localVideoRef} autoPlay
+                                       className='video-component local-video'></video>
+                            </div>
+                            <div id="remote-calls-container" className='flex-video'>
+                            </div>
+                        </div>
+                    </div>
                     <VideoControl {...callProps} className='local-video-control'/>
                 </div>
             </div>
