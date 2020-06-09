@@ -1,35 +1,65 @@
 .video-call-container {
-  margin: 2px;
   display: flex;
+  width: 100%;
+  height: 100vh;
 }
+
+//.video-call-control-icon {
+//  width: 3rem;
+//  border: 2px solid #fff;
+//  background: #ddd;
+//  margin: 0 1rem;
+//  padding: 1rem;
+//  border-radius: 50%;
+//  vertical-align: middle;
+//  text-align: center;
+//  opacity: 0.75;
+//}
+//.video-call-control-icon:hover {
+//  background: #efefef;
+//  cursor: pointer;
+//}
+
 .video-call-control-icon {
   width: 3rem;
-  border: 2px solid #fff;
-  background: #ddd;
   margin: 0 1rem;
   padding: 1rem;
-  border-radius: 50%;
   vertical-align: middle;
   text-align: center;
-  opacity: 0.75;
 }
+
 .video-call-control-icon:hover {
   background: #efefef;
   cursor: pointer;
 }
 
 .video-component {
-  border: 4px solid #ccc;
+  //height: 100vh;
+  //width: 100%;
 }
 
 .local-video-container {
-  position: relative;
+  width: 100%;
 }
 
 .video-call-control-bar {
-  padding:10px;
   display: flex;
+  justify-content: center;
   position: absolute;
   bottom: 0;
-  margin: 10px;
+  width: 100%;
+}
+
+.video-main {
+  flex-grow: 1;
+}
+.video-paper{
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  height: 100vh;
+}
+
+.flex-video{
+  display: flex;
 }

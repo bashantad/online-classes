@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Mic from '@material-ui/icons/Mic';
+import Paper from '@material-ui/core/Paper';
 import MicOff from '@material-ui/icons/MicOff';
 import VideocamIcon from '@material-ui/icons/Videocam';
 import VideocamOff from '@material-ui/icons/VideocamOff';
 import CallEnd from '@material-ui/icons/CallEnd';
 import Call from '@material-ui/icons/Call';
+import Fab from '@material-ui/core/Fab';
 
 const VideoControl = ({isAudioOn, isVideoOn, hasJoinedTheCall, onAudioClick, onVideoClick, onCallEndClick, onJoinClick}) => {
     const commonProps = {
@@ -14,7 +16,7 @@ const VideoControl = ({isAudioOn, isVideoOn, hasJoinedTheCall, onAudioClick, onV
     };
 
     return (
-        <div className='video-call-control-bar'>
+        <Paper className='video-call-control-bar'>
             <div className='video-call-control-icon' onClick={onVideoClick}>
                 {
                     isVideoOn ?
@@ -36,7 +38,7 @@ const VideoControl = ({isAudioOn, isVideoOn, hasJoinedTheCall, onAudioClick, onV
                         : <Call {...commonProps} onClick={onJoinClick} />
                 }
             </div>
-        </div>
+        </Paper>
     );
 };
 
