@@ -261,6 +261,7 @@ export class Message extends React.Component {
                                                 currentUserId={currentUserId}
                                                 handleDrawerToggle={this.handleDrawerToggle}
                                                 userIdToNameMapping={userIdToNameMapping(enrolledUsers)}
+                                                handleSuccessGroupCreate={this.handleSuccessGroupCreate}
                                             />
                                         </div>
                                         <div className='message-text'><NewMessage conversationId={activeConversationId}/>

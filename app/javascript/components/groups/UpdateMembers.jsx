@@ -81,7 +81,7 @@ export default class UpdateMembers extends React.Component {
                 <Button variant="contained"
                         color="primary"
                         onClick={this.handleSave}>
-                    Add
+                    Save
                 </Button>
                 </Paper>
             </Container>

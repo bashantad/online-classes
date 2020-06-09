@@ -97,6 +97,20 @@
   visibility: hidden;
 }
 
+.group-option{
+  margin-left: 5px;
+}
+
+.group-popover{
+  padding: 10px;
+}
+
+.group-popover button{
+  font-size: 12px;
+  font-weight: 600;
+  width: 100%;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 5px;
