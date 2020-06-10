@@ -23,8 +23,15 @@ export default class VideoCall extends React.Component {
     componentDidMount() {
         this.remoteVideoContainer = document.getElementById("remote-calls-container")
         navigator.mediaDevices.getUserMedia({
-            audio: {echoCancellation: true},
-            video: true,
+            audio: {
+                echoCancellation: true,
+                echoCancellationType: 'system',
+            },
+            resizeMode: true,
+            video: {
+                height: { min: 360, ideal: 720, max: 1080 },
+                facingMode: 'user',
+            },
         }).then(stream => {
             this.localStream = stream;
             this.localVideoRef.current.srcObject = stream;
