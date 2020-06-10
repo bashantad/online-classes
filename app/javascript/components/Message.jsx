@@ -1,12 +1,17 @@
 import React from 'react';
 import {withRouter} from 'react-router';
+import {Link} from "react-router-dom";
+
 import './message.scss';
+
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Hidden from '@material-ui/core/Hidden';
 import Drawer from '@material-ui/core/Drawer';
+import IconButton from '@material-ui/core/IconButton';
+import HomeIcon from '@material-ui/icons/Home';
 
 import PeopleInTheChat from '../components/messages/PeopleInTheChat';
 import ActiveMessageArea from '../components/messages/ActiveMessageArea';
@@ -209,7 +214,16 @@ export class Message extends React.Component {
                 <div className='root'>
                     <CssBaseline/>
                     <AppBar position="fixed" className='app-bar'>
-                        <Toolbar>
+                        <Toolbar className='toolbar'>
+                            <Link
+                                to="/"
+                                role="button"
+                            >
+                                <IconButton color="primary" aria-label="upload picture" component="span" className='home-btn' >
+                                    <HomeIcon />
+                                </IconButton>
+                            </Link>
+
                             <Typography variant="h6" color="inherit" className='app-header'>
                                 {fullName} - {courseName}
                             </Typography>
@@ -227,7 +241,7 @@ export class Message extends React.Component {
                                         keepMounted: true, // Better open performance on mobile.
                                     }}
                                 >
-                                    <PeopleInTheChat {...peopleInTheChatProps}/>
+                                    <PeopleInTheChat {...peopleInTheChatProps} handleClick={this.handleDrawerToggle}/>
                                 </Drawer>
                             </Hidden>
                         </nav>

@@ -94,7 +94,7 @@ export default class PeopleInTheChat extends React.Component {
     }
 
     render() {
-        const {conversations, enrolledUsers, messageNotificationMap, individualConversations} = this.props;
+        const {conversations, enrolledUsers, messageNotificationMap, individualConversations, handleClick} = this.props;
         const groupConversations = conversations.filter(conv => conv.is_group);
         const mappingPersonToConversation = this._getMappingPersonToConversation(individualConversations);
 
@@ -102,7 +102,7 @@ export default class PeopleInTheChat extends React.Component {
             <Drawer variant="permanent"  className="drawer">
                 <Toolbar />
                 <div className="drawer-container">
-                <List>
+                <List onClick={handleClick}>
                     <ListItem button onClick={() => this.props.handleCreateCourseGroup()}  className='message-list-item'>
                         <ListItemIcon><AddCircleIcon /></ListItemIcon>
                         <ListItemText primary='Create a new group' className="list-title"/>

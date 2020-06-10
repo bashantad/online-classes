@@ -9,6 +9,7 @@ import CallEnd from '@material-ui/icons/CallEnd';
 import Call from '@material-ui/icons/Call';
 import Fab from '@material-ui/core/Fab';
 
+
 const VideoControl = ({isAudioOn, isVideoOn, hasJoinedTheCall, onAudioClick, onVideoClick, onCallEndClick, onJoinClick}) => {
     const commonProps = {
         fontSize: 'large',
@@ -16,29 +17,42 @@ const VideoControl = ({isAudioOn, isVideoOn, hasJoinedTheCall, onAudioClick, onV
     };
 
     return (
-        <Paper className='video-call-control-bar'>
+        <div className='video-call-control-bar'>
             <div className='video-call-control-icon' onClick={onVideoClick}>
                 {
                     isVideoOn ?
-                        <VideocamIcon {...commonProps}/>
-                        : <VideocamOff {...commonProps}/>
-                }
-            </div>
-            <div className='video-call-control-icon' onClick={onAudioClick}>
-                {
-                    isAudioOn ?
-                        <Mic {...commonProps} />
-                        : <MicOff {...commonProps}/>
+                        <Fab color="primary" aria-label="video">
+                            <VideocamIcon/>
+                        </Fab>
+                        : <Fab color="primary" aria-label="videoOff">
+                            <VideocamOff/>
+                        </Fab>
                 }
             </div>
             <div className='video-call-control-icon'>
                 {
                     hasJoinedTheCall ?
-                        <CallEnd {...commonProps} color='secondary' onClick={onCallEndClick}/>
-                        : <Call {...commonProps} onClick={onJoinClick} />
+                        <Fab color="secondary" aria-label="end">
+                            <CallEnd onClick={onCallEndClick}/>
+                        </Fab>
+                        : <Fab color="primary" aria-label="call" className='call-green'>
+                            <Call onClick={onJoinClick}/>
+                        </Fab>
                 }
             </div>
-        </Paper>
+            <div className='video-call-control-icon' onClick={onAudioClick}>
+                {
+                    isAudioOn ?
+                        <Fab color="primary" aria-label="audio">
+                            <Mic/>
+                        </Fab>
+                        : <Fab color="primary" aria-label="audioOff">
+                            <MicOff/>
+                        </Fab>
+                }
+            </div>
+
+        </div>
     );
 };
 

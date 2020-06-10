@@ -101,7 +101,7 @@ export default class ActiveMessageArea extends React.Component {
         }
 
         return (
-            <div>
+            <Fragment>
                 {
                     activeConversation && <Toolbar className='conversation-title'><Hidden smUp>
                         <IconButton
@@ -170,7 +170,7 @@ export default class ActiveMessageArea extends React.Component {
                         }
                     </Paper>
                 </div>
-            </div>
+            </Fragment>
 
         );
     };
