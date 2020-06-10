@@ -7,8 +7,6 @@ import BroadCast from './BroadCast';
 import './VideoCall.scss';
 import VideoControl from "./VideoControl";
 
-import Paper from '@material-ui/core/Paper';
-
 export default class VideoCall extends React.Component {
     constructor(props) {
         super(props);
@@ -25,7 +23,7 @@ export default class VideoCall extends React.Component {
     componentDidMount() {
         this.remoteVideoContainer = document.getElementById("remote-calls-container")
         navigator.mediaDevices.getUserMedia({
-            audio: true,
+            audio: {echoCancellation: true},
             video: true,
         }).then(stream => {
             this.localStream = stream;
