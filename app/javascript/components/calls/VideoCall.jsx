@@ -5,6 +5,7 @@ import {JOIN_CALL, LEAVE_CALL, EXCHANGE, ice} from '../../utils/VideoCallUtil'
 import consumer from "../../channels/consumer";
 import BroadCast from './BroadCast';
 import './VideoCall.scss';
+import './webrtc-old-browsers';
 import VideoControl from "./VideoControl";
 
 export default class VideoCall extends React.Component {
@@ -138,7 +139,7 @@ export default class VideoCall extends React.Component {
             type: LEAVE_CALL,
             from: this.props.currentUserId
         });
-        this.setState({hasJoinedTheCall: false});
+        this.props.history.push('./')
     }
 
     exchange(data) {
@@ -233,4 +234,5 @@ VideoCall.propTypes = {
     conversationId: PropTypes.string.isRequired,
     currentUserId: PropTypes.number.isRequired,
     currentUserName: PropTypes.string.isRequired,
+    history: PropTypes.object.isRequired,
 };

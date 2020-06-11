@@ -32,19 +32,14 @@ export default class NewMessage extends React.Component {
 
         return (
             <Paper className='new-message-box-container'>
-                {/*<textarea className='message-input'*/}
-                {/*		  placeholder='Type your message'*/}
-                {/*		  onChange={this.handleMessageChange}*/}
-                {/*		  value={this.state.content}></textarea>*/}
                 <TextField id="outlined-basic" label="Type your message" variant="outlined" multiline
-                           rowsMax={4} onChange={this.handleMessageChange} value={this.state.content}>/></TextField>
+                           rowsMax={4} onChange={this.handleMessageChange} value={content}>/></TextField>
                 <div className='send-btn'>
                     <Button variant="contained" color="primary" disabled={disabled} endIcon={<SendRoundedIcon/>}
                             onClick={this.handleMessageSendClick}>
                         Send
                     </Button>
                 </div>
-
             </Paper>
         );
     }

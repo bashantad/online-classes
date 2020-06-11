@@ -37,6 +37,7 @@ class VideoCallWrapper extends React.Component{
                     currentUserId && <VideoCall
                             conversationId={this._getConversationId()}
                             currentUserId={currentUserId}
+                            history={this.props.history}
                             currentUserName={currentUserName} />
                 }
             </>
