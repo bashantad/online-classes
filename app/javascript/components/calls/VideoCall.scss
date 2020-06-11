@@ -1,3 +1,5 @@
+@import "../../variables";
+
 .video-call-container {
   display: flex;
   width: 100%;
@@ -12,8 +14,8 @@
   text-align: center;
 }
 
-.call-green {
-  background-color: #0f9d58 !important;
+.call-green{
+  background-color: $accent-color !important;
 }
 
 .video-call-control-bar {

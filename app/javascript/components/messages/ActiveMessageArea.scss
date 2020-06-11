@@ -1,3 +1,5 @@
+@import "../../variables";
+
 .conversation-item {
   color: #333;
   padding: 0 15px;
@@ -28,7 +30,7 @@
   text-align: right;
 
   .message-content {
-    background: #2f75c1;
+    background: $primary-color;
     margin: 0 10px;
     color: #fff;
     border-bottom-right-radius: 0;
@@ -47,7 +49,7 @@
 
 .person-icon {
   font-size: 1.8rem !important;
-  color: #3769b5;
+  color: $primary-color;
 }
 
 .sender-changed.conversation-item {
@@ -171,13 +173,5 @@
     flex-flow: column nowrap;
   }
 }
-//
-//@media only screen and (min-aspect-ratio: 16/9) {
-//  .active-conversation {
-//    display: flex;
-//    height: 75vh;
-//    overflow: auto;
-//    flex-flow: column nowrap;
-//  }
-//}
+
 
