@@ -1,4 +1,4 @@
-$accent-color: #26a69a;
+@import '../variables';
 
 body {
   margin: 0;
@@ -26,7 +26,7 @@ body {
   margin: auto;
   width: 18rem;
   color: white;
-  background-color: #3f51b5;
+  background-color: $primary-color;
   border-radius: 20px;
   input{
     color: white;
