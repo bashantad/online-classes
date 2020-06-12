@@ -268,7 +268,6 @@ export class Message extends React.Component {
                                 : <div>
                                     <div className='message-body'>
                                         <Toolbar/>
-
                                         <div className='message-main'>
                                             <ActiveMessageArea
                                                 activeConversation={activeConversation}
@@ -278,7 +277,8 @@ export class Message extends React.Component {
                                                 handleSuccessGroupCreate={this.handleSuccessGroupCreate}
                                             />
                                         </div>
-                                        <div className='message-text'><NewMessage conversationId={activeConversationId}/>
+                                        <div className='message-text'>
+                                            <NewMessage conversationId={activeConversationId}/>
                                         </div>
                                     </div>
                                 </div>

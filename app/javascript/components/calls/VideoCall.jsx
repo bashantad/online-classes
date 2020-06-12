@@ -12,10 +12,10 @@ export default class VideoCall extends React.Component {
     constructor(props) {
         super(props);
         this.pcPeers = {};
-        this.localVideoRef = React.createRef();
         this.broadcast = new BroadCast(props.conversationId, props.currentUserId);
         this.state = {
-            hasJoinedTheCall: false,
+            hasJoinedLocally: false,
+            hasJoinedRemotely: false,
             audio: true,
             video: true,
         }
@@ -23,19 +23,15 @@ export default class VideoCall extends React.Component {
 
     componentDidMount() {
         this.remoteVideoContainer = document.getElementById("remote-calls-container")
+        this.localVideoContainer = document.getElementById("local-video-box");
         navigator.mediaDevices.getUserMedia({
-            audio: {
-                echoCancellation: true,
-                echoCancellationType: 'system',
-            },
-            resizeMode: true,
+            audio: true,
             video: {
-                height: { min: 360, ideal: 720, max: 1080 },
                 facingMode: 'user',
             },
         }).then(stream => {
             this.localStream = stream;
-            this.localVideoRef.current.srcObject = stream;
+            this.localVideoContainer.srcObject = stream;
         }).catch(error => {
             console.log(error)
         });
@@ -51,7 +47,7 @@ export default class VideoCall extends React.Component {
     }
 
     connectCall() {
-        this.setState({hasJoinedTheCall: true});
+        this.setState({hasJoinedLocally: true});
         this.broadcast.makeApiCall({type: JOIN_CALL, from: this.props.currentUserId})
     }
 
@@ -120,6 +116,9 @@ export default class VideoCall extends React.Component {
         remoteVid.autoplay = "autoplay";
         remoteVid.className = "remote-video-participant video-component";
         remoteVid.srcObject = e.streams[0];
+        this.setState({
+            hasJoinedRemotely: true
+        });
         this.remoteVideoContainer.appendChild(remoteVid);
     }
 
@@ -129,10 +128,10 @@ export default class VideoCall extends React.Component {
             this.pcPeers[pcKeys[i]].close();
         }
         this.pcPeers = {};
-        this.localVideoRef.current.srcObject.getTracks().forEach((track) => {
+        this.localVideoContainer.srcObject.getTracks().forEach((track) => {
             track.stop();
         });
-        this.localVideoRef.current.srcObject = null;
+        this.localVideoContainer.srcObject = null;
         consumer.subscriptions.subscriptions = [];
         this.remoteVideoContainer.innerHTML = "";
         this.broadcast.makeApiCall({
@@ -199,11 +198,11 @@ export default class VideoCall extends React.Component {
     }
 
     render() {
-        const {hasJoinedTheCall, audio, video} = this.state;
+        const {hasJoinedLocally, hasJoinedRemotely, audio, video} = this.state;
         const callProps = {
             isAudioOn: audio,
             isVideoOn: video,
-            hasJoinedTheCall: hasJoinedTheCall,
+            hasJoinedLocally: hasJoinedLocally,
             onAudioClick: this.toggleAudio,
             onVideoClick: this.toggleVideo,
             onCallEndClick: this.leaveCall,
@@ -212,19 +211,20 @@ export default class VideoCall extends React.Component {
 
         return (
             <div className="video-call-container">
-                <div className='local-video-container'>
-                    <div className='video-main'>
-                        <div className='video-paper'>
-                            <div className='flex-video'>
-                                <video ref={this.localVideoRef} autoPlay
-                                       className='video-component local-video'></video>
-                            </div>
-                            <div id="remote-calls-container" className='flex-video'>
-                            </div>
+                <div className='video-main'>
+                    <div className='video-paper'>
+                        <div className='flex-video'>
+                            <video id="local-video-box" autoPlay playsInline
+                                   className='video-component local-video'></video>
+                            {
+                                hasJoinedLocally && ! hasJoinedRemotely && <div>Waiting for the other person to join...</div>
+                            }
+                        </div>
+                        <div id="remote-calls-container" className='flex-video'>
                         </div>
                     </div>
-                    <VideoControl {...callProps} className='local-video-control'/>
                 </div>
+                <VideoControl {...callProps} className='local-video-control'/>
             </div>
         );
     }
