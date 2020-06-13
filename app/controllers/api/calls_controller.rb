@@ -17,8 +17,14 @@ class Api::CallsController < Api::BaseController
   end
 
   def join
-    head :no_content
-    ActionCable.server.broadcast("calls_channel", call_params)
+    user = User.find(params[:user_id])
+    call = user.calls.find_by(calling_code: params[:calling_code])
+    if call.present?
+      head :no_content
+      ActionCable.server.broadcast("calls_channel", call_params)
+    else
+      render json: {error: 'invalid calling code'}
+    end
   end
 
   def call_params
@@ -27,7 +33,7 @@ class Api::CallsController < Api::BaseController
 
   def _new_call_with_retry
     (0..Call::RETRY_CODE_GENERATION_LIMIT).each do
-      call = current_user.calls.new(call_code: _random_alpha_numeric_code)
+      call = current_user.calls.new(calling_code: _random_alpha_numeric_code)
       @retry_limit = @retry_limit + 1
       return call if call.valid?
       redo if @retry_limit < Call::RETRY_CODE_GENERATION_LIMIT

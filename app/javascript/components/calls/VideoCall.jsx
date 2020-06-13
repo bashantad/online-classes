@@ -209,21 +209,17 @@ export default class VideoCall extends React.Component {
             onCallEndClick: this.leaveCall,
             onJoinClick: this.joinCall,
         };
-
+        const connectedClass = hasJoinedRemotely ? 'connected' : 'not-connected';
         return (
             <div className="video-call-container">
-                <div className='video-main'>
-                    <div className='video-paper'>
-                        <div className='flex-video'>
-                            <video id="local-video-box" autoPlay playsInline
-                                   className='video-component local-video' muted="muted"></video>
-                            {
-                                hasJoinedLocally && ! hasJoinedRemotely && <div>Waiting for the other person to join...</div>
-                            }
-                        </div>
-                        <div id="remote-calls-container" className='flex-video'>
-                        </div>
-                    </div>
+                <div className={`local-video-container ${connectedClass}`}>
+                    <video id="local-video-box" autoPlay playsInline
+                       className='video-component local-video' muted="muted"></video>
+                    {
+                        hasJoinedLocally && ! hasJoinedRemotely && <div>Waiting for the other person to join...</div>
+                    }
+                </div>
+                <div id="remote-calls-container">
                 </div>
                 <VideoControl {...callProps} className='local-video-control'/>
             </div>

@@ -1,6 +1,7 @@
 .video-call-container {
   display: flex;
   width: 100%;
+  justify-content: center;
   height: 100vh;
 }
 
@@ -11,7 +12,7 @@
   text-align: center;
 }
 
-.call-green{
+.call-green {
   background-color: #0f9d58 !important;
 }
 
@@ -23,17 +24,11 @@
   width: 100%;
 }
 
-.video-main {
-  flex-grow: 1;
+.local-video-container.connected {
+  height: 100px;
+  width: 100px;
 }
 
-.video-paper {
-  display: flex;
-  flex-flow: row;
+.local-video-box {
   justify-content: center;
-  height: 100vh;
-}
-
-.flex-video {
-  display: flex;
 }

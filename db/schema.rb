@@ -18,10 +18,10 @@ ActiveRecord::Schema.define(version: 2020_06_13_214128) do
   create_table "calls", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.integer "no_of_allowed_users", default: 5
-    t.string "call_code"
+    t.string "calling_code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["call_code"], name: "index_calls_on_call_code"
+    t.index ["calling_code"], name: "index_calls_on_calling_code"
     t.index ["user_id"], name: "index_calls_on_user_id"
   end
 

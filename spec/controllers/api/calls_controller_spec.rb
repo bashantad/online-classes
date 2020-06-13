@@ -14,7 +14,7 @@ RSpec.describe Api::CallsController, type: :controller do
     it "returns success" do
       subject
       call = response.parsed_body
-      expect(call['call_code']).not_to be_nil
+      expect(call['calling_code']).not_to be_nil
       expect(call['user_id']).to eq(user.id)
     end
 
@@ -22,7 +22,7 @@ RSpec.describe Api::CallsController, type: :controller do
       3.times do
         get :create
         call = response.parsed_body
-        expect(call['call_code']).not_to be_nil
+        expect(call['calling_code']).not_to be_nil
       end
       get :create
       error = response.parsed_body['error']
