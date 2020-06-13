@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_07_171202) do
+ActiveRecord::Schema.define(version: 2020_06_13_214128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "calls", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "no_of_allowed_users", default: 5
+    t.string "call_code"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["call_code"], name: "index_calls_on_call_code"
+    t.index ["user_id"], name: "index_calls_on_user_id"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "title"
@@ -120,11 +130,13 @@ ActiveRecord::Schema.define(version: 2020_06_07_171202) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "is_admin", default: false
     t.string "application_status"
+    t.integer "call_limit_per_month", default: 20
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "calls", "users"
   add_foreign_key "conversation_enrolled_users", "conversations"
   add_foreign_key "conversation_enrolled_users", "users"
   add_foreign_key "conversations", "courses"

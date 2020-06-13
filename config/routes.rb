@@ -25,9 +25,11 @@ Rails.application.routes.draw do
 				post :update_members
 			end
 		end
-		resources :conversations, only: [] do
+    resources :conversations, only: [] do
 			resources :messages
-			resources :calls, only: [:create]
+		end
+		resources :calls, only: [:create] do
+			get :join
 		end
 		resources :users, only: [] do
 			collection do

@@ -13,6 +13,11 @@ class User < ApplicationRecord
     has_many :notification_messages, through: :user_message_notifications, source: :message
     has_many :courses
     has_many :enroll_requests
+    has_many :calls
 
     validates :full_name, presence: true
+
+    def is_within_call_limit?
+        self.calls.created_between(1.months.ago, Time.now).count < self.call_limit_per_month
+    end
 end
