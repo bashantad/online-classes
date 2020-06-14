@@ -1,0 +1,74 @@
+.login-main{
+  width: 30rem;
+  margin: auto;
+  padding: 1rem;
+}
+
+.notice, .alert{
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.login-title{
+  text-align: center;
+}
+
+.input-field{
+  width: 100%;
+  padding: 0;
+  input{
+    height: inherit;
+    padding: 0 10px;
+  }
+}
+
+.mdc-text-field--filled::before{
+  height: 0;
+}
+
+
+.action-btn{
+  margin: 5px 0;
+  background-color: #3f51b5 !important;
+
+  input{
+    background: none;
+    border: none;
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: white;
+  }
+}
+
+.extra-links{
+ margin-top: 10px;
+  text-align: center;
+  a{
+    color: #000000a1;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+  }
+  a:hover{
+    color: #3f51b5;
+  }
+}
+
+.remember-me{
+  margin-top: 10px;
+}
+
+.password{
+  margin-top: 1rem;
+}
+
+.btn-main{
+  text-align: center;
+  margin-top: 1rem;
+}
+
+@media only screen and (max-width: 500px){
+  .login-main{
+    width: 20rem;
+  }
+}
