@@ -3,6 +3,7 @@ import { withRouter } from 'react-router';
 
 import VideoCall from "./calls/VideoCall";
 import userApi from "../apis/userApi";
+import callApi from "../apis/callApi";
 
 class VideoCallWrapper extends React.Component{
     constructor(props){
@@ -10,10 +11,34 @@ class VideoCallWrapper extends React.Component{
         this.state = {
             currentUserId: null,
             currentUserName: null,
+            error: null,
+            fetchingCheckUrlFinished: false,
+            fetchingUserInfoFinished: false,
         }
     }
 
     componentDidMount() {
+        this._validateUrl();
+        this._getUserInfo();
+    }
+
+    _validateUrl = () => {
+        const {creatorId, callingCode} = this._getCallerParams();
+        callApi.checkCallingUrl(creatorId, callingCode)
+            .then(res => res.json())
+            .then(res => {
+                let checkUriObject = {};
+                if(!!res.error) {
+                    checkUriObject.error = res.error;
+                }
+                this.setState({
+                    fetchingCheckUrlFinished: true,
+                    ...checkUriObject,
+                })
+            });
+    }
+
+    _getUserInfo = () => {
         userApi.getCurrentUserInfo()
             .then(res => res.json())
             .then(user => {
@@ -23,7 +48,10 @@ class VideoCallWrapper extends React.Component{
                 } else {
                     userObject = this._getCurrentUser(user);
                 }
-                this.setState(userObject);
+                this.setState({
+                    fetchingUserInfoFinished: true,
+                    ...userObject
+                });
             });
     }
 
@@ -49,8 +77,12 @@ class VideoCallWrapper extends React.Component{
         }
     }
 
+    _hasFetchingFinished = () => {
+        return this.state.fetchingCheckUrlFinished && this.state.fetchingUserInfoFinished;
+    }
+
     render() {
-        const { currentUserId, currentUserName } = this.state;
+        const { currentUserId, currentUserName, error } = this.state;
         const videoCallParams = {
             ...this._getCallerParams(),
             currentUserId: currentUserId,
@@ -61,9 +93,18 @@ class VideoCallWrapper extends React.Component{
         return (
             <>
                 {
-                    currentUserId ?
-                        <VideoCall {...videoCallParams } />
+                    this._hasFetchingFinished() ?
+                        <>
+                            {
+                                error ?
+                                    <div>
+                                        {error}
+                                    </div>
+                                    : <VideoCall {...videoCallParams } />
+                            }
+                        </>
                         : <div> Loading... </div>
+
                 }
             </>
         );

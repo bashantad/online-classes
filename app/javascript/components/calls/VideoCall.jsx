@@ -84,7 +84,7 @@ export default class VideoCall extends React.Component {
 
     handlePCEvents(pc, userId) {
         pc.onicecandidate = (e) => this.exchangeCandidate(userId, e);
-        pc.onaddstream = (e) => this.appendRemoteVideo(userId, e);
+        pc.ontrack = (e) => this.appendRemoteVideo(userId, e);
         pc.oniceconnectionstatechange = () => this.disconnectCall(pc, userId);
     }
 
@@ -116,7 +116,7 @@ export default class VideoCall extends React.Component {
         remoteVid.autoplay = "autoplay";
         remoteVid.playsInline = "playsInline";
         remoteVid.className = "remote-video-participant video-component";
-        remoteVid.srcObject = e.stream;
+        remoteVid.srcObject = e.streams[0];
         this.setState({
             hasJoinedRemotely: true
         });

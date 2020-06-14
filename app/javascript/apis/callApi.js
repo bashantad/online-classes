@@ -13,6 +13,12 @@ const callApi = {
             headers: HEADERS,
             body: JSON.stringify(data)
         });
+    },
+    checkCallingUrl: (creatorId, callingCode) => {
+        return fetch(`${API_ROOT}/calls/${creatorId}/join/${callingCode}`, {
+            method: "GET",
+            headers: HEADERS,
+        });
     }
 }
 

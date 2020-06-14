@@ -29,7 +29,7 @@ Rails.application.routes.draw do
 			resources :messages
 		end
 		resources :calls, only: [:create] do
-      post '/:user_id/join/:calling_code', to: 'calls#join', on: :collection
+      match '/:user_id/join/:calling_code', to: 'calls#join', on: :collection, :via => [:get, :post]
 		end
 		resources :users, only: [] do
 			collection do

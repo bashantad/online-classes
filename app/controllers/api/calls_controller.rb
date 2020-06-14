@@ -18,17 +18,21 @@ class Api::CallsController < Api::BaseController
 
   def join
     user = User.find(params[:user_id])
-    call = user.calls.find_by(calling_code: params[:calling_code])
-    if call.present?
-      head :no_content
-      ActionCable.server.broadcast("calls_channel", call_params)
+    @call = user.calls.find_by(calling_code: params[:calling_code])
+    if @call.blank?
+      render json: {error: 'Invalid calling link'}
     else
-      render json: {error: 'invalid calling code'}
+      if request.get?
+        render json: {}
+      else
+        head :no_content
+        ActionCable.server.broadcast("calls_channel", call_params)
+      end
     end
   end
 
   def call_params
-    params.permit(:call, :type, :from, :to, :sdp)
+    params.permit(:call, :type, :from, :to, :sdp, :calling_code, :user_id)
   end
 
   def _new_call_with_retry
