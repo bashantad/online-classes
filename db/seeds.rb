@@ -27,9 +27,9 @@ categories = [
 category = categories.first
 user = User.find(1)
 courses = [
-    category.courses.create(name: 'Python Programming', body: 'Python Programming fundamentals', website: 'https://google.com', price: 20.3, course_for: 'Recent Graduates', user_id: user.id),
-    category.courses.create(name: 'java Fundamentals', body: 'Java fundamentals', website: 'https://google.com', price: 64.2, course_for: 'Recent Graduates', user_id: user.id),
-    category.courses.create(name: 'Machine Learning', body: 'Machine Learning', website: 'https://google.com', price: 25.3, course_for: 'Recent Graduates', user_id: user.id)
+    category.courses.create(title: 'Python Programming', body: 'Python Programming fundamentals', website: 'https://google.com', price: 20.3, course_for: 'Recent Graduates', user_id: user.id),
+    category.courses.create(title: 'java Fundamentals', body: 'Java fundamentals', website: 'https://google.com', price: 64.2, course_for: 'Recent Graduates', user_id: user.id),
+    category.courses.create(title: 'Machine Learning', body: 'Machine Learning', website: 'https://google.com', price: 25.3, course_for: 'Recent Graduates', user_id: user.id)
 ]
 
 courses[0..1].each(&:approve)

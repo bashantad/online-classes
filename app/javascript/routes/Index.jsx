@@ -12,7 +12,7 @@ export default (
       <Route path="/" exact component={Home} />
       <Route path="/classroom/:id" exact component={Call} />
       <Route path="/call_history" exact component={CallHistory} />
-      <Route path="/calls/:id" exact component={VideoCallWrapper} />
+      <Route path="/calls/:user_id/join/:calling_code" exact component={VideoCallWrapper} />
       <Route path="/courses/:course_id/messages" exact component={MessageWrapper} />
     </Switch>
   </Router>

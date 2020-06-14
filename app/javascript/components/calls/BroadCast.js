@@ -2,13 +2,14 @@ import callApi from "../../apis/callApi";
 import {EXCHANGE} from "../../utils/VideoCallUtil";
 
 export default class BroadCast {
-    constructor(conversationId, senderId) {
-        this.conversationId = conversationId;
+    constructor(creatorId, callingCode, senderId) {
+        this.creatorId = creatorId;
+        this.callingCode = callingCode;
         this.senderId = senderId;
     }
 
     makeApiCall(data) {
-        callApi.broadcast(this.conversationId, data);
+        callApi.broadcast(this.creatorId, this.callingCode, data);
     }
 
     createAnswer(pc, receiverId) {

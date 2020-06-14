@@ -12,7 +12,7 @@ export default class VideoCall extends React.Component {
     constructor(props) {
         super(props);
         this.pcPeers = {};
-        this.broadcast = new BroadCast(props.conversationId, props.currentUserId);
+        this.broadcast = new BroadCast(props.creatorId, props.callingCode, props.currentUserId);
         this.state = {
             hasJoinedLocally: false,
             hasJoinedRemotely: false,
@@ -139,7 +139,7 @@ export default class VideoCall extends React.Component {
             type: LEAVE_CALL,
             from: this.props.currentUserId
         });
-        this.props.history.push('./')
+        this.props.history.push('/')
     }
 
     exchange(data) {
@@ -228,7 +228,8 @@ export default class VideoCall extends React.Component {
 }
 
 VideoCall.propTypes = {
-    conversationId: PropTypes.string.isRequired,
+    creatorId : PropTypes.string.isRequired,
+    callingCode : PropTypes.string.isRequired,
     currentUserId: PropTypes.number.isRequired,
     currentUserName: PropTypes.string.isRequired,
     history: PropTypes.object.isRequired,

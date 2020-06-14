@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+	CALL_JOIN_URL_PATTERN = /^calls\/\d\/join\/\w+$/
 	before_action :configure_permitted_parameters, if: :devise_controller?
 
 	def authenticate_admin!
@@ -9,9 +10,19 @@ class ApplicationController < ActionController::Base
 		end
 	end
 
+	def authenticate_react_app_user!
+		unless is_call_join_url?
+			authenticate_user!
+		end
+	end
+
 	protected
 
 	def configure_permitted_parameters
 		devise_parameter_sanitizer.permit(:sign_up, keys: [:full_name])
+	end
+
+	def is_call_join_url?
+		params[:path]&.match(CALL_JOIN_URL_PATTERN).present?
 	end
 end

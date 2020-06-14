@@ -7,8 +7,8 @@ const callApi = {
             headers: HEADERS,
         });
     },
-    broadcast: (userId, callingCode, data) => {
-        fetch(`${API_ROOT}/calls/${userId}/join/${callingCode}`, {
+    broadcast: (creatorId, callingCode, data) => {
+        fetch(`${API_ROOT}/calls/${creatorId}/join/${callingCode}`, {
             method: "POST",
             headers: HEADERS,
             body: JSON.stringify(data)
