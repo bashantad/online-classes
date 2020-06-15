@@ -1,25 +1,37 @@
-<h2>Change your password</h2>
+<div class="mdc-card registration-main">
+<h2 class="mdc-typography--headline5 login-title">Change your password</h2>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   <%= f.hidden_field :reset_password_token %>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
-  </div>
+   <div class="form-field password">
+            <div class="mdc-typography--subtitle1">
+             <%= f.label :password, "New password" %>
+             <% if @minimum_password_length %>
+                <span class='minimum-password'>(<%= @minimum_password_length %> characters minimum)</span>
+                <% end %></div>
+            <div class="mdc-text-field mdc-text-field--filled input-field">
+              <%= f.password_field :password, autocomplete: "new-password", class: 'mdc-text-field__input' %>
+            </div>
+          </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+   <div class="form-field password">
+        <div class="mdc-typography--subtitle1"><%= f.label :password_confirmation, "Confirm new password" %></div>
+        <div class="mdc-text-field mdc-text-field--filled input-field">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'mdc-text-field__input' %>
+        </div>
+      </div>
 
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
+    <div class='btn-main'>
+   <button class="mdc-button mdc-button--raised action-btn">
+     <div class="mdc-button__ripple"></div>
+     <span class="mdc-button__label"><%= f.submit "Change my password" %></span>
+   </button>
+   </div>
 <% end %>
 
+<div class='extra-links'>
 <%= render "devise/shared/links" %>
+</div>
+</div>

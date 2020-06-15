@@ -1,15 +1,15 @@
-<div class="mdc-card login-main">
+<div class="mdc-card registration-main">
 <h2 class="mdc-typography--headline4 login-title">Log In</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="form-field">
-    <div class="mdc-typography--subtitle1">Email:</div>
+    <div class="mdc-typography--subtitle1"><%= f.label :email %></div>
     <div class="mdc-text-field mdc-text-field--filled input-field">
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'mdc-text-field__input' %>
     </div>
   </div>
   <div class="form-field password">
-    <div class="mdc-typography--subtitle1">Password:</div>
+    <div class="mdc-typography--subtitle1"><%= f.label :password %></div>
     <div class="mdc-text-field mdc-text-field--filled input-field">
       <%= f.password_field :password, autocomplete: "current-password", class: 'mdc-text-field__input' %>
     </div>
