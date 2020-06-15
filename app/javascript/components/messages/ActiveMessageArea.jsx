@@ -90,15 +90,15 @@ export default class ActiveMessageArea extends React.Component {
         }
     }
 
+    handleUpdate = () =>{
+
+    }
+
     render() {
-        const {activeConversation, handleDrawerToggle, handleSuccessGroupCreate, allUsers} = this.props;
+        const {activeConversation, handleDrawerToggle} = this.props;
 
         const open = Boolean(this.state.anchorEl);
         const id = open ? 'simple-popover' : undefined;
-
-        const handleUpdate = () =>{
-            console.log('test')
-        }
 
         return (
             <Fragment>
@@ -116,11 +116,17 @@ export default class ActiveMessageArea extends React.Component {
                         <Typography variant="h5">
                             {this.displayTitle()}
                         </Typography>
-                        {activeConversation.title &&
-                        <span className='group-option'><IconButton color="primary" aria-label="Info" component="span"
-                                                                   onClick={this.handlePopover}>
-          <InfoIcon/>
-        </IconButton></span>}
+                        {
+                            activeConversation.title &&
+                                <span className='group-option'>
+                                    <IconButton color="primary"
+                                                aria-label="Info"
+                                                component="span"
+                                                onClick={this.handlePopover}>
+                                        <InfoIcon />
+                                    </IconButton>
+                                </span>
+                        }
                         <Popover
                             id={id}
                             open={open}
@@ -136,7 +142,7 @@ export default class ActiveMessageArea extends React.Component {
                             }}
                             className='group-popover'
                         >
-                            <div><Button color="primary" onClick={handleUpdate}>Update Members</Button></div>
+                            <div><Button color="primary" onClick={this.handleUpdate}>Update Members</Button></div>
                             <div><Button color="primary">Details</Button></div>
                             <div><Button color="secondary">Delete</Button></div>
                         </Popover>
@@ -159,7 +165,8 @@ export default class ActiveMessageArea extends React.Component {
                                                     return this.renderMessage(message, lastSenderId)
                                                 })
                                             }
-                                        </div> : <div className='message-card no-message'>
+                                        </div>
+                                        : <div className='message-card no-message'>
                                             <div className='no-message-card'><SpeakerNotesOffIcon/>
                                                 <div>No Messages</div>
                                             </div>
