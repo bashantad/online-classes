@@ -14,8 +14,7 @@
     <body>
         <div id='application-container'>
             <%= render "layouts/application_header" if user_signed_in? %>
-            <p class="notice mdc-typography--subtitle1"><%= notice %></p>
-            <p class="alert mdc-typography--subtitle1"><%= alert %></p>
+            <%= render "layouts/flash_messages" %>
             <%= yield %>
         </div>
     </body>

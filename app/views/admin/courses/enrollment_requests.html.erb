@@ -1,28 +1,43 @@
-<h3>Enrollment requests for <%= @course.title %></h3>
-<%= link_to 'Add more people', admin_course_enrollment_path(@course) %>
-<table>
+
+<header class="mdc-top-app-bar mdc-top-app-bar--fixed">
+ <div class="enrollment-title">
+ <span class="mdc-typography--headline5">Enrollment requests for <%= @course.title %></span>
+ </div>
+</header>
+
+
+<div class="enrollment-table">
+<div class="mdc-data-table">
+<table class="mdc-data-table__table" aria-label="Enrollments">
   <thead>
-  <tr>
-    <td>Full name</td>
-    <td>Email</td>
-    <td>Phone(optional)</td>
-    <td>Status</td>
+  <tr class="mdc-data-table__header-row">
+    <td class="mdc-data-table__header-cell mdc-typography--subtitle2" role="columnheader" scope="col">Full name</td>
+    <td class="mdc-data-table__header-cell mdc-typography--subtitle2" role="columnheader" scope="col">Email</td>
+    <td class="mdc-data-table__header-cell mdc-typography--subtitle2" role="columnheader" scope="col">Phone(optional)</td>
+    <td class="mdc-data-table__header-cell mdc-typography--subtitle2" role="columnheader" scope="col">Status</td>
   </tr>
   </thead>
-  <% @enroll_user_requests.each do |enroll_request| %>
-    <tr>
-      <td>
+   <tbody class="mdc-data-table__content">
+  <% @enroll_user_requests.each do |enroll_request,index| %>
+    <tr class="mdc-data-table__row">
+      <td class="mdc-data-table__cell">
         <%= enroll_request.full_name %>
       </td>
-      <td>
+      <td class="mdc-data-table__cell">
         <%= enroll_request.email %>
       </td>
-      <td>
+      <td class="mdc-data-table__cell">
         <%= enroll_request.phone %>
       </td>
-      <td>
+      <td class="mdc-data-table__cell">
         <%= enroll_request.user ? 'Accepted' : 'Not accepted' %>
       </td>
     </tr>
   <% end %>
+  </tbody>
 </table>
+</div>
+<div class="add-more-people">
+<%= link_to 'Add More People', admin_course_enrollment_path(@course), class: "mdc-button mdc-button--raised action-btn" %>
+</div>
+</div>
