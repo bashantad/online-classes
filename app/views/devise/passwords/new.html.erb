@@ -1,11 +1,17 @@
+<h2> Indent this page please</h2>
 <div class="mdc-card registration-main">
 <h2 class="mdc-typography--headline5 login-title">Forgot your password?</h2>
+<p>
+  We will send you password reset instruction once you submit your valid email.
+</p>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <% error_messages = resource.errors.messages %>
 
    <div class="form-field">
-        <div class="mdc-typography--subtitle1"><%= f.label :email %></div>
+        <div class="mdc-typography--subtitle1">
+            Enter your email
+            </div>
         <div class="mdc-text-field mdc-text-field--filled input-field">
           <%= f.email_field :email, autofocus: true, autocomplete: "email",class: 'mdc-text-field__input' %>
         </div>
@@ -19,12 +25,10 @@
     <div class='btn-main'>
    <button class="mdc-button mdc-button--raised action-btn">
      <div class="mdc-button__ripple"></div>
-     <span class="mdc-button__label"><%= f.submit "Send password reset instructions" %></span>
+     <span class="mdc-button__label"><%= f.submit "Send" %></span>
    </button>
+   <%= link_to "Sign in", new_session_path(resource_name) %>
    </div>
 <% end %>
 
-<div class='extra-links'>
-<%= render "devise/shared/links" %>
-</div>
 </div>

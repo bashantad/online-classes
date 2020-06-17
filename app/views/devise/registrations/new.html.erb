@@ -1,68 +1,71 @@
-<div class="mdc-card registration-main">
-<h2 class="mdc-typography--headline4 login-title">Sign Up</h2>
+<h2>We need to indent this page... delete this line once indented.</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <% error_messages = resource.errors.messages %>
- <div class="form-field">
-    <div class="mdc-typography--subtitle1"><%= f.label :full_name %></div>
-    <div class="mdc-text-field mdc-text-field--filled input-field">
-              <%=  f.text_field :full_name, autofocus: true, autocomplete: "full_name", class: 'mdc-text-field__input' %>
-            </div>
-    <% if error_messages[:full_name] %>
-      <div class="field-error">
-        <%= error_messages[:full_name][0] %>
-      </div>
-    <% end %>
-  </div>
-   <div class="form-field">
-        <div class="mdc-typography--subtitle1"> <%= f.label :email %></div>
+<div class="mdc-card registration-main">
+<h2 class="mdc-typography--headline4 login-title">
+  Create your account with VC Room
+</h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <% error_messages = resource.errors.messages %>
+     <div class="form-field">
+        <div class="mdc-typography--subtitle1"><%= f.label :full_name %></div>
         <div class="mdc-text-field mdc-text-field--filled input-field">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'mdc-text-field__input' %>
-        </div>
-          <% if error_messages[:email] %>
-              <div class="field-error">
-                <%= error_messages[:email][0] %>
-              </div>
-            <% end %>
-     </div>
+                  <%=  f.text_field :full_name, autofocus: true, autocomplete: "full_name", class: 'mdc-text-field__input' %>
+                </div>
+        <% if error_messages[:full_name] %>
+          <div class="field-error">
+            <%= error_messages[:full_name][0] %>
+          </div>
+        <% end %>
+      </div>
+       <div class="form-field">
+            <div class="mdc-typography--subtitle1"> <%= f.label :email %></div>
+            <div class="mdc-text-field mdc-text-field--filled input-field">
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'mdc-text-field__input' %>
+            </div>
+              <% if error_messages[:email] %>
+                  <div class="field-error">
+                    <%= error_messages[:email][0] %>
+                  </div>
+                <% end %>
+         </div>
+
+           <div class="form-field password">
+                <div class="mdc-typography--subtitle1">
+                    <%= f.label :password %>
+                    <% if @minimum_password_length %>
+                        <span class='minimum-password'>(<%= @minimum_password_length %> characters minimum)</span>
+                    <% end %>
+                </div>
+
+                <div class="mdc-text-field mdc-text-field--filled input-field">
+                    <%= f.password_field :password, autocomplete: "new-password", class: 'mdc-text-field__input' %>
+                </div>
+                <% if error_messages[:password] %>
+                    <div class="field-error">
+                      <%= error_messages[:password][0] %>
+                    </div>
+                <% end %>
+            </div>
 
        <div class="form-field password">
-          <div class="mdc-typography--subtitle1">
-           <%= f.label :password %>
-           <% if @minimum_password_length %>
-              <span class='minimum-password'>(<%= @minimum_password_length %> characters minimum)</span>
-              <% end %></div>
+          <div class="mdc-typography--subtitle1"><%= f.label :password_confirmation %></div>
           <div class="mdc-text-field mdc-text-field--filled input-field">
-            <%= f.password_field :password, autocomplete: "new-password", class: 'mdc-text-field__input' %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'mdc-text-field__input' %>
           </div>
-           <% if error_messages[:password] %>
+           <% if error_messages[:password_confirmation] %>
                 <div class="field-error">
-                  <%= error_messages[:password][0] %>
+                  <%= error_messages[:password_confirmation][0] %>
                 </div>
               <% end %>
         </div>
 
-   <div class="form-field password">
-      <div class="mdc-typography--subtitle1"><%= f.label :password_confirmation %></div>
-      <div class="mdc-text-field mdc-text-field--filled input-field">
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'mdc-text-field__input' %>
-      </div>
-       <% if error_messages[:password_confirmation] %>
-            <div class="field-error">
-              <%= error_messages[:password_confirmation][0] %>
-            </div>
-          <% end %>
-    </div>
-
-  <div class='btn-main'>
- <button class="mdc-button mdc-button--raised action-btn">
-   <div class="mdc-button__ripple"></div>
-   <span class="mdc-button__label"><%= f.submit "Sign Up" %></span>
- </button>
- </div>
-<% end %>
-
-<div class='extra-links'>
-<%= render "devise/shared/links" %>
-</div>
+        <div class='btn-main'>
+            <button class="mdc-button mdc-button--raised action-btn">
+                <div class="mdc-button__ripple"></div>
+                <span class="mdc-button__label"><%= f.submit "Sign Up" %></span>
+            </button>
+            <%= link_to "Sign in", new_session_path(resource_name) %>
+        </div>
+    <% end %>
 </div>
