@@ -1,8 +1,20 @@
-<div>
-	Full name: <%= current_user.full_name %>
-</div>
-<div>
-	Email : <%= current_user.email %>
+<div class="mdc-card registration-main">
+  <h2 class="mdc-typography--headline5 login-title">
+    Account Details
+  </h2>
+  <div class="user-details">
+    <div class="mdc-typography--subtitle1">
+      Full name: <%= current_user.full_name %>
+    </div>
+    <div class="mdc-typography--subtitle1">
+      Email : <%= current_user.email %>
+    </div>
+  </div>
+  <div class='btn-main'>
+    <button class=" cancel secondary-btn">
+      <%= link_to "Back", root_path %>
+    </button>
+  </div>
 </div>
 
 <!--we will add more fields here -->

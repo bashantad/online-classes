@@ -1,35 +1,35 @@
 <div class="mdc-card registration-main">
-    <h2 class="mdc-typography--headline5 login-title">
-        Resend confirmation instructions
-    </h2>
+  <h2 class="mdc-typography--headline5 login-title">
+    Resend confirmation instructions
+  </h2>
 
-    <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-        <% error_messages = resource.errors.messages %>
+  <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: {method: :post}) do |f| %>
+    <% error_messages = resource.errors.messages %>
 
-        <div class="form-field">
-            <div class="mdc-typography--subtitle1">
-                <%= f.label :email %>
-            </div>
-            <div class="mdc-text-field mdc-text-field--filled input-field">
-                <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: 'mdc-text-field__input' %>
-            </div>
-            <% if error_messages[:email] %>
-                <div class="field-error">
-                    <%= error_messages[:email][0] %>
-                </div>
-            <% end %>
+    <div class="form-field">
+      <div class="mdc-typography--subtitle1">
+        <%= f.label :email %>
+      </div>
+      <div class="mdc-text-field mdc-text-field--filled input-field">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: 'mdc-text-field__input' %>
+      </div>
+      <% if error_messages[:email] %>
+        <div class="field-error">
+          <%= error_messages[:email][0] %>
         </div>
+      <% end %>
+    </div>
 
-        <div class='btn-main'>
-            <button class="mdc-button mdc-button--raised action-btn">
-                <div class="mdc-button__ripple"></div>
-                <span class="mdc-button__label">
+    <div class='btn-main'>
+      <button class="mdc-button mdc-button--raised action-btn float-left">
+        <div class="mdc-button__ripple"></div>
+        <span class="mdc-button__label">
                     <%= f.submit "Send" %>
                 </span>
-            </button>
-            <span>
-                <%= link_to "Sign in", new_session_path(resource_name) %>
-            </span>
-        </div>
-    <% end %>
+      </button>
+      <button class="secondary-btn">
+        <%= link_to "Sign In", new_session_path(resource_name) %>
+      </button>
+    </div>
+  <% end %>
 </div>
