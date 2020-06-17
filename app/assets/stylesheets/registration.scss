@@ -60,18 +60,76 @@ header{
   height: 0;
 }
 
+.float-left{
+  float:left;
+}
 
 .action-btn{
   margin: 1rem 0;
   background-color: $primary-color !important;
-
   input{
     background: none;
     border: none;
     font-size: 1rem;
-    text-transform: uppercase;
     color: white;
   }
+}
+
+.secondary-btn{
+  float: right;
+  margin: 1rem 0 !important;
+  line-height: 2.5;
+  padding: 0 10px;
+  font-family: Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 0.875rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #f3f3f3;
+  a{
+    color: $primary-color;
+    text-decoration: none;
+    font-size: 15px;
+  }
+}
+.secondary-btn:hover{
+  background: $primary-color;
+  a{
+    color: white;
+  }
+}
+.subtitle{
+  margin: 1rem 0;
+}
+
+.cancel{
+  margin: auto;
+  a{
+  color: $error-color;
+  }
+}
+.cancel:hover{
+  background-color: $error-color;
+  color: white;
+}
+
+.delete{
+  background-color: $error-color !important;
+}
+
+.delete-secondary{
+  float: none;
+  a{
+  color: $primary-color;
+  }
+}
+
+.delete-secondary:hover{
+  background-color: $primary-color;
+}
+
+.user-details{
+  text-align: center;
 }
 
 .extra-links{
@@ -154,5 +212,10 @@ header{
 @media only screen and (max-width: 500px){
   .login-main{
     width: 20rem;
+  }
+  .registration-main{
+    box-shadow: none;
+    width: inherit;
+    top:0
   }
 }

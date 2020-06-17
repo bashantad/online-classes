@@ -1,48 +1,46 @@
-<h2>Please indent this page</h2>
-
 <div class="mdc-card registration-main">
-<h2 class="mdc-typography--headline4 login-title">Sign in</h2>
+  <h2 class="mdc-typography--headline4 login-title">Sign in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-field">
-    <div class="mdc-typography--subtitle1"><%= f.label :email %></div>
-    <div class="mdc-text-field mdc-text-field--filled input-field">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'mdc-text-field__input' %>
-    </div>
-  </div>
-  <div class="form-field password">
-    <div class="mdc-typography--subtitle1"><%= f.label :password %></div>
-    <div class="mdc-text-field mdc-text-field--filled input-field">
-      <%= f.password_field :password, autocomplete: "current-password", class: 'mdc-text-field__input' %>
-    </div>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-  <div class="mdc-form-field remember-me">
-   <label for="checkbox-1"><%= f.label :remember_me, class: 'mdc-typography--caption' %></label>
-    <div class="mdc-checkbox">
-              <%= f.check_box :remember_me, class: 'mdc-checkbox__native-control', id:'check_box-1', type: 'checkbox' %>
-      <div class="checkbox mdc-checkbox__background ">
-        <svg class="mdc-checkbox__checkmark"
-             viewBox="0 0 24 24">
-          <path class="mdc-checkbox__checkmark-path"
-                fill="none"
-                d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-        </svg>
-        <div class="mdc-checkbox__mixedmark"></div>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="form-field">
+      <div class="mdc-typography--subtitle1"><%= f.label :email %></div>
+      <div class="mdc-text-field mdc-text-field--filled input-field">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'mdc-text-field__input' %>
       </div>
-      <div class="mdc-checkbox__ripple"></div>
     </div>
-  </div>
+    <div class="form-field password">
+      <div class="mdc-typography--subtitle1"><%= f.label :password %></div>
+      <div class="mdc-text-field mdc-text-field--filled input-field">
+        <%= f.password_field :password, autocomplete: "current-password", class: 'mdc-text-field__input' %>
+      </div>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="mdc-form-field remember-me">
+        <label for="checkbox-1"><%= f.label :remember_me, class: 'mdc-typography--caption' %></label>
+        <div class="mdc-checkbox">
+          <%= f.check_box :remember_me, class: 'mdc-checkbox__native-control', id: 'check_box-1', type: 'checkbox' %>
+          <div class="checkbox mdc-checkbox__background ">
+            <svg class="mdc-checkbox__checkmark"
+                 viewBox="0 0 24 24">
+              <path class="mdc-checkbox__checkmark-path"
+                    fill="none"
+                    d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+            </svg>
+            <div class="mdc-checkbox__mixedmark"></div>
+          </div>
+          <div class="mdc-checkbox__ripple"></div>
+        </div>
+      </div>
+    <% end %>
+    <div class='btn-main'>
+      <button class="mdc-button mdc-button--raised action-btn">
+        <div class="mdc-button__ripple"></div>
+        <span class="mdc-button__label"><%= f.submit "Sign in" %></span>
+      </button>
+    </div>
   <% end %>
-  <div class='btn-main'>
-<button class="mdc-button mdc-button--raised action-btn">
-  <div class="mdc-button__ripple"></div>
-  <span class="mdc-button__label"><%= f.submit "Sign in" %></span>
-</button>
-</div>
-<% end %>
-<div class='extra-links'>
-<%= render "devise/shared/links" %>
-</div>
+  <div class='extra-links'>
+    <%= render "devise/shared/links" %>
+  </div>
 </div>
