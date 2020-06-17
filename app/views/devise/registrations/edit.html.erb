@@ -1,84 +1,54 @@
 <div class="mdc-card registration-main">
-<h2 class="mdc-typography--headline5 login-title">Edit <%= resource_name.to_s.humanize %></h2>
+    <h2 class="mdc-typography--headline5 login-title">
+        Edit your account details
+    </h2>
 
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <% error_messages = resource.errors.messages %>
-
-  <div class="form-field">
-      <div class="mdc-typography--subtitle1"><%= f.label :full_name %></div>
-      <div class="mdc-text-field mdc-text-field--filled input-field">
-                <%=  f.text_field :full_name, autofocus: true, autocomplete: "full_name", class: 'mdc-text-field__input' %>
-              </div>
-      <% if error_messages[:full_name] %>
-        <div class="field-error">
-          <%= error_messages[:full_name][0] %>
-        </div>
-      <% end %>
-    </div>
-
-     <div class="form-field">
-            <div class="mdc-typography--subtitle1"> <%= f.label :email %></div>
-            <div class="mdc-text-field mdc-text-field--filled input-field">
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'mdc-text-field__input' %>
-            </div>
-              <% if error_messages[:email] %>
-                  <div class="field-error">
-                    <%= error_messages[:email][0] %>
-                  </div>
-                <% end %>
-         </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-
-  <div class="form-field password">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <% error_messages = resource.errors.messages %>
+        <div class="form-field">
             <div class="mdc-typography--subtitle1">
-            <%= f.label :password %> <span class='minimum-password'>(leave blank if you do not want to change it)</span>
+                <%= f.label :full_name %>
+            </div>
             <div class="mdc-text-field mdc-text-field--filled input-field">
-              <%= f.password_field :password, autocomplete: "new-password", class: "mdc-text-field__input" %>
+                <%=  f.text_field :full_name, autofocus: true, autocomplete: "full_name", class: 'mdc-text-field__input' %>
             </div>
-             <% if @minimum_password_length %>
-                  <br />
-                  <span class='minimum-password'><%= @minimum_password_length %> characters minimum</span>
-                <% end %>
-          </div>
-
-   <div class="form-field password">
-        <div class="mdc-typography--subtitle1"><%= f.label :password_confirmation %></div>
-        <div class="mdc-text-field mdc-text-field--filled input-field">
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mdc-text-field__input" %>
+            <% if error_messages[:full_name] %>
+                <div class="field-error">
+                    <%= error_messages[:full_name][0] %>
+                </div>
+            <% end %>
         </div>
-      </div>
 
-       <div class="form-field password">
-              <div class="mdc-typography--subtitle1"> <%= f.label :current_password %><span class='minimum-password'> (we need your current password to confirm your changes)</span></div>
-              <div class="mdc-text-field mdc-text-field--filled input-field">
-                <%= f.password_field :current_password, autocomplete: "current-password", class: "mdc-text-field__input" %>
-              </div>
-              <% if error_messages[:current_password] %>
-                    <div class="field-error">
-                      <%= error_messages[:current_password][0] %>
-                    </div>
-                  <% end %>
+        <div class="form-field">
+            <div class="mdc-typography--subtitle1">
+                <%= f.label :email %> (read only)
             </div>
 
+            <div class="mdc-text-field mdc-text-field--filled input-field">
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'mdc-text-field__input', readonly: 'readonly' %>
+            </div>
 
-   <div class='btn-main'>
-   <button class="mdc-button mdc-button--raised action-btn">
-     <div class="mdc-button__ripple"></div>
-     <span class="mdc-button__label"><%= f.submit "Update" %></span>
-   </button>
-   </div>
-<% end %>
-<div class="mdc-list-divider divider"></div>
+            <% if error_messages[:email] %>
+                <div class="field-error">
+                    <%= error_messages[:email][0] %>
+                </div>
+            <% end %>
+        </div>
 
-<div class="cancel"><span class="mdc-typography--headline6">Unhappy?</span> <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure you want to cancel your account?" }, method: :delete, class: "mdc-button" %></div>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>
+                Currently waiting confirmation for: <%= resource.unconfirmed_email %>
+            </div>
+        <% end %>
 
-<div class="mdc-list-divider divider"></div>
-<div class='extra-links'>
-<%= link_to "Back", :back %>
+        <div class='btn-main'>
+            <button class="mdc-button mdc-button--raised action-btn">
+                <div class="mdc-button__ripple"></div>
+                <span class="mdc-button__label"><%= f.submit "Update" %></span>
+            </button>
+
+            <%= link_to "Cancel", root_path %>
+        </div>
+    <% end %>
 </div>
-</div>
+<!--we will add more fields here -->

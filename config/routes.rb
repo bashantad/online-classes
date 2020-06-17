@@ -7,15 +7,23 @@ Rails.application.routes.draw do
 			get :enrollment
 			post :enroll_users
 			get :enrollment_requests
-    end
-  end
+    	end
+  	end
 
 	# Routes for on-boarding Rails pages
-  resources :courses
-  resources :categories
-  devise_for :users
+  	resources :courses
+  	resources :categories
+  	devise_for :users, :controllers => { :registrations => 'registrations' }
+  	resources :users, only: [] do
+  		collection do
+  			get :edit_password
+  			put :update_password
+  			get :cancel_account
+  			get :details
+  		end
+  	end
 
-  # Routes for API
+  	# Routes for API
 	namespace :api, constraints: { format: 'json' } do
 		resources :courses, only: [:index, :show] do
 			resources :conversations do
@@ -25,11 +33,11 @@ Rails.application.routes.draw do
 				post :update_members
 			end
 		end
-    resources :conversations, only: [] do
+    	resources :conversations, only: [] do
 			resources :messages
 		end
 		resources :calls, only: [:create] do
-      match '/:user_id/join/:calling_code', to: 'calls#join', on: :collection, :via => [:get, :post]
+      		match '/:user_id/join/:calling_code', to: 'calls#join', on: :collection, :via => [:get, :post]
 		end
 		resources :users, only: [] do
 			collection do

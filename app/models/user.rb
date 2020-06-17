@@ -20,4 +20,12 @@ class User < ApplicationRecord
     def is_within_call_limit?
         self.calls.created_between(1.months.ago, Time.now).count < self.call_limit_per_month
     end
+
+    def soft_delete
+      update_attribute(:deleted_at, Time.current)
+    end
+
+    def active_for_authentication?
+      super && !deleted_at
+    end
 end
