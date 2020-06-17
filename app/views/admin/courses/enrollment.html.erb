@@ -1,10 +1,7 @@
-<header class="mdc-top-app-bar mdc-top-app-bar--fixed">
- <div class="enrollment-title">
- <span class="mdc-typography--headline5">Enroll at <%= @course.title %></span>
- </div>
-</header>
-
 <div class="enrollment-table">
+  <div class="enrollment-title">
+    <span class="mdc-typography--headline5">Enroll at <%= @course.title %></span>
+  </div>
 <%= form_with(url: admin_course_enroll_users_path(@course), local: true) do |form| %>
 <div class="mdc-data-table">
   <table class="mdc-data-table__table" aria-label="Enrollments">

@@ -1,22 +1,48 @@
-<ul>
-	<li>
-		<%= link_to "Home", root_path %>
-	</li>
-	<li>
-		<%= link_to "View account details", details_users_path %>
-	</li>
-	<li>
-		<%= link_to "Edit account", edit_user_registration_path %>
-	</li>
-	<li>
-		<%= link_to "Change password", edit_password_users_path %>
-	</li>
-	<li>
-		<%= link_to "Cancel Account", cancel_account_users_path %>
-	</li>
-	<li>
-		<%= link_to "Logout", destroy_user_session_path %>
-	</li>
-</ul>
+<!--<ul>-->
+<!--	<li>-->
+		<%#= link_to "Home", root_path %>
+<!--	</li>-->
+<!--	<li>-->
+		<%#= link_to "View account details", details_users_path %>
+<!--	</li>-->
+<!--	<li>-->
+		<%#= link_to "Edit account", edit_user_registration_path %>
+<!--	</li>-->
+<!--	<li>-->
+		<%#= link_to "Change password", edit_password_users_path %>
+<!--	</li>-->
+<!--	<li>-->
+		<%#= link_to "Cancel Account", cancel_account_users_path %>
+<!--	</li>-->
+<!--	<li>-->
+		<%#= link_to "Logout", destroy_user_session_path %>
+<!--	</li>-->
+<!--</ul>-->
+<header class="mdc-top-app-bar mdc-top-app-bar--fixed">
+	<div class="mdc-top-app-bar__row">
+		<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+			<button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button" aria-label="Open navigation menu">menu</button>
+			<span class="mdc-top-app-bar__title">Page title</span>
+		</section>
+	</div>
+</header>
+<aside class="mdc-drawer mdc-drawer--modal">
+	<div class="mdc-drawer__content">
+		<nav class="mdc-list">
+			<a class="mdc-list-item mdc-list-item--activated" href="#" aria-current="page" tabindex="0">
+				<i class="material-icons mdc-list-item__graphic" aria-hidden="true">inbox</i>
+				<span class="mdc-list-item__text">Inbox</span>
+			</a>
+			<a class="mdc-list-item" href="#">
+				<i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>
+				<span class="mdc-list-item__text">Outgoing</span>
+			</a>
+			<a class="mdc-list-item" href="#">
+				<i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
+				<span class="mdc-list-item__text">Drafts</span>
+			</a>
+		</nav>
+	</div>
+</aside>
 
 

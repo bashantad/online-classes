@@ -13,30 +13,3 @@
  *= require_tree .
  *= require_self
  */
-
-@import "../../javascript/variables";
-
-
-.notice{
-  text-align: center;
-  /* margin-top: 1rem; */
-  bottom: 0;
-  padding: 10px 0;
-  color: white;
-  margin: 0;
-  background-color: $accent-color;
-  width: 100%;
-  position: absolute;
-}
-
-.alert{
-  text-align: center;
-  /* margin-top: 1rem; */
-  bottom: 0;
-  padding: 10px 0;
-  color: white;
-  margin: 0;
-  background-color: $error-color;
-  width: 100%;
-  position: absolute;
-}
