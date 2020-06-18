@@ -2,6 +2,7 @@
   <h2 class="mdc-typography--headline5 login-title">
     Edit your account details
   </h2>
+  <hr class="mdc-list-divider divider-margin">
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f| %>
     <% error_messages = resource.errors.messages %>

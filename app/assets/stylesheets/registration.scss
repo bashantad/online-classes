@@ -1,14 +1,15 @@
 @import "../../javascript/variables";
 
-body{
+body {
   margin: 0;
+  height: auto;
 }
 
-header{
+header {
   background-color: $primary-color !important;
 }
 
-.notice{
+.notice {
   text-align: center;
   /* margin-top: 1rem; */
   bottom: 0;
@@ -20,7 +21,7 @@ header{
   position: absolute;
 }
 
-.alert{
+.alert {
   text-align: center;
   /* margin-top: 1rem; */
   bottom: 0;
@@ -31,43 +32,46 @@ header{
   width: 100%;
   position: absolute;
 }
-.registration-main{
+
+.registration-main {
   width: 30rem;
   margin: auto;
   padding: 1rem;
-  top: 4rem;
+  top: 5rem;
 }
 
-.notice, .alert{
+.notice, .alert {
   text-align: center;
   margin-top: 1rem;
 }
 
-.login-title{
+.login-title {
   text-align: center;
 }
 
-.input-field{
+.input-field {
   width: 100%;
   padding: 0;
-  input{
+
+  input {
     height: inherit;
     padding: 0 10px;
   }
 }
 
-.mdc-text-field--filled::before{
+.mdc-text-field--filled::before {
   height: 0;
 }
 
-.float-left{
-  float:left;
+.float-left {
+  float: left;
 }
 
-.action-btn{
+.action-btn {
   margin: 1rem 0;
   background-color: $primary-color !important;
-  input{
+
+  input {
     background: none;
     border: none;
     font-size: 1rem;
@@ -75,7 +79,7 @@ header{
   }
 }
 
-.secondary-btn{
+.secondary-btn {
   float: right;
   margin: 1rem 0 !important;
   line-height: 2.5;
@@ -86,136 +90,208 @@ header{
   border: none;
   border-radius: 4px;
   background-color: #f3f3f3;
-  a{
+
+  a {
     color: $primary-color;
     text-decoration: none;
     font-size: 15px;
   }
 }
-.secondary-btn:hover{
+
+.secondary-btn:hover {
   background: $primary-color;
-  a{
+
+  a {
     color: white;
   }
 }
-.subtitle{
+
+.subtitle {
   margin: 1rem 0;
 }
 
-.cancel{
+.cancel {
   margin: auto;
-  a{
-  color: $error-color;
+
+  a {
+    color: $accent-color;
   }
 }
-.cancel:hover{
-  background-color: $error-color;
+
+.cancel:hover {
+  background-color: $accent-color;
   color: white;
 }
 
-.delete{
+.delete {
   background-color: $error-color !important;
 }
 
-.delete-secondary{
+.delete-secondary {
   float: none;
-  a{
-  color: $primary-color;
+
+  a {
+    color: $accent-color;
   }
 }
 
-.delete-secondary:hover{
-  background-color: $primary-color;
+.delete-secondary:hover {
+  background-color: $accent-color;
+  color: white;
 }
 
-.user-details{
+.user-details {
   text-align: center;
 }
 
-.extra-links{
- margin-top: 10px;
+.mdc-top-app-bar {
+  z-index: 7;
+}
+
+.mdc-drawer-app-content {
+  flex: auto;
+  overflow: auto;
+  position: relative;
+}
+
+.custom-app-bar {
+  margin-left: 0px !important;
+}
+
+.mdc-list-item:hover {
+  background-color: #F5F5F5;
+}
+
+.divider-margin {
+  margin-bottom: 1rem;
+}
+
+.extra-links {
+  margin-top: 10px;
   text-align: center;
-  a{
+
+  a {
     color: #000000a1;
     text-decoration: none;
     font-weight: 600;
-    font-size: 15px;
+    font-size: 11px;
   }
-  a:hover{
+
+  a:hover {
     color: $primary-color;
   }
 }
 
-.remember-me{
+.remember-me {
   margin-top: 10px;
 }
 
-.password{
+.password {
   margin-top: 1rem;
 }
 
-.btn-main{
+.btn-main {
   text-align: center;
   margin-top: 1rem;
 }
 
-.field_with_errors{
+.field_with_errors {
   width: inherit;
   height: inherit;
 }
 
-.field-error{
+.field-error {
   text-transform: capitalize;
   color: #b00020;
   margin-top: 4px;
 }
 
-.minimum-password{
+.minimum-password {
   font-size: 10px;
 }
 
-.divider{
+.divider {
   margin: 10px 0;
 }
 
-.cancel{
+.cancel {
   text-align: center;
 }
 
-.enrollment-table{
+.enrollment-table {
   text-align: center;
-  padding-top: 6rem;
-  input{ border: 1px solid #c5c5c5;
+  padding-top: 2rem;
+
+  input {
+    border: 1px solid #c5c5c5;
     height: 30px;
     border-radius: 5px;
     padding-left: 10px;
   }
-  input:focus{
+
+  input:focus {
     border: 1px solid #6b6b6b !important;
     outline: none;
   }
 }
 
-.enrollment-title{
+.enrollment-title {
   text-align: center;
-  margin: 1rem;
+  margin-top: 6rem;
+  margin-bottom: 2rem;
 }
 
 .add-more-people {
   text-align: center;
+
   a {
     color: white;
     text-decoration: none;
   }
 }
 
-@media only screen and (max-width: 500px){
-  .login-main{
+.mdc-drawer {
+  height: 100vh;
+  position: absolute;
+  transform: translateX(-100%);
+  -webkit-transform: translateX(-100%);
+}
+
+.slide-in {
+  animation: slide-in 0.5s forwards;
+  -webkit-animation: slide-in 0.5s forwards;
+}
+
+.slide-out {
+  animation: slide-out 0.5s forwards;
+  -webkit-animation: slide-out 0.5s forwards;
+}
+
+@keyframes slide-in {
+  100% { transform: translateX(0%); }
+}
+
+@-webkit-keyframes slide-in {
+  100% { -webkit-transform: translateX(0%); }
+}
+
+@keyframes slide-out {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+@-webkit-keyframes slide-out {
+  0% { -webkit-transform: translateX(0%); }
+  100% { -webkit-transform: translateX(-100%); }
+}
+
+@media only screen and (max-width: 500px) {
+  .login-main {
     width: 20rem;
   }
-  .registration-main{
+  .registration-main {
     box-shadow: none;
     width: inherit;
-    top:0
+    top: 5rem;
   }
 }

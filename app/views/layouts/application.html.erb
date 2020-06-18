@@ -1,21 +1,41 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>
-            VC Room
-        </title>
-        <%= csrf_meta_tags %>
-        <%= csp_meta_tag %>
-        <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    </head>
+<head>
+  <title>
+    VC Room
+  </title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+    />
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
 
-    <body>
-        <div id='application-container'>
-            <%= render "layouts/application_header" if user_signed_in? %>
-            <%= render "layouts/flash_messages" %>
-            <%= yield %>
-        </div>
-    </body>
+<body>
+<div id='application-container'>
+  <%= render "layouts/application_header" if user_signed_in? %>
+  <%= render "layouts/flash_messages" %>
+  <%= yield %>
+</div>
+<script>
+      function toggleDrawer() {
+        const drawer = document.getElementsByClassName('mdc-drawer--modal')
+        const isOpen = drawer[0].classList.contains('slide-in')
+
+        if (isOpen) {
+            drawer[0].classList.remove('slide-in')
+            drawer[0].classList.add('slide-out')
+        } else {
+            drawer[0].classList.remove('slide-out')
+            drawer[0].classList.add('slide-in')
+            drawer[0].classList.add('mdc-drawer--open')
+        }
+    }
+</script>
+</body>
 </html>

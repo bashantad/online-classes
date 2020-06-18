@@ -2,7 +2,7 @@
   <h2 class="mdc-typography--headline5 login-title">
     Resend confirmation instructions
   </h2>
-
+  <hr class="mdc-list-divider divider-margin">
   <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: {method: :post}) do |f| %>
     <% error_messages = resource.errors.messages %>
 

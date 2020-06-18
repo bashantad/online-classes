@@ -1,5 +1,6 @@
 <div class="mdc-card registration-main">
   <h2 class="mdc-typography--headline4 login-title">Sign in</h2>
+  <hr class="mdc-list-divider divider-margin">
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="form-field">
@@ -40,6 +41,7 @@
       </button>
     </div>
   <% end %>
+  <hr class="mdc-list-divider divider-margin">
   <div class='extra-links'>
     <%= render "devise/shared/links" %>
   </div>

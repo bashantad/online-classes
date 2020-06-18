@@ -5,35 +5,37 @@ body {
   height: 100vh;
 }
 
-.welcome{
+.welcome {
   text-align: center;
 }
-.welcome-main{
+
+.welcome-main {
   margin-top: 4rem;
   padding: 1rem;
 }
 
-.welcome-title{
+.welcome-title {
   margin: 1rem !important;
 }
 
-.lead{
+.lead {
   margin: 1rem !important;
 }
 
-.search{
+.search {
   position: relative;
   margin: auto;
   width: 18rem;
   color: white;
   background-color: $primary-color;
   border-radius: 20px;
-  input{
+
+  input {
     color: white;
   }
 }
 
-.searchIcon{
+.searchIcon {
   padding-left: 8px;
   height: 100%;
   position: absolute;
@@ -43,35 +45,53 @@ body {
   justify-content: center;
 }
 
-.welcome-paper{
+.welcome-paper {
   margin-top: 2rem;
   padding: 1rem;
   text-align: center;
 }
 
-.welcome-buttons{
+.welcome-buttons {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
   margin-top: 2rem;
 }
 
-.welcome-btn
-{
-  a{
+.welcome-btn {
+  a {
     color: white;
     text-decoration: none;
   }
 }
 
-@media only screen and (max-width: 540px){
-  .search{
+.notification {
+  width: 100% !important;
+  position: absolute !important;
+  text-align: center !important;
+  background-color: #26a69a !important;
+  margin-top: 4rem !important;
+  color: white;
+  padding: .5rem 0;
+  font-family: $font-family;
+}
+
+@media only screen and (max-width: 600px) {
+  .notification {
+    margin-top: 3.5rem !important;
+  }
+}
+
+
+@media only screen and (max-width: 540px) {
+  .search {
     width: inherit;
-    .MuiInputBase-root{
+
+    .MuiInputBase-root {
       width: 65%;
     }
   }
-  .welcome-btn{
-    margin: 1rem!important;
+  .welcome-btn {
+    margin: 1rem !important;
   }
 }
