@@ -75,7 +75,6 @@ export default class PeopleInTheChat extends React.Component {
             messageNotificationMap[conversationId] &&
                 <span className='no-of-messages'>
                     {messageNotificationMap[conversationId].length}
-
                 </span>
         );
     }

@@ -113,6 +113,13 @@ export class Message extends React.Component {
         this.setState(newAttributes);
     }
 
+    handleGroupUpdate = (conversation) => {
+        this.setState({
+            showUpdateMembers: true,
+            showNewGroupForm: false,
+        });
+    }
+
     handleCancelGroupCreate = () => {
         this.setState({
             showUpdateMembers: false,
@@ -274,7 +281,7 @@ export class Message extends React.Component {
                                                 currentUserId={currentUserId}
                                                 handleDrawerToggle={this.handleDrawerToggle}
                                                 userIdToNameMapping={userIdToNameMapping(enrolledUsers)}
-                                                handleSuccessGroupCreate={this.handleSuccessGroupCreate}
+                                                handleGroupUpdate={this.handleGroupUpdate}
                                             />
                                         </div>
                                         <div className='message-text'>

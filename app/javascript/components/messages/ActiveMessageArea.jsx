@@ -91,7 +91,7 @@ export default class ActiveMessageArea extends React.Component {
     }
 
     handleUpdate = () =>{
-
+        this.props.handleGroupUpdate();
     }
 
     render() {
@@ -187,4 +187,5 @@ ActiveMessageArea.propTypes = {
     activeConversation: PropTypes.object,
     userIdToNameMapping: PropTypes.object,
     currentUserId: PropTypes.number,
+    handleGroupUpdate: PropTypes.func,
 };
