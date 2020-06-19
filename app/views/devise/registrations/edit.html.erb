@@ -36,6 +36,90 @@
       <% end %>
     </div>
 
+    <div class="form-field">
+      <div class="mdc-typography--subtitle1">
+        <%= f.label :phone %>
+      </div>
+      <div class="mdc-text-field mdc-text-field--filled input-field">
+        <%= f.text_field :phone, autofocus: true, autocomplete: "phone", class: 'mdc-text-field__input' %>
+      </div>
+      <% if error_messages[:phone] %>
+        <div class="field-error">
+          <%= error_messages[:phone][0] %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="form-field">
+      <div class="mdc-typography--subtitle1">
+        <%= f.label :street_address %>
+      </div>
+      <div class="mdc-text-field mdc-text-field--filled input-field">
+        <%= f.text_field :street_address, autofocus: true, autocomplete: "street_address", class: 'mdc-text-field__input' %>
+      </div>
+      <% if error_messages[:street_address] %>
+        <div class="field-error">
+          <%= error_messages[:street_address][0] %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="form-field">
+      <div class="mdc-typography--subtitle1">
+        <%= f.label :city %>
+      </div>
+      <div class="mdc-text-field mdc-text-field--filled input-field">
+        <%= f.text_field :city, autofocus: true, autocomplete: "city", class: 'mdc-text-field__input' %>
+      </div>
+      <% if error_messages[:city] %>
+        <div class="field-error">
+          <%= error_messages[:city][0] %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="form-field">
+      <div class="mdc-typography--subtitle1">
+        <%= f.label :state %>
+      </div>
+      <div class="mdc-text-field mdc-text-field--filled input-field">
+        <%= f.text_field :state, autofocus: true, autocomplete: "state", class: 'mdc-text-field__input' %>
+      </div>
+      <% if error_messages[:state] %>
+        <div class="field-error">
+          <%= error_messages[:state][0] %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="form-field">
+      <div class="mdc-typography--subtitle1">
+        <%= f.label :zip_code %>
+      </div>
+      <div class="mdc-text-field mdc-text-field--filled input-field">
+        <%= f.text_field :zip_code, autofocus: true, autocomplete: "zip_code", class: 'mdc-text-field__input' %>
+      </div>
+      <% if error_messages[:zip_code] %>
+        <div class="field-error">
+          <%= error_messages[:zip_code][0] %>
+        </div>
+      <% end %>
+    </div>
+
+     <div class="form-field">
+      <div class="mdc-typography--subtitle1">
+        <%= f.label :country %>
+      </div>
+      <div class="mdc-text-field mdc-text-field--filled input-field">
+        <%= f.text_field :country, autofocus: true, autocomplete: "country", class: 'mdc-text-field__input' %>
+      </div>
+      <% if error_messages[:country] %>
+        <div class="field-error">
+          <%= error_messages[:country][0] %>
+        </div>
+      <% end %>
+    </div>
+
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>
         Currently waiting confirmation for: <%= resource.unconfirmed_email %>
@@ -43,12 +127,11 @@
     <% end %>
 
     <div class='btn-main'>
-      <button class="mdc-button mdc-button--raised action-btn float-left">
+      <%= link_to "Cancel", root_path, class: 'back secondary-btn float-left' %>
+      <button class="mdc-button mdc-button--raised action-btn float-right">
         <div class="mdc-button__ripple"></div>
         <span class="mdc-button__label"><%= f.submit "Update" %></span>
       </button>
-        <%= link_to "Cancel", root_path, class: 'back secondary-btn' %>
-
     </div>
   <% end %>
 </div>

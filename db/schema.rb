@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_17_025517) do
+ActiveRecord::Schema.define(version: 2020_06_19_213158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -132,6 +132,12 @@ ActiveRecord::Schema.define(version: 2020_06_17_025517) do
     t.string "application_status"
     t.integer "call_limit_per_month", default: 20
     t.datetime "deleted_at"
+    t.string "phone"
+    t.string "state"
+    t.string "street_address"
+    t.string "city"
+    t.integer "zip_code"
+    t.string "country"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

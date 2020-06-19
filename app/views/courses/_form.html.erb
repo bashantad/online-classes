@@ -60,14 +60,14 @@
       <%= form.label :Category %>
     </div>
     <div class="mdc-text-field mdc-text-field--filled input-field course-select">
-      <%= form.select :category_id, class: 'course-select-list' %>
+      <%= form.select :category_id, @categories.collect{|p| [ p.title, p.id ] }, class: 'course-select-list' %>
     </div>
   </div>
   <div class='btn-main'>
-    <button class="mdc-button mdc-button--raised action-btn float-left">
+    <%= link_to 'Back', courses_path, class: 'back secondary-btn float-left' %>
+    <button class="mdc-button mdc-button--raised action-btn float-right">
       <div class="mdc-button__ripple"></div>
       <span class="mdc-button__label">Save</span>
     </button>
-    <%= link_to 'Back', courses_path, class: 'back secondary-btn' %>
   </div>
 <% end %>

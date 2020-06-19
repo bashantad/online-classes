@@ -8,7 +8,7 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.approved.find(params[:id])
+    @course = Course.find(params[:id])
   end
 
   def new

@@ -1,19 +1,87 @@
 <div class="mdc-card registration-main">
-  <h2 class="mdc-typography--headline5 login-title">
-    Account Details
-  </h2>
-  <hr class="mdc-list-divider divider-margin">
-  <div class="user-details">
-    <div class="mdc-typography--subtitle1">
-      Full name: <%= current_user.full_name %>
-    </div>
-    <div class="mdc-typography--subtitle1">
-      Email : <%= current_user.email %>
-    </div>
-  </div>
-  <div class='btn-main'>
-    <%= link_to "Back", root_path, class: 'back secondary-btn' %>
-  </div>
-</div>
+    <h2 class="mdc-typography--headline5 login-title">
+        Account Details
+    </h2>
+    <hr class="mdc-list-divider divider-margin">
+    <div class="user-details">
+        <div class="mdc-typography--subtitle1 user-fields">
+            <div class="field-label">
+                Full name
+            </div>
+            <div>
+                <%= current_user.full_name %>
+            </div>
+        </div>
 
-<!--we will add more fields here -->
+        <div class="mdc-typography--subtitle1 user-fields">
+            <div class="field-label">
+                Email
+            </div>
+            <div>
+                <%= current_user.email %>
+            </div>
+        </div>
+
+        <div class="mdc-typography--subtitle1 user-fields">
+            <div class="field-label">
+                Phone
+            </div>
+            <div>
+                <%= current_user.phone %>
+            </div>
+        </div>
+
+        <div class="mdc-typography--subtitle1 user-fields">
+            <div class="field-label">
+                Street address
+            </div>
+            <div>
+                <%= current_user.street_address %>
+            </div>
+        </div>
+
+        <div class="mdc-typography--subtitle1 user-fields">
+            <div class="field-label">
+                City
+            </div>
+            <div>
+                <%= current_user.city %>
+            </div>
+        </div>
+
+        <div class="mdc-typography--subtitle1 user-fields">
+            <div class="field-label">
+                State
+            </div>
+            <div>
+                <%= current_user.state %>
+            </div>
+        </div>
+
+        <div class="mdc-typography--subtitle1 user-fields">
+            <div class="field-label">
+                Zip code
+            </div>
+            <div>
+                <%= current_user.zip_code %>
+            </div>
+        </div>
+
+        <div class="mdc-typography--subtitle1 user-fields">
+            <div class="field-label">
+                Country
+            </div>
+            <div>
+                <%= current_user.country %>
+            </div>
+        </div>
+    </div>
+
+
+    <div class='btn-main'>
+        <%= link_to "Cancel", root_path,  class: 'back secondary-btn float-left' %>
+        <button class="mdc-button mdc-button--raised action-btn float-right">
+            <%= link_to "Edit", edit_user_registration_path, class: 'btn' %>
+        </button>
+    </div>
+</div>

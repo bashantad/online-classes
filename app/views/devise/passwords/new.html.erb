@@ -23,12 +23,11 @@
     </div>
 
     <div class='btn-main'>
-      <button class="mdc-button mdc-button--raised action-btn float-left">s
+      <%= link_to "Sign In", new_session_path(resource_name), class: 'back secondary-btn float-left' %>
+      <button class="mdc-button mdc-button--raised action-btn float-right">s
         <div class="mdc-button__ripple"></div>
         <span class="mdc-button__label"><%= f.submit "Send" %></span>
       </button>
-      <%= link_to "Sign In", new_session_path(resource_name), class: 'back secondary-btn' %>
     </div>
   <% end %>
-
 </div>

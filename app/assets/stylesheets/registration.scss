@@ -75,6 +75,10 @@ header {
   float: left;
 }
 
+.float-right {
+  float: right;
+}
+
 #error_explanation {
   background-color: $error-color;
   color: white;
@@ -100,7 +104,6 @@ header {
 }
 
 .secondary-btn {
-  float: right;
   margin: 1rem 0 !important;
   line-height: 2.5;
   text-decoration: none;
@@ -400,5 +403,16 @@ header {
   .resp-table-large {
     width: 100%;
     width: -moz-available; /* WebKit-based browsers will ignore this. */
+  }
+}
+
+.user-fields {
+  display: flex;
+  text-align: left;
+  padding: 10px 0;
+  border-bottom: 1px dotted #ddd;
+
+  .field-label {
+    width: 50%;
   }
 }

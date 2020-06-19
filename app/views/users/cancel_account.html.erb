@@ -5,8 +5,8 @@
 		</span>
     <hr class="mdc-list-divider divider-margin">
     <div class='btn-main'>
-      <%= button_to "Delete my account", registration_path(@user), data: {confirm: "Are you sure you want to cancel your account?"}, method: :delete, class: "mdc-button mdc-button--raised delete" %>
-      <%= link_to "Cancel", root_path, class: 'back secondary-btn' %>
+      <%= button_to "Delete my account", registration_path(@user), data: {confirm: "Are you sure you want to cancel your account?"}, method: :delete, class: "mdc-button mdc-button--raised delete float-left" %>
+      <%= link_to "Cancel", root_path, class: 'back secondary-btn float-right' %>
     </div>
   </div>
 </div>
