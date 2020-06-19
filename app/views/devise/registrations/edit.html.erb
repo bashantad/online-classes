@@ -47,9 +47,7 @@
         <div class="mdc-button__ripple"></div>
         <span class="mdc-button__label"><%= f.submit "Update" %></span>
       </button>
-      <button class="cancel secondary-btn">
-        <%= link_to "Cancel", root_path %>
-      </button>
+        <%= link_to "Cancel", root_path, class: 'back secondary-btn' %>
 
     </div>
   <% end %>

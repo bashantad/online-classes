@@ -64,9 +64,7 @@
         <div class="mdc-button__ripple"></div>
         <span class="mdc-button__label"><%= f.submit "Sign Up" %></span>
       </button>
-      <button class="secondary-btn">
-        <%= link_to "Sign In", new_session_path(resource_name) %>
-      </button>
+      <%= link_to "Sign In", new_session_path(resource_name), class: 'back secondary-btn' %>
     </div>
   <% end %>
 </div>

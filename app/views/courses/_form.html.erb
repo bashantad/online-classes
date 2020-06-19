@@ -1,49 +1,73 @@
 <%= form_with(model: course, local: true) do |form| %>
   <% if course.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
-
+      <span class="mdc-typography--subtitle1"><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</span>
       <ul>
         <% course.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+          <li class="mdc-typography--caption"><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="form-field">
+    <div class="mdc-typography--subtitle1">
+      <%= form.label :title %>
+    </div>
+    <div class="mdc-text-field mdc-text-field--filled input-field">
+      <%= form.text_field :title, class: 'mdc-text-field__input' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body %>
+  <div class="form-field">
+    <div class="mdc-typography--subtitle1">
+      <%= form.label :body %>
+    </div>
+    <div class="mdc-text-field--textarea input-field">
+      <%= form.text_area :body, class: 'course-textarea' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :website %>
-    <%= form.text_field :website %>
+  <div class="form-field">
+    <div class="mdc-typography--subtitle1">
+      <%= form.label :website %>
+    </div>
+    <div class="mdc-text-field mdc-text-field--filled input-field">
+      <%= form.text_field :website, class: 'mdc-text-field__input' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :course_for %>
-    <%= form.text_area :course_for %>
+  <div class="form-field">
+    <div class="mdc-typography--subtitle1">
+      <%= form.label :course_for %>
+    </div>
+    <div class="mdc-text-field--textarea input-field">
+      <%= form.text_area :course_for, class: 'course-textarea' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
+  <div class="form-field">
+    <div class="mdc-typography--subtitle1">
+      <%= form.label :price %>
+    </div>
+    <div class="mdc-text-field mdc-text-field--filled input-field">
+      <%= form.text_field :price, class: 'mdc-text-field__input' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :Category %>
-    <%= form.select :category_id, @categories.collect{|p| [ p.title, p.id ] } %>
+  <div class="form-field">
+    <div class="mdc-typography--subtitle1">
+      <%= form.label :Category %>
+    </div>
+    <div class="mdc-text-field mdc-text-field--filled input-field course-select">
+      <%= form.select :category_id, class: 'course-select-list' %>
+    </div>
   </div>
-
-  <div class="actions">
-    <button class="mdc-button mdc-button--raised">
-      <span class="mdc-button__ripple"></span> Save
+  <div class='btn-main'>
+    <button class="mdc-button mdc-button--raised action-btn float-left">
+      <div class="mdc-button__ripple"></div>
+      <span class="mdc-button__label">Save</span>
     </button>
+    <%= link_to 'Back', courses_path, class: 'back secondary-btn' %>
   </div>
 <% end %>
