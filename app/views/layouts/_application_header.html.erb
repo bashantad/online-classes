@@ -1,58 +1,41 @@
-<!--<ul>-->
-<!--  <li>-->
-<%#= link_to "Home", root_path %>
-<!--  </li>-->
-<!--  <li>-->
-<%#= link_to "View account details", details_users_path %>
-<!--  </li>-->
-<!--  <li>-->
-<%#= link_to "Edit account", edit_user_registration_path %>
-<!--  </li>-->
-<!--  <li>-->
-<%#= link_to "Change password", edit_password_users_path %>
-<!--  </li>-->
-<!--  <li>-->
-<%#= link_to "Cancel Account", cancel_account_users_path %>
-<!--  </li>-->
-<!--  <li>-->
-<%#= link_to "Logout", destroy_user_session_path %>
-<!--  </li>-->
-<!--</ul>-->
-<!--<div class="" >-->
 <aside class="mdc-drawer mdc-drawer--modal mdc-top-app-bar--fixed-adjust" id="slider" >
   <div class="mdc-drawer__content">
     <nav class="mdc-list">
-      <a class="mdc-list-item" href='/'>
+      <a class="mdc-list-item" href='<%= root_path %>'>
         <i class="material-icons mdc-list-item__graphic" aria-hidden="true">home</i>
         <span class="mdc-list-item__text">Home</span>
       </a>
       <hr class="mdc-list-divider">
-      <a class="mdc-list-item" href='/users/details'>
+      <a class="mdc-list-item" href='<%= courses_path %>'>
+        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">school</i>
+        <span class="mdc-list-item__text">Courses</span>
+      </a>
+      <hr class="mdc-list-divider">
+      <a class="mdc-list-item" href='<%= details_users_path %>'>
         <i class="material-icons mdc-list-item__graphic" aria-hidden="true">account_circle</i>
         <span class="mdc-list-item__text">Account Details</span>
       </a>
-      <a class="mdc-list-item" href='/users/edit'>
+      <a class="mdc-list-item" href='<%= edit_user_registration_path %>'>
         <i class="material-icons mdc-list-item__graphic" aria-hidden="true">create</i>
         <span class="mdc-list-item__text">Edit Account</span>
       </a>
-      <a class="mdc-list-item" href='/users/edit_password'>
+      <a class="mdc-list-item" href='<%= edit_password_users_path %>'>
         <i class="material-icons mdc-list-item__graphic" aria-hidden="true">vpn_key
         </i>
         <span class="mdc-list-item__text">Change Password</span>
       </a>
-      <a class="mdc-list-item" href='/users/cancel_account'>
+      <a class="mdc-list-item" href='<%= cancel_account_users_path %>'>
         <i class="material-icons mdc-list-item__graphic" aria-hidden="true">cancel</i>
         <span class="mdc-list-item__text">Delete Account</span>
       </a>
       <hr class="mdc-list-divider">
-      <a class="mdc-list-item" href='/users/sign_out'>
+      <a class="mdc-list-item" href='<%= destroy_user_session_path %>'>
         <i class="material-icons mdc-list-item__graphic" aria-hidden="true">exit_to_app</i>
         <span class="mdc-list-item__text">Logout</span>
       </a>
     </nav>
   </div>
 </aside>
-<!--</div>-->
 
 <div class="mdc-drawer-app-content custom-app-bar">
   <header class="mdc-top-app-bar">
