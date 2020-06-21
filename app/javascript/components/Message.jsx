@@ -23,6 +23,7 @@ import UpdateMembers from "./groups/UpdateMembers";
 import courseApi from '../apis/courseApi';
 import conversationApi from '../apis/conversationApi';
 import userApi from '../apis/userApi';
+import Header from "./Header";
 
 const userIdToNameMapping = (users) => {
     return users.reduce((acc, user) => {
@@ -218,24 +219,9 @@ export class Message extends React.Component {
                         />
                         : null
                 }
-                <div className='root'>
+                <div >
                     <CssBaseline/>
-                    <AppBar position="fixed" className='app-bar'>
-                        <Toolbar className='toolbar'>
-                            <Link
-                                to="/"
-                                role="button"
-                            >
-                                <IconButton color="primary" aria-label="upload picture" component="span" className='home-btn' >
-                                    <HomeIcon />
-                                </IconButton>
-                            </Link>
-
-                            <Typography variant="h6" color="inherit" className='app-header'>
-                                {fullName} - {courseName}
-                            </Typography>
-                        </Toolbar>
-                    </AppBar>
+                    <Header fullName={fullName} courseName={courseName}/>
                     <Hidden>
                         <nav>
                             <Hidden smUp implementation="css">

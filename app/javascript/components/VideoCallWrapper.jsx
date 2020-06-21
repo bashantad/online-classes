@@ -4,6 +4,9 @@ import { withRouter } from 'react-router';
 import VideoCall from "./calls/VideoCall";
 import userApi from "../apis/userApi";
 import callApi from "../apis/callApi";
+import Header from "./Header";
+import Typography from '@material-ui/core/Typography';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 class VideoCallWrapper extends React.Component{
     constructor(props){
@@ -92,6 +95,7 @@ class VideoCallWrapper extends React.Component{
 
         return (
             <>
+                <Header/>
                 {
                     this._hasFetchingFinished() ?
                         <>
@@ -103,7 +107,12 @@ class VideoCallWrapper extends React.Component{
                                     : <VideoCall {...videoCallParams } />
                             }
                         </>
-                        : <div> Loading... </div>
+                        : <div>
+                            <Skeleton variant="rect" className='video-skeleton' />
+                            <Typography variant="h6" gutterBottom className='skeleton-caption'>
+                               Loading...
+                            </Typography>
+                        </div>
 
                 }
             </>

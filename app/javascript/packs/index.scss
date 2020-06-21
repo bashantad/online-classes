@@ -70,12 +70,31 @@ body {
   position: absolute !important;
   text-align: center !important;
   background-color: #26a69a !important;
-  margin-top: 4rem !important;
+  margin-top: 0rem !important;
   color: white;
   padding: .5rem 0;
   font-family: $font-family;
 }
 
+.menu-link a{
+  text-decoration: none;
+  color: #4A4A4A !important;
+  :hover{
+    color: #4A4A4A;
+  }
+}
+
+.video-skeleton{
+  height: 20rem !important;
+  width: 30rem;
+  margin: auto;
+  margin-top: 11rem;
+}
+
+.skeleton-caption{
+  text-align: center;
+  margin-top: 10px;
+}
 @media only screen and (max-width: 600px) {
   .notification {
     margin-top: 3.5rem !important;
