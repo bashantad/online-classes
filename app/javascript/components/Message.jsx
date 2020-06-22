@@ -219,7 +219,7 @@ export class Message extends React.Component {
                         />
                         : null
                 }
-                <div >
+                <div className='root'>
                     <CssBaseline/>
                     <Header fullName={fullName} courseName={courseName}/>
                     <Hidden>

@@ -16,9 +16,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
-import ClassIcon from '@material-ui/icons/Class';
-import ChatIcon from '@material-ui/icons/Chat';
-import VideocamIcon from '@material-ui/icons/Videocam';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import SchoolIcon from '@material-ui/icons/School';
+import EditIcon from '@material-ui/icons/Edit';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import DeleteIcon from '@material-ui/icons/Delete';
 import Divider from '@material-ui/core/Divider';
 
 
@@ -45,25 +47,37 @@ const listItems = [
         name: 'Home',
         link: '/',
         icon: <HomeIcon/>
+    }, {
+        key: 'courses',
+        name: 'Courses',
+        link: '/courses',
+        icon: <SchoolIcon/>
+    }, {
+        key: 'accountDetails',
+        name: 'Account Details',
+        link: '/users/details',
+        icon: <AccountCircleIcon/>
+    }, {
+        key: 'editAccount',
+        name: 'Edit Account',
+        link: '/users/edit',
+        icon: <EditIcon/>
+    }, {
+        key: 'changePassword',
+        name: 'Change Password',
+        link: '/users/edit_password',
+        icon: <VpnKeyIcon/>
+    }, {
+        key: 'deleteAccount',
+        name: 'Delete Account',
+        link: '/users/cancel_account',
+        icon: <DeleteIcon/>
+    }, {
+        key: 'logout',
+        name: 'Logout',
+        link: '/users/sign_out',
+        icon: <ExitToAppIcon/>
     },
-    {
-        key: 'joinVideo',
-        name: 'Video Call',
-        link: '/joincalls',
-        icon: <VideocamIcon/>
-    },
-    {
-        key: 'joinClass',
-        name: 'Join Class',
-        link: '/classroom/1',
-        icon: <ClassIcon/>
-    },
-    {
-        key: 'joinMessages',
-        name: 'Messages',
-        link: '/courses/1/messages',
-        icon: <ChatIcon/>
-    }
 ]
 
 export default function Header(props) {
@@ -76,7 +90,7 @@ export default function Header(props) {
     };
 
     return (
-        <div className={classes.root}>
+        <div>
             <AppBar position="fixed" className='app-bar'>
                 <Toolbar>
                     <Hidden>
@@ -87,13 +101,8 @@ export default function Header(props) {
                     </Hidden>
                     <Typography variant="h6" className={classes.title}>
                         {/*{courseName && fullName ? `${courseName - fullName}` : 'VCRoom'}*/}
-                        VCRoom
+                        VC Room
                     </Typography>
-                    <Button variant="contained" color="primary" disableElevation startIcon={<ExitToAppIcon/>}>
-                        <Link to='/users/sign_out' className={classes.btnLogout}>
-                            Logout
-                        </Link>
-                    </Button>
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -110,17 +119,17 @@ export default function Header(props) {
                     {listItems.map((i, index) => (
                         <Fragment>
                             <Link
-                                to={i.key !== 'joinVideo' ? i.link : handleVideo}
+                                to={i.link}
                                 role="button"
                             >
-                                <ListItem button key={index}>
+                                <ListItem button key={index} className='custom-link-btn'>
                                     <ListItemIcon>
                                         {i.icon}
                                     </ListItemIcon>
-                                    <ListItemText primary={i.name}/>
+                                    <ListItemText primary={i.name} className='custom-listItem-text'/>
                                 </ListItem>
                             </Link>
-                            {index === 0 || index === 3 ? <Divider/>: ''}
+                            {index === 0 || index === 1 || index === 5 ? <Divider/> : ''}
                         </Fragment>
                     ))}
                 </List>

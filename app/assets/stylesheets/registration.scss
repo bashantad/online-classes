@@ -175,6 +175,7 @@ header {
 
 .delete {
   background-color: $error-color !important;
+  margin: 1rem 0;
 }
 
 .delete-secondary {
@@ -208,9 +209,9 @@ header {
   margin-left: 0px !important;
 }
 
-.mdc-list-item:hover {
-  background-color: #F5F5F5;
-}
+//.mdc-list-item:hover {
+//  background-color: rgba(0, 0, 0, 0.04);
+//}
 
 .divider-margin {
   margin-bottom: 1rem;
@@ -331,19 +332,38 @@ header {
 
 .mdc-drawer {
   height: 100vh;
-  position: absolute;
+  position: fixed;
   transform: translateX(-100%);
   -webkit-transform: translateX(-100%);
 }
 
+.mdc-list-item i:hover{
+  color: #4A4A4A !important;
+}
+
+.MuiBackdrop-root {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  z-index: 1;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
 .slide-in {
-  animation: slide-in 0.5s forwards;
-  -webkit-animation: slide-in 0.5s forwards;
+  animation: slide-in 0.3s forwards;
+  -webkit-animation: slide-in 0.3s forwards;
 }
 
 .slide-out {
-  animation: slide-out 0.5s forwards;
-  -webkit-animation: slide-out 0.5s forwards;
+  animation: slide-out 0.3s forwards;
+  -webkit-animation: slide-out 0.3s forwards;
 }
 
 @keyframes slide-in {
