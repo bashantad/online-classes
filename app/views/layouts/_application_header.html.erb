@@ -1,4 +1,15 @@
-<aside class="mdc-drawer mdc-drawer--modal mdc-top-app-bar--fixed-adjust" id="slider" >
+<div class="mdc-drawer-app-content custom-app-bar">
+  <header class="mdc-top-app-bar">
+    <div class="mdc-top-app-bar__row">
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+        <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button nav-btn" aria-label="Open navigation menu" onclick="toggleDrawer()">menu</button>
+        <span class="mdc-top-app-bar__title">VC Room</span>
+      </section>
+    </div>
+  </header>
+</div>
+
+<aside class="mdc-drawer mdc-drawer--open mdc-drawer--modal mdc-top-app-bar--fixed-adjust" id="slider">
   <div class="mdc-drawer__content">
     <nav class="mdc-list">
       <a class="mdc-list-item" href='<%= root_path %>'>
@@ -37,17 +48,7 @@
   </div>
 </aside>
 
-<div class="mdc-drawer-app-content custom-app-bar">
-  <header class="mdc-top-app-bar">
-    <div class="mdc-top-app-bar__row">
-      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-        <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button" aria-label="Open navigation menu" onclick="toggleDrawer()">menu</button>
-        <span class="mdc-top-app-bar__title">VC Room</span>
-      </section>
-    </div>
-  </header>
-</div>
-  <div class='backdrop' onclick="hideDrawer()"></div>
+<div class='backdrop' onclick="hideDrawer()"></div>
 
 
 

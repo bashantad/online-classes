@@ -334,7 +334,8 @@ header {
   height: 100vh;
   position: fixed;
   transform: translateX(-100%);
-  -webkit-transform: translateX(-100%);
+  -webkit-transform: translateX(0%);
+  box-shadow: none;
 }
 
 .mdc-list-item i:hover{
@@ -354,6 +355,12 @@ header {
   background-color: rgba(0, 0, 0, 0.5);
   -webkit-tap-highlight-color: transparent;
   transition: ease 0.3s;
+}
+
+.main-content{
+  margin-left: 256px;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .slide-in {
@@ -396,7 +403,7 @@ header {
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 650px) {
   .login-main {
     width: 20rem;
   }
@@ -423,6 +430,38 @@ header {
   .resp-table-large {
     width: 100%;
     width: -moz-available; /* WebKit-based browsers will ignore this. */
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .nav-btn {
+   display: none;
+  }
+  .slide-in {
+    animation:none;
+    -webkit-animation: none;
+  }
+
+  .slide-out {
+    animation: none;
+    -webkit-animation: none;
+  }
+  .MuiBackdrop-root {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .mdc-drawer {
+    height: 100vh !important;
+    position: fixed;
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-1000%);
+    box-shadow: none;
+  }
+  .main-content{
+    margin-left: 0;
+    height: 100vh;
   }
 }
 
