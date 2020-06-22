@@ -360,7 +360,7 @@ header {
 .main-content{
   margin-left: 256px;
   height: 100vh;
-  overflow: hidden;
+  overflow: initial;
 }
 
 .slide-in {
@@ -462,6 +462,7 @@ header {
   .main-content{
     margin-left: 0;
     height: 100vh;
+    overflow: initial;
   }
 }
 
