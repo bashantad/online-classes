@@ -8,14 +8,16 @@
 
 return if Rails.env.production?
 users = [
-    User.create(full_name: 'Admin User', email: 'admin.user@gmail.com', password: 'password@1'),
-    User.create(full_name: 'John Smith', email: 'john.smith@gmail.com', password: 'password@1'),
-    User.create(full_name: 'Peter Larson', email: 'peter.larson@gmail.com', password: 'password@1'),
-    User.create(full_name: 'Mark Aresty', email: 'mark.aresty@gmail.com', password: 'password@1'),
-    User.create(full_name: 'Adrien Moore', email: 'adrien.moore@gmail.com', password: 'password@1'),
-    User.create(full_name: 'Kevin Westley', email: 'kevin.westley@gmail.com', password: 'password@1')
+    User.new(full_name: 'Admin User', email: 'admin.user@gmail.com', password: 'password@1'),
+    User.new(full_name: 'John Smith', email: 'john.smith@gmail.com', password: 'password@1'),
+    User.new(full_name: 'Peter Larson', email: 'peter.larson@gmail.com', password: 'password@1'),
+    User.new(full_name: 'Mark Aresty', email: 'mark.aresty@gmail.com', password: 'password@1'),
+    User.new(full_name: 'Adrien Moore', email: 'adrien.moore@gmail.com', password: 'password@1'),
+    User.new(full_name: 'Kevin Westley', email: 'kevin.westley@gmail.com', password: 'password@1')
 ]
 
+users.each(&:skip_confirmation!)
+users.each(&:save)
 users.each(&:confirm)
 
 categories = [
