@@ -81,7 +81,7 @@ const listItems = [
 ]
 
 export default function Header(props) {
-    const {handleVideo, courseName, fullName} = props;
+    const {courseName, fullName} = props;
     const classes = useStyles();
     const [drawerOpen, setDrawerOpen] = useState(false)
 
@@ -100,8 +100,7 @@ export default function Header(props) {
                         </IconButton>
                     </Hidden>
                     <Typography variant="h6" className={classes.title}>
-                        {/*{courseName && fullName ? `${courseName - fullName}` : 'VCRoom'}*/}
-                        VC Room
+                        {courseName && fullName ? courseName : 'VC Room'}
                     </Typography>
                 </Toolbar>
             </AppBar>
