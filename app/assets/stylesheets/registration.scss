@@ -3,7 +3,7 @@
 body {
   margin: 0;
   height: auto;
-  background: #dedede;
+  background: #fafafa;
 }
 
 header {
@@ -175,6 +175,7 @@ header {
 
 .delete {
   background-color: $error-color !important;
+  margin: 1rem 0;
 }
 
 .delete-secondary {
@@ -208,9 +209,9 @@ header {
   margin-left: 0px !important;
 }
 
-.mdc-list-item:hover {
-  background-color: #F5F5F5;
-}
+//.mdc-list-item:hover {
+//  background-color: rgba(0, 0, 0, 0.04);
+//}
 
 .divider-margin {
   margin-bottom: 1rem;
@@ -331,19 +332,45 @@ header {
 
 .mdc-drawer {
   height: 100vh;
-  position: absolute;
+  position: fixed;
   transform: translateX(-100%);
-  -webkit-transform: translateX(-100%);
+  -webkit-transform: translateX(0%);
+  box-shadow: none;
+}
+
+.mdc-list-item i:hover{
+  color: #4A4A4A !important;
+}
+
+.MuiBackdrop-root {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  z-index: 1;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-tap-highlight-color: transparent;
+  transition: ease 0.3s;
+}
+
+.main-content{
+  margin-left: 256px;
+  height: 100vh;
+  overflow: initial;
 }
 
 .slide-in {
-  animation: slide-in 0.5s forwards;
-  -webkit-animation: slide-in 0.5s forwards;
+  animation: slide-in 0.3s forwards;
+  -webkit-animation: slide-in 0.3s forwards;
 }
 
 .slide-out {
-  animation: slide-out 0.5s forwards;
-  -webkit-animation: slide-out 0.5s forwards;
+  animation: slide-out 0.3s forwards;
+  -webkit-animation: slide-out 0.3s forwards;
 }
 
 @keyframes slide-in {
@@ -376,7 +403,7 @@ header {
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 650px) {
   .login-main {
     width: 20rem;
   }
@@ -403,6 +430,39 @@ header {
   .resp-table-large {
     width: 100%;
     width: -moz-available; /* WebKit-based browsers will ignore this. */
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .nav-btn {
+   display: none;
+  }
+  .slide-in {
+    animation:none;
+    -webkit-animation: none;
+  }
+
+  .slide-out {
+    animation: none;
+    -webkit-animation: none;
+  }
+  .MuiBackdrop-root {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .mdc-drawer {
+    height: 100vh !important;
+    position: fixed;
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-1000%);
+    box-shadow: none;
+  }
+  .main-content{
+    margin-left: 0;
+    height: 100vh;
+    overflow: initial;
   }
 }
 

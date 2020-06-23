@@ -1,4 +1,15 @@
-<aside class="mdc-drawer mdc-drawer--modal mdc-top-app-bar--fixed-adjust" id="slider" >
+<div class="mdc-drawer-app-content custom-app-bar">
+  <header class="mdc-top-app-bar">
+    <div class="mdc-top-app-bar__row">
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+        <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button nav-btn" aria-label="Open navigation menu" onclick="toggleDrawer()">menu</button>
+        <span class="mdc-top-app-bar__title">VC Room</span>
+      </section>
+    </div>
+  </header>
+</div>
+
+<aside class="mdc-drawer mdc-drawer--open mdc-drawer--modal mdc-top-app-bar--fixed-adjust" id="slider">
   <div class="mdc-drawer__content">
     <nav class="mdc-list">
       <a class="mdc-list-item" href='<%= root_path %>'>
@@ -25,7 +36,7 @@
         <span class="mdc-list-item__text">Change Password</span>
       </a>
       <a class="mdc-list-item" href='<%= cancel_account_users_path %>'>
-        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">cancel</i>
+        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">delete</i>
         <span class="mdc-list-item__text">Delete Account</span>
       </a>
       <hr class="mdc-list-divider">
@@ -37,16 +48,8 @@
   </div>
 </aside>
 
-<div class="mdc-drawer-app-content custom-app-bar">
-  <header class="mdc-top-app-bar">
-    <div class="mdc-top-app-bar__row">
-      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-        <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button" aria-label="Open navigation menu" onclick="toggleDrawer()">menu</button>
-        <span class="mdc-top-app-bar__title">VC Room</span>
-      </section>
-    </div>
-  </header>
-</div>
+<div class='backdrop' onclick="hideDrawer()"></div>
+
 
 
 

@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>
-            VC Room
-        </title>
-        <%= csrf_meta_tags %>
-        <%= csp_meta_tag %>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    </head>
+<head>
+  <title>
+    VC Room
+  </title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
 
-    <body>
-        <div id='application-container'>
-            <%= render "layouts/application_header" if user_signed_in? %>
-            <%= render "layouts/flash_messages" %>
-            <%= yield %>
-        </div>
-        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    </body>
+<body>
+
+<%= render "layouts/application_header" if user_signed_in? %>
+<%= render "layouts/flash_messages" %>
+<div class="mdc-drawer-app-content">
+  <main class="main-content" id="main-content">
+    <%= yield %>
+  </main>
+</div>
+<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</body>
 </html>

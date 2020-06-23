@@ -2,7 +2,7 @@
 
 body {
   margin: 0;
-  height: 100vh;
+  //height: 100vh;
 }
 
 .welcome {
@@ -70,11 +70,51 @@ body {
   position: absolute !important;
   text-align: center !important;
   background-color: #26a69a !important;
-  margin-top: 4rem !important;
+  margin-top: 0rem !important;
   color: white;
   padding: .5rem 0;
   font-family: $font-family;
 }
+
+.menu-link {
+  padding-top: 2px !important;
+  padding-bottom: 8px;
+  a {
+    text-decoration: none;
+    color: #4A4A4A !important;
+  }
+}
+
+.video-skeleton {
+  height: 20rem !important;
+  width: 30rem;
+  margin: auto;
+  margin-top: 11rem;
+}
+
+.skeleton-caption {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.custom-listItem-text span {
+  font-size: .875rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 500;
+  line-height: 1.375rem;
+  letter-spacing: 0.00938em;
+}
+
+.custom-link-btn {
+  margin: 8px !important;
+  height: calc(48px - 2 * 4px);
+  padding: 0 8px !important;
+  justify-content: flex-start;
+  text-decoration: none;
+  width: auto !important;
+  border-radius: 4px !important;
+}
+
 
 @media only screen and (max-width: 600px) {
   .notification {
