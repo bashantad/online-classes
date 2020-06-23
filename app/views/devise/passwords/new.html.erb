@@ -1,3 +1,4 @@
+<div class="no-margin-left">
 <div class="mdc-card registration-main">
   <h2 class="mdc-typography--headline5 login-title">Forgot your password?</h2>
   <hr class="mdc-list-divider divider-margin">
@@ -24,10 +25,11 @@
 
     <div class='btn-main'>
       <%= link_to "Sign In", new_session_path(resource_name), class: 'back secondary-btn float-left' %>
-      <button class="mdc-button mdc-button--raised action-btn float-right">s
+      <button class="mdc-button mdc-button--raised action-btn float-right">
         <div class="mdc-button__ripple"></div>
         <span class="mdc-button__label"><%= f.submit "Send" %></span>
       </button>
     </div>
   <% end %>
+</div>
 </div>
