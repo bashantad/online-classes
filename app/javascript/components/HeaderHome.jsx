@@ -23,7 +23,6 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Divider from '@material-ui/core/Divider';
 
-
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -38,7 +37,16 @@ const useStyles = makeStyles((theme) => ({
         color: 'white',
         textDecoration: 'none',
         textTransform: 'capitalize',
-    }
+    },
+    drawerPaper: {
+        width: 256,
+    },
+    drawer: {
+        [theme.breakpoints.up('sm')]: {
+            width: 256,
+            flexShrink: 0,
+        },
+    },
 }));
 
 const listItems = [
@@ -51,7 +59,7 @@ const listItems = [
         key: 'courses',
         name: 'Courses',
         link: '/courses',
-        icon: <SchoolIcon/>,
+        icon: <SchoolIcon/>
     }, {
         key: 'accountDetails',
         name: 'Account Details',
@@ -80,7 +88,7 @@ const listItems = [
     },
 ]
 
-export default function Header(props) {
+export default function HeaderHome(props) {
     const {courseName, fullName} = props;
     const classes = useStyles();
     const [drawerOpen, setDrawerOpen] = useState(false)
@@ -93,7 +101,7 @@ export default function Header(props) {
         <div>
             <AppBar position="fixed" className='app-bar'>
                 <Toolbar>
-                    <Hidden>
+                    <Hidden only={['lg', 'xl','md']}>
                         <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"
                                     onClick={handleDrawerToggle}>
                             <MenuIcon/>
@@ -104,36 +112,68 @@ export default function Header(props) {
                     </Typography>
                 </Toolbar>
             </AppBar>
-            <Drawer
-                variant="temporary"
-                anchor={'left'}
-                open={drawerOpen}
-                onClose={handleDrawerToggle}
-                ModalProps={{
-                    keepMounted: true, // Better open performance on mobile.
-                }}
-            >
-                <Toolbar/>
-                <List className='menu-link'>
-                    {listItems.map((i, index) => (
-                        <Fragment>
-                            <Link
-                                to={i.link}
-                                role="button"
-                            >
-                                <ListItem button key={index} className='custom-link-btn'>
-                                    <ListItemIcon>
-                                        {i.icon}
-                                    </ListItemIcon>
-                                    <ListItemText primary={i.name} className='custom-listItem-text'/>
-                                </ListItem>
-                            </Link>
-                            {index === 0 || index === 1 || index === 5 ? <Divider/> : ''}
-                        </Fragment>
-                    ))}
-                </List>
-            </Drawer>
-
+            <nav className={classes.drawer}>
+                <Drawer
+                    variant="temporary"
+                    anchor={'left'}
+                    open={drawerOpen}
+                    onClose={handleDrawerToggle}
+                    ModalProps={{
+                        keepMounted: true, // Better open performance on mobile.
+                    }}
+                >
+                    <Toolbar/>
+                    <List className='menu-link'>
+                        {listItems.map((i, index) => (
+                            <Fragment>
+                                <Link
+                                    to={i.link}
+                                    role="button"
+                                >
+                                    <ListItem button key={index} className='custom-link-btn'>
+                                        <ListItemIcon>
+                                            {i.icon}
+                                        </ListItemIcon>
+                                        <ListItemText primary={i.name} className='custom-listItem-text'/>
+                                    </ListItem>
+                                </Link>
+                                {index === 0 || index === 1 || index === 5 ? <Divider/> : ''}
+                            </Fragment>
+                        ))}
+                    </List>
+                </Drawer>
+            </nav>
+            <nav className={classes.drawer}>
+                <Hidden smDown implementation="css">
+                    <Drawer
+                        classes={{
+                            paper: classes.drawerPaper,
+                        }}
+                        variant="permanent"
+                        open={drawerOpen}
+                    >
+                        <Toolbar/>
+                        <List className='menu-link'>
+                            {listItems.map((i, index) => (
+                                <Fragment>
+                                    <Link
+                                        to={i.link}
+                                        role="button"
+                                    >
+                                        <ListItem button key={index} className='custom-link-btn'>
+                                            <ListItemIcon>
+                                                {i.icon}
+                                            </ListItemIcon>
+                                            <ListItemText primary={i.name} className='custom-listItem-text'/>
+                                        </ListItem>
+                                    </Link>
+                                    {index === 0 || index === 1 || index === 5 ? <Divider/> : ''}
+                                </Fragment>
+                            ))}
+                        </List>
+                    </Drawer>
+                </Hidden>
+            </nav>
         </div>
     );
 }

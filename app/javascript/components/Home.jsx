@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import {Link} from "react-router-dom";
 import { withRouter } from 'react-router';
 import PropTypes from "prop-types";
@@ -13,7 +13,7 @@ import ClassIcon from '@material-ui/icons/Class';
 import MessageIcon from '@material-ui/icons/Message';
 import CallIcon from '@material-ui/icons/Call';
 
-import Header from '../components/Header';
+import HeaderHome from '../components/HeaderHome';
 import '../packs/index.scss'
 import callApi from "../apis/callApi";
 
@@ -39,84 +39,86 @@ export class Home extends React.Component {
     render() {
         const {error} = this.state;
         return (
-            <div>
-                <Header/>
-                <Container maxWidth="sm" className='welcome'>
-                    <div className='welcome-main'>
-                        <Typography variant="h4" className='welcome-title'>
-                            VCRoom
-                        </Typography>
-
-                        <Paper className='welcome-paper'>
-                            <Typography variant="h6" className="lead">
-                                Search the virtual classes that are running now.
+            <div className="main-root">
+                <HeaderHome/>
+                <main className='main-content-react'>
+                    <Container maxWidth="sm" className='welcome'>
+                        <div className='welcome-main'>
+                            <Typography variant="h4" className='welcome-title'>
+                                VCRoom
                             </Typography>
-                            <div className='search'>
-                                <div className='searchIcon'>
-                                    <SearchIcon/>
+
+                            <Paper className='welcome-paper'>
+                                <Typography variant="h6" className="lead">
+                                    Search the virtual classes that are running now.
+                                </Typography>
+                                <div className='search'>
+                                    <div className='searchIcon'>
+                                        <SearchIcon/>
+                                    </div>
+                                    <InputBase
+                                        placeholder="Search…"
+                                        classes='search-main'
+                                        inputProps={{'aria-label': 'search'}}
+                                    />
                                 </div>
-                                <InputBase
-                                    placeholder="Search…"
-                                    classes='search-main'
-                                    inputProps={{'aria-label': 'search'}}
-                                />
-                            </div>
-                        </Paper>
-                    </div>
-                </Container>
+                            </Paper>
+                        </div>
+                    </Container>
 
-                <Container maxWidth="md">
-                    <div className='welcome-buttons'>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            size="large"
-                            className='welcome-btn'
-                            startIcon={<ClassIcon/>}
-                        >
-                            <Link
-                                to="/classroom/1"
-                                className="btn btn-lg custom-button"
-                                role="button"
+                    <Container maxWidth="md">
+                        <div className='welcome-buttons'>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                size="large"
+                                className='welcome-btn'
+                                startIcon={<ClassIcon/>}
                             >
-                                Join class
-                            </Link>
-                        </Button>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            size="large"
-                            className='welcome-btn'
-                            startIcon={<MessageIcon/>}
-                        >
-                            <Link
-                                to="/courses/1/messages"
-                                className="btn btn-lg custom-button"
-                                role="button"
-                            >
-                                Join Messages
-                            </Link>
-                        </Button>
-
-                        <div className='video-call-component'>
-                            <div>
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    size="large"
-                                    className='welcome-btn'
-                                    onClick={this.handleRoomCreateClick}
-                                    startIcon={<CallIcon/>}
+                                <Link
+                                    to="/classroom/1"
+                                    className="btn btn-lg custom-button"
+                                    role="button"
                                 >
-                                    Create one click video conference room
-                                </Button>
-                                {
-                                    error && <div>{error}</div>
-                                }
+                                    Join class
+                                </Link>
+                            </Button>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                size="large"
+                                className='welcome-btn'
+                                startIcon={<MessageIcon/>}
+                            >
+                                <Link
+                                    to="/courses/1/messages"
+                                    className="btn btn-lg custom-button"
+                                    role="button"
+                                >
+                                    Join Messages
+                                </Link>
+                            </Button>
+
+                            <div className='video-call-component'>
+                                <div>
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        size="large"
+                                        className='welcome-btn'
+                                        onClick={this.handleRoomCreateClick}
+                                        startIcon={<CallIcon/>}
+                                    >
+                                        Create one click video conference room
+                                    </Button>
+                                    {
+                                        error && <div>{error}</div>
+                                    }
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </Container>
+                    </Container>
+                </main>
             </div>
         );
     }
