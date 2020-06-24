@@ -291,10 +291,29 @@ header {
   }
 }
 
+.course-table {
+  text-align: center;
+  padding-top: 2rem;
+
+  .mdc-data-table {
+    width: 100%;
+  }
+
+}
+
 .enrollment-title {
   text-align: center;
   //margin-top: 6rem;
   //margin-bottom: 2rem;
+}
+
+.course-title {
+  display: flex;
+  justify-content: space-between;
+
+  .action-btn {
+    margin: 0;
+  }
 }
 
 .add-more-people {

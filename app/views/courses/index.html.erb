@@ -1,57 +1,59 @@
 <div class="erb-body">
-<div class="enrollment-title">
-  <span class="mdc-typography--headline5">List of courses</span>
-</div>
-
-<div class="enrollment-table">
-  <div>
+  <div class="mdc-card course-main">
+    <div class="course-title">
+      <span class="mdc-typography--headline5">List of courses</span>
+      <span>
     <%= link_to 'Add New Course', new_course_path, class: 'mdc-button mdc-button--raised action-btn' %>
-  </div>
-  <div class="mdc-data-table resp-table-large">
-    <table class="mdc-data-table__table" aria-label="Courses">
-      <thead>
-      <tr class="mdc-data-table__header-row">
-        <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Title</th>
-        <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Body</th>
-        <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Creator</th>
-        <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Website</th>
-        <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Course for
-        </th>
-        <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Price</th>
-        <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Category</th>
-        <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Approved</th>
-        <th class="mdc-data-table__header-cell mdc-typography--subtitle1 action-head" role="columnheader" scope="col" colspan="2">Action</th>
-      </tr>
-      </thead>
+  </span>
+    </div>
 
-      <tbody class="mdc-data-table__content">
-      <% @courses.each do |course| %>
-        <tr class="mdc-data-table__row">
-          <td class="mdc-data-table__cell">
-            <%= link_to course.title, course %>
-          </td>
-          <td class="mdc-data-table__cell"><%= course.body %></td>
-          <td class="mdc-data-table__cell"><%= course.owner.full_name %></td>
-          <td class="mdc-data-table__cell"><%= course.website %></td>
-          <td class="mdc-data-table__cell"><%= course.course_for %></td>
-          <td class="mdc-data-table__cell"><%= course.price %></td>
-          <td class="mdc-data-table__cell"><%= course.category.title %></td>
-          <td class="mdc-data-table__cell"><%= course.approved_text %></td>
-          <td class="mdc-data-table__cell action">
-            <%= link_to "View", course, class: 'back secondary-btn' %>
-          </td>
-          <td class="mdc-data-table__cell action">
-            <%= link_to 'Edit', edit_course_path(course), class: 'back secondary-btn' %>
-          </td>
-          <td class="mdc-data-table__cell action">
-            <%= link_to 'Delete', course, method: :delete, data: {confirm: 'Are you sure?'}, class: 'cancel secondary-btn' %>
-          </td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
+    <div class="course-table">
+      <div class="mdc-data-table resp-table-large">
+        <table class="mdc-data-table__table" aria-label="Courses">
+          <thead>
+          <tr class="mdc-data-table__header-row">
+            <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Title</th>
+            <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Body</th>
+            <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Creator</th>
+            <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Website</th>
+            <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Course for
+            </th>
+            <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Price</th>
+            <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Category</th>
+            <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Approved</th>
+            <th class="mdc-data-table__header-cell mdc-typography--subtitle1 action-head" role="columnheader" scope="col" colspan="2">Action</th>
+          </tr>
+          </thead>
+
+          <tbody class="mdc-data-table__content">
+          <% @courses.each do |course| %>
+            <tr class="mdc-data-table__row">
+              <td class="mdc-data-table__cell">
+                <%= link_to course.title, course %>
+              </td>
+              <td class="mdc-data-table__cell"><%= course.body %></td>
+              <td class="mdc-data-table__cell"><%= course.owner.full_name %></td>
+              <td class="mdc-data-table__cell"><%= course.website %></td>
+              <td class="mdc-data-table__cell"><%= course.course_for %></td>
+              <td class="mdc-data-table__cell"><%= course.price %></td>
+              <td class="mdc-data-table__cell"><%= course.category.title %></td>
+              <td class="mdc-data-table__cell"><%= course.approved_text %></td>
+              <td class="mdc-data-table__cell action">
+                <%= link_to "View", course, class: 'back secondary-btn' %>
+              </td>
+              <td class="mdc-data-table__cell action">
+                <%= link_to 'Edit', edit_course_path(course), class: 'back secondary-btn' %>
+              </td>
+              <td class="mdc-data-table__cell action">
+                <%= link_to 'Delete', course, method: :delete, data: {confirm: 'Are you sure?'}, class: 'cancel secondary-btn' %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-</div>
 </div>
 
 

@@ -7,6 +7,8 @@ import BroadCast from './BroadCast';
 import './VideoCall.scss';
 import './webrtc-old-browsers';
 import VideoControl from "./VideoControl";
+import Typography from "@material-ui/core/Typography";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 export default class VideoCall extends React.Component {
     constructor(props) {
@@ -214,9 +216,16 @@ export default class VideoCall extends React.Component {
             <div className="video-call-container">
                 <div className={`local-video-container ${connectedClass}`}>
                     <video id="local-video-box" autoPlay playsInline
-                       className='video-component local-video' muted="muted"></video>
+                           className='video-component local-video' muted="muted"></video>
                     {
-                        hasJoinedLocally && ! hasJoinedRemotely && <div>Waiting for the other person to join...</div>
+                        hasJoinedLocally && !hasJoinedRemotely &&
+                        <div className='skeleton-wrapper'>
+                            <CircularProgress/>
+                            <Typography variant="caption" display="block" gutterBottom className='skeleton-caption'>
+                                Waiting for the other person to join...
+                            </Typography>
+                        </div>
+
                     }
                 </div>
                 <div id="remote-calls-container">
@@ -228,8 +237,8 @@ export default class VideoCall extends React.Component {
 }
 
 VideoCall.propTypes = {
-    creatorId : PropTypes.string.isRequired,
-    callingCode : PropTypes.string.isRequired,
+    creatorId: PropTypes.string.isRequired,
+    callingCode: PropTypes.string.isRequired,
     currentUserId: PropTypes.number.isRequired,
     currentUserName: PropTypes.string.isRequired,
     history: PropTypes.object.isRequired,
