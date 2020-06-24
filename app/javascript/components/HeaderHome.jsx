@@ -1,5 +1,5 @@
 import React, {Fragment, useState} from 'react';
-import {Link} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import {makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -54,16 +54,19 @@ const listItems = [
         key: 'home',
         name: 'Home',
         link: '/',
+        cmsPages: false,
         icon: <HomeIcon/>
     }, {
         key: 'courses',
         name: 'Courses',
         link: '/courses',
+        cmsPages: true,
         icon: <SchoolIcon/>
     }, {
         key: 'accountDetails',
         name: 'Account Details',
         link: '/users/details',
+        cmsPages: true,
         icon: <AccountCircleIcon/>
     }, {
         key: 'editAccount',
@@ -74,16 +77,19 @@ const listItems = [
         key: 'changePassword',
         name: 'Change Password',
         link: '/users/edit_password',
+        cmsPages: true,
         icon: <VpnKeyIcon/>
     }, {
         key: 'deleteAccount',
         name: 'Delete Account',
         link: '/users/cancel_account',
+        cmsPages: true,
         icon: <DeleteIcon/>
     }, {
         key: 'logout',
         name: 'Logout',
         link: '/users/sign_out',
+        cmsPages: true,
         icon: <ExitToAppIcon/>
     },
 ]
@@ -95,6 +101,15 @@ export default function HeaderHome(props) {
 
     const handleDrawerToggle = () => {
         setDrawerOpen(!drawerOpen)
+    };
+
+
+    const redirectTo = (menuItem) => {
+        if(menuItem.cmsPages) {
+            window.location = menuItem.link;
+        } else {
+            return <Redirect to={link} />
+        }
     };
 
     return (
@@ -124,19 +139,19 @@ export default function HeaderHome(props) {
                 >
                     <Toolbar/>
                     <List className='menu-link'>
-                        {listItems.map((i, index) => (
-                            <Fragment>
-                                <Link
-                                    to={i.link}
+                        {listItems.map((menuItem, index) => (
+                            <Fragment key={`menu-item-mbl-desk-${index}`}>
+                                <div
+                                    onClick={() => redirectTo(menuItem)}
                                     role="button"
                                 >
-                                    <ListItem button key={index} className='custom-link-btn'>
+                                    <ListItem button className='custom-link-btn'>
                                         <ListItemIcon>
-                                            {i.icon}
+                                            {menuItem.icon}
                                         </ListItemIcon>
-                                        <ListItemText primary={i.name} className='custom-listItem-text'/>
+                                        <ListItemText primary={menuItem.name} className='custom-listItem-text'/>
                                     </ListItem>
-                                </Link>
+                                </div>
                                 {index === 0 || index === 1 || index === 5 ? <Divider/> : ''}
                             </Fragment>
                         ))}
@@ -154,19 +169,19 @@ export default function HeaderHome(props) {
                     >
                         <Toolbar/>
                         <List className='menu-link'>
-                            {listItems.map((i, index) => (
-                                <Fragment>
-                                    <Link
-                                        to={i.link}
+                            {listItems.map((menuItem, index) => (
+                                <Fragment key={`menu-item-mbl-${index}`}>
+                                    <div
+                                        onClick={() => redirectTo(menuItem)}
                                         role="button"
                                     >
                                         <ListItem button key={index} className='custom-link-btn'>
                                             <ListItemIcon>
-                                                {i.icon}
+                                                {menuItem.icon}
                                             </ListItemIcon>
-                                            <ListItemText primary={i.name} className='custom-listItem-text'/>
+                                            <ListItemText primary={menuItem.name} className='custom-listItem-text'/>
                                         </ListItem>
-                                    </Link>
+                                    </div>
                                     {index === 0 || index === 1 || index === 5 ? <Divider/> : ''}
                                 </Fragment>
                             ))}
