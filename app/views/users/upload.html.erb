@@ -1,0 +1,23 @@
+<div class="mdc-card registration-main">
+    <h2 class="mdc-typography--headline5 login-title">
+        Upload profile picture
+    </h2>
+    <hr class="mdc-list-divider divider-margin">
+    <%= form_for(@user, local: true, url: do_upload_users_path, html: {method: :put}) do |f| %>
+        <% error_messages = @user.errors.messages %>
+        <div>
+            <%= f.file_field :file %>
+        </div>
+        <div>
+            <%= image_tag url_for(current_user.avatar_image) %>
+        </div>
+
+        <div class='btn-main'>
+          <%= link_to "Cancel", root_path,  class: 'back secondary-btn float-left' %>
+          <button class="mdc-button mdc-button--raised action-btn  float-right">
+            <div class="mdc-button__ripple"></div>
+            <span class="mdc-button__label"><%= f.submit "Upload" %></span>
+          </button>
+      </div>
+    <% end %>
+</div>

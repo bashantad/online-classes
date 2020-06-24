@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   			put :update_password
   			get :cancel_account
   			get :details
+  			get :upload
+  			put :do_upload
   		end
   	end
 
