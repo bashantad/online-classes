@@ -123,6 +123,10 @@ body {
   margin: auto;
   width: 100%;
 }
+
+.people-in-chat .MuiDrawer-paperAnchorLeft{
+  left: auto;
+}
 @media only screen and (max-width: 600px) {
   .notification {
     margin-top: 3.5rem !important;
@@ -132,6 +136,13 @@ body {
 @media only screen and (max-width: 960px) {
   .main-root {
     display: block;
+  }
+  .drawer{
+    width: 0 !important;
+  }
+  .people-in-chat .MuiDrawer-paperAnchorLeft{
+    left: 0;
+    width: 256px;
   }
 }
 

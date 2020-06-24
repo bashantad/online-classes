@@ -13,7 +13,7 @@ import ClassIcon from '@material-ui/icons/Class';
 import MessageIcon from '@material-ui/icons/Message';
 import CallIcon from '@material-ui/icons/Call';
 
-import HeaderHome from '../components/HeaderHome';
+import Header from '../components/Header';
 import '../packs/index.scss'
 import callApi from "../apis/callApi";
 
@@ -40,7 +40,7 @@ export class Home extends React.Component {
         const {error} = this.state;
         return (
             <div className="main-root">
-                <HeaderHome/>
+                <Header/>
                 <main className='main-content-react'>
                     <Container maxWidth="sm" className='welcome'>
                         <div className='welcome-main'>

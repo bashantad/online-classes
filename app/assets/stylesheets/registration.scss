@@ -442,7 +442,7 @@ header {
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 960px) {
   .nav-btn {
     display: none;
   }
@@ -460,7 +460,7 @@ header {
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 960px) {
   .mdc-drawer {
     height: 100vh !important;
     position: fixed;
