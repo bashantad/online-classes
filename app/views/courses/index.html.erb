@@ -21,16 +21,14 @@
             <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Price</th>
             <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Category</th>
             <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Approved</th>
-            <th class="mdc-data-table__header-cell mdc-typography--subtitle1 action-head" role="columnheader" scope="col" colspan="2">Action</th>
+            <th class="mdc-data-table__header-cell mdc-typography--subtitle1 action-head" role="columnheader" scope="col" colspan="3">Action</th>
           </tr>
           </thead>
 
           <tbody class="mdc-data-table__content">
           <% @courses.each do |course| %>
             <tr class="mdc-data-table__row">
-              <td class="mdc-data-table__cell">
-                <%= link_to course.title, course %>
-              </td>
+              <td class="mdc-data-table__cell"><%= link_to course.title, course, class: 'mdc-button mdc-button__label' %></td>
               <td class="mdc-data-table__cell"><%= course.body %></td>
               <td class="mdc-data-table__cell"><%= course.owner.full_name %></td>
               <td class="mdc-data-table__cell"><%= course.website %></td>
@@ -39,13 +37,13 @@
               <td class="mdc-data-table__cell"><%= course.category.title %></td>
               <td class="mdc-data-table__cell"><%= course.approved_text %></td>
               <td class="mdc-data-table__cell action">
-                <%= link_to "View", course, class: 'back secondary-btn' %>
+                <%= link_to "View", course, class: 'back secondary-btn-course' %>
               </td>
               <td class="mdc-data-table__cell action">
-                <%= link_to 'Edit', edit_course_path(course), class: 'back secondary-btn' %>
+                <%= link_to 'Edit', edit_course_path(course), class: 'back secondary-btn-course' %>
               </td>
               <td class="mdc-data-table__cell action">
-                <%= link_to 'Delete', course, method: :delete, data: {confirm: 'Are you sure?'}, class: 'cancel secondary-btn' %>
+                <%= link_to 'Delete', course, method: :delete, data: {confirm: 'Are you sure?'}, class: 'cancel secondary-btn-course' %>
               </td>
             </tr>
           <% end %>
