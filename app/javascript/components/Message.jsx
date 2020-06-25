@@ -222,12 +222,10 @@ export class Message extends React.Component {
                 <div className='root'>
                     <CssBaseline/>
                     <Header fullName={fullName} courseName={courseName}/>
-                    <Hidden>
                         <nav>
                             <Hidden smUp implementation="css">
                                 <Drawer
                                     variant="temporary"
-                                    anchor={'left'}
                                     open={this.state.mobileOpen}
                                     onClose={this.handleDrawerToggle}
                                     ModalProps={{
@@ -238,7 +236,6 @@ export class Message extends React.Component {
                                 </Drawer>
                             </Hidden>
                         </nav>
-                    </Hidden>
                     <Hidden xsDown><PeopleInTheChat {...peopleInTheChatProps}/></Hidden>
 
                     <main className='content'>

@@ -6,7 +6,8 @@ import userApi from "../apis/userApi";
 import callApi from "../apis/callApi";
 import Header from "./Header";
 import Typography from '@material-ui/core/Typography';
-import Skeleton from '@material-ui/lab/Skeleton';
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 class VideoCallWrapper extends React.Component{
     constructor(props){
@@ -94,28 +95,32 @@ class VideoCallWrapper extends React.Component{
         };
 
         return (
-            <>
+            <div className='root'>
                 <Header/>
                 {
                     this._hasFetchingFinished() ?
                         <>
                             {
                                 error ?
-                                    <div>
-                                        {error}
+                                    <div className='skeleton-wrapper'>
+                                        <ErrorOutlineIcon fontSize="large"/>
+                                        <Typography variant="caption" display="block" gutterBottom className='skeleton-caption'>
+                                            {error}
+                                        </Typography>
                                     </div>
                                     : <VideoCall {...videoCallParams } />
                             }
                         </>
-                        : <div>
-                            <Skeleton variant="rect" className='video-skeleton' />
-                            <Typography variant="h6" gutterBottom className='skeleton-caption'>
+                        : <div className='skeleton-wrapper'>
+                            <CircularProgress/>
+                            <Typography variant="caption" display="block" gutterBottom className='skeleton-caption'>
                                Loading...
                             </Typography>
                         </div>
 
+
                 }
-            </>
+            </div>
         );
     }
 }

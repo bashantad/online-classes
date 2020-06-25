@@ -98,7 +98,7 @@ export default class PeopleInTheChat extends React.Component {
         const mappingPersonToConversation = this._getMappingPersonToConversation(individualConversations);
 
         return (
-            <Drawer variant="permanent"  className="drawer">
+            <Drawer variant="permanent"  className="drawer people-in-chat">
                 <Toolbar />
                 <div className="drawer-container">
                 <List onClick={handleClick}>

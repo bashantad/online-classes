@@ -1,5 +1,5 @@
 import React, {Fragment, useState} from 'react';
-import {Link} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import {makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -23,7 +23,6 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Divider from '@material-ui/core/Divider';
 
-
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -33,12 +32,22 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         flexGrow: 1,
+        paddingLeft:'8px',
     },
     btnLogout: {
         color: 'white',
         textDecoration: 'none',
         textTransform: 'capitalize',
-    }
+    },
+    drawerPaper: {
+        width: 256,
+    },
+    drawer: {
+        [theme.breakpoints.up('sm')]: {
+            width: 256,
+            flexShrink: 0,
+        },
+    },
 }));
 
 const listItems = [
@@ -46,16 +55,19 @@ const listItems = [
         key: 'home',
         name: 'Home',
         link: '/',
+        cmsPages: false,
         icon: <HomeIcon/>
     }, {
         key: 'courses',
         name: 'Courses',
         link: '/courses',
-        icon: <SchoolIcon/>,
+        cmsPages: true,
+        icon: <SchoolIcon/>
     }, {
         key: 'accountDetails',
         name: 'Account Details',
         link: '/users/details',
+        cmsPages: true,
         icon: <AccountCircleIcon/>
     }, {
         key: 'editAccount',
@@ -66,21 +78,24 @@ const listItems = [
         key: 'changePassword',
         name: 'Change Password',
         link: '/users/edit_password',
+        cmsPages: true,
         icon: <VpnKeyIcon/>
     }, {
         key: 'deleteAccount',
         name: 'Delete Account',
         link: '/users/cancel_account',
+        cmsPages: true,
         icon: <DeleteIcon/>
     }, {
         key: 'logout',
         name: 'Logout',
         link: '/users/sign_out',
+        cmsPages: true,
         icon: <ExitToAppIcon/>
     },
 ]
 
-export default function Header(props) {
+export default function HeaderHome(props) {
     const {courseName, fullName} = props;
     const classes = useStyles();
     const [drawerOpen, setDrawerOpen] = useState(false)
@@ -89,11 +104,20 @@ export default function Header(props) {
         setDrawerOpen(!drawerOpen)
     };
 
+
+    const redirectTo = (menuItem) => {
+        if(menuItem.cmsPages) {
+            window.location = menuItem.link;
+        } else {
+            return  window.location = menuItem.link;
+        }
+    };
+
     return (
         <div>
             <AppBar position="fixed" className='app-bar'>
                 <Toolbar>
-                    <Hidden>
+                    <Hidden only={['lg', 'xl','md']}>
                         <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"
                                     onClick={handleDrawerToggle}>
                             <MenuIcon/>
@@ -104,36 +128,68 @@ export default function Header(props) {
                     </Typography>
                 </Toolbar>
             </AppBar>
-            <Drawer
-                variant="temporary"
-                anchor={'left'}
-                open={drawerOpen}
-                onClose={handleDrawerToggle}
-                ModalProps={{
-                    keepMounted: true, // Better open performance on mobile.
-                }}
-            >
-                <Toolbar/>
-                <List className='menu-link'>
-                    {listItems.map((i, index) => (
-                        <Fragment>
-                            <Link
-                                to={i.link}
-                                role="button"
-                            >
-                                <ListItem button key={index} className='custom-link-btn'>
-                                    <ListItemIcon>
-                                        {i.icon}
-                                    </ListItemIcon>
-                                    <ListItemText primary={i.name} className='custom-listItem-text'/>
-                                </ListItem>
-                            </Link>
-                            {index === 0 || index === 1 || index === 5 ? <Divider/> : ''}
-                        </Fragment>
-                    ))}
-                </List>
-            </Drawer>
-
+            <nav className={classes.drawer}>
+                <Drawer
+                    variant="temporary"
+                    anchor={'left'}
+                    open={drawerOpen}
+                    onClose={handleDrawerToggle}
+                    ModalProps={{
+                        keepMounted: true, // Better open performance on mobile.
+                    }}
+                >
+                    <Toolbar/>
+                    <List className='menu-link'>
+                        {listItems.map((menuItem, index) => (
+                            <Fragment key={`menu-item-mbl-desk-${index}`}>
+                                <div
+                                    onClick={() => redirectTo(menuItem)}
+                                    role="button"
+                                >
+                                    <ListItem button className='custom-link-btn'>
+                                        <ListItemIcon>
+                                            {menuItem.icon}
+                                        </ListItemIcon>
+                                        <ListItemText primary={menuItem.name} className='custom-listItem-text'/>
+                                    </ListItem>
+                                </div>
+                                {index === 0 || index === 1 || index === 5 ? <Divider/> : ''}
+                            </Fragment>
+                        ))}
+                    </List>
+                </Drawer>
+            </nav>
+            <nav className={classes.drawer}>
+                <Hidden smDown implementation="css">
+                    <Drawer
+                        classes={{
+                            paper: classes.drawerPaper,
+                        }}
+                        variant="permanent"
+                        open={drawerOpen}
+                    >
+                        <Toolbar/>
+                        <List className='menu-link'>
+                            {listItems.map((menuItem, index) => (
+                                <Fragment key={`menu-item-mbl-${index}`}>
+                                    <div
+                                        onClick={() => redirectTo(menuItem)}
+                                        role="button"
+                                    >
+                                        <ListItem button key={index} className='custom-link-btn'>
+                                            <ListItemIcon>
+                                                {menuItem.icon}
+                                            </ListItemIcon>
+                                            <ListItemText primary={menuItem.name} className='custom-listItem-text'/>
+                                        </ListItem>
+                                    </div>
+                                    {index === 0 || index === 1 || index === 5 ? <Divider/> : ''}
+                                </Fragment>
+                            ))}
+                        </List>
+                    </Drawer>
+                </Hidden>
+            </nav>
         </div>
     );
 }
