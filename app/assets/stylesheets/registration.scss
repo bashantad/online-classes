@@ -146,6 +146,7 @@ header {
 .secondary-btn:focus {
   outline: none;
 }
+
 .secondary-btn-course {
   margin: 1rem 0 !important;
   line-height: 2.5;
@@ -326,34 +327,6 @@ header {
   }
 }
 
-.course-table {
-  text-align: center !important;
-  padding-top: 2rem;
-
-  .mdc-data-table {
-    width: 100%;
-  }
-
-  th{
-    text-align: center;
-  }
-
-}
-
-.enrollment-title {
-  text-align: center;
-  //margin-top: 6rem;
-  //margin-bottom: 2rem;
-}
-
-.course-title {
-  display: flex;
-  justify-content: space-between;
-
-  .action-btn {
-    margin: 0;
-  }
-}
 
 .add-more-people {
   text-align: center;
@@ -374,28 +347,6 @@ header {
   text-align: center;
 }
 
-.course-select select {
-  background-color: transparent;
-  height: inherit;
-  width: inherit;
-  font-size: 1rem;
-  padding-left: 8px;
-  border: none;
-}
-
-.course-select select:focus {
-  outline: none;
-}
-
-.course-textarea {
-  min-height: 56px;
-  max-width: 100%;
-  width: -moz-available;
-  width: 100%;
-  border: none;
-  outline: none;
-  background: whitesmoke;
-}
 
 .mdc-drawer {
   height: 100vh;
@@ -479,11 +430,6 @@ header {
     width: inherit;
     top: 5rem;
   }
-  .course-main {
-    box-shadow: none;
-    width: inherit;
-    top: 5rem;
-  }
 }
 
 @media only screen and (max-width: 650px) {
@@ -491,12 +437,8 @@ header {
     width: 100%;
     width: -moz-available; /* WebKit-based browsers will ignore this. */
   }
-  .course-main {
-    margin: auto !important;
-    padding: 1rem;
-  }
   .erb-body {
-    top: 0rem!important ;
+    top: 0rem !important;
     position: relative;
   }
 }
@@ -526,17 +468,6 @@ header {
   }
 }
 
-@media only screen and (min-width: 1450px) {
-  .course-update{
-    margin: 0 20rem !important;
-  }
-}
-
-@media only screen and (min-width: 2000px) {
-  .course-update{
-    margin: 0 30rem !important;
-  }
-}
 
 @media only screen and (max-width: 960px) {
   .mdc-drawer {

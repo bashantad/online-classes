@@ -1,0 +1,73 @@
+.course-table {
+  text-align: center !important;
+  padding-top: 2rem;
+
+  .mdc-data-table {
+    width: 100%;
+  }
+
+  th {
+    text-align: center;
+  }
+
+}
+
+
+.enrollment-title {
+  text-align: center;
+  //margin-top: 6rem;
+  //margin-bottom: 2rem;
+}
+
+.course-title {
+  display: flex;
+  justify-content: space-between;
+
+  .action-btn {
+    margin: 0;
+  }
+}
+
+.course-select select {
+  background-color: transparent;
+  height: inherit;
+  width: inherit;
+  font-size: 1rem;
+  padding-left: 8px;
+  border: none;
+}
+
+.course-select select:focus {
+  outline: none;
+}
+
+.course-textarea {
+  min-height: 56px;
+  max-width: 100%;
+  width: -moz-available;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: whitesmoke;
+}
+
+@media only screen and (min-width: 1450px) {
+  .course-update {
+    margin: 0 20rem !important;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .course-main {
+    box-shadow: none;
+    width: inherit;
+    top: 5rem;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .course-main {
+    margin: auto !important;
+    padding: 1rem;
+  }
+}
