@@ -46,22 +46,31 @@
 .local-video-box {
   justify-content: center;
   width: 100%;
-  height: auto;
+  height: inherit;
 }
 
-.local-video-container , #remote-calls-container{
+.local-video-container{
   display: flex;
+  height: inherit;
+  min-width: 100%;
   align-items: center;
   justify-content: center;
+}
+
+#remote-calls-container{
+  display: flex;
   flex-flow: row wrap;
-}
-
-
-.local-video-container , #remote-calls-container{
-  display: flex;
+  height: inherit;
+  width: inherit;
   align-items: center;
   justify-content: center;
 }
+
+#remote-calls-container:first-child video{
+  height: inherit !important;
+  width: inherit !important;
+}
+
 
 .snackbar .MuiSnackbarContent-root {
   background-color: white;
@@ -74,23 +83,37 @@
   align-items: center;
 
   .snack-caption{
-   padding-left: 10px;
+    padding-left: 10px;
   }
 }
 
 .connected{
+  display: contents;
   video{
     position: absolute;
     right: 1rem;
     width: 10rem;
+    height: auto !important;
     top: 5rem;
     box-shadow: 0px 3px 8px #6a6a6a;
   }
 }
 
-.video-component{
-  //height: 38%;
+.local-video{
+  height: inherit;
+  width: 100%;
 }
+
+.video-component{
+  //height: inherit;
+  //width: inherit;
+}
+.remote-video-participant{
+  height: auto;
+  width: auto;
+}
+
+
 
 
 @media only screen and (max-width: 960px) {
