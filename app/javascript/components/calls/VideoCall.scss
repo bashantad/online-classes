@@ -23,6 +23,7 @@
   justify-content: center;
   position: absolute;
   bottom: 1rem;
+  flex-flow: row wrap;
 }
 
 .video-wrapper {
@@ -44,12 +45,15 @@
 
 .local-video-box {
   justify-content: center;
+  width: 100%;
+  height: auto;
 }
 
 .local-video-container , #remote-calls-container{
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-flow: row wrap;
 }
 
 .snackbar .MuiSnackbarContent-root {
@@ -77,9 +81,16 @@
   }
 }
 
+.video-component{
+  //height: 38%;
+}
+
 @media only screen and (max-width: 960px) {
   .root {
     display: block !important;
+  }
+  .local-video-container , #remote-calls-container{
+    width: 100%;
   }
 
 }
