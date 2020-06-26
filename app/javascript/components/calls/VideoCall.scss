@@ -56,6 +56,13 @@
   flex-flow: row wrap;
 }
 
+
+.local-video-container , #remote-calls-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .snackbar .MuiSnackbarContent-root {
   background-color: white;
   color: $primary-color;
@@ -84,6 +91,7 @@
 .video-component{
   //height: 38%;
 }
+
 
 @media only screen and (max-width: 960px) {
   .root {
