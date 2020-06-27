@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 
 import {JOIN_CALL, LEAVE_CALL, EXCHANGE, ice} from '../../utils/VideoCallUtil'
@@ -7,6 +7,7 @@ import BroadCast from './BroadCast';
 import './VideoCall.scss';
 import './webrtc-old-browsers';
 import VideoControl from "./VideoControl";
+import Snackbar from '@material-ui/core/Snackbar';
 import Typography from "@material-ui/core/Typography";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
@@ -20,6 +21,8 @@ export default class VideoCall extends React.Component {
             hasJoinedRemotely: false,
             audio: true,
             video: true,
+            vertical: 'bottom',
+            horizontal: 'right'
         }
     }
 
@@ -201,7 +204,7 @@ export default class VideoCall extends React.Component {
     }
 
     render() {
-        const {hasJoinedLocally, hasJoinedRemotely, audio, video} = this.state;
+        const {hasJoinedLocally, hasJoinedRemotely, audio, video, vertical, horizontal} = this.state;
         const callProps = {
             isAudioOn: audio,
             isVideoOn: video,
@@ -212,21 +215,30 @@ export default class VideoCall extends React.Component {
             onJoinClick: this.joinCall,
         };
         const connectedClass = hasJoinedRemotely ? 'connected' : 'not-connected';
+        const snackMsg = (
+            <div className="snack-msg">
+            <CircularProgress/>
+        <Typography variant="caption" display="block" className='snack-caption'>
+            Waiting for the other person to join.
+        </Typography>
+            </div>
+        )
         return (
             <div className="video-call-container">
+                {
+                    hasJoinedLocally && !hasJoinedRemotely &&
+                    <Snackbar
+                        anchorOrigin={{vertical, horizontal}}
+                        open={hasJoinedLocally}
+                        // onClose={handleClose}
+                        message={snackMsg}
+                        key={vertical + horizontal}
+                        className='snackbar'
+                    />
+                }
                 <div className={`local-video-container ${connectedClass}`}>
                     <video id="local-video-box" autoPlay playsInline
                            className='video-component local-video' muted="muted"></video>
-                    {
-                        hasJoinedLocally && !hasJoinedRemotely &&
-                        <div className='skeleton-wrapper'>
-                            <CircularProgress/>
-                            <Typography variant="caption" display="block" gutterBottom className='skeleton-caption'>
-                                Waiting for the other person to join...
-                            </Typography>
-                        </div>
-
-                    }
                 </div>
                 <div id="remote-calls-container">
                 </div>

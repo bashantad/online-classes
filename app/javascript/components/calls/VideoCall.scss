@@ -22,29 +22,106 @@
   display: flex;
   justify-content: center;
   position: absolute;
-  bottom: 0;
-  //width: 100%;
+  bottom: 1rem;
+  flex-flow: row wrap;
 }
 
-.skeleton-wrapper {
+.video-wrapper {
   width: 100%;
-  margin-top: 8rem;
-  /* margin: auto; */
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-caption {
+  padding-top: 10px;
+}
+
+.loading {
+  flex-flow: column;
   text-align: center;
 }
 
 .local-video-box {
   justify-content: center;
+  width: 100%;
+  height: inherit;
 }
 
-.local-video-container, .remote-video-box-2{
-  margin-top: 5rem;
+.local-video-container{
+  display: flex;
+  height: inherit;
+  min-width: 100%;
+  align-items: center;
+  justify-content: center;
 }
+
+#remote-calls-container{
+  display: flex;
+  flex-flow: row wrap;
+  height: inherit;
+  width: inherit;
+  align-items: center;
+  justify-content: center;
+}
+
+#remote-calls-container:first-child video{
+  height: inherit !important;
+  width: inherit !important;
+}
+
+
+.snackbar .MuiSnackbarContent-root {
+  background-color: white;
+  color: $primary-color;
+  transition: ease-in 0.3s;
+}
+
+.snack-msg {
+  display: flex;
+  align-items: center;
+
+  .snack-caption{
+    padding-left: 10px;
+  }
+}
+
+.connected{
+  display: contents;
+  video{
+    position: absolute;
+    right: 1rem;
+    width: 10rem;
+    height: auto !important;
+    top: 5rem;
+    box-shadow: 0px 3px 8px #6a6a6a;
+  }
+}
+
+.local-video{
+  height: inherit;
+  width: 100%;
+}
+
+.video-component{
+  //height: inherit;
+  //width: inherit;
+}
+.remote-video-participant{
+  height: auto;
+  width: auto;
+}
+
+
 
 
 @media only screen and (max-width: 960px) {
-  .root{
+  .root {
     display: block !important;
+  }
+  .local-video-container , #remote-calls-container{
+    width: 100%;
   }
 
 }

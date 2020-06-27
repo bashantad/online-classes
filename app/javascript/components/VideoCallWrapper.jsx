@@ -102,18 +102,19 @@ class VideoCallWrapper extends React.Component{
                         <>
                             {
                                 error ?
-                                    <div className='skeleton-wrapper'>
+                                    <div className='video-wrapper'>
                                         <ErrorOutlineIcon fontSize="large"/>
-                                        <Typography variant="caption" display="block" gutterBottom className='skeleton-caption'>
+                                        <Typography variant="caption" display="block" gutterBottom className='loading-caption'>
                                             {error}
                                         </Typography>
                                     </div>
                                     : <VideoCall {...videoCallParams } />
                             }
                         </>
-                        : <div className='skeleton-wrapper'>
+                        :
+                        <div className='video-wrapper loading'>
                             <CircularProgress/>
-                            <Typography variant="caption" display="block" gutterBottom className='skeleton-caption'>
+                            <Typography variant="caption" display="block" gutterBottom className='loading-caption'>
                                Loading...
                             </Typography>
                         </div>

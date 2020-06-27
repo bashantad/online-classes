@@ -12,6 +12,9 @@ import SearchIcon from '@material-ui/icons/Search';
 import ClassIcon from '@material-ui/icons/Class';
 import MessageIcon from '@material-ui/icons/Message';
 import CallIcon from '@material-ui/icons/Call';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import Snackbar from "@material-ui/core/Snackbar";
 
 import Header from '../components/Header';
 import '../packs/index.scss'
@@ -20,6 +23,9 @@ import callApi from "../apis/callApi";
 export class Home extends React.Component {
     state = {
         error: '',
+        vertical: 'bottom',
+        horizontal: 'right',
+        open: false,
     }
 
     handleRoomCreateClick = () => {
@@ -28,6 +34,7 @@ export class Home extends React.Component {
             .then(response => {
                 if(response.error) {
                     this.setState({error: response.error});
+                    this.setState({open: true})
                 } else {
                     const {user_id, calling_code} = response;
                     const callUrl = `/calls/${user_id}/join/${calling_code}`
@@ -36,8 +43,13 @@ export class Home extends React.Component {
             });
     }
 
+    handleClose = () => {
+        console.log(this.state.open)
+        this.setState({open: false });
+    };
+
     render() {
-        const {error} = this.state;
+        const {error, horizontal, vertical, open} = this.state;
         return (
             <div className="main-root">
                 <Header/>
@@ -112,7 +124,26 @@ export class Home extends React.Component {
                                         Create one click video conference room
                                     </Button>
                                     {
-                                        error && <div>{error}</div>
+                                        error &&
+                                        <Snackbar
+                                            anchorOrigin={{vertical, horizontal}}
+                                            open={open}
+                                            onClose={this.handleClose}
+                                            message={error}
+                                            key={vertical + horizontal}
+                                            className='snackbar'
+                                            action={
+                                                <React.Fragment>
+                                                    <IconButton
+                                                        aria-label="close"
+                                                        color="inherit"
+                                                        onClick={this.handleClose}
+                                                    >
+                                                        <CloseIcon />
+                                                    </IconButton>
+                                                </React.Fragment>
+                                            }
+                                        />
                                     }
                                 </div>
                             </div>
