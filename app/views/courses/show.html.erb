@@ -1,55 +1,87 @@
-<div class="erb-body">
-  <div class="mdc-card course-main">
-    <div class="course-title">
-      <span class="mdc-typography--headline5">Course Details</span>
-      <span>
-    <%= link_to 'Add New Course', new_course_path, class: 'mdc-button mdc-button--raised action-btn' %>
-  </span>
+<div class="mdc-card registration-main">
+  <h2 class="mdc-typography--headline5 login-title">
+    Course Details
+  </h2>
+  <hr class="mdc-list-divider divider-margin">
+  <div class="user-details">
+    <div class="mdc-typography--subtitle1 user-fields">
+      <div class="field-label">
+        Title
+      </div>
+      <div>
+        <%= @course.title %>
+      </div>
     </div>
 
-    <div class="course-table">
-      <div class="mdc-data-table resp-table-large">
-        <table class="mdc-data-table__table" aria-label="Courses">
-          <thead>
-          <tr class="mdc-data-table__header-row">
-            <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Title</th>
-            <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Body</th>
-            <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Creator</th>
-            <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Website</th>
-            <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Course for
-            </th>
-            <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Price</th>
-            <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Category</th>
-            <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Approved</th>
-            <th class="mdc-data-table__header-cell mdc-typography--subtitle1 action-head" role="columnheader" scope="col" colspan="2">Action</th>
-          </tr>
-          </thead>
+    <div class="mdc-typography--subtitle1 user-fields">
+      <div class="field-label">
+        Body
+      </div>
+      <div>
+        <%= @course.body %>
+      </div>
+    </div>
 
-          <tbody class="mdc-data-table__content">
-            <tr class="mdc-data-table__row">
-              <td class="mdc-data-table__cell">
-                <%= @course.title %>
-              </td>
-              <td class="mdc-data-table__cell"><%= @course.body %></td>
-              <td class="mdc-data-table__cell"><%= @course.owner.full_name %></td>
-              <td class="mdc-data-table__cell"><%= @course.website %></td>
-              <td class="mdc-data-table__cell"><%= @course.course_for %></td>
-              <td class="mdc-data-table__cell"><%= @course.price %></td>
-              <td class="mdc-data-table__cell"> <%= @course.category_id %></td>
-              <td class="mdc-data-table__cell"><%= @course.approved_text %></td>
-              <td class="mdc-data-table__cell action">
-                <%= link_to 'Edit', edit_course_path(@course), class: 'back secondary-btn-course' %>
-              </td>
-              <td class="mdc-data-table__cell action">
-                <%= link_to 'Back', courses_path, class: 'back secondary-btn-course' %>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="mdc-typography--subtitle1 user-fields">
+      <div class="field-label">
+        Creator
+      </div>
+      <div>
+        <%= @course.owner.full_name %>
+      </div>
+    </div>
+
+    <div class="mdc-typography--subtitle1 user-fields">
+      <div class="field-label">
+        Website
+      </div>
+      <div>
+        <%= @course.website %>
+      </div>
+    </div>
+
+    <div class="mdc-typography--subtitle1 user-fields">
+      <div class="field-label">
+       Course
+      </div>
+      <div>
+        <%= @course.course_for %>
+      </div>
+    </div>
+
+    <div class="mdc-typography--subtitle1 user-fields">
+      <div class="field-label">
+        Price
+      </div>
+      <div>
+        <%= @course.price %>
+      </div>
+    </div>
+
+    <div class="mdc-typography--subtitle1 user-fields">
+      <div class="field-label">
+       Category
+      </div>
+      <div>
+        <%= @course.category_id %>
+      </div>
+    </div>
+
+    <div class="mdc-typography--subtitle1 user-fields">
+      <div class="field-label">
+        Approved
+      </div>
+      <div>
+        <%= @course.approved_text %>
       </div>
     </div>
   </div>
+
+
+  <div class='btn-main'>
+    <%= link_to 'Back', courses_path, class: 'back secondary-btn float-left' %>
+    <button class="mdc-button mdc-button--raised action-btn float-right">
+      <%= link_to 'Edit', edit_course_path(@course), class: 'btn' %>
+    </button>
+  </div>
 </div>
-
-
-
