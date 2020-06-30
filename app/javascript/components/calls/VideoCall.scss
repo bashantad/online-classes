@@ -109,10 +109,21 @@
   //width: inherit;
 }
 .remote-video-participant{
-  height: auto;
+  height: 17rem;
   width: auto;
+  border: 1px solid red;
 }
 
+.video-layout-main{
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+//#remote-calls-container video:nth-child(1){
+//  height: inherit !important;
+//  width: inherit !important;
+//}
 
 
 

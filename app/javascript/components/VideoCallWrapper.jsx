@@ -8,6 +8,7 @@ import Header from "./Header";
 import Typography from '@material-ui/core/Typography';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Toolbar from '@material-ui/core/Toolbar';
 
 class VideoCallWrapper extends React.Component{
     constructor(props){
@@ -97,30 +98,34 @@ class VideoCallWrapper extends React.Component{
         return (
             <div className='root'>
                 <Header/>
-                {
-                    this._hasFetchingFinished() ?
-                        <>
-                            {
-                                error ?
-                                    <div className='video-wrapper'>
-                                        <ErrorOutlineIcon fontSize="large"/>
-                                        <Typography variant="caption" display="block" gutterBottom className='loading-caption'>
-                                            {error}
-                                        </Typography>
-                                    </div>
-                                    : <VideoCall {...videoCallParams } />
-                            }
-                        </>
-                        :
-                        <div className='video-wrapper loading'>
-                            <CircularProgress/>
-                            <Typography variant="caption" display="block" gutterBottom className='loading-caption'>
-                               Loading...
-                            </Typography>
-                        </div>
+                <div  className='video-layout-main'>
+                   <Toolbar></Toolbar>
+                        {
+                            this._hasFetchingFinished() ?
+                                <>
+                                    {
+                                        error ?
+                                            <div className='video-wrapper'>
+                                                <ErrorOutlineIcon fontSize="large"/>
+                                                <Typography variant="caption" display="block" gutterBottom className='loading-caption'>
+                                                    {error}
+                                                </Typography>
+                                            </div>
+                                            : <VideoCall {...videoCallParams } />
+                                    }
+                                </>
+                                :
+                                <div className='video-wrapper loading'>
+                                    <CircularProgress/>
+                                    <Typography variant="caption" display="block" gutterBottom className='loading-caption'>
+                                       Loading...
+                                    </Typography>
+                                </div>
 
 
-                }
+                        }
+                </div>
+
             </div>
         );
     }

@@ -9,6 +9,7 @@ import './webrtc-old-browsers';
 import VideoControl from "./VideoControl";
 import Snackbar from '@material-ui/core/Snackbar';
 import Typography from "@material-ui/core/Typography";
+import Toolbar from "@material-ui/core/Toolbar";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 export default class VideoCall extends React.Component {
@@ -33,6 +34,8 @@ export default class VideoCall extends React.Component {
             audio: true,
             video: {
                 facingMode: 'user',
+                width: { ideal: 1280 },
+                height: {  ideal: 720 },
             },
         }).then(stream => {
             this.localStream = stream;
@@ -217,33 +220,37 @@ export default class VideoCall extends React.Component {
         const connectedClass = hasJoinedRemotely ? 'connected' : 'not-connected';
         const snackMsg = (
             <div className="snack-msg">
-            <CircularProgress/>
-        <Typography variant="caption" display="block" className='snack-caption'>
-            Waiting for the other person to join.
-        </Typography>
+                <CircularProgress/>
+                <Typography variant="caption" display="block" className='snack-caption'>
+                    Waiting for the other person to join.
+                </Typography>
             </div>
         )
         return (
-            <div className="video-call-container">
-                {
-                    hasJoinedLocally && !hasJoinedRemotely &&
-                    <Snackbar
-                        anchorOrigin={{vertical, horizontal}}
-                        open={hasJoinedLocally}
-                        // onClose={handleClose}
-                        message={snackMsg}
-                        key={vertical + horizontal}
-                        className='snackbar'
-                    />
-                }
-                <div className={`local-video-container ${connectedClass}`}>
-                    <video id="local-video-box" autoPlay playsInline
-                           className='video-component local-video' muted="muted"></video>
+            <Fragment>
+                <div className="video-call-container">
+
+                    {
+                        hasJoinedLocally && !hasJoinedRemotely &&
+                        <Snackbar
+                            anchorOrigin={{vertical, horizontal}}
+                            open={hasJoinedLocally}
+                            // onClose={handleClose}
+                            message={snackMsg}
+                            key={vertical + horizontal}
+                            className='snackbar'
+                        />
+                    }
+                    <div className={`local-video-container ${connectedClass}`}>
+                        <video id="local-video-box" autoPlay playsInline
+                               className='video-component local-video' muted="muted"></video>
+                    </div>
+                    <div id="remote-calls-container">
+                    </div>
+                    <VideoControl {...callProps} className='local-video-control'/>
                 </div>
-                <div id="remote-calls-container">
-                </div>
-                <VideoControl {...callProps} className='local-video-control'/>
-            </div>
+            </Fragment>
+
         );
     }
 }
