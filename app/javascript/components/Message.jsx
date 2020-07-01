@@ -223,7 +223,7 @@ export class Message extends React.Component {
                     <CssBaseline/>
                     <Header fullName={fullName} courseName={courseName}/>
                         <nav>
-                            <Hidden smUp implementation="css">
+                            <Hidden lgUp implementation="css">
                                 <Drawer
                                     variant="temporary"
                                     open={this.state.mobileOpen}
@@ -236,7 +236,7 @@ export class Message extends React.Component {
                                 </Drawer>
                             </Hidden>
                         </nav>
-                    <Hidden xsDown><PeopleInTheChat {...peopleInTheChatProps}/></Hidden>
+                    <Hidden mdDown><PeopleInTheChat {...peopleInTheChatProps}/></Hidden>
 
                     <main className='content'>
                         {

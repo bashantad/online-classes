@@ -78,7 +78,7 @@ export default class NewGroupForm extends React.Component {
                         onClick={this.handleSendClick}>
                     Create
                 </Button>
-                <Button color="secondary"
+                <Button color="secondary" className='group-cancel'
                         onClick={this.handleCancelClick}>
                     Cancel
                 </Button>
