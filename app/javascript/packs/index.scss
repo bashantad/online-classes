@@ -79,6 +79,7 @@ body {
 .menu-link {
   padding-top: 7px !important;
   padding-bottom: 8px;
+
   a {
     text-decoration: none;
     color: #4A4A4A !important;
@@ -115,18 +116,90 @@ body {
   border-radius: 4px !important;
 }
 
-.main-root{
+.main-root {
   display: flex;
+  height: 100vh;
 }
 
-.main-content-react{
+.main-content-react {
   margin: auto;
   width: 100%;
+  height: inherit;
+  z-index: 2;
+  background-color: $bg-color;
 }
 
-.people-in-chat .MuiDrawer-paperAnchorLeft{
+.people-in-chat .MuiDrawer-paperAnchorLeft {
   left: auto;
 }
+
+.search-root {
+  padding: 2px 4px;
+  display: flex;
+  align-items: center;
+  width: 400px;
+}
+
+.search-input {
+  margin-left: 10px;
+  flex: 1;
+}
+
+.search-button {
+  padding: 10px;
+}
+
+.home-search {
+  display: flex;
+  justify-content: center;
+  margin-top: 6rem;
+  margin-bottom: 4rem;
+}
+
+.svg-bottom {
+  position: fixed;
+  bottom: 0;
+  opacity: 0.1;
+  z-index: -1;
+}
+
+.course-card-item {
+  max-width: 250px;
+  margin: 10px 20px;
+
+  .MuiButton-label{
+    color: $accent-color;
+  }
+}
+
+.course-card-item:hover {
+  box-shadow: 0px 2px 10px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.course-card-item button:hover{
+  .course-media{
+    transform: scale(1.1);
+    transition: ease 300ms;
+  }
+}
+
+.course-media {
+  height: 160px;
+  transition: ease 300ms;
+}
+
+.course-cards {
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.rating{
+  margin-left: 16px;
+  margin-bottom:5px;
+}
+
 @media only screen and (max-width: 600px) {
   .notification {
     margin-top: 3.5rem !important;
@@ -137,10 +210,10 @@ body {
   .main-root {
     display: block;
   }
-  .drawer{
+  .drawer {
     width: 0 !important;
   }
-  .people-in-chat .MuiDrawer-paperAnchorLeft{
+  .people-in-chat .MuiDrawer-paperAnchorLeft {
     left: 0;
     width: 256px;
   }
