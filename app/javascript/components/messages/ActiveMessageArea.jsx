@@ -13,6 +13,7 @@ import Hidden from "@material-ui/core/Hidden";
 import InfoIcon from '@material-ui/icons/Info';
 import Popover from '@material-ui/core/Popover';
 import Button from '@material-ui/core/Button';
+import GroupIcon from '@material-ui/icons/Group';
 
 export default class ActiveMessageArea extends React.Component {
     constructor(props) {
@@ -103,7 +104,7 @@ export default class ActiveMessageArea extends React.Component {
         return (
             <Fragment>
                 {
-                    activeConversation && <Toolbar className='conversation-title'><Hidden smUp>
+                    activeConversation && <Toolbar className='conversation-title'><Hidden lgUp>
                         <IconButton
                             color="inherit"
                             aria-label="open drawer"
@@ -113,6 +114,13 @@ export default class ActiveMessageArea extends React.Component {
                             <MenuOpenIcon/>
                         </IconButton>
                     </Hidden>
+                        <span className='message-header-icon'>
+                             {
+                                 !activeConversation.title ? <AccountCircleIcon/> :<GroupIcon/>
+                             }
+                        </span>
+
+
                         <Typography variant="h5">
                             {this.displayTitle()}
                         </Typography>
@@ -150,7 +158,7 @@ export default class ActiveMessageArea extends React.Component {
                 }
                 <div className='active-conversation-wrapper'>
                     <Toolbar className='dummy-toolbar'/>
-                    <Paper className='active-conversation-paper'>
+                    <div className='active-conversation-paper'>
                         {
                             activeConversation && <div className='active-conversation'>
                                 {
@@ -175,7 +183,7 @@ export default class ActiveMessageArea extends React.Component {
                                 <div ref={this.messagesEndRef}/>
                             </div>
                         }
-                    </Paper>
+                    </div>
                 </div>
             </Fragment>
 
