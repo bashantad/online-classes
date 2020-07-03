@@ -10,4 +10,9 @@ class Api::CoursesController < Api::BaseController
 			'conversations.messages.sender'
 		]
 	end
+
+	def index
+		@courses = Course.approved
+		render json: @courses, include: ['owner']
+	end
 end
