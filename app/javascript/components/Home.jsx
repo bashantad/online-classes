@@ -11,7 +11,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Toolbar from "@material-ui/core/Toolbar";
 import Snackbar from "@material-ui/core/Snackbar";
 
-
 import Header from '../components/Header';
 import '../packs/index.scss'
 import callApi from "../apis/callApi";
@@ -29,37 +28,25 @@ export class Home extends React.Component {
         loading: true,
     }
 
-    handleRoomCreateClick = () => {
-        callApi.create()
-            .then(res => res.json())
-            .then(response => {
-                if (response.error) {
-                    this.setState({error: response.error});
-                    this.setState({errNotification: true})
-                } else {
-                    const {user_id, calling_code} = response;
-                    const callUrl = `/calls/${user_id}/join/${calling_code}`
-                    this.props.history.push(callUrl);
-                }
-            });
-    }
-
     handleClose = () => {
         this.setState({errNotification: false});
+    };
+
+    handleEnroll = (courseId) => {
+
+    };
+
+    handleDetails = (courseId) => {
+        this.props.history.push(`/courses/${courseId}`);
     };
 
     componentDidMount() {
         courseApi.getApprovedCourses()
             .then(res => res.json())
             .then(response => {
-                if (response.error) {
-                    this.setState({error: response.error});
-                    this.setState({loading: false})
-                    this.setState({errNotification: true})
-                } else {
-                    this.setState({loading: false})
-                    this.setState({courses: response})
-                }
+                this.setState({courses: response, loading: false, errNotification: false});
+            }).catch(err => {
+                this.setState({loading: false, errNotification: true, error: 'Something went wrong'});
             });
     }
 
@@ -89,8 +76,10 @@ export class Home extends React.Component {
                                 <CardSkeleton/>
                                 <CardSkeleton/>
                             </div>
-                            :
-                            <CourseCard courses={courses}/>
+                            : <CourseCard
+                                courses={courses}
+                                handleEnroll={this.handleEnroll}
+                                handleDetails={this.handleDetails} />
                     }
                     {
                         <Snackbar
@@ -101,12 +90,12 @@ export class Home extends React.Component {
                             key={vertical + horizontal}
                             className='snackbar'
                             action={
-                                <React.Fragment>
+                                <>
                                     <IconButton size="small" aria-label="close" color="inherit"
                                                 onClick={this.handleClose}>
                                         <CloseIcon fontSize="small"/>
                                     </IconButton>
-                                </React.Fragment>
+                                </>
                             }
                         />
                     }
