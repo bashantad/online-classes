@@ -23,7 +23,7 @@ const CourseCard = (props) => {
                             <div className='course-card-info'>For {card.course_for}</div>
                             <CardMedia
                                 className='course-media'
-                                image={card.cover}
+                                image='https://images.unsplash.com/photo-1504639725590-34d0984388bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80'
                                 title={card.title}
                                 src={card.website}
                             />
