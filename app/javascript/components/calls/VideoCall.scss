@@ -49,7 +49,7 @@
   height: inherit;
 }
 
-.local-video-container{
+.local-video-container {
   display: flex;
   height: inherit;
   min-width: 100%;
@@ -57,7 +57,7 @@
   justify-content: center;
 }
 
-#remote-calls-container{
+#remote-calls-container {
   display: flex;
   flex-flow: row wrap;
   height: inherit;
@@ -66,7 +66,7 @@
   justify-content: center;
 }
 
-#remote-calls-container:first-child video{
+#remote-calls-container:first-child video {
   height: inherit !important;
   width: inherit !important;
 }
@@ -82,14 +82,15 @@
   display: flex;
   align-items: center;
 
-  .snack-caption{
+  .snack-caption {
     padding-left: 10px;
   }
 }
 
-.connected{
+.connected {
   display: contents;
-  video{
+
+  video {
     position: absolute;
     right: 1rem;
     width: 10rem;
@@ -99,39 +100,28 @@
   }
 }
 
-.local-video{
+.local-video {
   height: inherit;
   width: 100%;
 }
 
-.video-component{
-  //height: inherit;
-  //width: inherit;
-}
-.remote-video-participant{
+.remote-video-participant {
   height: 17rem;
   width: auto;
   border: 1px solid red;
 }
 
-.video-layout-main{
+.video-layout-main {
   height: 100vh;
   width: 100%;
   overflow: hidden;
 }
 
-//#remote-calls-container video:nth-child(1){
-//  height: inherit !important;
-//  width: inherit !important;
-//}
-
-
-
 @media only screen and (max-width: 960px) {
   .root {
     display: block !important;
   }
-  .local-video-container , #remote-calls-container{
+  .local-video-container, #remote-calls-container {
     width: 100%;
   }
 
