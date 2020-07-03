@@ -41,6 +41,9 @@ Rails.application.routes.draw do
 				post :update_members
 			end
 			get :conversation_details
+			collection do
+				get :enrolled
+			end
 		end
     	resources :conversations, only: [] do
 			resources :messages

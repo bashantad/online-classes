@@ -5,11 +5,15 @@ import Call from "../components/Call";
 import VideoCallWrapper from "../components/VideoCallWrapper";
 import MessageWrapper from "../components/MessageWrapper";
 import CallHistory from "../components/CallHistory";
+import CourseDetail from "../components/courses/CourseDetail";
+import EnrolledCourses from "../components/courses/EnrolledCourses";
 
 export default (
   <Router>
     <Switch>
       <Route path="/" exact component={Home} />
+      <Route path="/enrolled_courses" exact component={EnrolledCourses} />
+      <Route path="/courses/:course_id" exact component={CourseDetail} />
       <Route path="/classroom/:id" exact component={Call} />
       <Route path="/call_history" exact component={CallHistory} />
       <Route path="/calls/:user_id/join/:calling_code" exact component={VideoCallWrapper} />

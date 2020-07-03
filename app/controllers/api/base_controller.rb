@@ -3,8 +3,17 @@ class Api::BaseController < ApplicationController
 
 	protected
 
-	def set_course
-		course_id = params[:id] || params[:course_id]
-		@course = current_user.enrolled_courses.find(course_id)
+	def set_enrolled_course
+		@course = current_user.enrolled_courses.find(_course_id)
+	end
+
+	def set_approved_course
+		@course = Course.approved.find(_course_id)
+	end
+
+	private
+
+	def _course_id
+		params[:id] || params[:course_id]
 	end
 end

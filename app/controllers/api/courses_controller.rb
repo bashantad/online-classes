@@ -1,5 +1,6 @@
 class Api::CoursesController < Api::BaseController
-	before_action :set_course, only: [:show, :conversation_details]
+	before_action :set_approved_course, only: [:show]
+	before_action :set_enrolled_course, only: [:conversation_details]
 	skip_before_action :authenticate_user!, only: [:index, :show]
 
 	def index
@@ -19,5 +20,10 @@ class Api::CoursesController < Api::BaseController
 
 	def show
 		render json: @course, include: ['owner']
+	end
+
+	def enrolled
+		@courses = current_user.enrolled_courses.approved
+		render json: @courses, include: ['owner']
 	end
 end

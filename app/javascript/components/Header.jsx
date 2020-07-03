@@ -59,10 +59,16 @@ const listItems = [
         cmsPages: false,
         icon: <HomeIcon/>
     }, {
-        key: 'courses',
-        name: 'Courses',
-        link: '/courses',
+        key: 'mycourses',
+        name: 'My Courses',
+        link: '/teacher/courses',
         cmsPages: true,
+        icon: <SchoolIcon/>
+    }, {
+       key: 'myenrolledcourses',
+        name: 'My Enrolled Courses',
+        link: '/enrolled_courses',
+        cmsPages: false,
         icon: <SchoolIcon/>
     }, {
         key: 'accountDetails',
