@@ -20,6 +20,7 @@ import Rating from '@material-ui/lab/Rating';
 import Header from '../components/Header';
 import '../packs/index.scss'
 import callApi from "../apis/callApi";
+import courseApi from "../apis/courseApi";
 
 export class Home extends React.Component {
     state = {
@@ -45,9 +46,12 @@ export class Home extends React.Component {
     }
 
     handleClose = () => {
-        console.log(this.state.open)
         this.setState({open: false});
     };
+
+    componentDidMount() {
+        courseApi.getApprovedCourses();
+    }
 
     render() {
         const {error, horizontal, vertical, open} = this.state;

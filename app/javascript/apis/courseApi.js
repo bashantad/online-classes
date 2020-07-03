@@ -7,6 +7,12 @@ const courseApi = {
 			headers: HEADERS
 		});
 	},
+	getApprovedCourses: () => {
+		return fetch(`${API_ROOT}/courses`, {
+			method: 'GET',
+			headers: HEADERS
+		});
+	}
 }
 
 export default courseApi;
