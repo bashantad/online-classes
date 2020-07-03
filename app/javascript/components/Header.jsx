@@ -20,6 +20,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import SchoolIcon from '@material-ui/icons/School';
 import EditIcon from '@material-ui/icons/Edit';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import CloudUpload from '@material-ui/icons/CloudUpload';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Divider from '@material-ui/core/Divider';
 
@@ -69,6 +70,12 @@ const listItems = [
         link: '/users/details',
         cmsPages: true,
         icon: <AccountCircleIcon/>
+    }, {
+        key: 'uoloadProfilePicture',
+        name: 'Upload Profile Picture',
+        link: '/users/upload',
+        cmsPages: true,
+        icon: <CloudUpload/>
     }, {
         key: 'editAccount',
         name: 'Edit Account',

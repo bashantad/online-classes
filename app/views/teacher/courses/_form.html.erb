@@ -1,14 +1,5 @@
-<%= form_with(model: course, local: true) do |form| %>
-  <% if course.errors.any? %>
-    <div id="error_explanation">
-      <span class="mdc-typography--subtitle1"><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</span>
-      <ul>
-        <% course.errors.full_messages.each do |message| %>
-          <li class="mdc-typography--caption"><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_with(model: [:teacher, course], local: true) do |form| %>
+  <% error_messages =  course.errors.messages %>
 
   <div class="form-field">
     <div class="mdc-typography--subtitle1">
@@ -17,6 +8,11 @@
     <div class="mdc-text-field mdc-text-field--filled input-field">
       <%= form.text_field :title, class: 'mdc-text-field__input' %>
     </div>
+    <% if error_messages[:title] %>
+      <div class="field-error">
+        <%= error_messages[:title][0] %>
+      </div>
+    <% end %>
   </div>
 
   <div class="form-field">
@@ -64,7 +60,7 @@
     </div>
   </div>
   <div class='btn-main'>
-    <%= link_to 'Back', courses_path, class: 'back secondary-btn float-left' %>
+    <%= link_to 'Back', teacher_courses_path, class: 'back secondary-btn float-left' %>
     <button class="mdc-button mdc-button--raised action-btn float-right">
       <div class="mdc-button__ripple"></div>
       <span class="mdc-button__label">Save</span>

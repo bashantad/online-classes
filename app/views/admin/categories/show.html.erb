@@ -1,0 +1,20 @@
+<p>
+  <strong>Title:</strong>
+  <%= @category.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @category.description %>
+</p>
+
+<h4>List of courses</h4>
+<ul>
+	<% @category.courses.each do |course| %>
+		<li>
+			<%= link_to course.title, "/courses/#{course.id}", target: '_blank' %>
+		</li>
+	<% end %>
+</ul>
+<%= link_to 'Edit', edit_admin_category_path(@category) %> |
+<%= link_to 'Back', admin_categories_path %>

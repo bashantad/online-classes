@@ -12,6 +12,12 @@ const courseApi = {
 			method: 'GET',
 			headers: HEADERS
 		});
+	},
+	getConversationDetails: (id) => {
+		return fetch(`${API_ROOT}/courses/${id}/conversation_details`, {
+			method: 'GET',
+			headers: HEADERS
+		});
 	}
 }
 

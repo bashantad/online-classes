@@ -16,10 +16,33 @@
         <i class="material-icons mdc-list-item__graphic" aria-hidden="true">home</i>
         <span class="mdc-list-item__text">Home</span>
       </a>
+      <% if current_user.is_admin? %>
+        <hr class="mdc-list-divider">
+        <a class="mdc-list-item" href='<%= admin_courses_path(approved: true) %>'>
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">school</i>
+          <span class="mdc-list-item__text">Approved courses</span>
+        </a>
+        <a class="mdc-list-item" href='<%= admin_courses_path(approved: false) %>'>
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">school</i>
+          <span class="mdc-list-item__text">Unapproved courses</span>
+        </a>
+        <a class="mdc-list-item" href='<%= admin_categories_path %>'>
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">school</i>
+          <span class="mdc-list-item__text">Categories</span>
+        </a>
+      <% end %>
       <hr class="mdc-list-divider">
-      <a class="mdc-list-item" href='<%= courses_path %>'>
+      <a class="mdc-list-item" href='/teacher/courses/start_journey'>
         <i class="material-icons mdc-list-item__graphic" aria-hidden="true">school</i>
-        <span class="mdc-list-item__text">Courses</span>
+        <span class="mdc-list-item__text">Teach a course</span>
+      </a>
+      <a class="mdc-list-item" href='/teacher/courses'>
+        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">school</i>
+        <span class="mdc-list-item__text">My Courses</span>
+      </a>
+      <a class="mdc-list-item" href='/enrolled_courses'>
+        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">school</i>
+        <span class="mdc-list-item__text">My Enrolled Courses</span>
       </a>
       <hr class="mdc-list-divider">
       <a class="mdc-list-item" href='<%= details_users_path %>'>
@@ -28,7 +51,7 @@
       </a>
       <a class="mdc-list-item" href='<%= upload_users_path %>'>
         <i class="material-icons mdc-list-item__graphic" aria-hidden="true">cloud_upload</i>
-        <span class="mdc-list-item__text">Upload profile picture</span>
+        <span class="mdc-list-item__text">Upload Profile Picture</span>
       </a>
       <a class="mdc-list-item" href='<%= edit_user_registration_path %>'>
         <i class="material-icons mdc-list-item__graphic" aria-hidden="true">create</i>

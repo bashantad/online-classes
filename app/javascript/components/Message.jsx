@@ -67,7 +67,7 @@ export class Message extends React.Component {
                     messageNotificationMap: user_message_notifications
                 })
             });
-        courseApi.getById(this._getCourseId())
+        courseApi.getConversationDetails(this._getCourseId())
             .then(res => res.json())
             .then(courseDetails => {
                 const {conversations, enrolled_users, title} = courseDetails;

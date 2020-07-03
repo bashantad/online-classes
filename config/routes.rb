@@ -8,11 +8,17 @@ Rails.application.routes.draw do
 			post :enroll_users
 			get :enrollment_requests
     	end
+    	resources :categories
   	end
 
 	# Routes for on-boarding Rails pages
-  	resources :courses
-  	resources :categories
+	namespace :teacher do
+  		resources :courses do
+  			collection do
+  				get :start_journey
+  			end
+  		end
+  	end
   	devise_for :users, :controllers => { :registrations => 'registrations' }
   	resources :users, only: [] do
   		collection do
@@ -34,6 +40,7 @@ Rails.application.routes.draw do
 				end
 				post :update_members
 			end
+			get :conversation_details
 		end
     	resources :conversations, only: [] do
 			resources :messages

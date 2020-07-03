@@ -2,7 +2,7 @@ class Admin::CoursesController < Admin::BaseController
 	before_action :set_course, except: [:index]
 
 	def index
-		@courses = Course.all
+		@courses = Course.where(approved: params[:approved])
 	end
 
 	def approve

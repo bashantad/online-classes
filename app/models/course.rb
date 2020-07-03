@@ -7,6 +7,8 @@ class Course < ApplicationRecord
 	has_many :enrolled_users, through: :enrolled_course_users, source: :user
 	scope :approved, -> { where(approved: true) }
 
+	validates :title, presence: true
+
 	def approve
 		unless self.conversations.exists?
 			_enroll_in_general_conversation(self.owner)
@@ -20,6 +22,10 @@ class Course < ApplicationRecord
 
 	def approved_text
 		approved ? 'Yes' : 'No'
+	end
+
+	def show_url
+		"/courses/#{self.id}"
 	end
 
 	def general_conversation
