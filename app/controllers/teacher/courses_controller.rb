@@ -62,7 +62,7 @@ class Teacher::CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:title, :body, :website, :course_for, :price, :category_id)
+    params.require(:course).permit(:title, :body, :website, :course_for, :price, :category_id, :cover_image)
   end
 
   def set_categories

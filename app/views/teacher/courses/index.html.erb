@@ -13,11 +13,7 @@
           <thead>
           <tr class="mdc-data-table__header-row">
             <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Title</th>
-            <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Body</th>
-            <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Creator</th>
             <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Website</th>
-            <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Course for
-            </th>
             <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Price</th>
             <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Category</th>
             <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Approved</th>
@@ -31,10 +27,7 @@
               <td class="mdc-data-table__cell">
                 <%= link_to course.title, course.show_url, class: 'mdc-button mdc-button__label', :target => "_blank" %>
               </td>
-              <td class="mdc-data-table__cell"><%= course.body %></td>
-              <td class="mdc-data-table__cell"><%= course.owner.full_name %></td>
               <td class="mdc-data-table__cell"><%= course.website %></td>
-              <td class="mdc-data-table__cell"><%= course.course_for %></td>
               <td class="mdc-data-table__cell"><%= course.price %></td>
               <td class="mdc-data-table__cell"><%= course.category.title %></td>
               <td class="mdc-data-table__cell"><%= course.approved_text %></td>
@@ -45,7 +38,7 @@
                 <%= link_to 'Edit', edit_teacher_course_path(course), class: 'back secondary-btn-course' %>
               </td>
               <td class="mdc-data-table__cell action">
-                <%= link_to 'Delete', teacher_course_path(course), method: :delete, data: {confirm: 'Are you sure?'}, class: 'cancel secondary-btn-course' %>
+                <%= link_to 'Delete', teacher_course_path(course), method: :delete, data: {confirm: 'Are you sure you want to delete the course?'}, class: 'cancel secondary-btn-course' %>
               </td>
             </tr>
           <% end %>

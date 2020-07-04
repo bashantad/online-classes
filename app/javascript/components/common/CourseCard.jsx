@@ -16,7 +16,7 @@ const CourseCard = ({courses, handleEnroll, handleDetails}) => {
             {
                 courses.map(course => (
                     <Card className='course-card-item' key={course.id}>
-                        <a href={course.website}>
+                        <div onClick={() => handleDetails(course.id)}>
                             <CardActionArea src={course.website}>
                                 <div className='course-card-info'>For {course.course_for}</div>
                                 <CardMedia
@@ -37,7 +37,7 @@ const CourseCard = ({courses, handleEnroll, handleDetails}) => {
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
-                        </a>
+                        </div>
                         <div className="rating">
                             <Rating name="half-rating" defaultValue={course.rating} precision={0.5}/>
                         </div>

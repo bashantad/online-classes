@@ -58,7 +58,9 @@ Rails.application.routes.draw do
 			end
 		end
 	end
-	root :to => 'home#index'
+	root :to => 'home_page#index'
 	mount ActionCable.server => '/cable'
-	get '/*path' => 'home#index'
+	get '/*path', to: 'home_page#index', constraints: lambda { |req|
+		req.path.exclude? 'rails/active_storage'
+	}
 end

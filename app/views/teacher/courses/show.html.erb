@@ -6,6 +6,14 @@
   <div class="user-details">
     <div class="mdc-typography--subtitle1 user-fields">
       <div class="field-label">
+        Image
+      </div>
+      <div>
+        <%= image_tag @course.cover_image %>
+      </div>
+    </div>
+    <div class="mdc-typography--subtitle1 user-fields">
+      <div class="field-label">
         Title
       </div>
       <div>
@@ -63,7 +71,7 @@
        Category
       </div>
       <div>
-        <%= @course.category_id %>
+        <%= @course.category.title %>
       </div>
     </div>
 

@@ -1,13 +1,19 @@
 class Course < ApplicationRecord
+	include Rails.application.routes.url_helpers
 	belongs_to :owner, foreign_key: :user_id, class_name: 'User'
 	belongs_to :category
 	has_many :conversations
 	has_many :enrolled_course_users
 	has_many :enroll_requests
 	has_many :enrolled_users, through: :enrolled_course_users, source: :user
+	has_one_attached :cover_image, dependent: :destroy
 	scope :approved, -> { where(approved: true) }
 
 	validates :title, presence: true
+
+	def cover_url
+		rails_blob_path(self.cover_image, disposition: "attachment", only_path: true) if self.cover_image.present?
+	end
 
 	def approve
 		unless self.conversations.exists?

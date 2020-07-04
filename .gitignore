@@ -38,3 +38,4 @@ todo.txt
 /config/credentials/development.key
 
 /config/database.yml
+/reset_db.sh

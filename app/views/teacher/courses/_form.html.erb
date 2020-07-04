@@ -59,6 +59,16 @@
       <%= form.select :category_id, @categories.collect{|p| [ p.title, p.id ] }, class: 'course-select-list' %>
     </div>
   </div>
+
+  <div class="form-field">
+    <div class="mdc-typography--subtitle1">
+      <%= form.label :cover_image %>
+    </div>
+    <div class="mdc-text-field mdc-text-field--filled input-field course-select">
+      <%= form.file_field :cover_image %>
+    </div>
+  </div>
+
   <div class='btn-main'>
     <%= link_to 'Back', teacher_courses_path, class: 'back secondary-btn float-left' %>
     <button class="mdc-button mdc-button--raised action-btn float-right">

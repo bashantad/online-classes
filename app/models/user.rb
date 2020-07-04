@@ -15,7 +15,7 @@ class User < ApplicationRecord
     has_many :courses
     has_many :enroll_requests
     has_many :calls
-    has_one_attached :avatar_image
+    has_one_attached :avatar_image, dependent: :destroy
 
     validate :acceptable_image
     validates :full_name, presence: true

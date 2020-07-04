@@ -22,6 +22,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'redis', '~> 4.0'
 gem 'active_model_serializers'
 gem 'devise'
+gem 'image_processing'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
