@@ -9,7 +9,7 @@
         Image
       </div>
       <div>
-        <%= image_tag @course.cover_image %>
+        <%= image_tag @course.cover_image if @course.cover_image.attached? %>
       </div>
     </div>
     <div class="mdc-typography--subtitle1 user-fields">

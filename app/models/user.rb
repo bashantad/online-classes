@@ -1,5 +1,6 @@
 class User < ApplicationRecord
     include ImageUpload
+    include Rails.application.routes.url_helpers
   	# Include default devise modules. Others available are:
   	# :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
     devise :database_authenticatable, :registerable,
@@ -19,6 +20,10 @@ class User < ApplicationRecord
 
     validate :acceptable_image
     validates :full_name, presence: true
+
+    def avatar_image_urls
+      rails_blob_path(self.avatar_image, disposition: "attachment", only_path: true) if self.avatar_image.present?
+    end
 
     def is_within_call_limit?
         self.calls.created_between(1.months.ago, Time.now).count < self.call_limit_per_month

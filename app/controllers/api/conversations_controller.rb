@@ -1,5 +1,5 @@
 class Api::ConversationsController < Api::BaseController
-	before_action :set_course
+	before_action :set_enrolled_course
 	before_action :set_course_service, only: [:create, :add_members]
 
 	def create
