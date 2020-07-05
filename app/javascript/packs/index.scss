@@ -172,7 +172,8 @@ body {
   .MuiButton-label {
     color: $accent-color;
   }
-  a{
+
+  a {
     text-decoration: none;
     color: black;
   }
@@ -198,7 +199,7 @@ body {
   transition: ease 300ms;
 }
 
-.course-card-info{
+.course-card-info {
   position: absolute;
   right: 10px;
   top: 10px;
@@ -223,6 +224,73 @@ body {
   margin-bottom: 5px;
 }
 
+.course-detail-paper {
+  width: 40rem;
+  padding: 16px;
+  margin: auto;
+  margin-top: 2rem;
+
+  .MuiGrid-item {
+    padding: 6px;
+  }
+
+  img {
+    width: 100%; /* or any custom size */
+    height: 100%;
+    object-fit: contain;
+  }
+
+  span {
+    font-weight: bold;
+  }
+
+  a {
+    margin-left: 8px;
+    margin-top: 4px;
+  }
+}
+
+.course-cover {
+  position: relative;
+  margin-bottom: 8px;
+
+  h3 {
+    position: absolute;
+    margin-top: -5rem;
+    margin-left: 16px;
+    color: white;
+  }
+}
+
+.first-grid {
+  margin: 12px 0;
+  justify-content: space-between;
+
+  div {
+    margin: 0 4px;
+    text-align: center;
+  }
+
+  h6 {
+    text-align: center;
+  }
+
+}
+
+.price-box {
+  background-color: #ffd90b;
+  border-radius: 8px;
+}
+
+.course-margin-top {
+  margin-top: 10px !important;
+}
+
+.course-owner-details {
+  background-color: rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+}
+
 @media only screen and (max-width: 600px) {
   .notification {
     margin-top: 3.5rem !important;
@@ -232,6 +300,24 @@ body {
   }
   .home-search {
     margin-top: 3rem;
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+  .price-box{
+    margin-top: 8px !important;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .course-detail-paper {
+    width: auto;
+    margin-top: 2rem;
+    background-color: inherit !important;
+    box-shadow: none !important;
+
+    h3 {
+      font-size: 2rem;
+    }
   }
 }
 
