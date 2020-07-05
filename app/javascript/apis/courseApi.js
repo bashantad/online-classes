@@ -1,4 +1,5 @@
 import {HEADERS, API_ROOT} from '../constants';
+import reviewApi from './reviewApi';
 
 const courseApi = {
 	getById: (id) => {
@@ -24,6 +25,9 @@ const courseApi = {
 			method: 'GET',
 			headers: HEADERS
 		});
+	},
+	reviews: (id) => {
+		return reviewApi({reviewable_type: 'course',  reviewable_id: id});
 	}
 }
 

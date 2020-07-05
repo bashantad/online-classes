@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-	# Routes for admin pages
+  	# Routes for admin pages
 	namespace :admin do
 		resources :courses, only: [:index, :show] do
 			get :approve
@@ -45,6 +45,7 @@ Rails.application.routes.draw do
 				get :enrolled
 			end
 		end
+		resources :reviews
     	resources :conversations, only: [] do
 			resources :messages
 		end

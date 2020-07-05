@@ -19,11 +19,11 @@ class Api::CoursesController < Api::BaseController
 	end
 
 	def show
-		render json: @course, include: ['owner']
+		render json: @course, include: ['owner', 'reviews', 'reviews.user']
 	end
 
 	def enrolled
 		@courses = current_user.enrolled_courses.approved
-		render json: @courses, include: ['owner']
+		render json: @courses, include: ['owner', 'reviews', 'reviews.user']
 	end
 end

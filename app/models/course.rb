@@ -6,6 +6,7 @@ class Course < ApplicationRecord
 	has_many :enrolled_course_users
 	has_many :enroll_requests
 	has_many :enrolled_users, through: :enrolled_course_users, source: :user
+	has_many :reviews, as: :reviewable
 	has_one_attached :cover_image, dependent: :destroy
 	scope :approved, -> { where(approved: true) }
 
