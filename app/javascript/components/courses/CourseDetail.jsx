@@ -33,9 +33,22 @@ export class CourseDetail extends React.Component {
         });
     }
 
+    submitReview = () => {
+        courseApi.reviews(this._getCourseId()).create({
+            rating: 4, comment: 'test description'
+        })
+        .then(res => res.json())
+        .then(response => {
+            const {course} = this.state;
+            const reviews = [response, ...course.reviews];
+            course.reviews = reviews;
+            this.setState({course: course})
+        });
+    }
+
     render() {
         const {course} = this.state;
-        console.log(course)
+        const reviews = course && course.reviews;
         return (
             <div className="main-root">
                 <Header/>
@@ -86,10 +99,13 @@ export class CourseDetail extends React.Component {
                                 </Typography>
                             </Grid>
                         </Grid>
-                            <Button variant="outlined" color="primary" href={course && course.website}>
+                            <Button variant="outlined" color="primary" onClick={this.submitReview}>
                                 More
                             </Button>
                         </div>
+                        {
+                            reviews && JSON.stringify(reviews)
+                        }
                     </Paper>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className='svg-bottom'>
                         <path fill="#3F51B5" fillOpacity="1" d="M0,320L720,32L1440,160L1440,320L720,320L0,320Z"></path>

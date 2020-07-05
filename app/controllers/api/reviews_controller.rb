@@ -19,7 +19,7 @@ class Api::ReviewsController < Api::BaseController
       flash[:notice] = 'Review was successfully created.'
       render json: @review
     else
-      render json: @review.errors, status: :unprocessable_entity
+      render json: {errors: @review.errors}, status: :unprocessable_entity
     end
   end
 
@@ -28,7 +28,7 @@ class Api::ReviewsController < Api::BaseController
       flash[:notice] = 'Review was successfully updated.'
       render json: @review
     else
-      render json: @review.errors, status: :unprocessable_entity
+      render json: {errors: @review.errors}, status: :unprocessable_entity
     end
   end
 

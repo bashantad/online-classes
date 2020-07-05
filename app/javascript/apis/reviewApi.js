@@ -1,7 +1,7 @@
 import {HEADERS, API_ROOT} from '../constants';
 
 const reviewApi = (params) => {
-	_mergedUrl: (url) => {
+	const _mergedUrl = (url) => {
 		return `${url}?reviewable_type=${params['reviewable_type']}&reviewable_id=${params['reviewable_id']}`;
 	}
 	return {
