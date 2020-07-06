@@ -19,21 +19,22 @@
       <% if current_user.is_admin? %>
         <hr class="mdc-list-divider">
         <a class="mdc-list-item" href='<%= admin_courses_path(approved: true) %>'>
-          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">school</i>
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">thumb_up_alt</i>
           <span class="mdc-list-item__text">Approved courses</span>
         </a>
         <a class="mdc-list-item" href='<%= admin_courses_path(approved: false) %>'>
-          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">school</i>
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">thumb_down_alt</i>
           <span class="mdc-list-item__text">Unapproved courses</span>
         </a>
         <a class="mdc-list-item" href='<%= admin_categories_path %>'>
-          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">school</i>
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">category
+          </i>
           <span class="mdc-list-item__text">Categories</span>
         </a>
       <% end %>
       <hr class="mdc-list-divider">
       <a class="mdc-list-item" href='/teacher/courses/start_journey'>
-        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">school</i>
+        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">menu_book</i>
         <span class="mdc-list-item__text">Teach a course</span>
       </a>
       <a class="mdc-list-item" href='/teacher/courses'>
@@ -41,7 +42,8 @@
         <span class="mdc-list-item__text">My Courses</span>
       </a>
       <a class="mdc-list-item" href='/enrolled_courses'>
-        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">school</i>
+        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">check_circle
+        </i>
         <span class="mdc-list-item__text">My Enrolled Courses</span>
       </a>
       <hr class="mdc-list-divider">
