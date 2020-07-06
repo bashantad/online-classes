@@ -1,37 +1,50 @@
-<h1>Courses</h1>
+<div class="erb-body">
+  <div class="mdc-card course-main">
+    <div class="course-title">
+      <span class="mdc-typography--headline5">List of courses</span>
+    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>User</th>
-      <th>Website</th>
-      <th>Price</th>
-      <th>Category</th>
-      <th>Is approved?</th>
-      <th>Action</th>
-    </tr>
-  </thead>
+    <div class="course-table">
+      <div class="mdc-data-table resp-table-large">
+        <table class="mdc-data-table__table" aria-label="Courses">
+          <thead>
+          <tr class="mdc-data-table__header-row">
+            <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Title</th>
+            <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">User</th>
+            <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Website</th>
+            <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Price</th>
+            <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Category</th>
+            <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Is approved?</th>
+            <th class="mdc-data-table__header-cell mdc-typography--subtitle1 action-head" role="columnheader" scope="col" colspan="3">Action</th>
+          </tr>
+          </thead>
 
-  <tbody>
-    <% @courses.each do |course| %>
-      <tr>
-        <td>
-            <%= link_to course.title, course.show_url, target: '_blank' %>
-        </td>
-        <td><%= course.owner.full_name %></td>
-        <td><%= course.website %></td>
-        <td>$<%= course.price %></td>
-        <td><%= course.category.title %></td>
-        <td><%= course.approved_text %></td>
-        <td>
-            <% if course.approved? %>
-              <%= link_to 'Disapprove', admin_course_disapprove_path(course) %>
-            <% else %>
-              <%= link_to 'Approve', admin_course_approve_path(course) %>
-            <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          <tbody class="mdc-data-table__content">
+          <% @courses.each do |course| %>
+            <tr class="mdc-data-table__row">
+              <td class="mdc-data-table__cell">
+                <%= link_to course.title, course.show_url, class: 'mdc-button mdc-button__label', :target => "_blank" %>
+              </td>
+              <td class="mdc-data-table__cell"><%= course.owner.full_name %></td>
+              <td class="mdc-data-table__cell"><%= course.website %></td>
+              <td class="mdc-data-table__cell"><%= course.price %></td>
+              <td class="mdc-data-table__cell"><%= course.category.title %></td>
+              <td class="mdc-data-table__cell"><%= course.approved_text %></td>
+              <% if course.approved? %>
+                <td class="mdc-data-table__cell action">
+                  <%= link_to 'Disapprove', admin_course_disapprove_path(course), class: 'cancel secondary-btn-course' %>
+                </td>
+              <% else %>
+                <td class="mdc-data-table__cell action">
+                  <%= link_to "Approve", admin_course_approve_path(course), class: 'back secondary-btn-course' %>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+

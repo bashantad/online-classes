@@ -13,10 +13,10 @@
 
     <body>
         <% if notice %>
-            <p class="notice mdc-typography--subtitle1 notification"><%= notice %></p>
+            <div class="notice mdc-typography--subtitle1 notification"><%= notice %></div>
         <% end %>
         <% if alert %>
-            <p class="alert mdc-typography--subtitle1 notification"><%= alert %></p>
+            <div class="alert mdc-typography--subtitle1 notification"><%= alert %></div>
         <% end %>
         <%= yield %>
     </body>
