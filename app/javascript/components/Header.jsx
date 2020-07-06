@@ -1,5 +1,5 @@
 import React, {Fragment, useState} from 'react';
-import { Redirect } from "react-router-dom";
+import {Redirect} from "react-router-dom";
 
 import {makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -22,6 +22,11 @@ import EditIcon from '@material-ui/icons/Edit';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import CloudUpload from '@material-ui/icons/CloudUpload';
 import DeleteIcon from '@material-ui/icons/Delete';
+import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import ThumbDownAltIcon from '@material-ui/icons/ThumbDownAlt';
+import CategoryIcon from '@material-ui/icons/Category';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles((theme) => ({
@@ -33,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         flexGrow: 1,
-        paddingLeft:'8px',
+        paddingLeft: '8px',
     },
     btnLogout: {
         color: 'white',
@@ -58,48 +63,84 @@ const listItems = [
         link: '/',
         cmsPages: false,
         icon: <HomeIcon/>
-    }, {
+    },
+    {
+        key: 'approvedCourses',
+        name: 'Approved Courses',
+        link: '/teacher/courses?approved=true',
+        cmsPages: true,
+        icon: <ThumbUpAltIcon/>
+    },
+    {
+        key: 'unapprovedCourses',
+        name: 'Unapproved Courses',
+        link: '/teacher/courses?approved=false',
+        cmsPages: true,
+        icon: <ThumbDownAltIcon/>
+    },
+    {
+        key: 'category',
+        name: 'Categories',
+        link: '/admin/categories',
+        cmsPages: true,
+        icon: <CategoryIcon/>
+    },
+    {
+        key: 'teach',
+        name: 'Teach A Course',
+        link: '/teacher/courses/start_journey',
+        cmsPages: true,
+        icon: <MenuBookIcon/>
+    },
+    {
         key: 'mycourses',
         name: 'My Courses',
         link: '/teacher/courses',
         cmsPages: true,
         icon: <SchoolIcon/>
-    }, {
-       key: 'myenrolledcourses',
+    },
+    {
+        key: 'myenrolledcourses',
         name: 'My Enrolled Courses',
         link: '/enrolled_courses',
         cmsPages: false,
-        icon: <SchoolIcon/>
-    }, {
+        icon: <CheckCircleIcon/>
+    },
+    {
         key: 'accountDetails',
         name: 'Account Details',
         link: '/users/details',
         cmsPages: true,
         icon: <AccountCircleIcon/>
-    }, {
+    },
+    {
         key: 'uoloadProfilePicture',
         name: 'Upload Profile Picture',
         link: '/users/upload',
         cmsPages: true,
         icon: <CloudUpload/>
-    }, {
+    },
+    {
         key: 'editAccount',
         name: 'Edit Account',
         link: '/users/edit',
         icon: <EditIcon/>
-    }, {
+    },
+    {
         key: 'changePassword',
         name: 'Change Password',
         link: '/users/edit_password',
         cmsPages: true,
         icon: <VpnKeyIcon/>
-    }, {
+    },
+    {
         key: 'deleteAccount',
         name: 'Delete Account',
         link: '/users/cancel_account',
         cmsPages: true,
         icon: <DeleteIcon/>
-    }, {
+    },
+    {
         key: 'logout',
         name: 'Logout',
         link: '/users/sign_out',
@@ -119,10 +160,10 @@ export default function HeaderHome(props) {
 
 
     const redirectTo = (menuItem) => {
-        if(menuItem.cmsPages) {
+        if (menuItem.cmsPages) {
             window.location = menuItem.link;
         } else {
-            return  window.location = menuItem.link;
+            return window.location = menuItem.link;
         }
     };
 
@@ -130,7 +171,7 @@ export default function HeaderHome(props) {
         <div>
             <AppBar position="fixed" className='app-bar'>
                 <Toolbar>
-                    <Hidden only={['lg', 'xl','md']}>
+                    <Hidden only={['lg', 'xl', 'md']}>
                         <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"
                                     onClick={handleDrawerToggle}>
                             <MenuIcon/>
@@ -196,7 +237,7 @@ export default function HeaderHome(props) {
                                             <ListItemText primary={menuItem.name} className='custom-listItem-text'/>
                                         </ListItem>
                                     </div>
-                                    {index === 0 || index === 1 || index === 5 ? <Divider/> : ''}
+                                    {index === 0 || index === 3 || index === 6 ? <Divider/> : ''}
                                 </Fragment>
                             ))}
                         </List>
