@@ -73,7 +73,9 @@ body {
   background-color: #26a69a !important;
   margin-top: 4rem !important;
   color: white;
-  padding: .5rem 0;
+  padding: 15px 0;
+  z-index: 10000;
+  bottom: 0;
   font-family: $font-family;
 }
 

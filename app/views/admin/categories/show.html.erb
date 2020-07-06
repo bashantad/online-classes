@@ -1,20 +1,58 @@
-<p>
-  <strong>Title:</strong>
-  <%= @category.title %>
-</p>
+<div class="mdc-card registration-main">
+  <h2 class="mdc-typography--headline5 login-title">
+    Category Details
+  </h2>
+  <hr class="mdc-list-divider divider-margin">
+  <div class="user-details">
+    <div class="mdc-typography--subtitle1 user-fields">
+      <div class="field-label">
+        Title
+      </div>
+      <div>
+        <%= @category.title %>
+      </div>
+    </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @category.description %>
-</p>
+    <div class="mdc-typography--subtitle1 user-fields">
+      <div class="field-label">
+        Description
+      </div>
+      <div>
+        <%= @category.description %>
+      </div>
+    </div>
+    <div class="course-table">
+      <div class="mdc-data-table resp-table-large">
+        <table class="mdc-data-table__table" aria-label="Courses">
+          <thead>
+          <tr class="mdc-data-table__header-row">
+            <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">
+              List of courses
+            </th>
+          </tr>
+          </thead>
+          <tbody class="mdc-data-table__content">
+          <% @category.courses.each do |course| %>
+            <tr class="mdc-data-table__row">
+              <td class="mdc-data-table__cell">
+                <%= link_to course.title, "/courses/#{course.id}", target: '_blank',class: 'mdc-button mdc-button__label' %>
+              </td>
+            </tr>
 
-<h4>List of courses</h4>
-<ul>
-	<% @category.courses.each do |course| %>
-		<li>
-			<%= link_to course.title, "/courses/#{course.id}", target: '_blank' %>
-		</li>
-	<% end %>
-</ul>
-<%= link_to 'Edit', edit_admin_category_path(@category) %> |
-<%= link_to 'Back', admin_categories_path %>
+          <% end %>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class='btn-main'>
+    <%= link_to "Cancel", admin_categories_path, class: 'back secondary-btn float-left' %>
+    <button class="mdc-button mdc-button--raised action-btn float-right">
+      <%= link_to "Edit", edit_admin_category_path(@category), class: 'btn' %>
+    </button>
+  </div>
+</div>

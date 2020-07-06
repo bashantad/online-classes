@@ -1,8 +1,12 @@
 <%= form_with(model: [:admin, category], local: true) do |form| %>
   <% error_messages =  category.errors.messages %>
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="form-field">
+    <div class="mdc-typography--subtitle1">
+      <%= form.label :title %>
+    </div>
+    <div class="mdc-text-field mdc-text-field--filled input-field">
+      <%= form.text_field :title, autofocus: true, autocomplete: "full_name", class: 'mdc-text-field__input' %>
+    </div>
     <% if error_messages[:title] %>
       <div class="field-error">
         <%= error_messages[:title][0] %>
@@ -10,12 +14,25 @@
     <% end %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+  <div class="form-field">
+    <div class="mdc-typography--subtitle1">
+      <%= form.label :description %>
+    </div>
+    <div class="mdc-text-field--textarea input-field">
+      <%= form.text_area :description, class: 'course-textarea' %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class='btn-main'>
+    <%= link_to "Cancel",admin_categories_path,  class: 'back secondary-btn float-left' %>
+    <% if  params[:action] == "edit" %>
+      <%= link_to 'Show', admin_category_path(category: @category),  class: 'back secondary-btn float-left' %>
+      <% end %>
+    <button class="mdc-button mdc-button--raised action-btn  float-right">
+      <div class="mdc-button__ripple"></div>
+      <span class="mdc-button__label"><%= form.submit "Submit" %></span>
+    </button>
   </div>
 <% end %>
+
+
