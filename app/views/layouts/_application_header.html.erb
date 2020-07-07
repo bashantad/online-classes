@@ -19,11 +19,12 @@
       <% if current_user.is_admin? %>
         <hr class="mdc-list-divider">
         <a class="mdc-list-item" href='<%= admin_courses_path(approved: true) %>'>
-          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">thumb_up_alt</i>
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">check_box</i>
           <span class="mdc-list-item__text">Approved courses</span>
         </a>
         <a class="mdc-list-item" href='<%= admin_courses_path(approved: false) %>'>
-          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">thumb_down_alt</i>
+          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">indeterminate_check_box
+          </i>
           <span class="mdc-list-item__text">Unapproved courses</span>
         </a>
         <a class="mdc-list-item" href='<%= admin_categories_path %>'>
@@ -34,7 +35,7 @@
       <% end %>
       <hr class="mdc-list-divider">
       <a class="mdc-list-item" href='/teacher/courses/start_journey'>
-        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">menu_book</i>
+        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">local_library</i>
         <span class="mdc-list-item__text">Teach a course</span>
       </a>
       <a class="mdc-list-item" href='/teacher/courses'>
@@ -42,7 +43,7 @@
         <span class="mdc-list-item__text">My Courses</span>
       </a>
       <a class="mdc-list-item" href='/enrolled_courses'>
-        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">check_circle
+        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">how_to_reg
         </i>
         <span class="mdc-list-item__text">My Enrolled Courses</span>
       </a>
