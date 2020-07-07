@@ -6,7 +6,8 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import SendRoundedIcon from '@material-ui/icons/SendRounded';
 import Paper from '@material-ui/core/Paper';
-
+import IconButton from '@material-ui/core/IconButton';
+import AttachFileIcon from '@material-ui/icons/AttachFile';
 import chatApi from '../../apis/chatApi';
 
 export default class NewMessage extends React.Component {
@@ -35,6 +36,16 @@ export default class NewMessage extends React.Component {
                 <TextField id="outlined-basic" label="Type your message" variant="outlined" multiline
                            rowsMax={4} onChange={this.handleMessageChange} value={content}>/></TextField>
                 <div className='send-btn'>
+                    <input
+                        accept="image/*"
+                        id="icon-button-file"
+                        type="file"
+                    />
+                    <label htmlFor="icon-button-file" >
+                        <IconButton color="primary" aria-label="upload picture" component="span" className='attach-btn'>
+                            <AttachFileIcon />
+                        </IconButton>
+                    </label>
                     <Button variant="contained" color="primary" disabled={disabled} endIcon={<SendRoundedIcon/>}
                             onClick={this.handleMessageSendClick}>
                         Send
