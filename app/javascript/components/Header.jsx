@@ -22,11 +22,11 @@ import EditIcon from '@material-ui/icons/Edit';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import CloudUpload from '@material-ui/icons/CloudUpload';
 import DeleteIcon from '@material-ui/icons/Delete';
-import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
-import ThumbDownAltIcon from '@material-ui/icons/ThumbDownAlt';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox';
 import CategoryIcon from '@material-ui/icons/Category';
-import MenuBookIcon from '@material-ui/icons/MenuBook';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
+import HowToRegIcon from '@material-ui/icons/HowToReg';
 import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles((theme) => ({
@@ -69,14 +69,14 @@ const listItems = [
         name: 'Approved Courses',
         link: '/teacher/courses?approved=true',
         cmsPages: true,
-        icon: <ThumbUpAltIcon/>
+        icon: <CheckBoxIcon/>
     },
     {
         key: 'unapprovedCourses',
         name: 'Unapproved Courses',
         link: '/teacher/courses?approved=false',
         cmsPages: true,
-        icon: <ThumbDownAltIcon/>
+        icon: <IndeterminateCheckBoxIcon/>
     },
     {
         key: 'category',
@@ -90,7 +90,7 @@ const listItems = [
         name: 'Teach A Course',
         link: '/teacher/courses/start_journey',
         cmsPages: true,
-        icon: <MenuBookIcon/>
+        icon: <LocalLibraryIcon/>
     },
     {
         key: 'mycourses',
@@ -104,7 +104,7 @@ const listItems = [
         name: 'My Enrolled Courses',
         link: '/enrolled_courses',
         cmsPages: false,
-        icon: <CheckCircleIcon/>
+        icon: <HowToRegIcon/>
     },
     {
         key: 'accountDetails',
