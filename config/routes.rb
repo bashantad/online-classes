@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :qualifications
   	# Routes for admin pages
 	namespace :admin do
 		resources :courses, only: [:index, :show] do

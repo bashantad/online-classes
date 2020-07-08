@@ -16,6 +16,9 @@ class User < ApplicationRecord
     has_many :courses
     has_many :enroll_requests
     has_many :calls
+    has_many :qualifications
+    has_many :educations
+    has_many :experiences
     has_many :reviews, -> { order(created_at: :desc) }
     has_one_attached :avatar_image, dependent: :destroy
 
