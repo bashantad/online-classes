@@ -230,7 +230,7 @@ body {
   width: 40rem;
   padding: 16px;
   margin: auto;
-  margin-top: 2rem;
+  margin-top: 1rem;
 
   .MuiGrid-item {
     padding: 6px;
@@ -264,24 +264,64 @@ body {
   }
 }
 
+.course-details h5{
+  text-transform: capitalize;
+}
+
+.avatar-name{
+  text-align: center;
+  margin-top: 2px;
+}
+
 .first-grid {
-  margin: 12px 0;
-  justify-content: space-between;
+  text-align: center;
 
-  div {
-    margin: 0 4px;
+  h5{
     text-align: center;
   }
+}
 
-  h6 {
-    text-align: center;
-  }
+.comment-avatar{
+  padding-top: 35px !important;
+}
 
+.comment-send-btn{
+  margin-top: 4.5rem !important;
+}
+
+.comment-snackbar div{
+  background-color: white !important;
+  color:$error-color !important;
 }
 
 .price-box {
   background-color: #ffd90b;
   border-radius: 8px;
+  margin-top: 4px !important;
+}
+
+.comments{
+  .MuiAvatar-root{
+    margin: auto;
+    margin-bottom: 9px !important;
+  }
+}
+
+.comment-time{
+  float: right;
+  color: #0000008a;
+  span{
+    padding-top: 4px;
+  }
+}
+
+.rate-course{
+  line-height: 26px !important;
+}
+
+.comment-loading{
+  text-align: center;
+  margin-top: 2rem;
 }
 
 .course-margin-top {
@@ -291,6 +331,15 @@ body {
 .course-owner-details {
   background-color: rgba(0, 0, 0, 0.08);
   border-radius: 8px;
+
+  p{
+    font-weight: 600;
+  }
+}
+
+.rating
+{
+  display: inherit;
 }
 
 @media only screen and (max-width: 600px) {
@@ -308,12 +357,16 @@ body {
   .price-box{
     margin-top: 8px !important;
   }
+  .comment-send-btn{
+    margin-top: -4px !important;
+    margin-bottom: 4px !important;
+  }
 }
 
 @media only screen and (max-width: 700px) {
   .course-detail-paper {
     width: auto;
-    margin-top: 2rem;
+    margin-top: 1rem;
     background-color: inherit !important;
     box-shadow: none !important;
 
@@ -350,6 +403,14 @@ body {
   }
   .course-card-item {
     width: 400px;
+  }
+  .comments .MuiAvatar-root {
+     margin: inherit !important;
+    margin-bottom: 9px !important;
+  }
+  .avatar-name {
+     text-align: inherit !important;
+    margin-top: 2px;
   }
 }
 
