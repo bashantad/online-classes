@@ -39,7 +39,7 @@ const CourseCard = ({courses, handleEnroll, handleDetails}) => {
                             </CardActionArea>
                         </div>
                         <div className="rating">
-                            <Rating name="half-rating" defaultValue={course.rating} precision={0.5}/>
+                            <Rating name="read-only" value={3} precision={0.5}/>
                         </div>
 
                         <CardActions className='card-actions'>
