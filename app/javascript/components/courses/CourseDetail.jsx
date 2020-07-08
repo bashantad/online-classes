@@ -8,26 +8,19 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Grid from '@material-ui/core/Grid';
 import Paper from "@material-ui/core/Paper";
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import TextField from '@material-ui/core/TextField';
 import Avatar from '@material-ui/core/Avatar';
 import Snackbar from '@material-ui/core/Snackbar';
-import Rating from '@material-ui/lab/Rating';
-import SendIcon from '@material-ui/icons/Send';
 import CloseIcon from '@material-ui/icons/Close';
-import FormControl from '@material-ui/core/FormControl';
 import Skeleton from '@material-ui/lab/Skeleton';
-import Comment from "../common/Comment";
-
+import ReviewList from "../reviews/ReviewList";
+import NewReview from "../reviews/NewReview";
 
 export class CourseDetail extends React.Component {
     state = {
         course: null,
         loading: true,
-        rating: '',
-        message: '',
         errNotification: false,
         vertical: 'bottom',
         horizontal: 'right',
@@ -47,32 +40,27 @@ export class CourseDetail extends React.Component {
         });
     }
 
-    submitReview = () => {
-        this.state.message === '' ?
-            this.setState({errNotification: true})
-            :
+    submitReview = (rating, comment) => {
         courseApi.reviews(this._getCourseId()).create({
-            rating: this.state.rating, comment: this.state.message
+            rating: rating,
+            comment: comment,
         })
-            .then(res => res.json())
-            .then(response => {
-                const {course} = this.state;
-                const reviews = [response, ...course.reviews];
-                course.reviews = reviews;
-                this.setState({course: course})
-            });
+        .then(res => res.json())
+        .then(response => {
+            const {course} = this.state;
+            const reviews = [response, ...course.reviews];
+            course.reviews = reviews;
+            this.setState({course: course})
+        });
     }
 
-    render() {
-        const {course, rating, message,errNotification, vertical, horizontal} = this.state;
-        const reviews = course && course.reviews;
-        const handleChange = (event) => {
-            this.setState({message: event.target.value})
-        };
+    handleClose = () => {
+        this.setState({errNotification: false});
+    };
 
-        const handleClose = () => {
-            this.setState({errNotification: false});
-        };
+    render() {
+        const {course, errNotification, vertical, horizontal} = this.state;
+        const reviews = course && course.reviews;
 
         return (
             <div className="main-root">
@@ -129,47 +117,7 @@ export class CourseDetail extends React.Component {
                             </Grid>
                         </div>
                         <Divider/>
-                        <div className="comments">
-                            <Grid container>
-                                <Grid item xs={12} sm={1} className='comment-avatar'>
-                                    <Avatar alt="Remy Sharp" src=""/>
-                                </Grid>
-                                <Grid item xs={12} sm={9}>
-                                    <FormControl>
-                                        <Grid container>
-                                            <Grid item xs={12}>
-                                                <TextField id="standard-basic" label="Add Comment..." name='comment' multiline rows={4}
-                                                           onChange={handleChange}/>
-                                            </Grid>
-                                            <Grid item xs={12} className='rating'>
-                                                <Typography variant="caption" gutterBottom className='rate-course'>
-                                                    Rate Course:
-                                                </Typography>
-
-                                                <Rating
-                                                    name="simple-controlled"
-                                                    // value={rating}
-                                                    onChange={(event, newValue) => {
-                                                        this.setState({rating: newValue})
-                                                    }}
-                                                />
-                                            </Grid>
-                                        </Grid>
-                                    </FormControl>
-                                </Grid>
-                                <Grid item xs={12} sm={2}>
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        className='comment-send-btn'
-                                        startIcon={<SendIcon/>}
-                                        type="submit"
-                                        onClick={this.submitReview}>
-                                        Post
-                                    </Button>
-                                </Grid>
-                            </Grid>
-                        </div>
+                        <NewReview submitReview={this.submitReview} />
                         <Divider/>
                         {
                             reviews === null ?
@@ -179,7 +127,7 @@ export class CourseDetail extends React.Component {
                                     <Skeleton/>
                                 </div>
                                 :
-                                <Comment reviews={reviews}/>
+                                <ReviewList reviews={reviews}/>
                         }
 
                     </Paper>
@@ -189,7 +137,7 @@ export class CourseDetail extends React.Component {
                     <Snackbar
                         anchorOrigin={{vertical, horizontal}}
                         open={errNotification}
-                        onClose={handleClose}
+                        onClose={this.handleClose}
                         autoHideDuration={6000}
                         message={'Please type a message.'}
                         key={vertical + horizontal}
@@ -197,7 +145,7 @@ export class CourseDetail extends React.Component {
                         action={
                             <>
                                 <IconButton size="small" aria-label="close" color="inherit"
-                                            onClick={handleClose}>
+                                            onClick={this.handleClose}>
                                     <CloseIcon fontSize="small"/>
                                 </IconButton>
                             </>

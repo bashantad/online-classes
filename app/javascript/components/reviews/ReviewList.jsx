@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Comment = (reviews) => {
+const ReviewList = (reviews) => {
     const classes = useStyles();
     return (
         <Fragment>
@@ -56,4 +56,4 @@ const Comment = (reviews) => {
     );
 };
 
-export default Comment;
+export default ReviewList;
