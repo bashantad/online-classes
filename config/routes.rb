@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   	end
 
 	# Routes for on-boarding Rails pages
-	namespace :teacher do
+	namespace :teaching do
   		resources :courses do
   			collection do
   				get :start_journey

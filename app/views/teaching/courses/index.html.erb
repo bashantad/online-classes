@@ -3,7 +3,7 @@
     <div class="course-title">
       <span class="mdc-typography--headline5">List of courses</span>
       <span>
-        <%= link_to 'Add New Course', new_teacher_course_path, class: 'mdc-button mdc-button--raised action-btn' %>
+        <%= link_to 'Add New Course', new_teaching_course_path, class: 'mdc-button mdc-button--raised action-btn' %>
       </span>
     </div>
 
@@ -32,13 +32,13 @@
               <td class="mdc-data-table__cell"><%= course.category.title %></td>
               <td class="mdc-data-table__cell"><%= course.approved_text %></td>
               <td class="mdc-data-table__cell action">
-                <%= link_to "View", teacher_course_path(course), class: 'back secondary-btn-course' %>
+                <%= link_to "View", teaching_course_path(course), class: 'back secondary-btn-course' %>
               </td>
               <td class="mdc-data-table__cell action">
-                <%= link_to 'Edit', edit_teacher_course_path(course), class: 'back secondary-btn-course' %>
+                <%= link_to 'Edit', edit_teaching_course_path(course), class: 'back secondary-btn-course' %>
               </td>
               <td class="mdc-data-table__cell action">
-                <%= link_to 'Delete', teacher_course_path(course), method: :delete, data: {confirm: 'Are you sure you want to delete the course?'}, class: 'cancel secondary-btn-course' %>
+                <%= link_to 'Delete', teaching_course_path(course), method: :delete, data: {confirm: 'Are you sure you want to delete the course?'}, class: 'cancel secondary-btn-course' %>
               </td>
             </tr>
           <% end %>

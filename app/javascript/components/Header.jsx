@@ -67,14 +67,14 @@ const listItems = [
     {
         key: 'approvedCourses',
         name: 'Approved Courses',
-        link: '/teacher/courses?approved=true',
+        link: '/teaching/courses?approved=true',
         cmsPages: true,
         icon: <CheckBoxIcon/>
     },
     {
         key: 'unapprovedCourses',
         name: 'Unapproved Courses',
-        link: '/teacher/courses?approved=false',
+        link: '/teaching/courses?approved=false',
         cmsPages: true,
         icon: <IndeterminateCheckBoxIcon/>
     },
@@ -88,14 +88,14 @@ const listItems = [
     {
         key: 'teach',
         name: 'Teach A Course',
-        link: '/teacher/courses/start_journey',
+        link: '/teaching/courses/start_journey',
         cmsPages: true,
         icon: <LocalLibraryIcon/>
     },
     {
         key: 'mycourses',
         name: 'My Courses',
-        link: '/teacher/courses',
+        link: '/teaching/courses',
         cmsPages: true,
         icon: <SchoolIcon/>
     },
