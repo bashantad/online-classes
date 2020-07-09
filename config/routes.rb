@@ -21,7 +21,9 @@ Rails.application.routes.draw do
   	end
   	devise_for :users, controllers: {
   		registrations: 'registrations',
-  		sessions: 'sessions'
+  		sessions: 'sessions',
+  		passwords: 'passwords',
+  		confirmations: 'confirmations'
   	}
   	resources :users, only: [] do
   		collection do
