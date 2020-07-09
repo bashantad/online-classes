@@ -1,100 +1,74 @@
-<!--- <div class="no-margin-left">
-  <div class="mdc-card registration-main">
-    <h2 class="mdc-typography--headline4 login-title">Sign in</h2>
-    <hr class="mdc-list-divider divider-margin">
-
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="form-field">
-        <div class="mdc-typography--subtitle1"><%= f.label :email %></div>
-        <div class="mdc-text-field mdc-text-field--filled input-field">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'mdc-text-field__input' %>
-        </div>
-      </div>
-      <div class="form-field password">
-        <div class="mdc-typography--subtitle1"><%= f.label :password %></div>
-        <div class="mdc-text-field mdc-text-field--filled input-field">
-          <%= f.password_field :password, autocomplete: "current-password", class: 'mdc-text-field__input' %>
-        </div>
-      </div>
-
-      <% if devise_mapping.rememberable? %>
-        <div class="mdc-form-field remember-me">
-          <div class="mdc-checkbox">
-            <%= f.check_box :remember_me, class: 'mdc-checkbox__native-control', id: 'check_box-1', type: 'checkbox' %>
-            <div class="checkbox mdc-checkbox__background ">
-              <svg class="mdc-checkbox__checkmark"
-                   viewBox="0 0 24 24">
-                <path class="mdc-checkbox__checkmark-path"
-                      fill="none"
-                      d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-              </svg>
-              <div class="mdc-checkbox__mixedmark"></div>
-            </div>
-            <div class="mdc-checkbox__ripple"></div>
-          </div>
-          <label for="checkbox-1"><%= f.label :remember_me, class: 'mdc-typography--caption' %></label>
-        </div>
-      <% end %>
-      <div class='btn-main'>
-        <button class="mdc-button mdc-button--raised action-btn">
-          <div class="mdc-button__ripple"></div>
-          <span class="mdc-button__label"><%= f.submit "Sign in" %></span>
-        </button>
-      </div>
-    <% end %>
-    <hr class="mdc-list-divider divider-margin">
-    <div class='extra-links'>
-      <%= render "devise/shared/links" %>
-    </div>
-  </div>
-</div> -->
-
-
 <main id="content" role="main">
   <div class="container space-2 space-lg-3">
-    <form class="js-validate w-md-75 w-lg-50 mx-md-auto">
-      <!-- Title -->
-      <div class="mb-5 mb-md-7">
-        <h1 class="h2 mb-0">Welcome back</h1>
-        <p>Login to manage your account.</p>
-      </div>
-      <!-- End Title -->
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="js-validate w-md-75 w-lg-50 mx-md-auto">
+        <!-- Title -->
+        <div class="mb-5 mb-md-7">
+          <h1 class="h2 mb-0">Welcome back</h1>
+          <p>Login to manage your account.</p>
+        </div>
+        <!-- End Title -->
 
-      <!-- Form Group -->
-      <div class="js-form-message form-group">
-        <label class="input-label" for="signinSrEmail">Email address</label>
-        <input type="email" class="form-control" name="email" id="signinSrEmail" placeholder="Email address" aria-label="Email address" required
-               data-msg="Please enter a valid email address.">
-      </div>
-      <!-- End Form Group -->
+        <!-- Form Group -->
+        <div class="js-form-message form-group">
+          <label class="input-label" for="email"><%= f.label :email %></label>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: "Email address", type: 'email', id: 'email', ariaLabel: 'Email address', dataMsg: 'Please enter a valid email address.' %>
+        </div>
+        <!-- End Form Group -->
 
-      <!-- Form Group -->
-      <div class="js-form-message form-group">
-        <label class="input-label" for="signinSrPassword">
+        <!-- Form Group -->
+        <div class="js-form-message form-group">
+          <label class="input-label" for="password">
           <span class="d-flex justify-content-between align-items-center">
-            Password
-            <a class="link-underline text-capitalize font-weight-normal" href="recover-account-simple.html">Forgot Password?</a>
+            <%= f.label :password %>
+            <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+           <%= link_to "Forgot Password?", new_password_path(resource_name), class: 'link-underline text-capitalize font-weight-normal' %>
+             <% end %>
           </span>
-        </label>
-        <input type="password" class="form-control" name="password" id="signinSrPassword" placeholder="********" aria-label="********" required
-               data-msg="Your password is invalid. Please try again.">
-      </div>
-      <!-- End Form Group -->
-
-      <!-- Button -->
-      <div class="row align-items-center mb-5">
-        <div class="col-sm-6 mb-3 mb-sm-0">
-          <span class="font-size-1 text-muted">Don't have an account?</span>
-          <a class="font-size-1 font-weight-bold" href="signup-simple.html">Signup</a>
+          </label>
+          <%= f.password_field :password, autocomplete: "current-password", class: 'form-control', type: 'password', id: 'password', placeholder: '********', ariaLabel: '********', dataMsg: 'Your password is invalid. Please try again.' %>
         </div>
-
-        <div class="col-sm-6 text-sm-right">
-          <button type="submit" class="btn btn-primary transition-3d-hover">Get Started</button>
+        <!-- Checkbox -->
+        <div class="js-form-message mb-5">
+          <div class="custom-control custom-checkbox d-flex align-items-center text-muted">
+            <%= f.check_box :remember_me, class: 'custom-control-input', id: 'remember_me', type: 'checkbox', name: 'remember_me' %>
+            <label class="custom-control-label" for="remember_me">
+              <small>
+                <%= f.label :remember_me, class: 'mdc-typography--caption' %>
+              </small>
+            </label>
+          </div>
         </div>
+        <!-- End Checkbox -->
+        <!-- End Form Group -->
+
+        <!-- Button -->
+        <div class="row align-items-center mb-5">
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <span class="font-size-1 text-muted">Don't have an account?</span>
+            <%= link_to "Signup", new_registration_path(resource_name), class: 'font-size-1 font-weight-bold' %>
+          </div>
+
+          <div class="col-sm-6 text-sm-right">
+            <%= f.submit "Sign in", class: "btn btn-primary transition-3d-hover" %>
+          </div>
+        </div>
+        <div class="text-center">
+          <span class="divider divider-text"></span>
+        </div>
+        <div class="row align-items-center mb-5 custom-align-center">
+          <div class="col-sm-12 mb-3 mb-sm-0">
+            <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+              <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name),class: 'link  text-muted font-weight-normal font-size-1' %>
+            <% end %>
+          </div>
+        </div>
+        <!-- End Button -->
       </div>
-      <!-- End Button -->
-    </form>
+    <% end %>
+
   </div>
   <!-- End Login Form -->
 </main>
+
 
