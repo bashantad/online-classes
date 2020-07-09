@@ -1,4 +1,5 @@
 class Teaching::CoursesController < ApplicationController
+  layout :set_layout
   before_action :authenticate_user!, except: [:show]
   before_action :set_course, only: [:edit, :update, :destroy]
   before_action :set_categories, only: [:new, :create, :edit, :update]
@@ -67,5 +68,9 @@ class Teaching::CoursesController < ApplicationController
 
   def set_categories
     @categories = Category.active
+  end
+
+  def set_layout
+    "theme"
   end
 end

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            VC Room
+        </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
+        <%= stylesheet_link_tag 'theme', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    </head>
+    <body>
+        <div id='main-container'>
+            <h1>Theme layout</h1>
+            <%= render "layouts/application_header" if user_signed_in? %>
+            <%= render "layouts/flash_messages" %>
+            <%= yield %>
+        </div>
+        <%= javascript_include_tag 'theme', 'data-turbolinks-track': 'reload' %>
+    </body>
+</html>

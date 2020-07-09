@@ -1,12 +1,43 @@
-<div class="erb-body">
-  <div class="mdc-card course-main course-update">
-    <h2 class="mdc-typography--headline5 login-title">
-      Start your teaching journey
-    </h2>
-    <hr class="mdc-list-divider divider-margin">
-	<p>
-		And get paid for what you love
-	</p>
+  <div class="container space-2">
+    <div class="row">
+      <div class="col-lg-6 mb-3 mb-lg-0">
+        <!-- Card -->
+        <article class="card h-100">
+          <div class="w-sm-65 p-4">
+            <h3>Start your teaching journey</h3>
+            <div class="mb-4">
+              <p>Start your business on various platforms with one click.</p>
+            </div>
+            <a class="btn btn-sm btn-soft-primary btn-pill transition-3d-hover" href="#">Find out More <i class="fas fa-angle-right ml-1"></i></a>
+          </div>
+
+          <div class="position-absolute bottom-0 right-0 w-sm-35 max-w-27rem">
+            <img class="img-fluid" src="/assets/illustrations/support-man.svg" alt="Image Description">
+          </div>
+        </article>
+        <!-- End Card -->
+      </div>
+
+      <div class="col-lg-6">
+        <!-- Card -->
+        <article class="card h-100">
+          <div class="w-sm-65 p-4">
+            <h3>And get paid for what you love</h3>
+            <div class="mb-4">
+              <p>Evaluate your options better and learn more about them.</p>
+            </div>
+            <a class="btn btn-sm btn-soft-primary btn-pill transition-3d-hover" href="#">Find out More <i class="fas fa-angle-right ml-1"></i></a>
+          </div>
+
+          <div class="position-absolute bottom-0 right-0 w-sm-35 max-w-27rem">
+            <img class="img-fluid" src="/assets/illustrations/list-app.svg" alt="Image Description">
+          </div>
+        </article>
+        <!-- End Card -->
+      </div>
+    </div>
+  </div>
+  <!-- End Articles Section -->
 	<%= link_to 'Create New Course', new_teaching_course_path, class: 'mdc-button mdc-button--raised action-btn' %>
   </div>
 </div>
