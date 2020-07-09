@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+	# layout "theme"
 	CALL_JOIN_URL_PATTERN = /^calls\/\d\/join\/\w+$/
 	REACT_ROUTES = {
 		qualifications: '/users/qualifications'

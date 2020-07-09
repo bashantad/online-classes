@@ -1,84 +1,98 @@
-<div class="mdc-drawer-app-content custom-app-bar">
-  <header class="mdc-top-app-bar">
-    <div class="mdc-top-app-bar__row">
-      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-        <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button nav-btn" aria-label="Open navigation menu" onclick="toggleDrawer()">menu</button>
-        <span class="mdc-top-app-bar__title">VC Room</span>
-      </section>
+<header id="headerWithBSDropdown" class="header">
+  <div class="header-section">
+    <div id="logoAndNavWithBSDropdown" class="container">
+      <!-- Nav -->
+      <nav class="js-mega-menu navbar navbar-expand-lg">
+        <!-- Logo -->
+        <a class="navbar-brand" href="index.html" aria-label="Front">
+          <img src="/assets/logos/logo.svg" alt="Logo">
+        </a>
+        <!-- End Logo -->
+
+        <!-- Responsive Toggle Button -->
+        <button type="button" class="navbar-toggler btn btn-icon btn-sm rounded-circle"
+                aria-label="Toggle navigation"
+                aria-expanded="false"
+                aria-controls="navBarWithBSDropdown"
+                data-toggle="collapse"
+                data-target="#navBarWithBSDropdown">
+          <span class="navbar-toggler-default">
+            <svg width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+              <path fill="currentColor" d="M17.4,6.2H0.6C0.3,6.2,0,5.9,0,5.5V4.1c0-0.4,0.3-0.7,0.6-0.7h16.9c0.3,0,0.6,0.3,0.6,0.7v1.4C18,5.9,17.7,6.2,17.4,6.2z M17.4,14.1H0.6c-0.3,0-0.6-0.3-0.6-0.7V12c0-0.4,0.3-0.7,0.6-0.7h16.9c0.3,0,0.6,0.3,0.6,0.7v1.4C18,13.7,17.7,14.1,17.4,14.1z"/>
+            </svg>
+          </span>
+          <span class="navbar-toggler-toggled">
+            <svg width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+              <path fill="currentColor" d="M11.5,9.5l5-5c0.2-0.2,0.2-0.6-0.1-0.9l-1-1c-0.3-0.3-0.7-0.3-0.9-0.1l-5,5l-5-5C4.3,2.3,3.9,2.4,3.6,2.6l-1,1 C2.4,3.9,2.3,4.3,2.5,4.5l5,5l-5,5c-0.2,0.2-0.2,0.6,0.1,0.9l1,1c0.3,0.3,0.7,0.3,0.9,0.1l5-5l5,5c0.2,0.2,0.6,0.2,0.9-0.1l1-1 c0.3-0.3,0.3-0.7,0.1-0.9L11.5,9.5z"/>
+            </svg>
+          </span>
+        </button>
+        <!-- End Responsive Toggle Button -->
+
+        <!-- Navigation -->
+        <div id="navBarWithBSDropdown" class="collapse navbar-collapse">
+          <ul class="navbar-nav">
+            <li class="navbar-nav-item">
+              <a class="nav-link" href="<%= root_path %>">Home</a>
+            </li>
+            <% if current_user.is_admin? %>
+              <!-- Dropdown -->
+              <li class="dropdown">
+                <a class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" id="dropdownSubMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownSubMenu" style="min-width: 230px;">
+                  <a class="dropdown-item" href="<%= admin_courses_path(approved: true) %>">Approved Coures</a>
+                  <a class="dropdown-item" href="<%= admin_courses_path(approved: false) %>">Unapproved Courses</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="<%= admin_categories_path %>">Categories</a>
+                </div>
+              </li>
+              <!-- End Dropdown -->
+            <% end %>
+            <!-- Dropdown -->
+            <li class="dropdown">
+              <a class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" id="dropdownSubMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Courses</a>
+
+              <div class="dropdown-menu" aria-labelledby="dropdownSubMenu" style="min-width: 230px;">
+                <a class="dropdown-item" href="/teaching/courses">My Courses</a>
+                <a class="dropdown-item" href="/enrolled_courses">Enrolled Courses</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/teaching/courses/start_journey">Teach A Course</a>
+              </div>
+            </li>
+            <!-- End Dropdown -->
+
+            <!-- Dropdown -->
+            <li class="dropdown">
+              <a class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" id="dropdownSubMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+
+              <div class="dropdown-menu" aria-labelledby="dropdownSubMenu" style="min-width: 230px;">
+                <a class="dropdown-item" href="<%= details_users_path %>">Account Details</a>
+                <a class="dropdown-item" href="<%= upload_users_path %>">Upload Profile Picture</a>
+                <a class="dropdown-item" href="<%= edit_user_registration_path %>">Edit Account</a>
+                <a class="dropdown-item" href="<%= edit_password_users_path %>">Change Password</a>
+                <a class="dropdown-item" href="<%= cancel_account_users_path %>">Delete Account</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="<%= destroy_user_session_path %>">Logout</a>
+              </div>
+            </li>
+            <!-- End Dropdown -->
+            <!-- Button -->
+            <li class="nav-item navbar-nav-last-item">
+              <a class="btn btn-sm btn-primary transition-3d-hover" href="/teaching/courses/start_journey" target="_blank">
+                Join Now
+              </a>
+            </li>
+            <!-- End Button -->
+          </ul>
+        </div>
+        <!-- End Navigation -->
+      </nav>
+      <!-- End Nav -->
     </div>
-  </header>
-</div>
-
-<aside class="mdc-drawer mdc-drawer--open mdc-drawer--modal mdc-top-app-bar--fixed-adjust" id="slider">
-  <div class="mdc-drawer__content">
-    <nav class="mdc-list">
-      <a class="mdc-list-item" href='<%= root_path %>'>
-        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">home</i>
-        <span class="mdc-list-item__text">Home</span>
-      </a>
-      <% if current_user.is_admin? %>
-        <hr class="mdc-list-divider">
-        <a class="mdc-list-item" href='<%= admin_courses_path(approved: true) %>'>
-          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">check_box</i>
-          <span class="mdc-list-item__text">Approved courses</span>
-        </a>
-        <a class="mdc-list-item" href='<%= admin_courses_path(approved: false) %>'>
-          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">indeterminate_check_box
-          </i>
-          <span class="mdc-list-item__text">Unapproved courses</span>
-        </a>
-        <a class="mdc-list-item" href='<%= admin_categories_path %>'>
-          <i class="material-icons mdc-list-item__graphic" aria-hidden="true">category
-          </i>
-          <span class="mdc-list-item__text">Categories</span>
-        </a>
-      <% end %>
-      <hr class="mdc-list-divider">
-      <a class="mdc-list-item" href='/teaching/courses/start_journey'>
-        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">local_library</i>
-        <span class="mdc-list-item__text">Teach a course</span>
-      </a>
-      <a class="mdc-list-item" href='/teaching/courses'>
-        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">school</i>
-        <span class="mdc-list-item__text">My Courses</span>
-      </a>
-      <a class="mdc-list-item" href='/enrolled_courses'>
-        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">how_to_reg
-        </i>
-        <span class="mdc-list-item__text">My Enrolled Courses</span>
-      </a>
-      <hr class="mdc-list-divider">
-      <a class="mdc-list-item" href='<%= details_users_path %>'>
-        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">account_circle</i>
-        <span class="mdc-list-item__text">Account Details</span>
-      </a>
-      <a class="mdc-list-item" href='<%= upload_users_path %>'>
-        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">cloud_upload</i>
-        <span class="mdc-list-item__text">Upload Profile Picture</span>
-      </a>
-      <a class="mdc-list-item" href='<%= edit_user_registration_path %>'>
-        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">create</i>
-        <span class="mdc-list-item__text">Edit Account</span>
-      </a>
-      <a class="mdc-list-item" href='<%= edit_password_users_path %>'>
-        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">vpn_key
-        </i>
-        <span class="mdc-list-item__text">Change Password</span>
-      </a>
-      <a class="mdc-list-item" href='<%= cancel_account_users_path %>'>
-        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">delete</i>
-        <span class="mdc-list-item__text">Delete Account</span>
-      </a>
-      <hr class="mdc-list-divider">
-      <a class="mdc-list-item" href='<%= destroy_user_session_path %>'>
-        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">exit_to_app</i>
-        <span class="mdc-list-item__text">Logout</span>
-      </a>
-    </nav>
   </div>
-</aside>
+</header>
 
-<div class='backdrop' onclick="hideDrawer()"></div>
 
 
 
