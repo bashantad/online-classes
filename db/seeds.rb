@@ -34,6 +34,11 @@ courses = [
     category.courses.create(title: 'Machine Learning', body: 'Machine Learning', website: 'https://google.com', price: 25.3, course_for: 'Recent Graduates', user_id: user.id)
 ]
 
+u.educations.create(name_of_institution: 'Harvard University', year_start: 2006, year_end: 2010, title: 'Bachelor of Computer Science', location: 'Boston', country: 'USA')
+u.educations.create(name_of_institution: 'Stanford University', year_start: 2010, year_end: 2012, title: 'Masters in Artificial Intelligence', location: 'San Francisco', country: 'USA')
+u.experiences.create(name_of_institution: 'Google', year_start: 2012, year_end: 2016, title: 'Software Engineer', location: 'Mountain View', country: 'USA')
+u.experiences.create(name_of_institution: 'Facebook', year_start: 2010, year_end: 2012, title: 'Senior Software Engineer', location: 'Menlo Park', country: 'USA')
+
 courses[0..1].each(&:approve)
 courses[0..1].each do |course|
   users[1..2].each do |user|

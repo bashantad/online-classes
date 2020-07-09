@@ -20,7 +20,9 @@ class Teaching::CoursesController < ApplicationController
   end
 
   def start_journey
-
+    unless current_user.has_qualifications?
+      redirect_to REACT_ROUTES[:qualifications]
+    end
   end
 
   def create

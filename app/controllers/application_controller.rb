@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
 	CALL_JOIN_URL_PATTERN = /^calls\/\d\/join\/\w+$/
+	REACT_ROUTES = {
+		qualifications: '/users/qualifications'
+	}
 	before_action :configure_permitted_parameters, if: :devise_controller?
 
 	def authenticate_admin!

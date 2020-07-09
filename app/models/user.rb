@@ -40,4 +40,8 @@ class User < ApplicationRecord
     def active_for_authentication?
       super && !deleted_at
     end
+
+    def has_qualifications?
+        qualifications.present?
+    end
 end

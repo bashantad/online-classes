@@ -7,11 +7,13 @@ import MessageWrapper from "../components/MessageWrapper";
 import CallHistory from "../components/CallHistory";
 import CourseDetail from "../components/courses/CourseDetail";
 import EnrolledCourses from "../components/courses/EnrolledCourses";
+import Qualification from "../components/users/Qualification";
 
 export default (
   <Router>
     <Switch>
       <Route path="/" exact component={Home} />
+      <Route path="/users/qualifications" exact component={Qualification} />
       <Route path="/enrolled_courses" exact component={EnrolledCourses} />
       <Route path="/courses/:course_id" exact component={CourseDetail} />
       <Route path="/classroom/:id" exact component={Call} />
