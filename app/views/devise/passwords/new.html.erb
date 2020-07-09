@@ -1,35 +1,47 @@
-<div class="no-margin-left">
-<div class="mdc-card registration-main">
-  <h2 class="mdc-typography--headline5 login-title">Forgot your password?</h2>
-  <hr class="mdc-list-divider divider-margin">
-  <span class="mdc-typography--subtitle2 subtitle">
-    We will send you password reset instruction once you submit your valid email.
-  </span>
-
-  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :post}) do |f| %>
-    <% error_messages = resource.errors.messages %>
-
-    <div class="form-field">
-      <div class="mdc-typography--subtitle1">
-        Enter your email
-      </div>
-      <div class="mdc-text-field mdc-text-field--filled input-field">
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'mdc-text-field__input' %>
-      </div>
-      <% if error_messages[:email] %>
-        <div class="field-error">
-          <%= error_messages[:email][0] %>
+<main id="content" role="main">
+  <div class="container space-2 space-lg-3">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :post}) do |f| %>
+      <% error_messages = resource.errors.messages %>
+      <div class="js-validate w-md-75 w-lg-50 mx-md-auto">
+        <!-- Title -->
+        <div class="mb-5 mb-md-7">
+          <h1 class="h2 mb-0">Forgot your password?</h1>
+          <p> We will send you password reset instruction once you submit your valid email.</p>
         </div>
-      <% end %>
-    </div>
+        <!-- End Title -->
 
-    <div class='btn-main'>
-      <%= link_to "Sign In", new_session_path(resource_name), class: 'back secondary-btn float-left' %>
-      <button class="mdc-button mdc-button--raised action-btn float-right">
-        <div class="mdc-button__ripple"></div>
-        <span class="mdc-button__label"><%= f.submit "Send" %></span>
-      </button>
-    </div>
-  <% end %>
-</div>
-</div>
+        <!-- Form Group -->
+        <div class="js-form-message form-group">
+          <label class="input-label" for="email">
+             <span class="d-flex justify-content-between align-items-center">
+              Enter your email
+             </span>
+          </label>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: "Email address", type: 'email', id: 'email', ariaLabel: 'Email address', dataMsg: 'Please enter a valid email address.' %>
+          <% if error_messages[:email] %>
+            <div class="alert-soft-danger">
+              <%= error_messages[:email][0] %>
+            </div>
+          <% end %>
+        </div>
+        <!-- End Form Group -->
+
+        <!-- Button -->
+        <div class="row align-items-center mb-5">
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <%= link_to "Sign In", new_session_path(resource_name), class: 'font-size-1 font-weight-bold' %>
+          </div>
+
+          <div class="col-sm-6 text-sm-right">
+            <%= f.submit "Send", class: "btn btn-primary transition-3d-hover" %>
+          </div>
+        </div>
+        <!-- End Button -->
+      </div>
+    <% end %>
+
+  </div>
+  <!-- End Login Form -->
+</main>
+
+

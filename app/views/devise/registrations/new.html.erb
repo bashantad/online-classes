@@ -1,72 +1,105 @@
-<div class="no-margin-left">
-<div class="mdc-card registration-main">
-  <h2 class="mdc-typography--headline5 login-title">
-    Create your account with VC Room
-  </h2>
-  <hr class="mdc-list-divider divider-margin">
-
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <% error_messages = resource.errors.messages %>
-    <div class="form-field">
-      <div class="mdc-typography--subtitle1"><%= f.label :full_name %></div>
-      <div class="mdc-text-field mdc-text-field--filled input-field">
-        <%= f.text_field :full_name, autofocus: true, autocomplete: "full_name", class: 'mdc-text-field__input' %>
-      </div>
-      <% if error_messages[:full_name] %>
-        <div class="field-error">
-          <%= error_messages[:full_name][0] %>
+<main id="content" role="main">
+  <div class="container space-2 space-lg-2">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <div class="js-validate w-md-75 w-lg-50 mx-md-auto">
+        <% error_messages = resource.errors.messages %>
+        <!-- Title -->
+        <div class="mb-5 mb-md-7">
+          <h1 class="h2 mb-0">Welcome to VC Room</h1>
+          <p>Fill out the form to get started.
+          </p>
         </div>
-      <% end %>
-    </div>
-    <div class="form-field">
-      <div class="mdc-typography--subtitle1"> <%= f.label :email %></div>
-      <div class="mdc-text-field mdc-text-field--filled input-field">
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'mdc-text-field__input' %>
-      </div>
-      <% if error_messages[:email] %>
-        <div class="field-error">
-          <%= error_messages[:email][0] %>
-        </div>
-      <% end %>
-    </div>
+        <!-- End Title -->
 
-    <div class="form-field password">
-      <div class="mdc-typography--subtitle1">
-        <%= f.label :password %>
-        <% if @minimum_password_length %>
-          <span class='minimum-password'>(<%= @minimum_password_length %> characters minimum)</span>
+        <!-- Form Group -->
+        <div class="js-form-message form-group">
+          <label class="input-label" for="email"><%= f.label :full_name %></label>
+          <%= f.text_field :full_name, autofocus: true, autocomplete: "full_name", class: 'form-control', placeholder: "Full Name", type: 'text', id: 'full_name', ariaLabel: 'Full Name', dataMsg: 'Please enter a valid full name.' %>
+          <% if error_messages[:full_name] %>
+            <div class="alert-soft-danger">
+              <%= error_messages[:full_name][0] %>
+            </div>
+          <% end %>
+        </div>
+        <!-- End Form Group -->
+
+        <!-- Form Group -->
+        <div class="js-form-message form-group">
+          <label class="input-label" for="email"><%= f.label :email %></label>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: "Email address", type: 'email', id: 'email', ariaLabel: 'Email address', dataMsg: 'Please enter a valid email address.' %>
+          <% if error_messages[:email] %>
+            <div class="alert-soft-danger">
+              <%= error_messages[:email][0] %>
+            </div>
+          <% end %>
+        </div>
+        <!-- End Form Group -->
+
+        <!-- Form Group -->
+        <div class="js-form-message form-group">
+          <label class="input-label" for="password">
+          <span class="d-flex justify-content-between align-items-center">
+            <%= f.label :password %>
+            <% if @minimum_password_length %>
+          <label>(<%= @minimum_password_length %> characters minimum)</label>
         <% end %>
-      </div>
-
-      <div class="mdc-text-field mdc-text-field--filled input-field">
-        <%= f.password_field :password, autocomplete: "new-password", class: 'mdc-text-field__input' %>
-      </div>
-      <% if error_messages[:password] %>
-        <div class="field-error">
-          <%= error_messages[:password][0] %>
+          </span>
+          </label>
+          <%= f.password_field :password, autocomplete: "new-password", class: 'form-control', type: 'password', id:'password', placeholder:'********', ariaLabel: '********', dataMsg:'Your password is invalid. Please try again.' %>
+          <% if error_messages[:password] %>
+            <div class="alert-soft-danger">
+              <%= error_messages[:password][0] %>
+            </div>
+          <% end %>
         </div>
-      <% end %>
-    </div>
+        <!-- End Form Group -->
 
-    <div class="form-field password">
-      <div class="mdc-typography--subtitle1"><%= f.label :password_confirmation %></div>
-      <div class="mdc-text-field mdc-text-field--filled input-field">
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'mdc-text-field__input' %>
-      </div>
-      <% if error_messages[:password_confirmation] %>
-        <div class="field-error">
-          <%= error_messages[:password_confirmation][0] %>
+        <!-- Form Group -->
+        <div class="js-form-message form-group">
+          <label class="input-label" for="password">
+          <span class="d-flex justify-content-between align-items-center">
+           <%= f.label :password_confirmation %>
+          </span>
+          </label>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', type: 'password', id:'password_confirmation', placeholder:'********', ariaLabel: '********', dataMsg:'Your password is invalid. Please try again.' %>
+          <% if error_messages[:password_confirmation] %>
+            <div class="alert-soft-danger">
+              <%= error_messages[:password_confirmation][0] %>
+            </div>
+          <% end %>
         </div>
-      <% end %>
-    </div>
+        <!-- End Form Group -->
 
-    <div class='btn-main'>
-      <%= link_to "Sign In", new_session_path(resource_name), class: 'back secondary-btn float-left' %>
-      <button class="mdc-button mdc-button--raised action-btn float-right">
-        <div class="mdc-button__ripple"></div>
-        <span class="mdc-button__label"><%= f.submit "Sign Up" %></span>
-      </button>
+        <!-- Checkbox -->
+        <!--        <div class="js-form-message mb-5">-->
+        <!--          <div class="custom-control custom-checkbox d-flex align-items-center text-muted">-->
+        <%#= f.check_box :agree, class: 'custom-control-input', id: 'agree', type: 'checkbox', name:'agree' %>
+        <!--            <label class="custom-control-label" for="remember_me">-->
+        <!--              <small>-->
+        <!--                I agree to the Terms and Conditions-->
+        <!--              </small>-->
+        <!--            </label>-->
+        <!--          </div>-->
+        <!--        </div>-->
+        <!-- End Checkbox -->
+        <!-- End Form Group -->
+
+        <!-- Button -->
+        <div class="row align-items-center mb-5">
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <span class="font-size-1 text-muted">Already have an account?</span>
+            <%= link_to "Login", new_session_path(resource_name), class: 'font-size-1 font-weight-bold' %>
+          </div>
+
+          <div class="col-sm-6 text-sm-right">
+            <%= f.submit "Sign Up", class:"btn btn-primary transition-3d-hover" %>
+          </div>
+        </div>
+        <!-- End Button -->
     </div>
-  <% end %>
-</div>
-</div>
+      <% end %>
+
+  </div>
+  <!-- End Login Form -->
+</main>
+
