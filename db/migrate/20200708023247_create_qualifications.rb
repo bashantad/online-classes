@@ -2,7 +2,6 @@ class CreateQualifications < ActiveRecord::Migration[6.0]
   def change
     create_table :qualifications do |t|
       t.string :name_of_institution
-      t.string :string
       t.integer :year_start
       t.string :type
       t.integer :year_end

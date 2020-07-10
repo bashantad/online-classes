@@ -21,27 +21,27 @@ const ReviewList = (reviews) => {
     const classes = useStyles();
     return (
         <Fragment>
-            {reviews.reviews.map((i,index) => (
+            {reviews.reviews.map((review,index) => (
                 <div key={index}>
                     <Grid container className='comments'>
                         <Grid item xs={12}>
                             <Grid container>
                                 <Grid item sm={2} xs={12}>
-                                    <Avatar alt={i.full_name} src={i.avatar_image_urls} className={classes.small}/>
+                                    <Avatar alt={review.full_name} src={review.avatar_image_urls} className={classes.small}/>
                                     <Typography variant="body2" gutterBottom className='avatar-name'>
-                                        {i.user.full_name}
+                                        {review.user.full_name}
                                     </Typography>
                                 </Grid>
                                 <Grid item sm={10} xs={12}>
                                     <Typography variant="body1" gutterBottom>
-                                        {i.comment}
+                                        {review.comment}
                                     </Typography>
                                     <div>
                                         <Rating
-                                            name="read-only" value={i.rating} readOnly
+                                            name="read-only" value={review.rating} readOnly
                                         />
                                         <span className='comment-time'>
-                                            <Typography variant="caption" display="block">{i.created_at}
+                                            <Typography variant="caption" display="block">{review.created_at}
                                             </Typography></span>
                                     </div>
 

@@ -15,7 +15,7 @@ class Api::QualificationsController < Api::BaseController
       flash[:notice]  = 'Qualification was successfully created.'
       render json: @qualification
     else
-      render json: {errors: @review.errors}, status: :unprocessable_entity
+      render json: {errors: @qualification.errors}, status: :unprocessable_entity
     end
   end
 
@@ -24,7 +24,7 @@ class Api::QualificationsController < Api::BaseController
       flash[:notice]  = 'Qualification was successfully updated.'
       render json: @qualification
     else
-      render json: {errors: @review.errors}, status: :unprocessable_entity
+      render json: {errors: @qualification.errors}, status: :unprocessable_entity
     end
   end
 
