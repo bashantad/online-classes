@@ -120,11 +120,49 @@
       <% end %>
     </div>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>
-        Currently waiting confirmation for: <%= resource.unconfirmed_email %>
+    <div class="form-field">
+      <div class="mdc-typography--subtitle1">
+        <%= f.label :short_bio %>
       </div>
-    <% end %>
+      <div class="mdc-text-field mdc-text-field--filled input-field">
+        <%= f.text_area :short_bio, autofocus: true, autocomplete: "short_bio", class: 'mdc-text-field__input' %>
+      </div>
+      <% if error_messages[:short_bio] %>
+        <div class="field-error">
+          <%= error_messages[:short_bio][0] %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="form-field">
+      <div class="mdc-typography--subtitle1">
+        <%= f.label :linkedin_url %>
+      </div>
+      <div class="mdc-text-field mdc-text-field--filled input-field">
+        <%= f.text_field :linkedin_url, autofocus: true, autocomplete: "linkedin_url", class: 'mdc-text-field__input' %>
+      </div>
+      <% if error_messages[:linkedin_url] %>
+        <div class="field-error">
+          <%= error_messages[:linkedin_url][0] %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="form-field">
+      <div class="mdc-typography--subtitle1">
+        <%= f.label :twitter_url %>
+      </div>
+      <div class="mdc-text-field mdc-text-field--filled input-field">
+        <%= f.text_field :twitter_url, autofocus: true, autocomplete: "twitter_url", class: 'mdc-text-field__input' %>
+      </div>
+      <% if error_messages[:twitter_url] %>
+        <div class="field-error">
+          <%= error_messages[:twitter_url][0] %>
+        </div>
+      <% end %>
+    </div>
+
+
 
     <div class='btn-main'>
       <%= link_to "Cancel", root_path, class: 'back secondary-btn float-left' %>
