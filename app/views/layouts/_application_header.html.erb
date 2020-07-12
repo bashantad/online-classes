@@ -1,6 +1,6 @@
-<header id="headerWithBSDropdown" class="header">
+<header id="header" class="header">
   <div class="header-section">
-    <div id="logoAndNavWithBSDropdown" class="container">
+    <div id="logo" class="container">
       <!-- Nav -->
       <nav class="js-mega-menu navbar navbar-expand-lg">
         <!-- Logo -->
@@ -30,17 +30,22 @@
         <!-- End Responsive Toggle Button -->
 
         <!-- Navigation -->
-        <div id="navBarWithBSDropdown" class="collapse navbar-collapse">
+        <div id="nav" class="collapse navbar-collapse">
           <ul class="navbar-nav">
             <li class="navbar-nav-item">
               <a class="nav-link" href="<%= root_path %>">Home</a>
             </li>
             <% if current_user.is_admin? %>
               <!-- Dropdown -->
-              <li class="dropdown">
-                <a class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" id="dropdownSubMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
+              <li class="hs-has-sub-menu header-nav-item"
+                  data-hs-mega-menu-item-options='{
+                  "desktop": {
+                    "position": "left"
+                  }
+                }'>
+                <a id="admin" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Admin</a>
 
-                <div class="dropdown-menu" aria-labelledby="dropdownSubMenu" style="min-width: 230px;">
+                <div id="pagesSubMenu" class="hs-sub-menu dropdown-menu" aria-labelledby="pagesMegaMenu" style="min-width: 230px;">
                   <a class="dropdown-item" href="<%= admin_courses_path(approved: true) %>">Approved Coures</a>
                   <a class="dropdown-item" href="<%= admin_courses_path(approved: false) %>">Unapproved Courses</a>
                   <div class="dropdown-divider"></div>
@@ -50,10 +55,15 @@
               <!-- End Dropdown -->
             <% end %>
             <!-- Dropdown -->
-            <li class="dropdown">
-              <a class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" id="dropdownSubMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Courses</a>
+            <li class="hs-has-sub-menu header-nav-item"
+                data-hs-mega-menu-item-options='{
+                  "desktop": {
+                    "position": "left"
+                  }
+                }'>
+              <a id="courses" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Courses</a>
 
-              <div class="dropdown-menu" aria-labelledby="dropdownSubMenu" style="min-width: 230px;">
+              <div id="pagesSubMenu" class="hs-sub-menu dropdown-menu" aria-labelledby="pagesMegaMenu" style="min-width: 230px;">
                 <a class="dropdown-item" href="/teaching/courses">My Courses</a>
                 <a class="dropdown-item" href="/enrolled_courses">Enrolled Courses</a>
                 <div class="dropdown-divider"></div>
@@ -63,10 +73,15 @@
             <!-- End Dropdown -->
 
             <!-- Dropdown -->
-            <li class="dropdown">
-              <a class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" id="dropdownSubMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+            <li class="hs-has-sub-menu header-nav-item"
+                data-hs-mega-menu-item-options='{
+                  "desktop": {
+                    "position": "left"
+                  }
+                }'>
+              <a id="acount" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Account</a>
 
-              <div class="dropdown-menu" aria-labelledby="dropdownSubMenu" style="min-width: 230px;">
+              <div id="pagesSubMenu" class="hs-sub-menu dropdown-menu" aria-labelledby="pagesMegaMenu" style="min-width: 230px;">
                 <a class="dropdown-item" href="<%= details_users_path %>">Account Details</a>
                 <a class="dropdown-item" href="<%= upload_users_path %>">Upload Profile Picture</a>
                 <a class="dropdown-item" href="<%= edit_user_registration_path %>">Edit Account</a>

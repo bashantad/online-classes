@@ -1,7 +1,18 @@
-<div class="mdc-card registration-main">
-  <h2 class="mdc-typography--headline5 login-title">
-    New Category
-  </h2>
-  <hr class="mdc-list-divider divider-margin">
-  <%= render 'form', category: @category %>
+<!-- Hero Section -->
+<div class="bg-primary bg-img-hero" style="background-image: url(/assets/components/abstract-shapes-12.svg);">
+  <div class="container space-2 ">
+    <div class="w-lg-65 text-center mx-lg-auto">
+      <span class="badge badge-soft-primary badge-pill font-size-1 py-3 px-4 mb-3">Add New Category</span>
+    </div>
+  </div>
+</div>
+<!-- End Hero Section -->
+
+<div class="container space-1">
+  <!-- Card -->
+    <div class="card mx-auto w-lg-60">
+      <!-- Form -->
+      <%= render 'form', category: @category %>
+      <!-- End Card -->
+    </div>
 </div>

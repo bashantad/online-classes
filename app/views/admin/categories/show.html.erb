@@ -1,58 +1,121 @@
-<div class="mdc-card registration-main">
-  <h2 class="mdc-typography--headline5 login-title">
-    Category Details
-  </h2>
-  <hr class="mdc-list-divider divider-margin">
-  <div class="user-details">
-    <div class="mdc-typography--subtitle1 user-fields">
-      <div class="field-label">
-        Title
-      </div>
-      <div>
-        <%= @category.title %>
-      </div>
+<!--<div class="mdc-card registration-main">-->
+<!--  <h2 class="mdc-typography--headline5 login-title">-->
+<!--    Category Details-->
+<!--  </h2>-->
+<!--  <hr class="mdc-list-divider divider-margin">-->
+<!--  <div class="user-details">-->
+<!--    <div class="mdc-typography--subtitle1 user-fields">-->
+<!--      <div class="field-label">-->
+<!--        Title-->
+<!--      </div>-->
+<!--      <div>-->
+<%#= @category.title %>
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="mdc-typography--subtitle1 user-fields">-->
+<!--      <div class="field-label">-->
+<!--        Description-->
+<!--      </div>-->
+<!--      <div>-->
+<%#= @category.description %>
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="course-table">-->
+<!--      <div class="mdc-data-table resp-table-large">-->
+<!--        <table class="mdc-data-table__table" aria-label="Courses">-->
+<!--          <thead>-->
+<!--          <tr class="mdc-data-table__header-row">-->
+<!--            <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">-->
+<!--              List of courses-->
+<!--            </th>-->
+<!--          </tr>-->
+<!--          </thead>-->
+<!--          <tbody class="mdc-data-table__content">-->
+<%# @category.courses.each do |course| %>
+<!--            <tr class="mdc-data-table__row">-->
+<!--              <td class="mdc-data-table__cell">-->
+<%#= link_to course.title, "/courses/#{course.id}", target: '_blank', class: 'mdc-button mdc-button__label' %>
+<!--              </td>-->
+<!--            </tr>-->
+<%# end %>
+<!--          </tbody>-->
+<!--        </table>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div class='btn-main'>-->
+<%#= link_to "Cancel", admin_categories_path, class: 'back secondary-btn float-left' %>
+<!--    <button class="mdc-button mdc-button--raised action-btn float-right">-->
+<%#= link_to "Edit", edit_admin_category_path(@category), class: 'btn' %>
+<!--    </button>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!-- Hero Section -->
+<div class="bg-primary bg-img-hero" style="background-image: url(/assets/components/abstract-shapes-12.svg);">
+  <div class="container space-2 ">
+    <div class="w-lg-65 text-center mx-lg-auto">
+      <span class="badge badge-soft-primary badge-pill font-size-1 py-3 px-4 mb-3">Category Details</span>
     </div>
-
-    <div class="mdc-typography--subtitle1 user-fields">
-      <div class="field-label">
-        Description
-      </div>
-      <div>
-        <%= @category.description %>
-      </div>
-    </div>
-    <div class="course-table">
-      <div class="mdc-data-table resp-table-large">
-        <table class="mdc-data-table__table" aria-label="Courses">
-          <thead>
-          <tr class="mdc-data-table__header-row">
-            <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">
-              List of courses
-            </th>
-          </tr>
-          </thead>
-          <tbody class="mdc-data-table__content">
-          <% @category.courses.each do |course| %>
-            <tr class="mdc-data-table__row">
-              <td class="mdc-data-table__cell">
-                <%= link_to course.title, "/courses/#{course.id}", target: '_blank',class: 'mdc-button mdc-button__label' %>
-              </td>
-            </tr>
-
-          <% end %>
-
-          </tbody>
-        </table>
-      </div>
-    </div>
-
   </div>
+</div>
+<!-- End Hero Section -->
 
+<div class="container space-1">
+  <!-- Card -->
+  <div class="card mx-auto w-lg-75 pl-4 pr-4 space-top-1">
+    <div class="row">
+      <div class="col-12 space-bottom-1">
+        <div class="row">
+          <div class="col-4 text-muted">Title</div>
+          <div class="col-8 text-dark"><%= @category.title %></div>
+        </div>
+      </div>
+      <div class="col-12 space-bottom-1">
+        <div class="row">
+          <div class="col-4 text-muted">Description</div>
+          <div class="col-8 text-dark"><%= @category.description %></div>
+        </div>
+      </div>
+      <div class="col-12 space-bottom-1">
+        <div class="row">
+          <div class="col-4 text-muted">List Of Courses</div>
+          <div class="col-8">
+            <% if @category.courses.present? %>
+              <div class="table-responsive">
+                <table class="table table-align-middle table-bordered table-nowrap">
+                  <tbody>
+                  <% @category.courses.each do |course| %>
+                    <tr>
+                      <td>
+                        <%= link_to course.title, "/courses/#{course.id}", target: '_blank', class: 'mdc-button mdc-button__label' %>
+                      </td>
+                    </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+                <!-- End Table -->
+              </div>
+            <% else %>
+              Empty
+            <% end %>
 
-  <div class='btn-main'>
-    <%= link_to "Cancel", admin_categories_path, class: 'back secondary-btn float-left' %>
-    <button class="mdc-button mdc-button--raised action-btn float-right">
-      <%= link_to "Edit", edit_admin_category_path(@category), class: 'btn' %>
-    </button>
+          </div>
+        </div>
+      </div>
+    </div>
+      <!-- Button -->
+      <div class="row align-items-center mb-5">
+        <div class="col-6 mb-sm-0 pl-4">
+          <%= link_to "Back", admin_categories_path, class: 'font-size-1 font-weight-bold text-muted content-centered' %>
+        </div>
+        <div class="col-6 text-right">
+          <%= link_to "Edit", edit_admin_category_path(@category), class: 'btn btn-sm btn-primary' %>
+        </div>
+      </div>
+    </div>
+    <!-- End Button -->
   </div>
+  <!-- End Card -->
 </div>
