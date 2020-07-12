@@ -26,6 +26,24 @@
 
   <div class="form-field">
     <div class="mdc-typography--subtitle1">
+      <%= form.label :short_description %>
+    </div>
+    <div class="mdc-text-field--textarea input-field">
+      <%= form.text_area :short_description, class: 'course-textarea' %>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <div class="mdc-typography--subtitle1">
+      <%= form.label :course_highlights %>
+    </div>
+    <div class="mdc-text-field--textarea input-field">
+      <%= form.text_area :course_highlights, class: 'course-textarea' %>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <div class="mdc-typography--subtitle1">
       <%= form.label :website %>
     </div>
     <div class="mdc-text-field mdc-text-field--filled input-field">
@@ -53,10 +71,37 @@
 
   <div class="form-field">
     <div class="mdc-typography--subtitle1">
-      <%= form.label :Category %>
+      <%= form.label :category %>
     </div>
     <div class="mdc-text-field mdc-text-field--filled input-field course-select">
       <%= form.select :category_id, @categories.collect{|p| [ p.title, p.id ] }, class: 'course-select-list' %>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <div class="mdc-typography--subtitle1">
+      <%= form.label :duration %>
+    </div>
+    <div class="mdc-text-field mdc-text-field--filled input-field course-select">
+      <%= form.text_field :duration, class: 'mdc-text-field__input' %>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <div class="mdc-typography--subtitle1">
+      <%= form.label :no_of_lessions %>
+    </div>
+    <div class="mdc-text-field mdc-text-field--filled input-field course-select">
+      <%= form.text_field :no_of_lessions, class: 'mdc-text-field__input' %>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <div class="mdc-typography--subtitle1">
+      <%= form.label :level %>
+    </div>
+    <div class="mdc-text-field mdc-text-field--filled input-field course-select">
+      <%= form.select :level, @levels, class: 'course-select-list' %>
     </div>
   </div>
 

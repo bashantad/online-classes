@@ -65,10 +65,11 @@ class Teaching::CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:title, :body, :website, :course_for, :price, :category_id, :cover_image)
+    params.require(:course).permit(:title, :body, :website, :course_for, :price, :category_id, :cover_image, :short_description, :course_highlights, :duration, :no_of_lessons, :level)
   end
 
   def set_categories
     @categories = Category.active
+    @levels = [["All levels", ""], ["Beginner", "Beginner"], ["Advanced", "Advanced"], ["Intermediate", "Intermediate"]]
   end
 end
