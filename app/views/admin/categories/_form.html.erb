@@ -1,38 +1,73 @@
+<%#= form_with(model: [:admin, category], local: true) do |form| %>
+  <%# error_messages = category.errors.messages %>
+<!--  <div class="form-field">-->
+<!--    <div class="mdc-typography--subtitle1">-->
+      <%#= form.label :title %>
+<!--    </div>-->
+<!--    <div class="mdc-text-field mdc-text-field--filled input-field">-->
+      <%#= form.text_field :title, autofocus: true, autocomplete: "full_name", class: 'mdc-text-field__input' %>
+<!--    </div>-->
+    <%# if error_messages[:title] %>
+<!--      <div class="field-error">-->
+        <%#= error_messages[:title][0] %>
+<!--      </div>-->
+    <%# end %>
+<!--  </div>-->
+
+<!--  <div class="form-field">-->
+<!--    <div class="mdc-typography--subtitle1">-->
+      <%#= form.label :description %>
+<!--    </div>-->
+<!--    <div class="mdc-text-field--textarea input-field">-->
+      <%#= form.text_area :description, class: 'course-textarea' %>
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div class='btn-main'>-->
+    <%#= link_to "Cancel", admin_categories_path, class: 'back secondary-btn float-left' %>
+    <%# if params[:action] == "edit" %>
+      <%#= link_to 'Show', admin_category_path(category: @category), class: 'back secondary-btn float-left' %>
+    <%# end %>
+<!--    <button class="mdc-button mdc-button--raised action-btn  float-right">-->
+<!--      <div class="mdc-button__ripple"></div>-->
+<!--      <span class="mdc-button__label"><%#= form.submit "Submit" %></span>-->
+<!--    </button>-->
+<!--  </div>-->
+<%# end %>
+
 <%= form_with(model: [:admin, category], local: true) do |form| %>
-  <% error_messages =  category.errors.messages %>
-  <div class="form-field">
-    <div class="mdc-typography--subtitle1">
-      <%= form.label :title %>
-    </div>
-    <div class="mdc-text-field mdc-text-field--filled input-field">
-      <%= form.text_field :title, autofocus: true, autocomplete: "full_name", class: 'mdc-text-field__input' %>
-    </div>
-    <% if error_messages[:title] %>
-      <div class="field-error">
-        <%= error_messages[:title][0] %>
-      </div>
-    <% end %>
-  </div>
-
-  <div class="form-field">
-    <div class="mdc-typography--subtitle1">
-      <%= form.label :description %>
-    </div>
-    <div class="mdc-text-field--textarea input-field">
-      <%= form.text_area :description, class: 'course-textarea' %>
-    </div>
-  </div>
-
-  <div class='btn-main'>
-    <%= link_to "Cancel",admin_categories_path,  class: 'back secondary-btn float-left' %>
-    <% if  params[:action] == "edit" %>
-      <%= link_to 'Show', admin_category_path(category: @category),  class: 'back secondary-btn float-left' %>
+  <% error_messages = category.errors.messages %>
+  <div class="pl-4 pr-4 space-top-1">
+    <div class="form-group">
+      <label class="input-label" for="full_name"> <%= form.label :title %></label>
+      <%= form.text_field :title, autofocus: true, autocomplete: "full_name", class: 'form-control', type: 'text', id: 'full_name', placeholder: 'Title' %>
+      <% if error_messages[:title] %>
+        <div class="field-error">
+          <%= error_messages[:title][0] %>
+        </div>
       <% end %>
-    <button class="mdc-button mdc-button--raised action-btn  float-right">
-      <div class="mdc-button__ripple"></div>
-      <span class="mdc-button__label"><%= form.submit "Submit" %></span>
-    </button>
+    </div>
+    <div class="form-group">
+      <label class="input-label" for="description"> <%= form.label :description %></label>
+      <%= form.text_area :description, class: 'form-control', id: 'description', placeholder: 'Description' %>
+    </div>
+    <!-- Button -->
+    <div class="row align-items-center mb-5">
+      <div class="col-6 mb-sm-0 pl-4">
+          <%= link_to "Cancel", admin_categories_path,class: 'font-size-1 font-weight-bold text-muted content-centered' %>
+        <% if params[:action] == "edit" %>
+            <%= link_to 'View', admin_category_path(category: @category), class: 'font-size-1 font-weight-bold text-muted pl-md-4 pl-2' %>
+        <% end %>
+      </div>
+      <div class="col-6 text-right">
+        <%= form.submit "Add", class: "btn btn-sm btn-primary" %>
+      </div>
+    </div>
   </div>
+  <!-- End Button -->
 <% end %>
+
+
+
 
 
