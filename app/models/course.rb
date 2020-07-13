@@ -11,7 +11,7 @@ class Course < ApplicationRecord
 	has_one_attached :cover_image, dependent: :destroy
 	scope :approved, -> { where(approved: true) }
 
-	validates :title, presence: true
+	validates :title, :body, :short_description, :course_highlights, :course_for, :price, :category, :duration, :no_of_lessons, :level, presence: true
 
 	def cover_url
 		rails_blob_path(self.cover_image, disposition: "attachment", only_path: true) if self.cover_image.present?

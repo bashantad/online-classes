@@ -1,59 +1,12 @@
-<!-- Hero Section -->
-<div class="container space-2">
+<div class="container space-1">
   <div class="row justify-content-lg-between align-items-lg-center">
-    <div class="col-sm-10 col-lg-5 mb-7 mb-lg-0">
-      <img class="img-fluid" src="/assets/illustrations/reading.svg" alt="Image Description">
-    </div>
-
-    <div class="col-md-6">
-      <div class="mb-5">
-        <h1 class="display-4 mb-3">
-          Unlock your
-          <br>
-          <span class="text-primary font-weight-bold">
-            <span class="js-text-animation"></span>
-          </span>
-        </h1>
-        <p class="lead">With our platform, you can quantify your skills, grow in your role and stay relevant on critical topics.</p>
-      </div>
-
-      <div class="d-sm-flex align-items-sm-center flex-sm-wrap">
-        <a class="btn btn-primary transition-3d-hover mb-2" href="#">Start a Free Trial</a>
-
-        <div class="mx-2"></div>
-
-        <!-- Fancybox -->
-        <a class="js-fancybox video-player video-player-btn media align-items-center text-dark mb-2" href="javascript:;"
-           data-hs-fancybox-options='{
-             "src": "//youtube.com/0qisGSwZym4",
-             "caption": "Front - Responsive Website Template",
-             "speed": 700,
-             "buttons": ["fullScreen", "close"],
-             "youtube": {
-               "autoplay": 1
-             }
-           }'>
-          <span class="video-player-icon shadow-soft mr-3">
-            <i class="fa fa-play"></i>
-          </span>
-          <span class="media-body">
-            How it works
-          </span>
-        </a>
-        <!-- End Fancybox -->
-      </div>
-    </div>
+    <h2 class="display-5 mb-3">
+      List of your courses
+    </h2>
   </div>
 </div>
-<!-- End Hero Section -->
-<div class="bg-primary bg-img-hero" style="background-image: url(/assets/components/abstract-shapes-12.svg);">
-  <div class="container space-2 space-lg-3">
-    <div class="w-lg-65 text-center mx-lg-auto">
-      <span class="badge badge-soft-primary badge-pill font-size-1 py-3 px-4 mb-3">List of courses</span>
-    </div>
-  </div>
-</div>
-<div class="container space-2">
+
+<div class="container space-1">
   <div class="text-right mx-lg-auto space-bottom-1">
     <button type="button" class="btn btn-xs btn-primary">
       <%= link_to 'Add New Course', new_teaching_course_path, class: 'text-white font-weight-bold' %>
@@ -68,12 +21,10 @@
           <thead class="thead-light">
           <tr>
             <th>Title</th>
-            <th>User</th>
-            <th>Website</th>
+            <th>Level</th>
             <th>Price</th>
-            <th>Category</th>
             <th>Is approved?</th>
-            <th colspan='3'>Action</th>
+            <th colspan='4'>Action</th>
           </tr>
           </thead>
           <tbody>
@@ -82,11 +33,20 @@
               <td>
                 <%= link_to course.title, course.show_url, :target => "_blank", class: 'text-body' %>
               </td>
-              <td><%= course.owner.full_name %></td>
-              <td><%= course.website %></td>
-              <td><%= course.price %></td>
-              <td><%= course.category.title %></td>
-              <td><span class="badge badge-soft-secondary custom-align-center"><%= course.approved_text %></span></td>
+              <td>
+                <%= course.level %>
+              </td>
+              <td>
+                $<%= course.price %>
+              </td>
+              <td>
+                <span class="badge badge-soft-secondary custom-align-center">
+                  <%= course.approved_text %>
+                </span>
+              </td>
+              <td>
+                <%= link_to 'Enrollment requests', teaching_course_enrollment_requests_path(course), class: 'btn btn-xs btn-outline-success' %>
+              </td>
               <td>
                 <%= link_to 'View', teaching_course_path(course), class: 'btn btn-xs btn-outline-success' %>
               </td>
@@ -140,140 +100,3 @@
     </div>
   <% end %>
 </div>
-
-<!-- Popular Categories Section -->
-<div class="space-2" style="background: url(/assets/svg/components/abstract-shapes-9.svg) center no-repeat;">
-  <div class="position-relative">
-    <div class="container space-2">
-      <!-- Title -->
-      <div class="row align-items-md-center mb-7">
-        <div class="col-md-6 mb-4 mb-md-0">
-          <h2>Check out our newest and most popular courses</h2>
-        </div>
-        <div class="col-md-6 text-md-right">
-          <a class="font-weight-bold" href="#">See all courses <i class="fa fa-angle-right fa-sm ml-1"></i></a>
-        </div>
-      </div>
-      <!-- End Title -->
-
-      <div class="js-slick-carousel slick slick-equal-height slick-gutters-3 slick-center-mode-right slick-center-mode-right-offset"
-           data-hs-slick-carousel-options='{
-             "prevArrow": "<span class=\"fa fa-arrow-left slick-arrow slick-arrow-primary-white slick-arrow-left slick-arrow-centered-y shadow-soft rounded-circle ml-sm-n2\"></span>",
-             "nextArrow": "<span class=\"fa fa-arrow-right slick-arrow slick-arrow-primary-white slick-arrow-right slick-arrow-centered-y shadow-soft rounded-circle mr-sm-2 mr-xl-4\"></span>",
-             "slidesToShow": 5,
-             "infinite": true,
-             "responsive": [{
-               "breakpoint": 1200,
-                 "settings": {
-                   "slidesToShow": 4
-                 }
-               }, {
-               "breakpoint": 992,
-                 "settings": {
-                   "slidesToShow": 3
-                 }
-               }, {
-               "breakpoint": 768,
-               "settings": {
-                 "slidesToShow": 2
-               }
-               }, {
-               "breakpoint": 554,
-               "settings": {
-                 "slidesToShow": 1
-               }
-             }]
-           }'>
-        <!-- Article -->
-        <article class="js-slide pt-2">
-          <a class="card bg-img-hero w-100 min-h-270rem transition-3d-hover" href="#" style="background-image: url(/assets/components/400x500/img14.jpg);">
-            <div class="card-body">
-              <span class="d-block small text-white-70 font-weight-bold text-cap mb-2">New</span>
-              <h3 class="text-white">Cloud computing</h3>
-            </div>
-            <div class="card-footer border-0 bg-transparent pt-0">
-              <span class="text-white font-size-1 font-weight-bold">Read now</span>
-            </div>
-          </a>
-        </article>
-        <!-- End Article -->
-
-        <!-- Article -->
-        <article class="js-slide pt-2">
-          <a class="card bg-img-hero w-100 min-h-270rem transition-3d-hover" href="#" style="background-image: url(/assets/components/400x500/img13.jpg);">
-            <div class="card-body">
-              <span class="d-block small text-white-70 font-weight-bold text-cap mb-2">Phython</span>
-              <h3 class="text-white">What's new in Phython 3.7.2</h3>
-            </div>
-            <div class="card-footer border-0 bg-transparent pt-0">
-              <span class="text-white font-size-1 font-weight-bold">Read now</span>
-            </div>
-          </a>
-        </article>
-        <!-- End Article -->
-
-        <!-- Article -->
-        <article class="js-slide pt-2">
-          <a class="card bg-img-hero w-100 min-h-270rem transition-3d-hover" href="#" style="background-image: url(/assets/components/400x500/img15.jpg);">
-            <div class="card-body">
-              <span class="d-block small text-white-70 font-weight-bold text-cap mb-2">Tooling</span>
-              <h3 class="text-white">Build a staging server</h3>
-            </div>
-            <div class="card-footer border-0 bg-transparent pt-0">
-              <span class="text-white font-size-1 font-weight-bold">Read now</span>
-            </div>
-          </a>
-        </article>
-        <!-- End Article -->
-
-        <!-- Article -->
-        <article class="js-slide pt-2">
-          <a class="card bg-img-hero w-100 min-h-270rem transition-3d-hover" href="#" style="background-image: url(/assets/components/400x500/img16.jpg);">
-            <div class="card-body">
-              <span class="d-block small text-white-70 font-weight-bold text-cap mb-2">JavaScript</span>
-              <h3 class="text-white">Laravel, Vue and SPAs</h3>
-            </div>
-            <div class="card-footer border-0 bg-transparent pt-0">
-              <span class="text-white font-size-1 font-weight-bold">Read now</span>
-            </div>
-          </a>
-        </article>
-        <!-- End Article -->
-
-        <!-- Article -->
-        <article class="js-slide pt-2">
-          <a class="card bg-img-hero w-100 min-h-270rem transition-3d-hover" href="#" style="background-image: url(/assets/components/400x500/img17.jpg);">
-            <div class="card-body">
-              <span class="d-block small text-white-70 font-weight-bold text-cap mb-2">Popular</span>
-              <h3 class="text-white">Artificial Intelligence</h3>
-            </div>
-            <div class="card-footer border-0 bg-transparent pt-0">
-              <span class="text-white font-size-1 font-weight-bold">Read now</span>
-            </div>
-          </a>
-        </article>
-        <!-- End Article -->
-
-        <!-- Article -->
-        <article class="js-slide pt-2">
-          <a class="card bg-img-hero w-100 min-h-270rem transition-3d-hover" href="#" style="background-image: url(/assets/components/400x500/img18.jpg);">
-            <div class="card-body">
-              <span class="d-block small text-white-70 font-weight-bold text-cap mb-2">PHP</span>
-              <h3 class="text-white">Programming terms explained</h3>
-            </div>
-            <div class="card-footer border-0 bg-transparent pt-0">
-              <span class="text-white font-size-1 font-weight-bold">Read now</span>
-            </div>
-          </a>
-        </article>
-        <!-- End Article -->
-      </div>
-    </div>
-
-    <div class="w-100 w-md-65 bg-light position-absolute top-0 right-0 bottom-0 rounded-left z-index-n1"></div>
-  </div>
-</div>
-<!-- End Popular Categories Section -->
-
-
-

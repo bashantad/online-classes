@@ -1,0 +1,45 @@
+  <div class="erb-body">
+    <div class="enrollment-title">
+      <span class="mdc-typography--headline5">Enrollment requests for <%= @course.title %></span>
+    </div>
+    <div class="add-more-people">
+      <%= link_to 'Send Enrollment Request', teaching_course_enrollment_path(@course), class: "mdc-button mdc-button--raised action-btn" %>
+    </div>
+
+    <% if @enroll_user_requests.present? %>
+      <div class="enrollment-table">
+        <div class="mdc-data-table resp-table">
+          <table class="mdc-data-table__table" aria-label="Enrollments">
+            <thead>
+            <tr class="mdc-data-table__header-row">
+              <td class="mdc-data-table__header-cell mdc-typography--subtitle2" role="columnheader" scope="col">Full name</td>
+              <td class="mdc-data-table__header-cell mdc-typography--subtitle2" role="columnheader" scope="col">Email</td>
+              <td class="mdc-data-table__header-cell mdc-typography--subtitle2" role="columnheader" scope="col">Phone(optional)</td>
+              <td class="mdc-data-table__header-cell mdc-typography--subtitle2" role="columnheader" scope="col">Status</td>
+            </tr>
+            </thead>
+            <tbody class="mdc-data-table__content">
+            <% @enroll_user_requests.each do |enroll_request, index| %>
+              <tr class="mdc-data-table__row">
+                <td class="mdc-data-table__cell">
+                  <%= enroll_request.full_name %>
+                </td>
+                <td class="mdc-data-table__cell">
+                  <%= enroll_request.email %>
+                </td>
+                <td class="mdc-data-table__cell">
+                  <%= enroll_request.phone %>
+                </td>
+                <td class="mdc-data-table__cell">
+                  <%= enroll_request.user ? 'Accepted' : 'Not accepted' %>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <% else %>
+      No enrollment requests yet.
+    <% end %>
+</div>

@@ -4,9 +4,6 @@ Rails.application.routes.draw do
 		resources :courses, only: [:index, :show] do
 			get :approve
 			get :disapprove
-			get :enrollment
-			post :enroll_users
-			get :enrollment_requests
     	end
     	resources :categories
   	end
@@ -17,6 +14,9 @@ Rails.application.routes.draw do
   			collection do
   				get :start_journey
   			end
+  			get :enrollment
+			post :enroll_users
+			get :enrollment_requests
   			resources :course_contents, except: [:index, :show]
   		end
   	end
