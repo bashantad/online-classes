@@ -1,176 +1,249 @@
-<div class="mdc-card registration-main">
-  <h2 class="mdc-typography--headline5 login-title">
-    Edit your account details
-  </h2>
-  <hr class="mdc-list-divider divider-margin">
+<main id="content" role="main" class="bg-light">
+  <!-- Breadcrumb Section -->
+  <div class="bg-navy">
+    <div class="container space-1 space-top-lg-2 space-bottom-lg-3">
+      <div class="row align-items-center">
+        <div class="col">
+          <div class="d-none d-lg-block">
+            <h1 class="h2 text-white">Personal info</h1>
+          </div>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f| %>
-    <% error_messages = resource.errors.messages %>
-    <div class="form-field">
-      <div class="mdc-typography--subtitle1">
-        <%= f.label :full_name %>
-      </div>
-      <div class="mdc-text-field mdc-text-field--filled input-field">
-        <%= f.text_field :full_name, autofocus: true, autocomplete: "full_name", class: 'mdc-text-field__input' %>
-      </div>
-      <% if error_messages[:full_name] %>
-        <div class="field-error">
-          <%= error_messages[:full_name][0] %>
+          <!-- Breadcrumb -->
+          <ol class="breadcrumb breadcrumb-light breadcrumb-no-gutter mb-0">
+            <li class="breadcrumb-item">Account</li>
+            <li class="breadcrumb-item active" aria-current="page">Edit personal info</li>
+          </ol>
+          <!-- End Breadcrumb -->
         </div>
-      <% end %>
-    </div>
 
-    <div class="form-field">
-      <div class="mdc-typography--subtitle1">
-        <%= f.label :email %> (read only)
-      </div>
+        <div class="col-auto">
+          <div class="d-none d-lg-block">
+            <a class="btn btn-soft-light" href="<%= destroy_user_session_path %>">Log out</a>
+          </div>
 
-      <div class="mdc-text-field mdc-text-field--filled input-field">
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'mdc-text-field__input', readonly: 'readonly' %>
-      </div>
-
-      <% if error_messages[:email] %>
-        <div class="field-error">
-          <%= error_messages[:email][0] %>
+          <!-- Responsive Toggle Button -->
+          <button type="button" class="navbar-toggler btn btn-icon btn-sm rounde-circle d-lg-none"
+                  aria-label="Toggle navigation"
+                  aria-expanded="false"
+                  aria-controls="sidebarNav"
+                  data-toggle="collapse"
+                  data-target="#sidebarNav">
+              <span class="navbar-toggler-default">
+                <svg width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                  <path fill="currentColor" d="M17.4,6.2H0.6C0.3,6.2,0,5.9,0,5.5V4.1c0-0.4,0.3-0.7,0.6-0.7h16.9c0.3,0,0.6,0.3,0.6,0.7v1.4C18,5.9,17.7,6.2,17.4,6.2z M17.4,14.1H0.6c-0.3,0-0.6-0.3-0.6-0.7V12c0-0.4,0.3-0.7,0.6-0.7h16.9c0.3,0,0.6,0.3,0.6,0.7v1.4C18,13.7,17.7,14.1,17.4,14.1z"/>
+                </svg>
+              </span>
+            <span class="navbar-toggler-toggled">
+                <svg width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                  <path fill="currentColor" d="M11.5,9.5l5-5c0.2-0.2,0.2-0.6-0.1-0.9l-1-1c-0.3-0.3-0.7-0.3-0.9-0.1l-5,5l-5-5C4.3,2.3,3.9,2.4,3.6,2.6l-1,1 C2.4,3.9,2.3,4.3,2.5,4.5l5,5l-5,5c-0.2,0.2-0.2,0.6,0.1,0.9l1,1c0.3,0.3,0.7,0.3,0.9,0.1l5-5l5,5c0.2,0.2,0.6,0.2,0.9-0.1l1-1 c0.3-0.3,0.3-0.7,0.1-0.9L11.5,9.5z"/>
+                </svg>
+              </span>
+          </button>
+          <!-- End Responsive Toggle Button -->
         </div>
-      <% end %>
+      </div>
     </div>
+  </div>
+  <!-- End Breadcrumb Section -->
 
-    <div class="form-field">
-      <div class="mdc-typography--subtitle1">
-        <%= f.label :phone %>
+  <!-- Content Section -->
+  <div class="container space-2 space-top-lg-0 mt-lg-n10">
+    <div class="row">
+      <div class="col-lg-3">
+        <!-- Navbar -->
+        <%= render "layouts/sidenav" %>
+        <!-- End Navbar -->
       </div>
-      <div class="mdc-text-field mdc-text-field--filled input-field">
-        <%= f.text_field :phone, autofocus: true, autocomplete: "phone", class: 'mdc-text-field__input' %>
-      </div>
-      <% if error_messages[:phone] %>
-        <div class="field-error">
-          <%= error_messages[:phone][0] %>
+
+      <div class="col-lg-9">
+        <!-- Card -->
+        <div class="card mb-3 mb-lg-5">
+          <div class="card-header">
+            <h5 class="card-title">Basic info</h5>
+            <span>
+              <a href="<%= details_users_path %>" class="btn btn-xs btn-no-focus btn-primary">
+           Back
+          </a>
+            </span>
+          </div>
+
+          <!-- Body -->
+          <div class="card-body">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f| %>
+              <% error_messages = resource.errors.messages %>
+              <!-- Form Group -->
+              <div class="row form-group">
+                <label for="full_name" class="col-sm-3 col-form-label input-label">Full name
+                  <i class="far fa-question-circle text-body ml-1" data-toggle="tooltip" data-placement="top" title="Displayed on public forums, such as Front."></i></label>
+                <div class="col-sm-9">
+                  <div class="input-group">
+                    <%= f.text_field :full_name, autofocus: true, autocomplete: "full_name", class: 'form-control', type: 'text', placeholder: 'Full Name' %>
+                  </div>
+                  <% if error_messages[:full_name] %>
+                    <div class="field-error">
+                      <%= error_messages[:full_name][0] %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+              <!-- End Form Group -->
+
+              <!-- Form Group -->
+              <div class="row form-group">
+                <label for="email" class="col-sm-3 col-form-label input-label">Email</label>
+
+                <div class="col-sm-9">
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', id: "email", placeholder: 'example@email.com', ariaLabel: 'example@email.com' %>
+                  <% if error_messages[:email] %>
+                    <div class="field-error">
+                      <%= error_messages[:email][0] %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+              <!-- End Form Group -->
+
+              <!-- Form Group -->
+              <div class=" row form-group">
+                <%= f.label :phone, class: 'col-sm-3 col-form-label input-label' %>
+
+                <div class="col-sm-9">
+                  <div class="input-group align-items-center">
+                    <%= f.text_field :phone, autofocus: true, autocomplete: "phone", class: 'form-control', id: 'phone', placeholder: "+x(xxx)xxx-xx-xx", ariaLabel: "+x(xxx)xxx-xx-xx" %>
+                    <% if error_messages[:phone] %>
+                      <div class="field-error">
+                        <%= error_messages[:phone][0] %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <!-- End Form Group -->
+
+              <!-- Form Group -->
+              <div class="row form-group">
+                <%= f.label :short_bio, class: 'col-sm-3 col-form-label input-label' %>
+
+                <div class="col-sm-9">
+                  <%= f.text_area :short_bio, autofocus: true, autocomplete: "short_bio", class: 'form-control', rows: '4' %>
+                </div>
+              </div>
+              <!-- End Form Group -->
+
+              <!-- Form Group -->
+              <div class="row form-group">
+                <%= f.label :country, class: "col-sm-3 col-form-label input-label" %>
+                <div class="col-sm-9">
+                  <%= f.text_field :country, autofocus: true, autocomplete: "country", class: 'form-control', id: 'country', placeholder: 'Country', ariaLabel: 'Country' %>
+                  <% if error_messages[:country] %>
+                    <div class="field-error">
+                      <%= error_messages[:country][0] %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+              <!-- End Form Group -->
+
+              <!-- Form Group -->
+              <div class="row form-group">
+                <%= f.label :state, class: "col-sm-3 col-form-label input-label" %>
+                <div class="col-sm-9">
+                  <%= f.text_field :state, autofocus: true, autocomplete: "state", class: 'form-control', id: 'state', placeholder: 'State', ariaLabel: 'State' %>
+                  <% if error_messages[:state] %>
+                    <div class="field-error">
+                      <%= error_messages[:state][0] %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+              <!-- End Form Group -->
+
+              <!-- Form Group -->
+              <div class="row form-group">
+                <%= f.label :city, class: "col-sm-3 col-form-label input-label" %>
+                <div class="col-sm-9">
+                  <%= f.text_field :city, autofocus: true, autocomplete: "city", class: 'form-control', id: 'city', placeholder: 'City', ariaLabel: 'City' %>
+                  <% if error_messages[:city] %>
+                    <div class="field-error">
+                      <%= error_messages[:city][0] %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+              <!-- End Form Group -->
+
+              <!-- Form Group -->
+              <div class="row form-group">
+                <%= f.label :street_address, class: "col-sm-3 col-form-label input-label" %>
+                <div class="col-sm-9">
+                  <%= f.text_field :street_address, autofocus: true, autocomplete: "street_address", class: 'form-control', id: 'street_address', placeholder: 'Street Address', ariaLabel: 'Street Address' %>
+                  <% if error_messages[:street_address] %>
+                    <div class="field-error">
+                      <%= error_messages[:street_address][0] %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+              <!-- End Form Group -->
+
+              <!-- Form Group -->
+              <div class="row form-group">
+                <%= f.label :zip_code, class: "col-sm-3 col-form-label input-label" %>
+                <div class="col-sm-9">
+                  <%= f.text_field :zip_code, autofocus: true, autocomplete: "zip_code", class: 'form-control', id: 'zip_code', placeholder: 'Zip Code', ariaLabel: 'Zip Code' %>
+                  <% if error_messages[:zip_code] %>
+                    <div class="field-error">
+                      <%= error_messages[:zip_code][0] %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+              <!-- End Form Group -->
+
+              <!-- Form Group -->
+              <div class="row form-group">
+                <%= f.label :linkedin_url, class: "col-sm-3 col-form-label input-label" %>
+                <div class="col-sm-9">
+                  <%= f.text_field :linkedin_url, autofocus: true, autocomplete: "linkedin_url", class: 'form-control', id: 'linkedin_url', placeholder: 'LinkedIn', ariaLabel: 'LinkedIn' %>
+                  <% if error_messages[:linkedin_url] %>
+                    <div class="field-error">
+                      <%= error_messages[:linkedin_url][0] %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+              <!-- End Form Group -->  <!-- Form Group -->
+              <div class="row form-group">
+                <%= f.label :twitter_url, class: "col-sm-3 col-form-label input-label" %>
+                <div class="col-sm-9">
+                  <%= f.text_field :twitter_url, autofocus: true, autocomplete: "twitter_url", class: 'form-control', id: 'twitter_url', placeholder: 'Twitter', ariaLabel: 'Twitter' %>
+                  <% if error_messages[:twitter_url] %>
+                    <div class="field-error">
+                      <%= error_messages[:twitter_url][0] %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+              <!-- End Form Group -->
+
+          </div>
+
+          <!-- End Body -->
+
+          <!--           Footer -->
+          <div class="card-footer d-flex justify-content-end">
+            <%= link_to "Cancel", details_users_path, class:'btn btn-white' %>
+            <span class="mx-2"></span>
+            <%= f.submit "Save Changes", class:'btn btn-primary'%>
+          </div>
+          <!--           End Footer -->
+            <% end %>
         </div>
-      <% end %>
+        <!-- End Card -->
+
+      </div>
     </div>
-
-    <div class="form-field">
-      <div class="mdc-typography--subtitle1">
-        <%= f.label :street_address %>
-      </div>
-      <div class="mdc-text-field mdc-text-field--filled input-field">
-        <%= f.text_field :street_address, autofocus: true, autocomplete: "street_address", class: 'mdc-text-field__input' %>
-      </div>
-      <% if error_messages[:street_address] %>
-        <div class="field-error">
-          <%= error_messages[:street_address][0] %>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="form-field">
-      <div class="mdc-typography--subtitle1">
-        <%= f.label :city %>
-      </div>
-      <div class="mdc-text-field mdc-text-field--filled input-field">
-        <%= f.text_field :city, autofocus: true, autocomplete: "city", class: 'mdc-text-field__input' %>
-      </div>
-      <% if error_messages[:city] %>
-        <div class="field-error">
-          <%= error_messages[:city][0] %>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="form-field">
-      <div class="mdc-typography--subtitle1">
-        <%= f.label :state %>
-      </div>
-      <div class="mdc-text-field mdc-text-field--filled input-field">
-        <%= f.text_field :state, autofocus: true, autocomplete: "state", class: 'mdc-text-field__input' %>
-      </div>
-      <% if error_messages[:state] %>
-        <div class="field-error">
-          <%= error_messages[:state][0] %>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="form-field">
-      <div class="mdc-typography--subtitle1">
-        <%= f.label :zip_code %>
-      </div>
-      <div class="mdc-text-field mdc-text-field--filled input-field">
-        <%= f.text_field :zip_code, autofocus: true, autocomplete: "zip_code", class: 'mdc-text-field__input' %>
-      </div>
-      <% if error_messages[:zip_code] %>
-        <div class="field-error">
-          <%= error_messages[:zip_code][0] %>
-        </div>
-      <% end %>
-    </div>
-
-     <div class="form-field">
-      <div class="mdc-typography--subtitle1">
-        <%= f.label :country %>
-      </div>
-      <div class="mdc-text-field mdc-text-field--filled input-field">
-        <%= f.text_field :country, autofocus: true, autocomplete: "country", class: 'mdc-text-field__input' %>
-      </div>
-      <% if error_messages[:country] %>
-        <div class="field-error">
-          <%= error_messages[:country][0] %>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="form-field">
-      <div class="mdc-typography--subtitle1">
-        <%= f.label :short_bio %>
-      </div>
-      <div class="mdc-text-field mdc-text-field--filled input-field">
-        <%= f.text_area :short_bio, autofocus: true, autocomplete: "short_bio", class: 'mdc-text-field__input' %>
-      </div>
-      <% if error_messages[:short_bio] %>
-        <div class="field-error">
-          <%= error_messages[:short_bio][0] %>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="form-field">
-      <div class="mdc-typography--subtitle1">
-        <%= f.label :linkedin_url %>
-      </div>
-      <div class="mdc-text-field mdc-text-field--filled input-field">
-        <%= f.text_field :linkedin_url, autofocus: true, autocomplete: "linkedin_url", class: 'mdc-text-field__input' %>
-      </div>
-      <% if error_messages[:linkedin_url] %>
-        <div class="field-error">
-          <%= error_messages[:linkedin_url][0] %>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="form-field">
-      <div class="mdc-typography--subtitle1">
-        <%= f.label :twitter_url %>
-      </div>
-      <div class="mdc-text-field mdc-text-field--filled input-field">
-        <%= f.text_field :twitter_url, autofocus: true, autocomplete: "twitter_url", class: 'mdc-text-field__input' %>
-      </div>
-      <% if error_messages[:twitter_url] %>
-        <div class="field-error">
-          <%= error_messages[:twitter_url][0] %>
-        </div>
-      <% end %>
-    </div>
-
-
-
-    <div class='btn-main'>
-      <%= link_to "Cancel", root_path, class: 'back secondary-btn float-left' %>
-      <button class="mdc-button mdc-button--raised action-btn float-right">
-        <div class="mdc-button__ripple"></div>
-        <span class="mdc-button__label"><%= f.submit "Update" %></span>
-      </button>
-    </div>
-  <% end %>
-</div>
-<!--we will add more fields here -->
+    <!-- End Row -->
+  </div>
+  <!-- End Content Section -->
+</main>
