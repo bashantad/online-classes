@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   			collection do
   				get :start_journey
   			end
+  			resources :course_contents, except: [:index, :show]
   		end
   	end
   	devise_for :users, controllers: {

@@ -1,0 +1,27 @@
+<h2>Course contents</h2>
+
+<%= link_to 'Add New Course Content', new_teaching_course_course_content_path(@course) %>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Duration</th>
+      <th>Course</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @course_contents.each do |course_content| %>
+      <tr>
+        <td><%= course_content.title %></td>
+        <td><%= course_content.description %></td>
+        <td><%= course_content.duration %></td>
+        <td><%= course_content.course_id %></td>
+        <td><%= link_to 'Edit', edit_teaching_course_course_content_path(course_content) %></td>
+        <td><%= link_to 'Delete', teaching_course_course_content_path(course_content), method: :delete, data: { confirm: 'Are you sure delete course content?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

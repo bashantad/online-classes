@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_12_050127) do
+ActiveRecord::Schema.define(version: 2020_07_13_024949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,16 @@ ActiveRecord::Schema.define(version: 2020_07_12_050127) do
     t.bigint "course_id"
     t.boolean "is_group", default: false
     t.index ["course_id"], name: "index_conversations_on_course_id"
+  end
+
+  create_table "course_contents", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "duration"
+    t.bigint "course_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_course_contents_on_course_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -205,6 +215,7 @@ ActiveRecord::Schema.define(version: 2020_07_12_050127) do
   add_foreign_key "conversation_enrolled_users", "conversations"
   add_foreign_key "conversation_enrolled_users", "users"
   add_foreign_key "conversations", "courses"
+  add_foreign_key "course_contents", "courses"
   add_foreign_key "courses", "categories"
   add_foreign_key "courses", "users"
   add_foreign_key "enroll_requests", "courses"

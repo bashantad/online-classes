@@ -1,5 +1,4 @@
-class Teaching::CoursesController < ApplicationController
-  layout "theme"
+class Teaching::CoursesController < Teaching::BaseController
   before_action :authenticate_user!, except: [:show]
   before_action :set_course, only: [:edit, :update, :destroy]
   before_action :set_categories, only: [:new, :create, :edit, :update]
@@ -10,6 +9,7 @@ class Teaching::CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id])
+    @course_contents = @course.course_contents
   end
 
   def new

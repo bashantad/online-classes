@@ -1,0 +1,36 @@
+<%= form_with(model: [:teaching, @course, @course_content]) do |form| %>
+    <% error_messages = @course_content.errors.messages %>
+    <div class="field">
+        <%= form.label :title %>
+        <%= form.text_field :title %>
+        <% if error_messages[:title] %>
+          <div class="field-error">
+            <%= error_messages[:title][0] %>
+          </div>
+        <% end %>
+    </div>
+
+    <div class="field">
+        <%= form.label :description %>
+        <%= form.text_area :description %>
+        <% if error_messages[:description] %>
+          <div class="field-error">
+            <%= error_messages[:description][0] %>
+          </div>
+        <% end %>
+    </div>
+
+    <div class="field">
+        <%= form.label :duration %>
+        <%= form.text_field :duration %>
+        <% if error_messages[:duration] %>
+          <div class="field-error">
+            <%= error_messages[:duration][0] %>
+          </div>
+        <% end %>
+    </div>
+
+    <div class="actions">
+        <%= form.submit %>
+    </div>
+<% end %>
