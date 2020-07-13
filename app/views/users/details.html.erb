@@ -1,87 +1,220 @@
-<div class="mdc-card registration-main">
-    <h2 class="mdc-typography--headline5 login-title">
-        Account Details
-    </h2>
-    <hr class="mdc-list-divider divider-margin">
-    <div class="user-details">
-        <div class="mdc-typography--subtitle1 user-fields">
-            <div class="field-label">
-                Full name
-            </div>
-            <div>
-                <%= current_user.full_name %>
-            </div>
+<main id="content" role="main" class="bg-light">
+  <!-- Breadcrumb Section -->
+  <div class="bg-navy">
+    <div class="container space-1 space-top-lg-2 space-bottom-lg-3">
+      <div class="row align-items-center">
+        <div class="col">
+          <div class="d-none d-lg-block">
+            <h1 class="h2 text-white">Personal info</h1>
+          </div>
+
+          <!-- Breadcrumb -->
+          <ol class="breadcrumb breadcrumb-light breadcrumb-no-gutter mb-0">
+            <li class="breadcrumb-item">Account</li>
+            <li class="breadcrumb-item active" aria-current="page">Personal info</li>
+          </ol>
+          <!-- End Breadcrumb -->
         </div>
 
-        <div class="mdc-typography--subtitle1 user-fields">
-            <div class="field-label">
-                Email
-            </div>
-            <div>
-                <%= current_user.email %>
-            </div>
-        </div>
+        <div class="col-auto">
+          <div class="d-none d-lg-block">
+            <a class="btn btn-soft-light" href="<%= destroy_user_session_path %>">Log out</a>
+          </div>
 
-        <div class="mdc-typography--subtitle1 user-fields">
-            <div class="field-label">
-                Phone
-            </div>
-            <div>
-                <%= current_user.phone %>
-            </div>
+          <!-- Responsive Toggle Button -->
+          <button type="button" class="navbar-toggler btn btn-icon btn-sm rounde-circle d-lg-none"
+                  aria-label="Toggle navigation"
+                  aria-expanded="false"
+                  aria-controls="sidebarNav"
+                  data-toggle="collapse"
+                  data-target="#sidebarNav">
+              <span class="navbar-toggler-default">
+                <svg width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                  <path fill="currentColor" d="M17.4,6.2H0.6C0.3,6.2,0,5.9,0,5.5V4.1c0-0.4,0.3-0.7,0.6-0.7h16.9c0.3,0,0.6,0.3,0.6,0.7v1.4C18,5.9,17.7,6.2,17.4,6.2z M17.4,14.1H0.6c-0.3,0-0.6-0.3-0.6-0.7V12c0-0.4,0.3-0.7,0.6-0.7h16.9c0.3,0,0.6,0.3,0.6,0.7v1.4C18,13.7,17.7,14.1,17.4,14.1z"/>
+                </svg>
+              </span>
+            <span class="navbar-toggler-toggled">
+                <svg width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                  <path fill="currentColor" d="M11.5,9.5l5-5c0.2-0.2,0.2-0.6-0.1-0.9l-1-1c-0.3-0.3-0.7-0.3-0.9-0.1l-5,5l-5-5C4.3,2.3,3.9,2.4,3.6,2.6l-1,1 C2.4,3.9,2.3,4.3,2.5,4.5l5,5l-5,5c-0.2,0.2-0.2,0.6,0.1,0.9l1,1c0.3,0.3,0.7,0.3,0.9,0.1l5-5l5,5c0.2,0.2,0.6,0.2,0.9-0.1l1-1 c0.3-0.3,0.3-0.7,0.1-0.9L11.5,9.5z"/>
+                </svg>
+              </span>
+          </button>
+          <!-- End Responsive Toggle Button -->
         </div>
-
-        <div class="mdc-typography--subtitle1 user-fields">
-            <div class="field-label">
-                Street address
-            </div>
-            <div>
-                <%= current_user.street_address %>
-            </div>
-        </div>
-
-        <div class="mdc-typography--subtitle1 user-fields">
-            <div class="field-label">
-                City
-            </div>
-            <div>
-                <%= current_user.city %>
-            </div>
-        </div>
-
-        <div class="mdc-typography--subtitle1 user-fields">
-            <div class="field-label">
-                State
-            </div>
-            <div>
-                <%= current_user.state %>
-            </div>
-        </div>
-
-        <div class="mdc-typography--subtitle1 user-fields">
-            <div class="field-label">
-                Zip code
-            </div>
-            <div>
-                <%= current_user.zip_code %>
-            </div>
-        </div>
-
-        <div class="mdc-typography--subtitle1 user-fields">
-            <div class="field-label">
-                Country
-            </div>
-            <div>
-                <%= current_user.country %>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
+  <!-- End Breadcrumb Section -->
 
+  <!-- Content Section -->
+  <div class="container space-2 space-top-lg-0 mt-lg-n10">
+    <div class="row">
+      <div class="col-lg-3">
+        <!-- Navbar -->
+        <%= render "layouts/sidenav" %>
+        <!-- End Navbar -->
+      </div>
 
-    <div class='btn-main'>
-        <%= link_to "Cancel", root_path,  class: 'back secondary-btn float-left' %>
-        <button class="mdc-button mdc-button--raised action-btn float-right">
-            <%= link_to "Edit", edit_user_registration_path, class: 'btn' %>
-        </button>
+      <div class="col-lg-9">
+        <!-- Card -->
+        <div class="card mb-3 mb-lg-5">
+          <div class="card-header">
+            <h5 class="card-title">Basic info</h5>
+            <span>
+              <a href="<%= edit_user_registration_path %>" class="btn btn-xs btn-no-focus btn-primary">
+            <i class="fas fa-pen mr-1"></i>
+           Edit Profile
+          </a>
+            </span>
+          </div>
+
+          <!-- Body -->
+          <div class="card-body">
+            <form>
+              <!-- Form Group -->
+              <div class="row form-group">
+                <label for="firstNameLabel" class="col-sm-3 col-form-label input-label">Full name
+                  <i class="far fa-question-circle text-body ml-1" data-toggle="tooltip" data-placement="top" title="Displayed on public forums, such as Front."></i></label>
+
+                <div class="col-sm-9">
+                  <div class="input-group">
+                    <input type="text" class="form-control-plaintext" name="firstName" id="firstNameLabel" placeholder="Clarice" aria-label="Clarice" value="<%= current_user.full_name %>" readonly>
+                  </div>
+                </div>
+              </div>
+              <!-- End Form Group -->
+
+              <!-- Form Group -->
+              <div class="row form-group">
+                <label for="emailLabel" class="col-sm-3 col-form-label input-label">Email</label>
+
+                <div class="col-sm-9">
+                  <input type="email" class="form-control-plaintext" name="email" id="emailLabel" placeholder="clarice@example.com" aria-label="clarice@example.com" value="<%= current_user.email %>" readonly>
+                </div>
+              </div>
+              <!-- End Form Group -->
+
+              <!-- Form Group -->
+              <div class="js-add-field row form-group">
+                <label for="phoneLabel" class="col-sm-3 col-form-label input-label">Phone</label>
+
+                <div class="col-sm-9">
+                  <div class="input-group align-items-center">
+                    <input type="text" class="js-masked-input form-control-plaintext" name="phone" id="phoneLabel" placeholder="Not Available" aria-label="+x(xxx)xxx-xx-xx" value="<%= current_user.phone %>" readonly>
+                  </div>
+
+                </div>
+              </div>
+              <!-- End Form Group -->
+
+              <!-- Form Group -->
+              <div class="row form-group">
+                <label class="col-sm-3 col-form-label input-label">Gender</label>
+
+                <div class="col-sm-9">
+                  <span class="form-control-plaintext">----</span>
+                </div>
+              </div>
+              <!-- End Form Group -->
+
+              <!-- Form Group -->
+              <div class="row form-group">
+                <label for="short_bio" class="col-sm-3 col-form-label input-label">BIO</label>
+
+                <div class="col-sm-9">
+                  <div class="input-group align-items-center">
+                    <input type="text" class="js-masked-input form-control-plaintext" name="short_bio" id="short_bio" placeholder="Not Available"   value="<%= current_user.short_bio %>" readonly>
+                  </div>
+                </div>
+              </div>
+              <!-- End Form Group -->
+
+              <!-- Form Group -->
+              <div class="row form-group">
+                <label for="linkedin_url" class="col-sm-3 col-form-label input-label">LinkedIn Url</label>
+
+                <div class="col-sm-9">
+                  <div class="input-group align-items-center">
+                    <input type="text" class="js-masked-input form-control-plaintext" name="linkedin_url" id="linkedin_url" placeholder="Not Available"   value="<%= current_user.linkedin_url %>" readonly>
+                  </div>
+                </div>
+              </div>
+              <!-- End Form Group -->
+
+              <!-- Form Group -->
+              <div class="row form-group">
+                <label for="twitter_url" class="col-sm-3 col-form-label input-label">Twitter Url</label>
+
+                <div class="col-sm-9">
+                  <div class="input-group align-items-center">
+                    <input type="text" class="js-masked-input form-control-plaintext" name="twitter_url" id="twitter_url" placeholder="Not Available"   value="<%= current_user.twitter_url %>" readonly>
+                  </div>
+                </div>
+              </div>
+              <!-- End Form Group -->
+            </form>
+          </div>
+          <!-- End Body -->
+        </div>
+        <!-- End Card -->
+
+        <!-- Card -->
+        <div id="editAddressCard" class="card mb-3 mb-lg-5">
+          <div class="card-header">
+            <h5 class="card-title">Address</h5>
+          </div>
+
+          <!-- Body -->
+          <div class="card-body">
+            <form>
+              <!-- Form Group -->
+              <div class="row form-group">
+                <label for="locationLabel" class="col-sm-3 col-form-label input-label">Location</label>
+                <div class="col-sm-9">
+                  <div class="row pl-3">
+                    <div>
+                      <input type="text" class="form-control-plaintext" name="country" id="countryLabel" placeholder="Not Available" aria-label="Country" value="<%= current_user.country %>" readonly>
+                    </div>
+                    <div>
+                      <input type="text" class="form-control-plaintext" name="state" id="stateLabel" placeholder="Not Available" aria-label="<%= current_user.state %>" readonly>
+                    </div>
+                    <div>
+                      <input type="text" class="form-control-plaintext" name="city" id="cityLabel" placeholder="Not Available" aria-label="City" value="<%= current_user.city %>" readonly>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- End Form Group -->
+
+              <!-- Form Group -->
+              <div class="row form-group">
+                <label for="streetAddress" class="col-sm-3 col-form-label input-label">Street Address</label>
+
+                <div class="col-sm-9">
+                  <input type="text" class="form-control-plaintext" name="streetAddress" id="streetAddress" placeholder="Not Available" aria-label="Your address" value="<%= current_user.street_address %>" readonly>
+                </div>
+              </div>
+              <!-- End Form Group -->
+
+              <!-- Form Group -->
+              <div class="row form-group">
+                <label for="zipCodeLabel" class="col-sm-3 col-form-label input-label">Zip code
+                  <i class="far fa-question-circle text-body ml-1" data-toggle="tooltip" data-placement="top" title="You can find your code in a postal address."></i></label>
+
+                <div class="col-sm-9">
+                  <input type="text" class="form-control-plaintext" name="zipCode" id="zipCodeLabel" placeholder="Not Available" aria-label="Your zip code" value="<%= current_user.zip_code %>" readonly>
+                </div>
+              </div>
+              <!-- End Form Group -->
+            </form>
+          </div>
+          <!-- End Body -->
+
+        </div>
+        <!-- End Card -->
+      </div>
     </div>
-</div>
+    <!-- End Row -->
+  </div>
+  <!-- End Content Section -->
+</main>

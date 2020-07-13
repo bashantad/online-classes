@@ -79,16 +79,12 @@
                     "position": "left"
                   }
                 }'>
-              <a id="acount" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Account</a>
+              <a id="acount" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="account"> <i class="fas fa-user-circle"></i></a>
 
-              <div id="pagesSubMenu" class="hs-sub-menu dropdown-menu" aria-labelledby="pagesMegaMenu" style="min-width: 230px;">
-                <a class="dropdown-item" href="<%= details_users_path %>">Account Details</a>
-                <a class="dropdown-item" href="<%= upload_users_path %>">Upload Profile Picture</a>
-                <a class="dropdown-item" href="<%= edit_user_registration_path %>">Edit Account</a>
-                <a class="dropdown-item" href="<%= edit_password_users_path %>">Change Password</a>
-                <a class="dropdown-item" href="<%= cancel_account_users_path %>">Delete Account</a>
+              <div id="account" class="hs-sub-menu dropdown-menu" aria-labelledby="pagesMegaMenu" style="min-width: 230px;">
+                <a class="dropdown-item" href="<%= details_users_path %>"><i class="fas fa-user-circle dropdown-item-icon"></i>My Account</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="<%= destroy_user_session_path %>">Logout</a>
+                <a class="dropdown-item" href="<%= destroy_user_session_path %>"><i class="fas fa-sign-out-alt dropdown-item-icon"></i>Logout</a>
               </div>
             </li>
             <!-- End Dropdown -->
