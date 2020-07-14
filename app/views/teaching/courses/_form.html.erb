@@ -1,174 +1,131 @@
 <%= form_with(model: [:teaching, course], local: true) do |form| %>
-  <% error_messages =  course.errors.messages %>
-
-  <div class="form-field">
-    <div class="mdc-typography--subtitle1">
-      <%= form.label :title %>
-    </div>
-    <div class="mdc-text-field mdc-text-field--filled input-field">
-      <%= form.text_field :title, class: 'mdc-text-field__input' %>
-    </div>
-    <% if error_messages[:title] %>
-      <div class="field-error">
-        <%= error_messages[:title][0] %>
+  <% error_messages = course.errors.messages %>
+  <div class="pl-4 pr-4 space-top-1">
+    <div class="row">
+      <div class="col-md-6 col-sm-12 col-md-6 col-sm-12 form-group">
+        <label class="input-label" for="full_name"> <%= form.label :title %></label>
+        <%= form.text_field :title, autofocus: true, autocomplete: "full_name", class: 'form-control', type: 'text', id: 'full_name', placeholder: 'Title' %>
+        <% if error_messages[:title] %>
+          <div class="field-error">
+            <%= error_messages[:title][0] %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
 
-  <div class="form-field">
-    <div class="mdc-typography--subtitle1">
-      <%= form.label :body %>
-    </div>
-    <div class="mdc-text-field--textarea input-field">
-      <%= form.text_area :body, class: 'course-textarea' %>
-    </div>
-    <% if error_messages[:body] %>
-      <div class="field-error">
-        <%= error_messages[:body][0] %>
+      <div class="col-md-6 col-sm-12 form-group">
+        <label class="input-label" for="full_name"> <%= form.label :website %></label>
+        <%= form.text_field :website, autofocus: true, autocomplete: "website", class: 'form-control', type: 'text', id: 'website', placeholder: 'Website' %>
+        <% if error_messages[:website] %>
+          <div class="field-error">
+            <%= error_messages[:website][0] %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
 
-  <div class="form-field">
-    <div class="mdc-typography--subtitle1">
-      <%= form.label :short_description %>
-    </div>
-    <div class="mdc-text-field--textarea input-field">
-      <%= form.text_area :short_description, class: 'course-textarea' %>
-    </div>
-    <% if error_messages[:short_description] %>
-      <div class="field-error">
-        <%= error_messages[:short_description][0] %>
+      <div class="col-md-6 col-sm-12 form-group">
+        <label class="input-label" for="full_name"> <%= form.label :short_description %></label>
+        <%= form.text_area :short_description, autofocus: true, autocomplete: "short_description", class: 'form-control', type: 'text', id: 'short_description', placeholder: 'Short Description' %>
+        <% if error_messages[:short_description] %>
+          <div class="field-error">
+            <%= error_messages[:short_description][0] %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
 
-  <div class="form-field">
-    <div class="mdc-typography--subtitle1">
-      <%= form.label :course_highlights %>
-    </div>
-    <div class="mdc-text-field--textarea input-field">
-      <%= form.text_area :course_highlights, class: 'course-textarea' %>
-    </div>
-    <% if error_messages[:course_highlights] %>
-      <div class="field-error">
-        <%= error_messages[:course_highlights][0] %>
+      <div class="col-md-6 col-sm-12 form-group">
+        <label class="input-label" for="full_name"> <%= form.label :course_highlights %></label>
+        <%= form.text_area :course_highlights, autofocus: true, autocomplete: "course_highlights", class: 'form-control', type: 'text', id: 'course_highlights', placeholder: 'Course Highlights' %>
+        <% if error_messages[:course_highlights] %>
+          <div class="field-error">
+            <%= error_messages[:course_highlights][0] %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
 
-  <div class="form-field">
-    <div class="mdc-typography--subtitle1">
-      <%= form.label :website %>
-    </div>
-    <div class="mdc-text-field mdc-text-field--filled input-field">
-      <%= form.text_field :website, class: 'mdc-text-field__input' %>
-    </div>
-    <% if error_messages[:website] %>
-      <div class="field-error">
-        <%= error_messages[:website][0] %>
+      <div class="col-md-6 col-sm-12 form-group">
+        <label class="input-label" for="full_name"> <%= form.label :body %></label>
+        <%= form.text_area :body, autofocus: true, autocomplete: "body", class: 'form-control', type: 'text', id: 'body', placeholder: 'Body' %>
+        <% if error_messages[:body] %>
+          <div class="field-error">
+            <%= error_messages[:body][0] %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
 
-  <div class="form-field">
-    <div class="mdc-typography--subtitle1">
-      <%= form.label :course_for %>
-    </div>
-    <div class="mdc-text-field--textarea input-field">
-      <%= form.text_area :course_for, class: 'course-textarea' %>
-    </div>
-    <% if error_messages[:course_for] %>
-      <div class="field-error">
-        <%= error_messages[:course_for][0] %>
+      <div class="col-md-6 col-sm-12 form-group">
+        <label class="input-label" for="full_name"> <%= form.label :course_for %></label>
+        <%= form.text_area :course_for, autofocus: true, autocomplete: "course_for", class: 'form-control', type: 'text', id: 'course_for', placeholder: 'Course For' %>
+        <% if error_messages[:course_for] %>
+          <div class="field-error">
+            <%= error_messages[:course_for][0] %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
 
-  <div class="form-field">
-    <div class="mdc-typography--subtitle1">
-      <%= form.label :price %>
-    </div>
-    <div class="mdc-text-field mdc-text-field--filled input-field">
-      <%= form.text_field :price, class: 'mdc-text-field__input' %>
-    </div>
-    <% if error_messages[:price] %>
-      <div class="field-error">
-        <%= error_messages[:price][0] %>
+      <div class="col-md-6 col-sm-12 form-group">
+        <label class="input-label" for="full_name"> <%= form.label :price %></label>
+        <%= form.text_field :price, autofocus: true, autocomplete: "price", class: 'form-control', type: 'text', id: 'price', placeholder: 'Price' %>
+        <% if error_messages[:price] %>
+          <div class="field-error">
+            <%= error_messages[:price][0] %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
 
-  <div class="form-field">
-    <div class="mdc-typography--subtitle1">
-      <%= form.label :category %>
-    </div>
-    <div class="mdc-text-field mdc-text-field--filled input-field course-select">
-      <%= form.select :category_id, @categories.collect{|p| [ p.title, p.id ] }, class: 'course-select-list' %>
-    </div>
-    <% if error_messages[:category_id] %>
-      <div class="field-error">
-        <%= error_messages[:category_id][0] %>
+      <div class="col-md-6 col-sm-12 form-group">
+        <label class="input-label" for="full_name"> <%= form.label :category %></label>
+        <%= form.select :category_id, @categories.collect { |p| [p.title, p.id] }, autofocus: true, autocomplete: "category_id", class: 'form-control', type: 'text', id: 'category_id', placeholder: 'Category' %>
+        <% if error_messages[:category_id] %>
+          <div class="field-error">
+            <%= error_messages[:category_id][0] %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
 
-  <div class="form-field">
-    <div class="mdc-typography--subtitle1">
-      <%= form.label :duration %>
-    </div>
-    <div class="mdc-text-field mdc-text-field--filled input-field course-select">
-      <%= form.text_field :duration, class: 'mdc-text-field__input' %>
-    </div>
-    <% if error_messages[:duration] %>
-      <div class="field-error">
-        <%= error_messages[:duration][0] %>
+      <div class="col-md-6 col-sm-12 form-group">
+        <label class="input-label" for="full_name"> <%= form.label :duration %></label>
+        <%= form.text_field :duration, autofocus: true, autocomplete: "duration", class: 'form-control', type: 'text', id: 'duration', placeholder: 'Duration' %>
+        <% if error_messages[:duration] %>
+          <div class="field-error">
+            <%= error_messages[:duration][0] %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
 
-  <div class="form-field">
-    <div class="mdc-typography--subtitle1">
-      <%= form.label :no_of_lessions %>
-    </div>
-    <div class="mdc-text-field mdc-text-field--filled input-field course-select">
-      <%= form.text_field :no_of_lessions, class: 'mdc-text-field__input' %>
-    </div>
-    <% if error_messages[:no_of_lessions] %>
-      <div class="field-error">
-        <%= error_messages[:no_of_lessions][0] %>
+      <div class="col-md-6 col-sm-12 form-group">
+        <label class="input-label" for="full_name"> <%= form.label :no_of_lessions %></label>
+        <%= form.text_field :no_of_lessions, autofocus: true, autocomplete: "no_of_lessions", class: 'form-control', type: 'text', id: 'no_of_lessions', placeholder: 'No. of Lessons' %>
+        <% if error_messages[:no_of_lessions] %>
+          <div class="field-error">
+            <%= error_messages[:no_of_lessions][0] %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
-
-  <div class="form-field">
-    <div class="mdc-typography--subtitle1">
-      <%= form.label :level %>
-    </div>
-    <div class="mdc-text-field mdc-text-field--filled input-field course-select">
-      <%= form.select :level, @levels, class: 'course-select-list' %>
-    </div>
-    <% if error_messages[:level] %>
-      <div class="field-error">
-        <%= error_messages[:level][0] %>
+      <div class="col-md-6 col-sm-12 form-group">
+        <label class="input-label" for="full_name"> <%= form.label :level %></label>
+        <%= form.select :level, @categories.collect { |p| [p.title, p.id] }, autofocus: true, autocomplete: "level", class: 'form-control', type: 'text', id: 'level', placeholder: 'Level' %>
+        <% if error_messages[:level] %>
+          <div class="field-error">
+            <%= error_messages[:level][0] %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
 
-  <div class="form-field">
-    <div class="mdc-typography--subtitle1">
-      <%= form.label :cover_image %>
-    </div>
-    <div class="mdc-text-field mdc-text-field--filled input-field course-select">
-      <%= form.file_field :cover_image %>
-    </div>
-  </div>
+      <div class="col-md-6 col-sm-12 form-group">
+        <label class="input-label" for="full_name"> <%= form.label :cover_image %></label>
+        <%= form.file_field :cover_image %>
+      </div>
 
-  <div class='btn-main'>
-    <%= link_to 'Back', teaching_courses_path, class: 'back secondary-btn float-left' %>
-    <button class="mdc-button mdc-button--raised action-btn float-right">
-      <div class="mdc-button__ripple"></div>
-      <span class="mdc-button__label">Save</span>
-    </button>
+      <div class="col-12 row align-items-center mb-3 mt-4 card-footer">
+        <div class="col-6 mb-sm-0 pl-4">
+          <%= link_to "Back", teaching_courses_path, class: 'font-size-1 font-weight-bold text-muted content-centered' %>
+        </div>
+        <div class="col-6 text-right">
+          <%= form.submit "Save", class: "btn btn-sm btn-primary" %>
+        </div>
+      </div>
+
+    </div>
   </div>
+  <!-- End Button -->
 <% end %>

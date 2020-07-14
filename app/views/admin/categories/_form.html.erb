@@ -15,7 +15,7 @@
       <%= form.text_area :description, class: 'form-control', id: 'description', placeholder: 'Description' %>
     </div>
     <!-- Button -->
-    <div class="row align-items-center mb-5">
+    <div class="row align-items-center mb-5 card-footer">
       <div class="col-6 mb-sm-0 pl-4">
           <%= link_to "Cancel", admin_categories_path,class: 'font-size-1 font-weight-bold text-muted content-centered' %>
         <% if params[:action] == "edit" %>
@@ -23,11 +23,11 @@
         <% end %>
       </div>
       <div class="col-6 text-right">
-        <%= form.submit "Add", class: "btn btn-sm btn-primary" %>
+        <%= form.submit "Save", class: "btn btn-sm btn-primary" %>
       </div>
     </div>
-  </div>
   <!-- End Button -->
+  </div>
 <% end %>
 
 
