@@ -18,7 +18,7 @@
           </label>
           <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: 'form-control', placeholder: "Email address", type: 'email', id: 'email', ariaLabel: 'Email address', dataMsg: 'Please enter a valid email address.' %>
           <% if error_messages[:email] %>
-            <div class="alert-soft-danger">
+            <div class="field-error">
               <%= error_messages[:email][0] %>
             </div>
           <% end %>

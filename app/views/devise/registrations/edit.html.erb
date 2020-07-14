@@ -76,9 +76,7 @@
                 <label for="full_name" class="col-sm-3 col-form-label input-label">Full name
                   <i class="far fa-question-circle text-body ml-1" data-toggle="tooltip" data-placement="top" title="Displayed on public forums, such as Front."></i></label>
                 <div class="col-sm-9">
-                  <div class="input-group">
-                    <%= f.text_field :full_name, autofocus: true, autocomplete: "full_name", class: 'form-control', type: 'text', placeholder: 'Full Name' %>
-                  </div>
+                    <%= f.text_field :full_name, autofocus: true, autocomplete: "full_name", class: 'form-control', id: 'full_name', placeholder: 'Full Name',ariaLabel: 'full_name' %>
                   <% if error_messages[:full_name] %>
                     <div class="field-error">
                       <%= error_messages[:full_name][0] %>

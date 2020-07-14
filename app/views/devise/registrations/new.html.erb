@@ -16,7 +16,7 @@
           <label class="input-label" for="email"><%= f.label :full_name %></label>
           <%= f.text_field :full_name, autofocus: true, autocomplete: "full_name", class: 'form-control', placeholder: "Full Name", type: 'text', id: 'full_name', ariaLabel: 'Full Name', dataMsg: 'Please enter a valid full name.' %>
           <% if error_messages[:full_name] %>
-            <div class="alert-soft-danger">
+            <div class="field-error">
               <%= error_messages[:full_name][0] %>
             </div>
           <% end %>
@@ -28,7 +28,7 @@
           <label class="input-label" for="email"><%= f.label :email %></label>
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: "Email address", type: 'email', id: 'email', ariaLabel: 'Email address', dataMsg: 'Please enter a valid email address.' %>
           <% if error_messages[:email] %>
-            <div class="alert-soft-danger">
+            <div class="field-error">
               <%= error_messages[:email][0] %>
             </div>
           <% end %>
@@ -47,7 +47,7 @@
           </label>
           <%= f.password_field :password, autocomplete: "new-password", class: 'form-control', type: 'password', id:'password', placeholder:'********', ariaLabel: '********', dataMsg:'Your password is invalid. Please try again.' %>
           <% if error_messages[:password] %>
-            <div class="alert-soft-danger">
+            <div class="field-error">
               <%= error_messages[:password][0] %>
             </div>
           <% end %>
@@ -63,7 +63,7 @@
           </label>
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', type: 'password', id:'password_confirmation', placeholder:'********', ariaLabel: '********', dataMsg:'Your password is invalid. Please try again.' %>
           <% if error_messages[:password_confirmation] %>
-            <div class="alert-soft-danger">
+            <div class="field-error">
               <%= error_messages[:password_confirmation][0] %>
             </div>
           <% end %>

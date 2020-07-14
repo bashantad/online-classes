@@ -77,7 +77,7 @@
               <!-- Footer -->
               <div class="card-footer d-flex justify-content-end">
                 <%= link_to "Back", details_users_path, type: 'button', class: 'btn btn-white mr-2' %>
-                <%= f.submit "Upload", type: 'button', class: 'btn btn-primary' %>
+                <%= f.submit "Update", type: 'button', class: 'btn btn-primary' %>
               </div>
             <% end %>
             <!-- End Footer -->
@@ -89,11 +89,3 @@
     <!-- End Content Section -->
   </div>
 </main>
-<script type="text/javascript" charset="utf-8">
-    $(document).on('ready', function () {
-        // initialization of custom file
-        $('.js-file-attach').each(function () {
-            var customFile = new HSFileAttach($(this)).init();
-        });
-    });
-</script>
