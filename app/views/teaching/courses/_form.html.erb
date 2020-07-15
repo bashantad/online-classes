@@ -2,7 +2,7 @@
   <% error_messages = course.errors.messages %>
   <div class="pl-4 pr-4 space-top-1">
     <div class="row">
-      <div class="col-md-6 col-sm-12 col-md-6 col-sm-12 form-group">
+      <div class="col-md-6 col-sm-12 form-group">
         <label class="input-label" for="full_name"> <%= form.label :title %></label>
         <%= form.text_field :title, autofocus: true, autocomplete: "full_name", class: 'form-control', type: 'text', id: 'full_name', placeholder: 'Title' %>
         <% if error_messages[:title] %>
@@ -74,7 +74,7 @@
 
       <div class="col-md-6 col-sm-12 form-group">
         <label class="input-label" for="full_name"> <%= form.label :category %></label>
-        <%= form.select :category_id, @categories.collect { |p| [p.title, p.id] }, autofocus: true, autocomplete: "category_id", class: 'form-control', type: 'text', id: 'category_id', placeholder: 'Category' %>
+        <%= form.select :category_id, @categories.collect { |p| [p.title, p.id] }, autofocus: true, autocomplete: "category_id", class: 'form-control custom-select', type: 'text', id: 'category_id', placeholder: 'Category' %>
         <% if error_messages[:category_id] %>
           <div class="field-error">
             <%= error_messages[:category_id][0] %>
@@ -103,7 +103,7 @@
       </div>
       <div class="col-md-6 col-sm-12 form-group">
         <label class="input-label" for="full_name"> <%= form.label :level %></label>
-        <%= form.select :level, @categories.collect { |p| [p.title, p.id] }, autofocus: true, autocomplete: "level", class: 'form-control', type: 'text', id: 'level', placeholder: 'Level' %>
+        <%= form.select :level, @categories.collect { |p| [p.title, p.id] }, autofocus: true, autocomplete: "level", class: 'form-control custom-select', type: 'text', id: 'level', placeholder: 'Level' %>
         <% if error_messages[:level] %>
           <div class="field-error">
             <%= error_messages[:level][0] %>
@@ -116,7 +116,7 @@
         <%= form.file_field :cover_image %>
       </div>
 
-      <div class="col-12 row align-items-center mb-3 mt-4 card-footer">
+      <div class="col-12 row align-items-center mb-5 mt-4">
         <div class="col-6 mb-sm-0 pl-4">
           <%= link_to "Back", teaching_courses_path, class: 'font-size-1 font-weight-bold text-muted content-centered' %>
         </div>

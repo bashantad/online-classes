@@ -1,5 +1,32 @@
-<h2>Add new Course Content</h2>
+<!-- Hero Section -->
+<div class="bg-navy bg-img-hero">
+  <div class="container space-1 ">
+    <div class="w-lg-65 text-center mx-lg-auto">
+      <span class="badge badge-soft-light badge-pill font-size-1 py-3 px-4 mb-3">
+       <nav aria-label="breadcrumb">
+         <ol class="breadcrumb breadcrumb-light breadcrumb-no-margin">
+          <li class="breadcrumb-item"><a href="<%= root_path %>" class="text-light text-highlight-light">Course Contents</a></li>
+          <li class="breadcrumb-item active" aria-current="page">New</li>
+        </ol>
+        </nav>
+      </span>
+    </div>
+  </div>
+</div>
+<!-- End Hero Section -->
 
-<%= render 'form', course_content: @course_content %>
-
-<%= link_to 'Back', teaching_course_path(@course) %>
+<div class="container space-1">
+  <!-- Card -->
+  <div class="card mx-auto w-lg-60">
+    <!-- Form -->
+    <%= render 'form', course_content: @course_content %>
+    <!-- End Card -->
+    <!-- SVG Elements -->
+    <figure class="max-w-19rem w-100 position-absolute bottom-0 right-0 z-index-n1">
+      <div class="mb-n7 mr-n7">
+        <img class="img-fluid" src="/assets/components/dots-3.svg" alt="Image Description">
+      </div>
+    </figure>
+    <!-- End SVG Elements -->
+  </div>
+</div>

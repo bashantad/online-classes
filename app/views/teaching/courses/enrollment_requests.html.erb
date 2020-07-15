@@ -24,37 +24,43 @@
   </div>  <!-- Card -->
 
   <% if @enroll_user_requests.present? %>
-    <div class="enrollment-table">
-      <div class="mdc-data-table resp-table">
-        <table class="mdc-data-table__table" aria-label="Enrollments">
-          <thead>
-          <tr class="mdc-data-table__header-row">
-            <td class="mdc-data-table__header-cell mdc-typography--subtitle2" role="columnheader" scope="col">Full name</td>
-            <td class="mdc-data-table__header-cell mdc-typography--subtitle2" role="columnheader" scope="col">Email</td>
-            <td class="mdc-data-table__header-cell mdc-typography--subtitle2" role="columnheader" scope="col">Phone(optional)</td>
-            <td class="mdc-data-table__header-cell mdc-typography--subtitle2" role="columnheader" scope="col">Status</td>
-          </tr>
-          </thead>
-          <tbody class="mdc-data-table__content">
-          <% @enroll_user_requests.each do |enroll_request, index| %>
-            <tr class="mdc-data-table__row">
-              <td class="mdc-data-table__cell">
-                <%= enroll_request.full_name %>
-              </td>
-              <td class="mdc-data-table__cell">
-                <%= enroll_request.email %>
-              </td>
-              <td class="mdc-data-table__cell">
-                <%= enroll_request.phone %>
-              </td>
-              <td class="mdc-data-table__cell">
-                <%= enroll_request.user ? 'Accepted' : 'Not accepted' %>
-              </td>
+    <div class="card">
+      <!-- Table -->
+      <div class="table-responsive">
+        <%= form_with(url: teaching_course_enroll_users_path(@course), local: true) do |form| %>
+          <table class="table table-thead-bordered table-nowrap table-align-middle">
+            <thead class="thead-light">
+            <tr>
+              <th>S.N</th>
+              <th>Full Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Status</th>
             </tr>
-          <% end %>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+            <% @enroll_user_requests.each do |enroll_request, index| %>
+              <tr>
+                <td><%= index + 1 %></td>
+                <td> <%= enroll_request.full_name %></td>
+                <td><%= enroll_request.email %></td>
+                <td><%= enroll_request.phone %></td>
+                <td>  <%= enroll_request.user ? 'Accepted' : 'Not accepted' %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        <% end %>
+        <!-- End Table -->
       </div>
+      <!-- End Card -->
+      <!-- SVG Elements -->
+      <figure class="max-w-13rem w-100 position-absolute bottom-0 right-0 z-index-n1">
+        <div class="mb-n7 mr-n7">
+          <img class="img-fluid" src="<%= asset_path("components/dots-3.svg") %>" alt="Image Description">
+        </div>
+      </figure>
+      <!-- End SVG Elements -->
     </div>
   <% else %>
     <div class="card mx-lg-auto mt-3">
@@ -70,10 +76,10 @@
           <div class="col-md-7 col-lg-6">
             <div class="row justify-content-md-between align-items-md-center">
               <div class="col-lg-12  space-bottom-1">
-                <h4 class="h5 mb-0 text-muted">Looks Like there are no enrollment request.</h4>
+                <h4 class="h5 mb-0 text-muted">Oops! Looks Like there are no enrollment request.</h4>
               </div>
               <div class="col-lg-12 text-left">
-                <%= link_to "Go Home", root_path, class: 'font-size-1 btn btn-soft-primary' %>
+                <%= link_to "Go Back", '/teaching/courses', class: 'font-size-1 btn btn-soft-primary' %>
               </div>
             </div>
             <!-- Input -->

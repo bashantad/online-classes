@@ -15,18 +15,18 @@
       <%= form.text_area :description, class: 'form-control', id: 'description', placeholder: 'Description' %>
     </div>
     <!-- Button -->
-    <div class="row align-items-center mb-5 card-footer">
+    <div class="row align-items-center mb-5 ">
       <div class="col-6 mb-sm-0 pl-4">
-          <%= link_to "Cancel", admin_categories_path,class: 'font-size-1 font-weight-bold text-muted content-centered' %>
+        <%= link_to "Cancel", admin_categories_path, class: 'font-size-1 font-weight-bold text-muted content-centered' %>
         <% if params[:action] == "edit" %>
-            <%= link_to 'View', admin_category_path(category: @category), class: 'font-size-1 font-weight-bold text-muted pl-md-4 pl-2' %>
+          <%= link_to 'View', admin_category_path(category: @category), class: 'font-size-1 font-weight-bold text-muted pl-md-4 pl-2' %>
         <% end %>
       </div>
       <div class="col-6 text-right">
         <%= form.submit "Save", class: "btn btn-sm btn-primary" %>
       </div>
     </div>
-  <!-- End Button -->
+    <!-- End Button -->
   </div>
 <% end %>
 

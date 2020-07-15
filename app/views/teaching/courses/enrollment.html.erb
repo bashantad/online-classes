@@ -1,40 +1,60 @@
-<div class="erb-body">
-<div class="enrollment-title">
-  <span class="mdc-typography--headline5">Send enrollment requests for <%= @course.title %></span>
+<!-- Hero Section -->
+<div class="bg-navy bg-img-hero">
+  <div class="container space-1 ">
+    <div class="w-lg-65 text-center mx-lg-auto">
+      <span class="badge badge-soft-light badge-pill font-size-1 py-3 px-4 mb-3">
+      <nav aria-label="breadcrumb">
+         <ol class="breadcrumb breadcrumb-light breadcrumb-no-margin">
+          <li class="breadcrumb-item"><a href="/teaching/courses" class="text-light text-highlight-light">Courses</a></li>
+          <li class="breadcrumb-item">Enrollment Requests</li>
+          <li class="breadcrumb-item active" aria-current="page"><%= @course.title %></li>
+          <li class="breadcrumb-item active" aria-current="page">Send</li>
+        </ol>
+        </nav>
+      </span>
+    </div>
+  </div>
 </div>
-
-<div class="enrollment-table">
-  <%= form_with(url: teaching_course_enroll_users_path(@course), local: true) do |form| %>
-    <div class="mdc-data-table resp-table">
-      <table class="mdc-data-table__table" aria-label="Enrollments">
-        <thead>
-        <tr class="mdc-data-table__header-row">
-          <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">S.N</th>
-          <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Full name
-          </th>
-          <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Email</th>
-          <th class="mdc-data-table__header-cell mdc-typography--subtitle1" role="columnheader" scope="col">Phone</th>
-        </tr>
-        </thead>
-        <tbody class="mdc-data-table__content">
-        <% (0..4).to_a.each do |row| %>
-          <tr class="mdc-data-table__row">
-            <td class="mdc-data-table__cell"><%= row + 1 %></td>
-            <td class="mdc-data-table__cell"><input type="text" name="enroll_request[<%= row %>][full_name]"></td>
-            <td class="mdc-data-table__cell"><input type="text" name="enroll_request[<%= row %>][email]"></td>
-            <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-              <input type="text" name="enroll_request[<%= row %>][phone]" placeholder="Optional"></td>
+<!-- End Hero Section -->
+<div class="container space-1">
+  <div class="card">
+    <!-- Table -->
+    <div class="table-responsive">
+      <%= form_with(url: teaching_course_enroll_users_path(@course), local: true) do |form| %>
+        <table class="table table-thead-bordered table-nowrap table-align-middle">
+          <thead class="thead-light">
+          <tr>
+            <th>S.N</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone</th>
           </tr>
-        <% end %>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+          <% (0..4).to_a.each do |row| %>
+            <tr>
+              <td><%= row + 1 %></td>
+              <td><input type="text" name="enroll_request[<%= row %>][full_name]" class="form-control"></td>
+              <td><input type="text" name="enroll_request[<%= row %>][email]" class="form-control"></td>
+              <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
+                <input type="text" name="enroll_request[<%= row %>][phone]" placeholder="Optional" class="form-control"></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <div class="card-footer d-flex justify-content-end">
+          <button type="button" class="btn btn-primary">Add</button>
+        </div>
+      <% end %>
+      <!-- End Table -->
     </div>
-    <div>
-      <button class="mdc-button mdc-button--raised action-btn">
-        <div class="mdc-button__ripple"></div>
-        <span class="mdc-button__label">Add</span>
-      </button>
-    </div>
-  <% end %>
-</div>
+    <!-- End Card -->
+    <!-- SVG Elements -->
+    <figure class="max-w-13rem w-100 position-absolute bottom-0 right-0 z-index-n1">
+      <div class="mb-n7 mr-n7">
+        <img class="img-fluid" src="<%= asset_path("components/dots-3.svg") %>" alt="Image Description">
+      </div>
+    </figure>
+    <!-- End SVG Elements -->
+  </div>
 </div>
