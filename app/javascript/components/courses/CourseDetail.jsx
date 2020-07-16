@@ -2,7 +2,6 @@ import React, {Fragment} from "react";
 import {Link} from "react-router-dom";
 import {withRouter} from 'react-router';
 import PropTypes from "prop-types";
-import Header from '../../components/Header';
 import courseApi from "../../apis/courseApi";
 import Toolbar from "@material-ui/core/Toolbar";
 import Grid from '@material-ui/core/Grid';
@@ -64,7 +63,6 @@ export class CourseDetail extends React.Component {
 
         return (
             <div className="main-root">
-                <Header/>
                 <main className='main-content-react'>
                     <Toolbar></Toolbar>
                     <Paper className='course-detail-paper'>

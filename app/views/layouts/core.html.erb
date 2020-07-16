@@ -7,11 +7,14 @@
         <%= csrf_meta_tags %>
         <%= csp_meta_tag %>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
+        <%= stylesheet_link_tag 'theme', media: 'all', 'data-turbolinks-track': 'reload' %>
         <%= javascript_pack_tag 'Index' %>
         <%= stylesheet_pack_tag 'Index' %>
     </head>
 
     <body>
+        <%= render "layouts/application_header" if user_signed_in? %>
         <% if notice %>
             <div class="notice mdc-typography--subtitle1 notification"><%= notice %></div>
         <% end %>
@@ -19,5 +22,6 @@
             <div class="alert mdc-typography--subtitle1 notification"><%= alert %></div>
         <% end %>
         <%= yield %>
+        <%= javascript_include_tag 'theme', 'data-turbolinks-track': 'reload' %>
     </body>
 </html>

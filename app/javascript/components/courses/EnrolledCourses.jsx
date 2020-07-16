@@ -10,8 +10,6 @@ import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import Toolbar from "@material-ui/core/Toolbar";
 import Snackbar from "@material-ui/core/Snackbar";
-
-import Header from '../../components/Header';
 import '../../packs/index.scss'
 import callApi from "../../apis/callApi";
 import courseApi from "../../apis/courseApi";
@@ -55,7 +53,6 @@ export class EnrolledCourses extends React.Component {
 
         return (
             <div className="main-root">
-                <Header/>
                 <main className='main-content-react'>
                     <Toolbar></Toolbar>
                     <div className='home-search'>

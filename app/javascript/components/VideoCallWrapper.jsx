@@ -4,7 +4,6 @@ import { withRouter } from 'react-router';
 import VideoCall from "./calls/VideoCall";
 import userApi from "../apis/userApi";
 import callApi from "../apis/callApi";
-import Header from "./Header";
 import Typography from '@material-ui/core/Typography';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -97,7 +96,6 @@ class VideoCallWrapper extends React.Component{
 
         return (
             <div className='root'>
-                <Header/>
                 <div  className='video-layout-main'>
                    <Toolbar></Toolbar>
                         {

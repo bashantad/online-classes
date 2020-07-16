@@ -23,7 +23,6 @@ import UpdateMembers from "./groups/UpdateMembers";
 import courseApi from '../apis/courseApi';
 import conversationApi from '../apis/conversationApi';
 import userApi from '../apis/userApi';
-import Header from "./Header";
 
 const userIdToNameMapping = (users) => {
     return users.reduce((acc, user) => {
@@ -221,7 +220,6 @@ export class Message extends React.Component {
                 }
                 <div className='root'>
                     <CssBaseline/>
-                    <Header fullName={fullName} courseName={courseName}/>
                         <nav>
                             <Hidden lgUp implementation="css">
                                 <Drawer
