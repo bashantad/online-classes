@@ -27,30 +27,28 @@
     <div class="card">
       <!-- Table -->
       <div class="table-responsive">
-        <%= form_with(url: teaching_course_enroll_users_path(@course), local: true) do |form| %>
-          <table class="table table-thead-bordered table-nowrap table-align-middle">
-            <thead class="thead-light">
+        <table class="table table-thead-bordered table-nowrap table-align-middle">
+          <thead class="thead-light">
+          <tr>
+            <th>S.N</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Status</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @enroll_user_requests.each_with_index do |enroll_request, index| %>
             <tr>
-              <th>S.N</th>
-              <th>Full Name</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Status</th>
+              <td> <%= index + 1 %></td>
+              <td> <%= enroll_request.full_name %></td>
+              <td> <%= enroll_request.email %></td>
+              <td> <%= enroll_request.phone %></td>
+              <td> <%= enroll_request.user ? 'Accepted' : 'Not accepted' %></td>
             </tr>
-            </thead>
-            <tbody>
-            <% @enroll_user_requests.each do |enroll_request, index| %>
-              <tr>
-                <td><%= index + 1 %></td>
-                <td> <%= enroll_request.full_name %></td>
-                <td><%= enroll_request.email %></td>
-                <td><%= enroll_request.phone %></td>
-                <td>  <%= enroll_request.user ? 'Accepted' : 'Not accepted' %></td>
-              </tr>
-            <% end %>
-            </tbody>
-          </table>
-        <% end %>
+          <% end %>
+          </tbody>
+        </table>
         <!-- End Table -->
       </div>
       <!-- End Card -->
@@ -69,7 +67,7 @@
         <div class="row justify-content-md-between align-items-md-center pl-4 pr-4">
           <div class="col-md-5 mb-3 mb-md-0 text-align-middle">
             <figure class="max-w-8rem mx-auto">
-              <img class="img-fluid" src="/assets/icons/icon-15.svg" alt="SVG">
+              <img class="img-fluid" src="<%= asset_path("icons/icon-15.svg") %>" alt="SVG">
             </figure>
           </div>
 

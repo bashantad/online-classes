@@ -93,11 +93,11 @@
       </div>
 
       <div class="col-md-6 col-sm-12 form-group">
-        <label class="input-label" for="full_name"> <%= form.label :no_of_lessions %></label>
-        <%= form.text_field :no_of_lessions, autofocus: true, autocomplete: "no_of_lessions", class: 'form-control', type: 'text', id: 'no_of_lessions', placeholder: 'No. of Lessons' %>
-        <% if error_messages[:no_of_lessions] %>
+        <label class="input-label" for="full_name"> <%= form.label :no_of_lessons %></label>
+        <%= form.text_field :no_of_lessons, autofocus: true, autocomplete: "no_of_lessons", class: 'form-control', type: 'text', id: 'no_of_lessons', placeholder: 'No. of Lessons' %>
+        <% if error_messages[:no_of_lessons] %>
           <div class="field-error">
-            <%= error_messages[:no_of_lessions][0] %>
+            <%= error_messages[:no_of_lessons][0] %>
           </div>
         <% end %>
       </div>

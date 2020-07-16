@@ -2,11 +2,11 @@
   <div class="card-header">
     <h5 class="card-title">Course Contents</h5>
     <span>
-              <a href="<%= new_teaching_course_course_content_path(@course) %>" class="btn btn-xs btn-no-focus btn-primary">
-            <i class="fas fa-pen mr-1"></i>
+        <a href="<%= new_teaching_course_course_content_path(@course) %>" class="btn btn-xs btn-no-focus btn-primary">
+          <i class="fas fa-pen mr-1"></i>
            Add Course Contents
-          </a>
-            </span>
+        </a>
+    </span>
 
   </div>
 
@@ -43,7 +43,7 @@
     <% else %>
       <figure class="max-w-8rem mx-auto">
         <img class="img-fluid" src="
-          <% asset_path("icons/icon-67.svg") %>" alt="SVG">
+          <%= asset_path("icons/icon-67.svg") %>" alt="SVG">
       </figure>
       <div class="text-center mt-2">Contents Empty</div>
     <% end %>

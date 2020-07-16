@@ -75,7 +75,7 @@ class Teaching::CoursesController < Teaching::BaseController
       end
     end
     created_count = records_created.count
-    flash[:notice] = "#{created_count} #{'request'.pluralize(created_count)} #{created_count == 1 ? 'is' : 'are'} created(#{records_created.join(", ")}). #{records_failed.count} didn't succeed."
+    flash[:notice] = "#{created_count} #{'request'.pluralize(created_count)} #{created_count == 1 ? 'is' : 'are'} sent(#{records_created.join(", ")}). #{records_failed.count} didn't succeed."
     redirect_to teaching_course_enrollment_requests_path(@course)
   end
 
