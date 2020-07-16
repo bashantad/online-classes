@@ -49,7 +49,11 @@
                 </span>
               </td>
               <td>
-                <%= link_to 'Enrollment requests', teaching_course_enrollment_requests_path(course), class: 'btn btn-xs btn-outline-navy' %>
+                <% if course.approved? %>
+                  <%= link_to 'Enrollment requests', teaching_course_enrollment_requests_path(course), class: 'btn btn-xs btn-outline-navy' %>
+                <% else %>
+                  Pending approval
+                <% end %>
               </td>
               <td>
                 <%= link_to 'View', teaching_course_path(course), class: 'btn btn-xs btn-outline-success' %>

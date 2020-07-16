@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+	<p>
+		Hi <%= @full_name if @full_name %>
+	</p>
+    <p>
+		<%= @sender.full_name %> has sent you an invitation to enroll in the following course.
+    </p>
+	<p>
+		<%= link_to @course.title, @course.show_url, target: '_blank' %>
+	</p>
+	<p>
+		<%= link_to "Accept invitation",  new_user_registration_path(course_id: @course.id, email: @email) %>
+	</p>
+  </body>
+</html>
