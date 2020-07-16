@@ -13,9 +13,9 @@
         <button type="button" class="navbar-toggler btn btn-icon btn-sm rounded-circle"
                 aria-label="Toggle navigation"
                 aria-expanded="false"
-                aria-controls="navBarWithBSDropdown"
+                aria-controls="nav"
                 data-toggle="collapse"
-                data-target="#navBarWithBSDropdown">
+                data-target="#nav">
           <span class="navbar-toggler-default">
             <svg width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
               <path fill="currentColor" d="M17.4,6.2H0.6C0.3,6.2,0,5.9,0,5.5V4.1c0-0.4,0.3-0.7,0.6-0.7h16.9c0.3,0,0.6,0.3,0.6,0.7v1.4C18,5.9,17.7,6.2,17.4,6.2z M17.4,14.1H0.6c-0.3,0-0.6-0.3-0.6-0.7V12c0-0.4,0.3-0.7,0.6-0.7h16.9c0.3,0,0.6,0.3,0.6,0.7v1.4C18,13.7,17.7,14.1,17.4,14.1z"/>
@@ -33,11 +33,15 @@
         <div id="nav" class="collapse navbar-collapse">
           <ul class="navbar-nav">
             <li class="navbar-nav-item">
-              <a class="nav-link" href="<%= root_path %>">Home</a>
+              <a class="nav-link" href="<%= root_path %>">
+                <button type="button" class="btn btn-soft-secondary btn-icon btn-xs">
+                  <i class="fas fa-home"></i>
+                </button>
+              </a>
             </li>
             <% if current_user.is_admin? %>
               <!-- Dropdown -->
-              <li class="hs-has-sub-menu header-nav-item"
+              <li class="hs-has-sub-menu navbar-nav-item"
                   data-hs-mega-menu-item-options='{
                   "desktop": {
                     "position": "left"
@@ -55,7 +59,7 @@
               <!-- End Dropdown -->
             <% end %>
             <!-- Dropdown -->
-            <li class="hs-has-sub-menu header-nav-item"
+            <li class="hs-has-sub-menu navbar-nav-item"
                 data-hs-mega-menu-item-options='{
                   "desktop": {
                     "position": "left"
@@ -72,27 +76,49 @@
             </li>
             <!-- End Dropdown -->
 
-            <!-- Dropdown -->
-            <li class="hs-has-sub-menu header-nav-item"
-                data-hs-mega-menu-item-options='{
-                  "desktop": {
-                    "position": "left"
-                  }
-                }'>
-              <a id="acount" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="account">
-                <i class="fas fa-user-circle"></i>
-                Account Settings
+            <!-- Pages -->
+            <li class="hs-has-sub-menu navbar-nav-item">
+              <a id="pagesMegaMenu" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">
+                 Settings
               </a>
 
-              <div id="account" class="hs-sub-menu dropdown-menu" aria-labelledby="pagesMegaMenu" style="min-width: 230px;">
-                <a class="dropdown-item" href="<%= details_users_path %>">
-                  <i class="fas fa-user-circle dropdown-item-icon"></i>My Account
-                </a>
+              <!-- Pages - Submenu -->
+              <div id="settings" class="hs-sub-menu dropdown-menu" aria-labelledby="settingsMegaMenu" style="min-width: 230px;">
+                <!-- Company -->
+                <div class="hs-has-sub-menu">
+                  <a id="navLinkAcccountSettings" class="hs-mega-menu-invoker dropdown-item dropdown-item-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuAccountSettings">
+                    <i class="fas fa-user-circle dropdown-item-icon"></i>My Account
+                  </a>
+
+                  <div id="navSubmenuAccountSettings" class="hs-sub-menu dropdown-menu" aria-labelledby="navLinkAcccountSettings" style="min-width: 230px;">
+                    <a class="dropdown-item" href="<%= details_users_path %>">
+                      <i class="fas fa-id-card dropdown-item-icon"></i>
+                      Personal info
+                    </a>
+                    <a class="dropdown-item" href="<%= edit_user_registration_path %>">
+                      <i class="fas fa-pen dropdown-item-icon"></i>
+                      Edit Info
+                    </a>
+                    <a class="dropdown-item" href="<%= edit_password_users_path %>">
+                      <i class="fas fa-shield-alt dropdown-item-icon"></i>
+                      Password &amp; security
+                    </a>
+                    <a class="dropdown-item" href="<%= upload_users_path %>">
+                      <i class="fas fa-camera dropdown-item-icon"></i>
+                      Change Profile Picture
+                    </a>
+                    <a class="dropdown-item" href="<%= cancel_account_users_path %>">
+                      <i class="fas fa-trash dropdown-item-icon"></i>
+                      Delete Account
+                    </a>
+                  </div>
+                </div>
+                <!-- Company -->
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="<%= destroy_user_session_path %>"><i class="fas fa-sign-out-alt dropdown-item-icon"></i>Logout</a>
               </div>
             </li>
-            <!-- End Dropdown -->
+
             <!-- Button -->
             <% unless user_signed_in? %>
               <li class="nav-item navbar-nav-last-item">

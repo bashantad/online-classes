@@ -76,7 +76,7 @@
                 <label for="full_name" class="col-sm-3 col-form-label input-label">Full name
                   <i class="far fa-question-circle text-body ml-1" data-toggle="tooltip" data-placement="top" title="Displayed on public forums, such as Front."></i></label>
                 <div class="col-sm-9">
-                    <%= f.text_field :full_name, autofocus: true, autocomplete: "full_name", class: 'form-control', id: 'full_name', placeholder: 'Full Name',ariaLabel: 'full_name' %>
+                  <%= f.text_field :full_name, autofocus: true, autocomplete: "full_name", class: 'form-control', id: 'full_name', placeholder: 'Full Name', ariaLabel: 'full_name' %>
                   <% if error_messages[:full_name] %>
                     <div class="field-error">
                       <%= error_messages[:full_name][0] %>
@@ -130,26 +130,12 @@
 
               <!-- Form Group -->
               <div class="row form-group">
-                <%= f.label :country, class: "col-sm-3 col-form-label input-label" %>
+                <%= f.label :street_address, class: "col-sm-3 col-form-label input-label" %>
                 <div class="col-sm-9">
-                  <%= f.text_field :country, autofocus: true, autocomplete: "country", class: 'form-control', id: 'country', placeholder: 'Country', ariaLabel: 'Country' %>
-                  <% if error_messages[:country] %>
+                  <%= f.text_field :street_address, autofocus: true, autocomplete: "street_address", class: 'form-control', id: 'street_address', placeholder: 'Street Address', ariaLabel: 'Street Address' %>
+                  <% if error_messages[:street_address] %>
                     <div class="field-error">
-                      <%= error_messages[:country][0] %>
-                    </div>
-                  <% end %>
-                </div>
-              </div>
-              <!-- End Form Group -->
-
-              <!-- Form Group -->
-              <div class="row form-group">
-                <%= f.label :state, class: "col-sm-3 col-form-label input-label" %>
-                <div class="col-sm-9">
-                  <%= f.text_field :state, autofocus: true, autocomplete: "state", class: 'form-control', id: 'state', placeholder: 'State', ariaLabel: 'State' %>
-                  <% if error_messages[:state] %>
-                    <div class="field-error">
-                      <%= error_messages[:state][0] %>
+                      <%= error_messages[:street_address][0] %>
                     </div>
                   <% end %>
                 </div>
@@ -172,12 +158,12 @@
 
               <!-- Form Group -->
               <div class="row form-group">
-                <%= f.label :street_address, class: "col-sm-3 col-form-label input-label" %>
+                <%= f.label :state, class: "col-sm-3 col-form-label input-label" %>
                 <div class="col-sm-9">
-                  <%= f.text_field :street_address, autofocus: true, autocomplete: "street_address", class: 'form-control', id: 'street_address', placeholder: 'Street Address', ariaLabel: 'Street Address' %>
-                  <% if error_messages[:street_address] %>
+                  <%= f.text_field :state, autofocus: true, autocomplete: "state", class: 'form-control', id: 'state', placeholder: 'State', ariaLabel: 'State' %>
+                  <% if error_messages[:state] %>
                     <div class="field-error">
-                      <%= error_messages[:street_address][0] %>
+                      <%= error_messages[:state][0] %>
                     </div>
                   <% end %>
                 </div>
@@ -192,6 +178,20 @@
                   <% if error_messages[:zip_code] %>
                     <div class="field-error">
                       <%= error_messages[:zip_code][0] %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+              <!-- End Form Group -->
+
+              <!-- Form Group -->
+              <div class="row form-group">
+                <%= f.label :country, class: "col-sm-3 col-form-label input-label" %>
+                <div class="col-sm-9">
+                  <%= f.text_field :country, autofocus: true, autocomplete: "country", class: 'form-control', id: 'country', placeholder: 'Country', ariaLabel: 'Country' %>
+                  <% if error_messages[:country] %>
+                    <div class="field-error">
+                      <%= error_messages[:country][0] %>
                     </div>
                   <% end %>
                 </div>
@@ -224,19 +224,19 @@
               </div>
               <!-- End Form Group -->
 
-          </div>
+              </div>
 
-          <!-- End Body -->
+              <!-- End Body -->
 
-          <!--           Footer -->
-          <div class="card-footer d-flex justify-content-end">
-            <%= link_to "Cancel", details_users_path, class:'btn btn-white' %>
-            <span class="mx-2"></span>
-            <%= f.submit "Save Changes", class:'btn btn-primary'%>
-          </div>
-          <!--           End Footer -->
+              <!--           Footer -->
+              <div class="card-footer d-flex justify-content-end">
+                <%= link_to "Cancel", details_users_path, class: 'btn btn-white' %>
+                <span class="mx-2"></span>
+                <%= f.submit "Save Changes", class: 'btn btn-primary' %>
+              </div>
+              <!--           End Footer -->
             <% end %>
-        </div>
+            </div>
         <!-- End Card -->
 
       </div>
