@@ -4,7 +4,7 @@
       <!-- Nav -->
       <nav class="js-mega-menu navbar navbar-expand-lg">
         <!-- Logo -->
-        <a class="navbar-brand" href="index.html" aria-label="Front">
+        <a class="navbar-brand" href="<%= root_path %>" aria-label="Front">
           <img src="<%= asset_path("logos/logo.svg") %>" alt="Logo">
         </a>
         <!-- End Logo -->
@@ -79,21 +79,28 @@
                     "position": "left"
                   }
                 }'>
-              <a id="acount" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="account"> <i class="fas fa-user-circle"></i></a>
+              <a id="acount" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="account">
+                <i class="fas fa-user-circle"></i>
+                Account Settings
+              </a>
 
               <div id="account" class="hs-sub-menu dropdown-menu" aria-labelledby="pagesMegaMenu" style="min-width: 230px;">
-                <a class="dropdown-item" href="<%= details_users_path %>"><i class="fas fa-user-circle dropdown-item-icon"></i>My Account</a>
+                <a class="dropdown-item" href="<%= details_users_path %>">
+                  <i class="fas fa-user-circle dropdown-item-icon"></i>My Account
+                </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="<%= destroy_user_session_path %>"><i class="fas fa-sign-out-alt dropdown-item-icon"></i>Logout</a>
               </div>
             </li>
             <!-- End Dropdown -->
             <!-- Button -->
-            <li class="nav-item navbar-nav-last-item">
-              <a class="btn btn-sm btn-primary transition-3d-hover" href="/teaching/courses/start_journey" target="_blank">
-                Join Now
-              </a>
-            </li>
+            <% unless user_signed_in? %>
+              <li class="nav-item navbar-nav-last-item">
+                <a class="btn btn-sm btn-primary transition-3d-hover" href="<%= new_user_registration_path %>" target="_blank">
+                  Join Now
+                </a>
+              </li>
+            <% end %>
             <!-- End Button -->
           </ul>
         </div>
