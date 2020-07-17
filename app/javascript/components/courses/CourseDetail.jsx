@@ -44,13 +44,13 @@ export class CourseDetail extends React.Component {
             rating: rating,
             comment: comment,
         })
-        .then(res => res.json())
-        .then(response => {
-            const {course} = this.state;
-            const reviews = [response, ...course.reviews];
-            course.reviews = reviews;
-            this.setState({course: course})
-        });
+            .then(res => res.json())
+            .then(response => {
+                const {course} = this.state;
+                const reviews = [response, ...course.reviews];
+                course.reviews = reviews;
+                this.setState({course: course})
+            });
     }
 
     handleClose = () => {
@@ -64,74 +64,55 @@ export class CourseDetail extends React.Component {
         return (
             <div className="main-root">
                 <main className='main-content-react'>
-                    <Toolbar></Toolbar>
-                    <Paper className='course-detail-paper'>
-                        <div className='course-cover'>
-                            <Grid container>
-                                <Grid item xs={12} sm={6}>
-                                    <img
-                                        src='https://images.unsplash.com/photo-1504639725590-34d0984388bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80'
-                                        alt=''/>
-                                </Grid>
-                                <Grid item xs={12} sm={6} className='course-details'>
-                                    <Grid container className='first-grid'>
-                                        <Grid item xs={12}>
-                                            <Typography variant="h5" gutterBottom>
-                                                {course && course.title}
-                                            </Typography>
-                                        </Grid>
-                                        <Grid item xs={12}>
-                                            <Typography variant="subtitle1" gutterBottom>
-                                                For: <span>{course && course.course_for}</span>
-                                            </Typography>
-                                        </Grid>
-                                        <Grid item xs={12} className='course-owner-details'>
-                                            <Grid container>
-                                                <Grid item xs={2}>
-                                                    <Avatar alt={course && course.owner.full_name}
-                                                            src={course && course.owner.avatar_image_urls}/>
-                                                </Grid>
-                                                <Grid item xs={8} className='course-margin-top'>
-                                                    <Typography variant="body1" gutterBottom>
-                                                        {course && course.owner.full_name}
-                                                    </Typography>
-                                                </Grid>
-                                            </Grid>
-                                        </Grid>
-                                        <Grid item xs={12} className='price-box'>
-                                            <Typography variant="h6" gutterBottom className='course-margin-top'>
-                                                <span> ${course && course.price}</span>
-                                            </Typography>
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                            <Grid container>
-                                <Grid item xs={12}>
-                                    <Typography variant="subtitle1" gutterBottom>
-                                        Description: <span>{course && course.body}</span>
-                                    </Typography>
-                                </Grid>
-                            </Grid>
-                        </div>
-                        <Divider/>
-                        <NewReview submitReview={this.submitReview} />
-                        <Divider/>
-                        {
-                            reviews === null ?
-                                <div className='comment-loading'>
-                                    <Skeleton/>
-                                    <Skeleton/>
-                                    <Skeleton/>
-                                </div>
-                                :
-                                <ReviewList reviews={reviews}/>
-                        }
+                    <div className="position-relative">
+                        <div className="gradient-y-overlay-lg-white bg-img-hero space-2 course-detail-bg-img">
+                        <div className="container space-top-2">
+                            <div className="row">
+                                <div className="col-md-7 col-lg-8">
+                                    <small
+                                        className="btn btn-xs btn-success btn-pill text-uppercase mb-2">{course && course.course_for}</small>
+                                    <h1 className="text-lh-sm">{course && course.title}</h1>
+                                    <p>{course && course.body}</p>
 
-                    </Paper>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className='svg-bottom'>
-                        <path fill="#3F51B5" fillOpacity="1" d="M0,320L720,32L1440,160L1440,320L720,320L0,320Z"></path>
-                    </svg>
+                                    <div className="d-flex align-items-center flex-wrap">
+                                        <div className="d-flex align-items-center mr-4">
+                                            <div className="avatar-group">
+                                         <span className="avatar avatar-xs avatar-circle">
+                                          <img className="avatar-img" src="../../assets/components/160x160/img1.jpg"
+                                               alt="Image Description"/>
+                                          </span>
+                                            </div>
+                                            <span className="pl-2">Created by <a className="link-underline"
+                                                                                 href="#">{course && course.owner.full_name}</a></span>
+                                        </div>
+                                        <div className="d-flex align-items-center flex-wrap">
+                                            <li className="list-inline-item mx-0"><img
+                                                src="../../assets/illustrations/star.svg" alt="Review rating"
+                                                width="14"/></li>
+                                            <li className="list-inline-item mx-0"><img
+                                                src="../../assets/illustrations/star.svg" alt="Review rating"
+                                                width="14"/></li>
+                                            <li className="list-inline-item mx-0"><img
+                                                src="../../assets/illustrations/star.svg" alt="Review rating"
+                                                width="14"/></li>
+                                            <li className="list-inline-item mx-0"><img
+                                                src="../../assets/illustrations/star.svg" alt="Review rating"
+                                                width="14"/></li>
+                                            <li className="list-inline-item mx-0"><img
+                                                src="../../assets/illustrations/star.svg" alt="Review rating"
+                                                width="14"/></li>
+
+                                            <span className="d-inline-block">
+                                            <span className="text-dark font-weight-bold mr-1">4.87</span>
+                                            <span className="text-muted">(1.5k+ reviews)</span>
+                                          </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
                     <Snackbar
                         anchorOrigin={{vertical, horizontal}}
                         open={errNotification}

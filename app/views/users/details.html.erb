@@ -49,10 +49,22 @@
   <!-- Content Section -->
   <div class="container space-2 space-top-lg-0 mt-lg-n10">
     <div class="row">
-      <div class="col-lg-3">
-        <!-- Navbar -->
-        <%= render "layouts/sidenav" %>
-        <!-- End Navbar -->
+      <div id="stickyBlockStartPoint" class="col-lg-3">
+        <div class="js-sticky-block card border"
+             data-hs-sticky-block-options='{
+                   "parentSelector": "#stickyBlockStartPoint",
+                   "breakpoint": "md",
+                   "startPoint": "#stickyBlockStartPoint",
+                   "endPoint": "#stickyBlockEndPoint",
+                   "stickyOffsetTop": 12,
+                   "stickyOffsetBottom": 12
+                 }'>
+
+          <!-- Navbar -->
+          <%= render "layouts/sidenav" %>
+          <!-- End Navbar -->
+
+        </div>
       </div>
 
       <div class="col-lg-9">
@@ -60,9 +72,10 @@
         <%= render "users/address" %>
         <%= render "users/education" %>
         <%= render "users/experience" %>
+        <!-- Sticky Block End Point -->
+        <div id="stickyBlockEndPoint"></div>
       </div>
     </div>
     <!-- End Row -->
   </div>
-  <!-- End Content Section -->
 </main>

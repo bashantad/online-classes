@@ -79,41 +79,31 @@
             <!-- Pages -->
             <li class="hs-has-sub-menu navbar-nav-item">
               <a id="pagesMegaMenu" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">
-                 Settings
+                My Account
               </a>
 
               <!-- Pages - Submenu -->
               <div id="settings" class="hs-sub-menu dropdown-menu" aria-labelledby="settingsMegaMenu" style="min-width: 230px;">
-                <!-- Company -->
-                <div class="hs-has-sub-menu">
-                  <a id="navLinkAcccountSettings" class="hs-mega-menu-invoker dropdown-item dropdown-item-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenuAccountSettings">
-                    <i class="fas fa-user-circle dropdown-item-icon"></i>My Account
-                  </a>
-
-                  <div id="navSubmenuAccountSettings" class="hs-sub-menu dropdown-menu" aria-labelledby="navLinkAcccountSettings" style="min-width: 230px;">
-                    <a class="dropdown-item" href="<%= details_users_path %>">
-                      <i class="fas fa-id-card dropdown-item-icon"></i>
-                      Personal info
-                    </a>
-                    <a class="dropdown-item" href="<%= edit_user_registration_path %>">
-                      <i class="fas fa-pen dropdown-item-icon"></i>
-                      Edit Info
-                    </a>
-                    <a class="dropdown-item" href="<%= edit_password_users_path %>">
-                      <i class="fas fa-shield-alt dropdown-item-icon"></i>
-                      Password &amp; security
-                    </a>
-                    <a class="dropdown-item" href="<%= upload_users_path %>">
-                      <i class="fas fa-camera dropdown-item-icon"></i>
-                      Change Profile Picture
-                    </a>
-                    <a class="dropdown-item" href="<%= cancel_account_users_path %>">
-                      <i class="fas fa-trash dropdown-item-icon"></i>
-                      Delete Account
-                    </a>
-                  </div>
-                </div>
-                <!-- Company -->
+                <a class="dropdown-item" href="<%= details_users_path %>">
+                  <i class="fas fa-id-card dropdown-item-icon"></i>
+                  Personal info
+                </a>
+                <a class="dropdown-item" href="<%= edit_user_registration_path %>">
+                  <i class="fas fa-pen dropdown-item-icon"></i>
+                  Edit Info
+                </a>
+                <a class="dropdown-item" href="<%= edit_password_users_path %>">
+                  <i class="fas fa-shield-alt dropdown-item-icon"></i>
+                  Password &amp; security
+                </a>
+                <a class="dropdown-item" href="<%= upload_users_path %>">
+                  <i class="fas fa-camera dropdown-item-icon"></i>
+                  Change Profile Picture
+                </a>
+                <a class="dropdown-item" href="<%= cancel_account_users_path %>">
+                  <i class="fas fa-trash dropdown-item-icon"></i>
+                  Delete Account
+                </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="<%= destroy_user_session_path %>"><i class="fas fa-sign-out-alt dropdown-item-icon"></i>Logout</a>
               </div>

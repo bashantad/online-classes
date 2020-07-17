@@ -45,8 +45,8 @@ export class Home extends React.Component {
             .then(response => {
                 this.setState({courses: response, loading: false, errNotification: false});
             }).catch(err => {
-                this.setState({loading: false, errNotification: true, error: 'Something went wrong'});
-            });
+            this.setState({loading: false, errNotification: true, error: 'Something went wrong'});
+        });
     }
 
     render() {
@@ -55,30 +55,73 @@ export class Home extends React.Component {
         return (
             <div className="main-root">
                 <main className='main-content-react'>
-                    <Toolbar></Toolbar>
-                    <div className='home-search'>
-                        <Paper component="form" className='search-root'>
-                            <InputBase
-                                className='search-input'
-                                placeholder="Explore Courses"
-                                inputProps={{'aria-label': 'Explore Courses'}}
-                            />
-                            <IconButton type="submit" className='search-button' aria-label="search">
-                                <SearchIcon/>
-                            </IconButton>
-                        </Paper>
-                    </div>
-                    {
-                        loading ?
-                            <div className="course-cards">
-                                <CardSkeleton/>
-                                <CardSkeleton/>
+                    <div className="container space-2">
+                        <div className="row justify-content-lg-between align-items-lg-center">
+                            <div className="col-sm-10 col-lg-5 mb-7 mb-lg-0">
+                                <img className="img-fluid" src="../../assets/illustrations/reading.svg"
+                                     alt="Image Description"/>
                             </div>
-                            : <CourseCard
-                                courses={courses}
-                                handleEnroll={this.handleEnroll}
-                                handleDetails={this.handleDetails} />
-                    }
+
+                            <div className="col-lg-6">
+                                <div className="mb-5">
+                                    <h1 className="display-4 mb-3">
+                                        Unlock your
+                                        <br/>
+                                        Potential
+                                    </h1>
+                                    <p className="lead">With our platform, you can quantify your skills, grow in your
+                                        role and stay relevant on critical topics.</p>
+                                </div>
+
+                                <div className="d-sm-flex align-items-sm-center flex-sm-wrap">
+                                    <a className="btn btn-primary mb-2" href="../pages/login.html">Start a Free
+                                        Trial</a>
+
+                                    <div className="mx-2"></div>
+
+                                    <a className="js-fancybox video-player video-player-btn media align-items-center text-dark mb-2"
+                                       href="javascript:;"
+                                       data-hs-fancybox-options='{
+                                         "src": "//youtube.com/0qisGSwZym4",
+                                         "caption": "Front - Responsive Website Template",
+                                         "speed": 700,
+                                         "buttons": ["fullScreen", "close"],
+                                         "youtube": {
+                                           "autoplay": 1
+                                         }
+                                          }'>
+                                      <span className="video-player-icon shadow-soft mr-3">
+                                        <i className="fa fa-play"></i>
+                                      </span>
+                                        <span className="media-body">
+                                            How it works
+                                          </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="container space-sm-2 space-bottom-lg-3">
+                        <div className="w-md-80 text-center mx-md-auto mb-9">
+                            <h2>Featured courses</h2>
+                            <p>Discover your perfect program in our courses.</p>
+                        </div>
+                        {
+                            loading ?
+                                <div className="course-cards">
+                                    <div className="d-flex justify-content-center text-primary">
+                                        <div className="spinner-border" role="status">
+                                            <span className="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                :
+                                <CourseCard
+                                    courses={courses}
+                                    handleEnroll={this.handleEnroll}
+                                    handleDetails={this.handleDetails}/>
+                        }
+                    </div>
                     {
                         <Snackbar
                             anchorOrigin={{vertical, horizontal}}
@@ -97,10 +140,6 @@ export class Home extends React.Component {
                             }
                         />
                     }
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className='svg-bottom'>
-                        <path fill="#3F51B5" fillOpacity="1" d="M0,320L720,32L1440,160L1440,320L720,320L0,320Z"></path>
-                    </svg>
-
                 </main>
             </div>
         );
