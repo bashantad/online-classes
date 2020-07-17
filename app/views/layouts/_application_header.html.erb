@@ -118,16 +118,6 @@
                 <a class="dropdown-item" href="<%= destroy_user_session_path %>"><i class="fas fa-sign-out-alt dropdown-item-icon"></i>Logout</a>
               </div>
             </li>
-
-            <!-- Button -->
-            <% unless user_signed_in? %>
-              <li class="nav-item navbar-nav-last-item">
-                <a class="btn btn-sm btn-primary transition-3d-hover" href="<%= new_user_registration_path %>" target="_blank">
-                  Join Now
-                </a>
-              </li>
-            <% end %>
-            <!-- End Button -->
           </ul>
         </div>
         <!-- End Navigation -->
