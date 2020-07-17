@@ -1,0 +1,62 @@
+ <div id="editAddressCard" class="card mb-3 mb-lg-5">
+  <div class="card-header">
+    <h5 class="card-title">Address</h5>
+  </div>
+
+  <!-- Body -->
+  <div class="card-body">
+    <form>
+      <!-- Form Group -->
+      <div class="row form-group">
+        <label for="streetAddress" class="col-sm-3 col-form-label input-label">Street Address</label>
+
+        <div class="col-sm-9">
+          <input type="text" class="form-control-plaintext" name="streetAddress" id="streetAddress" placeholder="Not Available" aria-label="Street Address" value="<%= current_user.street_address %>" readonly>
+        </div>
+      </div>
+      <!-- End Form Group -->
+
+      <!-- Form Group -->
+      <div class="row form-group">
+        <label for="city" class="col-sm-3 col-form-label input-label">City</label>
+
+        <div class="col-sm-9">
+          <input type="text" class="form-control-plaintext" name="city" id="city" placeholder="Not Available" aria-label="City" value="<%= current_user.city %>" readonly>
+        </div>
+      </div>
+      <!-- End Form Group -->
+
+      <!-- Form Group -->
+      <div class="row form-group">
+        <label for="state" class="col-sm-3 col-form-label input-label">State</label>
+
+        <div class="col-sm-9">
+          <input type="text" class="form-control-plaintext" name="state" id="state" placeholder="Not Available" aria-label="State" value="<%= current_user.state %>" readonly>
+        </div>
+      </div>
+      <!-- End Form Group -->
+
+      <!-- Form Group -->
+      <div class="row form-group">
+        <label for="zipCode" class="col-sm-3 col-form-label input-label">Zip code
+          <i class="far fa-question-circle text-body ml-1" data-toggle="tooltip" data-placement="top" title="You can find your code in a postal address."></i></label>
+
+        <div class="col-sm-9">
+          <input type="text" class="form-control-plaintext" name="zipCode" id="zipCode" placeholder="Not Available" aria-label="Your zip code" value="<%= current_user.zip_code %>" readonly>
+        </div>
+      </div>
+      <!-- End Form Group -->
+
+      <!-- Form Group -->
+      <div class="row form-group">
+        <label for="country" class="col-sm-3 col-form-label input-label">Country</label>
+
+        <div class="col-sm-9">
+          <input type="text" class="form-control-plaintext" name="zipCode" id="country" placeholder="Not Available" aria-label="Country" value="<%= current_user.country %>" readonly>
+        </div>
+      </div>
+      <!-- End Form Group -->
+
+    </form>
+  </div>
+</div>
