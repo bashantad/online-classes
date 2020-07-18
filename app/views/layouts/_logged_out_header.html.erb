@@ -204,7 +204,10 @@
     </div>
   </div>
 </aside>
-<!-- End Account Sidebar Navigation -->
+
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "libraries/hs-sticky-block.min" %>
+<% end %>
 
 
 

@@ -7,7 +7,6 @@
  *= require hs-header.min.js
  *= require hs-mega-menu.min.js
  *= require hs-file-attach.min.js
- *= require hs-sticky-block.min.js
  *= require_self
  */
 // initialization of header component
