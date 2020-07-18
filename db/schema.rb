@@ -136,7 +136,6 @@ ActiveRecord::Schema.define(version: 2020_07_13_024949) do
 
   create_table "qualifications", force: :cascade do |t|
     t.string "name_of_institution"
-    t.string "string"
     t.integer "year_start"
     t.string "type"
     t.integer "year_end"
