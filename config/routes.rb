@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 	namespace :teaching do
   		resources :courses do
   			collection do
-  				get :start_journey
+  				get :start_teaching
   			end
   			get :enrollment
 			post :enroll_users

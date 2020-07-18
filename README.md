@@ -99,12 +99,12 @@ in order to find out the routes, do followings
 ```
     rails routes
 ```
-To filter the routes, you can `grep` multiple times. As an example if I need to find a controller and action for `teaching/courses/start_journey`, I can type followings
+To filter the routes, you can `grep` multiple times. As an example if I need to find a controller and action for `teaching/courses/start_teaching`, I can type followings
 ```
-    rails routes | grep courses | grep teaching | grep start_journey
-    # outputs start_journey_teaching_courses GET  /teaching/courses/start_journey(.:format) teaching/courses#start_journey
-    # If you look into the last part of the above output, it means, it should be inside app/controllers/teaching folder and should be named courses_controller and action(def) is start_journey.
-    # Now, in order to find the view file(erb) for this, you need to look into app/views/teaching/courses/start_journey.html.erb
+    rails routes | grep courses | grep teaching | grep start_teaching
+    # outputs start_teaching_teaching_courses GET  /teaching/courses/start_teaching(.:format) teaching/courses#start_teaching
+    # If you look into the last part of the above output, it means, it should be inside app/controllers/teaching folder and should be named courses_controller and action(def) is start_teaching.
+    # Now, in order to find the view file(erb) for this, you need to look into app/views/teaching/courses/start_teaching.html.erb
 ```
 
 ### Including js and css

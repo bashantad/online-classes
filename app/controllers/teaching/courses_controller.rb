@@ -1,5 +1,5 @@
 class Teaching::CoursesController < Teaching::BaseController
-  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, except: [:show, :start_teaching]
   before_action :set_course, only: [:edit, :update, :destroy, :enrollment, :enroll_users, :enrollment_requests]
   before_action :set_categories, only: [:new, :create, :edit, :update]
 
@@ -19,8 +19,8 @@ class Teaching::CoursesController < Teaching::BaseController
   def edit
   end
 
-  def start_journey
-    unless current_user.has_qualifications?
+  def start_teaching
+    if user_signed_in? && !current_user.has_qualifications?
       redirect_to REACT_ROUTES[:qualifications]
     end
   end
