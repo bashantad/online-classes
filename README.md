@@ -108,7 +108,24 @@ To filter the routes, you can `grep` multiple times. As an example if I need to 
 ```
 
 ### Including js and css
-You can include the necessary js and styles at app/assets/javascript and app/assets/stylesheets. But don't include them globally at `theme.css` or `theme.js` unless it's a global thing. You can use javascript_include_tag and stylesheet_link_tag in the view file if you need to include particular javascript or stylesheet file.
+You can include the necessary js and styles at app/assets/javascript and app/assets/stylesheets. But don't include them globally at `theme.css` or `theme.js` unless it's a global thing. You can use javascript_include_tag and stylesheet_link_tag in the view file if you need to include particular javascript or stylesheet file. Below is the example for view includes
+
+Stylesheet
+#####
+```
+<% content_for :stylesheet_includes do %>
+  <%= stylesheet_link_tag "libraries/hs-sticky-block.min" %>
+<% end %>
+```
+
+Javascript
+#####
+```
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "libraries/hs-sticky-block.min" %>
+<% end %>
+```
+
 
 Happy coding!!
 ```
