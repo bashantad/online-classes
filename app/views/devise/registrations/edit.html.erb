@@ -258,3 +258,12 @@
   </div>
   <!-- End Content Section -->
 </main>
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "libraries/hs-sticky-block.min" %>
+  <script type="text/javascript" charset="utf-8">
+      // initialization of sticky blocks
+      $('.js-sticky-block').each(function () {
+          var stickyBlock = new HSStickyBlock($(this)).init();
+      });
+  </script>
+<%end %>
