@@ -6,7 +6,6 @@
  *= require hs-unfold.min.js
  *= require hs-header.min.js
  *= require hs-mega-menu.min.js
- *= require hs-file-attach.min.js
  *= require_self
  */
 // initialization of header component
@@ -14,11 +13,6 @@ const header = new HSHeader($('#header')).init();
 
 // initialization of HSMegaMenu component
 const megaMenu = new HSMegaMenu($('.js-mega-menu')).init();
-
-// initialization of sticky blocks
-$('.js-sticky-block').each(function () {
-    var stickyBlock = new HSStickyBlock($(this)).init();
-});
 
 // initialization of unfold
 var unfold = new HSUnfold('.js-hs-unfold-invoker').init();
