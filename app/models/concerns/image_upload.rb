@@ -2,8 +2,23 @@ require 'active_support/concern'
 
 module ImageUpload
 	extend ActiveSupport::Concern
-
+	include Rails.application.routes.url_helpers
 	included do
+		STANDARD_SIZES = [
+				[1280, 720],
+				[460, 308 ],
+				[220, 148],
+				[60, 40]
+		]
+
+		def resized_images(image)
+			return {} unless image.present?
+			STANDARD_SIZES.inject({}) do |memo, size|
+				key = "#{size[0]}x#{size[1]}"
+				memo[key] = rails_representation_url(image.variant(resize_to_limit: size).processed, only_path: true)
+				memo
+			end
+		end
 
 		def acceptable_image
 			return unless avatar_image.attached?

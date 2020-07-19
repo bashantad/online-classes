@@ -54,6 +54,8 @@ export default class PeopleInTheChat extends React.Component {
 
     renderIndividualPerson = (user, mappingPersonToConversation) => {
         const conversationId = mappingPersonToConversation[user.id];
+        const {avatar_image_urls, full_name} = user;
+        const imageUrl = avatar_image_urls["60x40"];
         return (
             <ListItem button
                       key={`person-${user.id}-conversation-${conversationId}`}
@@ -61,9 +63,13 @@ export default class PeopleInTheChat extends React.Component {
                       className='message-list-item'
                       selected={this.getActiveClass(conversationId)}>
                 <ListItemIcon>
-                    <AccountCircleIcon />
+                    {
+                        imageUrl ?
+                            <img src={imageUrl} className='image-circle'/>
+                            : <AccountCircleIcon/>
+                    }
                 </ListItemIcon>
-                <ListItemText primary={user.full_name} className="list-title"/>
+                <ListItemText primary={full_name} className="list-title"/>
                     {this.renderNotification(conversationId)}
             </ListItem>
         );

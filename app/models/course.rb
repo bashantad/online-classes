@@ -1,5 +1,5 @@
 class Course < ApplicationRecord
-	include Rails.application.routes.url_helpers
+	include ImageUpload
 	belongs_to :owner, foreign_key: :user_id, class_name: 'User'
 	belongs_to :category
 	has_many :conversations
@@ -13,8 +13,8 @@ class Course < ApplicationRecord
 
 	validates :title, :body, :short_description, :course_highlights, :course_for, :price, :category, :duration, :no_of_lessons, :level, presence: true
 
-	def cover_url
-		rails_blob_path(self.cover_image, disposition: "attachment", only_path: true) if self.cover_image.present?
+	def cover_urls
+		resized_images(self.cover_image)
 	end
 
 	def approve

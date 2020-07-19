@@ -1,5 +1,5 @@
 class CourseSerializer < ActiveModel::Serializer
-  attributes :id, :title, :body, :website, :course_for, :price, :show_url, :cover_url
+  attributes :id, :title, :body, :website, :course_for, :price, :show_url, :cover_urls
   has_many :course_contents
   has_one :owner
   has_one :category
