@@ -126,7 +126,7 @@ export class CourseDetail extends React.Component {
                                    "stickyOffsetBottom": 12
                                  }'>
                                         <div className="position-relative p-1">
-                                            <a className="js-fancybox video-player" href="javascript:;"
+                                            <a className="js-fancybox video-player" href="#"
                                                data-hs-fancybox-options='{
                                              "src": "//youtube.com/0qisGSwZym4",
                                              "caption": "Front - Responsive Website Template",
@@ -230,7 +230,7 @@ export class CourseDetail extends React.Component {
 
                                         <a className="card-footer text-center font-weight-bold py-3"
                                            data-toggle="modal"
-                                           data-target="#copyToClipboardModal" href="javascript:;">
+                                           data-target="#copyToClipboardModal" href="#">
                                             <i className="fa fa-share mr-1"></i>
                                             Share
                                         </a>
@@ -439,7 +439,7 @@ export class CourseDetail extends React.Component {
                                     <div className="card border mb-1">
                                         <div className="card-header card-collapse" id="coursesHeadingOne">
                                             <a className="btn btn-link btn-sm btn-block card-btn p-3"
-                                               href="javascript:;" role="button" data-toggle="collapse"
+                                               href="#" role="button" data-toggle="collapse"
                                                data-target="#coursesCollapseOne"
                                                aria-expanded="true" aria-controls="coursesCollapseOne">
                                             <span className="row">
@@ -546,7 +546,7 @@ export class CourseDetail extends React.Component {
                                     <div className="card border mb-1">
                                         <div className="card-header card-collapse" id="coursesHeadingTwo">
                                             <a className="btn btn-link btn-sm btn-block card-btn collapsed p-3"
-                                               href="javascript:;" role="button" data-toggle="collapse"
+                                               href="#" role="button" data-toggle="collapse"
                                                data-target="#coursesCollapseTwo"
                                                aria-expanded="false" aria-controls="coursesCollapseTwo">
                                             <span className="row">
@@ -696,7 +696,7 @@ export class CourseDetail extends React.Component {
                                         <div className="card border mb-1">
                                             <div className="card-header card-collapse" id="coursesHeadingSix">
                                                 <a className="btn btn-link btn-sm btn-block card-btn collapsed p-3"
-                                                   href="javascript:;" role="button" data-toggle="collapse"
+                                                   href="#" role="button" data-toggle="collapse"
                                                    data-target="#coursesCollapseSix"
                                                    aria-expanded="false" aria-controls="coursesCollapseSix">
                                                 <span className="row">
@@ -796,7 +796,7 @@ export class CourseDetail extends React.Component {
                                         <div className="card border mb-1">
                                             <div className="card-header card-collapse" id="coursesHeadingSeven">
                                                 <a className="btn btn-link btn-sm btn-block card-btn collapsed p-3"
-                                                   href="javascript:;" role="button" data-toggle="collapse"
+                                                   href="#" role="button" data-toggle="collapse"
                                                    data-target="#coursesCollapseSeven"
                                                    aria-expanded="false" aria-controls="coursesCollapseSeven">
                                                 <span className="row">
@@ -1042,7 +1042,7 @@ export class CourseDetail extends React.Component {
                                         </div>
                                     </div>
                                     {reviews && reviews.map(review => (
-                                        <div className="pt-5 mt-5">
+                                        <div className="pt-5 mt-5" key={review.id}>
                                             <div className="row mb-2">
                                                 <div className="col-lg-4 mb-3 mb-lg-0">
 
@@ -1091,10 +1091,10 @@ export class CourseDetail extends React.Component {
                                             <div className="font-size-1">
                                                 <span>Was this helpful?</span>
                                                 <span className="ml-2">
-                                      <a className="btn btn-xs btn-outline-secondary" href="javascript:;">Yes</a>
+                                      <a className="btn btn-xs btn-outline-secondary" href="#">Yes</a>
                                     </span>
                                                 <span className="ml-2">
-                                      <a className="btn btn-xs btn-outline-secondary" href="javascript:;">No</a>
+                                      <a className="btn btn-xs btn-outline-secondary" href="#">No</a>
                                     </span>
                                                 <span className="ml-3">
                                       <i className="far fa-flag text-body mr-1"></i>
