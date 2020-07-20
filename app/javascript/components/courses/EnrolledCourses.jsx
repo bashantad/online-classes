@@ -19,8 +19,6 @@ import CourseCard from "../common/CourseCard";
 export class EnrolledCourses extends React.Component {
     state = {
         error: '',
-        vertical: 'bottom',
-        horizontal: 'right',
         courses: [],
         errNotification: false,
         loading: true,
@@ -44,64 +42,44 @@ export class EnrolledCourses extends React.Component {
             .then(response => {
                 this.setState({courses: response, loading: false, errNotification: false});
             }).catch(err => {
-                this.setState({loading: false, errNotification: true, error: 'Something went wrong'});
-            });
+            this.setState({loading: false, errNotification: true, error: 'Something went wrong'});
+        });
     }
 
     render() {
-        const {error, horizontal, vertical, errNotification, courses, loading} = this.state;
+        const {error, errNotification, courses, loading} = this.state;
 
         return (
-            <div className="main-root">
-                <main className='main-content-react'>
-                    <Toolbar></Toolbar>
-                    <div className='home-search'>
-                        <Paper component="form" className='search-root'>
-                            <InputBase
-                                className='search-input'
-                                placeholder="Explore Courses"
-                                inputProps={{'aria-label': 'Explore Courses'}}
-                            />
-                            <IconButton type="submit" className='search-button' aria-label="search">
-                                <SearchIcon/>
-                            </IconButton>
-                        </Paper>
+            <main className='main-content-react'>
+                <div className="container space-sm-2 space-bottom-lg-3">
+                    <div className="w-md-80 text-center mx-md-auto mb-9">
+                        <h2>Enrolled courses</h2>
                     </div>
                     {
                         loading ?
                             <div className="course-cards">
-                                <CardSkeleton/>
-                                <CardSkeleton/>
+                                <div className="d-flex justify-content-center text-primary">
+                                    <div className="spinner-border" role="status">
+                                        <span className="sr-only">Loading...</span>
+                                    </div>
+                                </div>
                             </div>
-                            : <CourseCard
+                            :
+                            <CourseCard
                                 courses={courses}
                                 handleEnroll={this.handleEnroll}
-                                handleDetails={this.handleDetails} />
+                                handleDetails={this.handleDetails}/>
                     }
-                    {
-                        <Snackbar
-                            anchorOrigin={{vertical, horizontal}}
-                            open={errNotification}
-                            onClose={this.handleClose}
-                            message={error}
-                            key={vertical + horizontal}
-                            className='snackbar'
-                            action={
-                                <>
-                                    <IconButton size="small" aria-label="close" color="inherit"
-                                                onClick={this.handleClose}>
-                                        <CloseIcon fontSize="small"/>
-                                    </IconButton>
-                                </>
-                            }
-                        />
-                    }
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className='svg-bottom'>
-                        <path fill="#3F51B5" fillOpacity="1" d="M0,320L720,32L1440,160L1440,320L720,320L0,320Z"></path>
-                    </svg>
+                </div>
+                {
+                    errNotification ?
+                        <div className="alert alert-soft-danger custom-align-center" role="alert">
+                            {error}
+                        </div>
+                        : ''
+                }
 
-                </main>
-            </div>
+            </main>
         );
     }
 }
