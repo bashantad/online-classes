@@ -28,6 +28,7 @@ categories = [
 
 category = categories.first
 user = User.find(1)
+user2 = User.find(2)
 courses = [
     category.courses.create!(
       title: 'Python Programming',
@@ -66,16 +67,33 @@ courses = [
       website: 'https://google.com',
       price: 2500,
       course_for: 'Recent Graduates',
-      user_id: user.id
+      user_id: user2.id
     )
 ]
 
-user.educations.create(name_of_institution: 'Harvard University', year_start: 2006, year_end: 2010, title: 'Bachelor of Computer Science', location: 'Boston', country: 'USA')
-user.educations.create(name_of_institution: 'Stanford University', year_start: 2010, year_end: 2012, title: 'Masters in Artificial Intelligence', location: 'San Francisco', country: 'USA')
-user.experiences.create(name_of_institution: 'Google', year_start: 2012, year_end: 2016, title: 'Software Engineer', location: 'Mountain View', country: 'USA')
-user.experiences.create(name_of_institution: 'Facebook', year_start: 2010, year_end: 2012, title: 'Senior Software Engineer', location: 'Menlo Park', country: 'USA')
+courses.first.course_contents.create(
+    title: 'Course Overview',
+    description: 'Introduction, overview and content',
+    duration: '1 week'
+)
+courses.first.course_contents.create(
+    title: 'Installation steps',
+    description: 'Setting up the view, Running code, finding help, Getting the notebook and course material',
+    duration: '2 weeks',
+)
 
-courses[0..1].each(&:approve)
+courses.first.course_contents.create(
+    title: 'Modules and Packages',
+    description: 'Packages, libraries, MVPs etc',
+    duration: '2.5 weeks',
+)
+
+user2.educations.create(name_of_institution: 'Harvard University', year_start: 2006, year_end: 2010, title: 'Bachelor of Computer Science', location: 'Boston', country: 'USA')
+user2.educations.create(name_of_institution: 'Stanford University', year_start: 2010, year_end: 2012, title: 'Masters in Artificial Intelligence', location: 'San Francisco', country: 'USA')
+user2.experiences.create(name_of_institution: 'Google', year_start: 2012, year_end: 2016, title: 'Software Engineer', location: 'Mountain View', country: 'USA')
+user2.experiences.create(name_of_institution: 'Facebook', year_start: 2010, year_end: 2012, title: 'Senior Software Engineer', location: 'Menlo Park', country: 'USA')
+
+courses.each(&:approve)
 courses[0..1].each do |course|
   users[1..2].each do |user|
     course.enrolled_users << user
