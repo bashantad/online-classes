@@ -87,6 +87,11 @@ courses.first.course_contents.create(
     description: 'Packages, libraries, MVPs etc',
     duration: '2.5 weeks',
 )
+courses.first.course_contents.create(
+    title: 'Finishing up and further reading',
+    description: 'Practical applications, further reading etc.',
+    duration: '2 weeks',
+)
 
 user2.educations.create(name_of_institution: 'Harvard University', year_start: 2006, year_end: 2010, title: 'Bachelor of Computer Science', location: 'Boston', country: 'USA')
 user2.educations.create(name_of_institution: 'Stanford University', year_start: 2010, year_end: 2012, title: 'Masters in Artificial Intelligence', location: 'San Francisco', country: 'USA')
