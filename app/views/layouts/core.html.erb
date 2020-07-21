@@ -15,24 +15,19 @@
 </head>
 
 <body>
-<%= render "layouts/header" %>
-<% if notice %>
-  <div class="alert alert-soft-success custom-align-center" role="alert"><%= notice %></div>
-<% end %>
-<% if alert %>
-  <div class="alert alert-soft-danger custom-align-center" role="alert"><%= alert %></div>
-<% end %>
-<%= yield %>
-<%= javascript_include_tag 'theme', 'data-turbolinks-track': 'reload' %>
-<%= javascript_include_tag "libraries/hs-sticky-block.min" %>
-<%= yield :javascript_includes %>
-<% content_for :javascript_includes do %>
-  <script type="text/javascript" charset="utf-8">
-      // initialization of sticky blocks
-      $('.js-sticky-block').each(function () {
-          var stickyBlock = new HSStickyBlock($(this)).init();
-      });
-  </script>
-<% end %>
+    <div id='main-container'>
+        <%= render "layouts/header" %>
+        <% if notice %>
+          <div class="alert alert-soft-success custom-align-center" role="alert"><%= notice %></div>
+        <% end %>
+        <% if alert %>
+          <div class="alert alert-soft-danger custom-align-center" role="alert"><%= alert %></div>
+        <% end %>
+        <%= yield %>
+      <%#= render "layouts/footer" %>
+    </div>
+    <%= javascript_include_tag 'theme', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag "libraries/hs-sticky-block.min" %>
+    <%= yield :javascript_includes %>
 </body>
 </html>
