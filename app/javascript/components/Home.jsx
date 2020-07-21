@@ -80,7 +80,7 @@ export class Home extends React.Component {
                                     <div className="mx-2"></div>
 
                                     <a className="js-fancybox video-player video-player-btn media align-items-center text-dark mb-2"
-                                       href="javascript:;"
+                                       href="#"
                                        data-hs-fancybox-options='{
                                          "src": "//youtube.com/0qisGSwZym4",
                                          "caption": "Front - Responsive Website Template",
@@ -108,7 +108,7 @@ export class Home extends React.Component {
                         </div>
                         {
                             loading ?
-                                <div className="course-cards">
+                                <div className="course-cards mt-md-8">
                                     <div className="d-flex justify-content-center text-primary">
                                         <div className="spinner-border" role="status">
                                             <span className="sr-only">Loading...</span>

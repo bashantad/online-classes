@@ -3,6 +3,7 @@ import NewQualification from './NewQualification';
 import EducationList from './EducationList';
 import ExperienceList from './ExperienceList';
 import qualificationApi from '../../apis/qualificationApi';
+import {isEmpty} from "../../utils/utils";
 
 const QUALIFICATION_TYPES = {
     education: 'Education',
@@ -20,6 +21,7 @@ export default class Qualification extends React.Component {
         showExperienceForm: false,
         educationFormErrors: {},
         experienceFormErrors: {},
+        modelId: ''
     }
 
     componentDidMount() {
@@ -29,8 +31,8 @@ export default class Qualification extends React.Component {
                 const {experiences, education} = response;
                 this.setState({experiences, education});
             }).catch(err => {
-                this.setState({loading: false, errNotification: true, error: 'Something went wrong'});
-            });
+            this.setState({loading: false, errNotification: true, error: 'Something went wrong'});
+        });
     }
 
     addQualification = (data) => {
@@ -39,14 +41,14 @@ export default class Qualification extends React.Component {
             .then(res => res.json())
             .then(response => {
                 const {errors} = response;
-                if(!!errors) {
-                    if(data.type === QUALIFICATION_TYPES.education) {
+                if (!!errors) {
+                    if (data.type === QUALIFICATION_TYPES.education) {
                         updateObj.educationFormErrors = errors;
                     } else {
                         updateObj.experienceFormErrors = errors;
                     }
                 } else {
-                    if(response.type === QUALIFICATION_TYPES.education) {
+                    if (response.type === QUALIFICATION_TYPES.education) {
                         updateObj.education = [response, ...this.state.education];
                     } else {
                         updateObj.experiences = [response, ...this.state.experiences];
@@ -60,47 +62,156 @@ export default class Qualification extends React.Component {
         const formObj = {};
         const formKey = `show${qualificationType}Form`;
         formObj[formKey] = true;
-        this.setState(formObj);
+        this.setState({formObj, modelId: qualificationType});
     }
 
     render() {
         const {error, errNotification, education, experiences, loading, showEducationForm, showExperienceForm} = this.state;
         const {educationFormErrors, experienceFormErrors} = this.state;
         return (
-            <div className='education-and-experience'>
-                <div className='education-container'>
-                    <button onClick={this.showQualificationForm(QUALIFICATION_TYPES.education)}>
-                        Add new Qualification
-                    </button>
-                    {
-                        showEducationForm && <NewQualification
-                            addQualification = { this.addQualification }
-                            qualificationType = { QUALIFICATION_TYPES.education}
-                            key = 'education-new-form'
-                            formErrors = { educationFormErrors } />
-                    }
+            <>
+                <div className="container space-1">
+                    <div className="row justify-content-lg-between align-items-lg-center">
+                        <div className="col-sm-12 col-lg-12 mb-2 mb-lg-0">
+                            <div className="card">
+                                <div className="container space-1">
+                                    <div className="border-bottom w-md-75 w-lg-85 space-bottom-1 mx-md-auto">
+                                        <div className="media d-block d-sm-flex">
+                                            <div className="position-relative mx-auto mb-3 mb-sm-0 mr-sm-4" style={{
+                                                width: '160px',
+                                                height: '160px'
+                                            }}>
+                                                <img className="img-fluid rounded-circle"
+                                                     src="../../assets/components/160x160/img1.jpg"
+                                                     alt="Image Description" width="160" height="160"/>
+                                                <img
+                                                    className="bg-white position-absolute bottom-0 right-0 rounded-circle p-1"
+                                                    src="../../assets/illustrations/top-vendor.svg" alt="Icon"
+                                                    width="36" height="36" title="Top Writer"/>
+                                            </div>
 
-                    {
-                        education.length > 0 && <EducationList education = { education } />
-                    }
-                </div>
-                <div className='experience-container'>
-                    <button onClick={this.showQualificationForm(QUALIFICATION_TYPES.experience)}>
-                        Add new Experience
-                    </button>
-                    {
-                        showExperienceForm && <NewQualification
-                            addQualification={ this.addQualification }
-                            qualificationType={ QUALIFICATION_TYPES.experience }
-                            key = 'education-new-form'
-                            formErrors = { experienceFormErrors } />
-                    }
+                                            <div className="media-body">
+                                                <div className="d-flex justify-content-between align-items-center mb-2">
+                                                    <h1 className="h3">Hanna Wolfe</h1>
+                                                </div>
 
-                    {
-                        experiences.length > 0 && <ExperienceList experiences={experiences} />
-                    }
+                                                <div className="row text-body font-size-1 mb-2">
+                                                    <div className="col-auto">
+                                                        <span className="h6 pr-2">906</span>
+                                                        <span>Posts</span>
+                                                    </div>
+                                                    <div className="col-auto">
+                                                        <span className="h6 pr-2">19.5k</span>
+                                                        <span>Followers</span>
+                                                    </div>
+                                                    <div className="col-auto">
+                                                        <span className="h6 pr-2">109</span>
+                                                        <span>Following</span>
+                                                    </div>
+                                                </div>
+
+                                                <p className="mb-0">Nataly is a freelance journalist who's been
+                                                    published by Popular Science, The Washington Post, USA Today, Slate,
+                                                    and many more. Read more at <a className="font-weight-bold"
+                                                                                   href="#">hannawolfe.com</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <figure
+                                    className="max-w-13rem w-100 position-absolute bottom-0 right-0 z-index-n1 hide-svg">
+                                    <div className="mb-n7 mr-n7">
+                                        <img className="img-fluid" src="../../assets/components/dots-3.svg"
+                                             alt="Image Description"/>
+                                    </div>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+
+                <div className="text-center">
+                    <ul className="nav nav-segment nav-pills scrollbar-horizontal" role="tablist">
+                        <li className="nav-item">
+                            <a className="nav-link active" id="pills-one-code-features-example1-tab" data-toggle="pill"
+                               href="#qualifications" role="tab"
+                               aria-controls="pills-one-code-features-example1" aria-selected="true">Qualifications</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" id="pills-two-code-features-example1-tab" data-toggle="pill"
+                               href="#experience" role="tab"
+                               aria-controls="pills-two-code-features-example1" aria-selected="false">Experience</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div className="container space-1">
+                    <div className="row justify-content-lg-between align-items-lg-center">
+                        <div className="col-sm-12 col-lg-12 mb-2 mb-lg-0">
+                            <div className="card space-1">
+                                <div className="tab-content w-lg-85 mx-auto">
+                                    <div className="tab-pane fade show active" id="qualifications"
+                                         role="tabpanel"
+                                         aria-labelledby="qualifications-tab">
+                                        <div className="card-header">
+                                            <h5 className="card-title">Qualifications</h5>
+                                            <span>
+                                            <button type="button" data-toggle="modal" data-target="#userModal"
+                                                    onClick={this.showQualificationForm(QUALIFICATION_TYPES.education)}
+                                                    className="btn btn-xs btn-outline-primary font-weight-bold text-nowrap ml-1">Add
+                                                New
+                                            </button>
+                                        </span>
+                                        </div>
+                                        <div className="card-body">
+                                            {
+                                                isEmpty(education) ? <div>
+                                                    <figure className="max-w-10rem mx-auto mt-4">
+                                                        <img className="img-fluid" src="../../assets/icons/icon-21.svg"
+                                                             alt="SVG"/>
+                                                    </figure>
+                                                    <div className="text-center mt-2">Qualification not added!</div>
+                                                </div> : <EducationList education={education}/>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <div className="tab-pane fade" id="experience" role="tabpanel"
+                                         aria-labelledby="experience-tab">
+                                        <div className="card-header">
+                                            <h5 className="card-title">Experience</h5>
+                                            <span>
+                                             <button type="button" data-toggle="modal" data-target="#userModal"
+                                                     onClick={this.showQualificationForm(QUALIFICATION_TYPES.experience)}
+                                                     className="btn btn-xs btn-outline-primary font-weight-bold text-nowrap ml-1">Add
+                                                New
+                                            </button>
+                                        </span>
+                                        </div>
+                                        <div className="card-body">
+                                            {
+                                                isEmpty(experiences) ? <div>
+                                                    <figure className="max-w-10rem mx-auto mt-4">
+                                                        <img className="img-fluid" src="../../assets/icons/icon-42.svg"
+                                                             alt="SVG"/>
+                                                    </figure>
+                                                    <div className="text-center mt-2">Experience not added!</div>
+                                                </div> : <ExperienceList experiences={experiences}/>
+                                            }
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               <NewQualification
+                addQualification={this.addQualification}
+                qualificationType={this.state.modelId === 'education' ? QUALIFICATION_TYPES.education : QUALIFICATION_TYPES.experience}
+                key={this.state.modelId === 'education' ? 'education-new-form': 'experience-new-form'}
+                formErrors={this.state.modelId === 'education' ? educationFormErrors : experienceFormErrors}/>
+            </>
         )
     }
 }
