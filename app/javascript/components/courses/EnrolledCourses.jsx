@@ -1,19 +1,8 @@
-import React, {Fragment} from "react";
-import {Link} from "react-router-dom";
+import React from "react";
 import {withRouter} from 'react-router';
 import PropTypes from "prop-types";
-
-import Paper from '@material-ui/core/Paper';
-import InputBase from '@material-ui/core/InputBase';
-import SearchIcon from '@material-ui/icons/Search';
-import CloseIcon from '@material-ui/icons/Close';
-import IconButton from '@material-ui/core/IconButton';
-import Toolbar from "@material-ui/core/Toolbar";
-import Snackbar from "@material-ui/core/Snackbar";
 import '../../packs/index.scss'
-import callApi from "../../apis/callApi";
 import courseApi from "../../apis/courseApi";
-import CardSkeleton from "../common/CardSkeleton";
 import CourseCard from "../common/CourseCard";
 
 export class EnrolledCourses extends React.Component {

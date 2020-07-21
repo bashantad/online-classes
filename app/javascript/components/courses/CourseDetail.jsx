@@ -1,11 +1,7 @@
-import React, {Fragment} from "react";
-import {Link} from "react-router-dom";
+import React from "react";
 import {withRouter} from 'react-router';
 import PropTypes from "prop-types";
 import courseApi from "../../apis/courseApi";
-import IconButton from '@material-ui/core/IconButton';
-import Snackbar from '@material-ui/core/Snackbar';
-import CloseIcon from '@material-ui/icons/Close';
 import CourseHeader from "./sections/courseHeader";
 import Sidebar from "./sections/sidebar";
 import Learn from "./sections/learn";
@@ -58,7 +54,6 @@ export class CourseDetail extends React.Component {
         const reviews = course && course.reviews;
 
         return (
-
             loading ?
                 <div className="course-cards mt-md-11">
                     <div className="d-flex justify-content-center text-primary">
@@ -72,25 +67,19 @@ export class CourseDetail extends React.Component {
                     <div className="position-relative">
                         <CourseHeader {...this.state}/>
 
-                        {/*sidebar*/}
                         <Sidebar {...this.state}/>
                     </div>
                     <div className="container space-top-2 space-top-md-1">
                         <div className="row">
                             <div className="col-md-7 col-lg-8">
-                                {/*details*/}
                                 <Learn/>
 
-                                {/*info*/}
                                 <Description/>
 
-                                {/*contents*/}
                                 <Contents/>
 
-                                {/*about*/}
                                 <AboutInstructor/>
 
-                                {/*reviews*/}
                                 <Review reviews={reviews}/>
                             </div>
                         </div>
