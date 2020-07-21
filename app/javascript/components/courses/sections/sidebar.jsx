@@ -1,7 +1,6 @@
 import React from 'react';
 
-const Sidebar = props => {
-    const {course} = props;
+const Sidebar = ({course, handleEnroll}) => {
     return (
         <div className="container space-top-md-2 position-md-absolute top-0 right-0 left-0">
             <div className="row justify-content-end">
@@ -46,15 +45,16 @@ const Sidebar = props => {
 
                         <div className="card-body">
                             <div className="mb-3">
-                                                    <span
-                                                        className="h2 text-lh-sm mr-1 mb-0">${course && course.price}</span>
+                                <span className="h2 text-lh-sm mr-1 mb-0">${course.price}</span>
                                 <span className="lead text-muted text-lh-sm"></span>
                             </div>
 
                             <div className="mb-2">
                                 <a className="btn btn-block btn-primary transition-3d-hover"
-                                   href="#">Enroll
-                                    Now</a>
+                                   href="#"
+                                   onClick={() => handleEnroll(course.id) }>
+                                    Enroll Now
+                                </a>
                             </div>
 
                             <div className="text-center mb-4">
@@ -63,58 +63,9 @@ const Sidebar = props => {
 
                             <h2 className="h4">This course includes</h2>
 
-
                             <div className="media text-body font-size-1 mb-2">
-                                <div className="min-w-3rem text-center mr-3">
-                                    <i className="fa fa-video"></i>
-                                </div>
                                 <div className="media-body">
-                                    46.5 hours on-demand video
-                                </div>
-                            </div>
-
-                            <div className="media text-body font-size-1 mb-2">
-                                <div className="min-w-3rem text-center mr-3">
-                                    <i className="fa fa-file"></i>
-                                </div>
-                                <div className="media-body">
-                                    77 articles
-                                </div>
-                            </div>
-
-                            <div className="media text-body font-size-1 mb-2">
-                                <div className="min-w-3rem text-center mr-3">
-                                    <i className="fa fa-file-download"></i>
-                                </div>
-                                <div className="media-body">
-                                    85 downloadable resources
-                                </div>
-                            </div>
-
-                            <div className="media text-body font-size-1 mb-2">
-                                <div className="min-w-3rem text-center mr-3">
-                                    <i className="fa fa-infinity"></i>
-                                </div>
-                                <div className="media-body">
-                                    Full time access
-                                </div>
-                            </div>
-
-                            <div className="media text-body font-size-1 mb-2">
-                                <div className="min-w-3rem text-center mr-3">
-                                    <i className="fa fa-mobile"></i>
-                                </div>
-                                <div className="media-body">
-                                    Access on mobile and Tablet
-                                </div>
-                            </div>
-
-                            <div className="media text-body font-size-1 mb-2">
-                                <div className="min-w-3rem text-center mr-3">
-                                    <i className="fa fa-certificate"></i>
-                                </div>
-                                <div className="media-body">
-                                    Certificate of Completion
+                                    {course.course_highlights}
                                 </div>
                             </div>
                         </div>

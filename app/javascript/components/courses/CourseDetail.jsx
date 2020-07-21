@@ -31,9 +31,9 @@ export class CourseDetail extends React.Component {
         });
     }
 
-    handleClose = () => {
-        this.setState({errNotification: false});
-    };
+    handleEnroll = (courseId) => {
+        
+    }
 
     render() {
         const {course, errNotification, loading} = this.state;
@@ -53,7 +53,7 @@ export class CourseDetail extends React.Component {
                     <div className="position-relative">
                         <CourseHeader {...this.state}/>
 
-                        <Sidebar {...this.state}/>
+                        <Sidebar {...this.state} handleEnroll={this.handleEnroll}/>
                     </div>
                     <div className="container space-top-2 space-top-md-1">
                         <div className="row">

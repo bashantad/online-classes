@@ -54,6 +54,6 @@ class Teaching::CourseContentsController < ApplicationController
     end
 
     def course_content_params
-      params.require(:course_content).permit(:title, :description, :duration)
+      params.require(:course_content).permit(:title, :description, :duration, :preview)
     end
 end
