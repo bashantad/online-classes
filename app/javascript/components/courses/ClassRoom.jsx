@@ -10,7 +10,7 @@ import Contents from "./sections/contents";
 import AboutInstructor from "./sections/aboutInstructor";
 import Review from "./sections/review";
 
-export class CourseDetail extends React.Component {
+export class ClassRoom extends React.Component {
     state = {
         course: null,
         loading: true,
@@ -31,9 +31,19 @@ export class CourseDetail extends React.Component {
         });
     }
 
-    handleClose = () => {
-        this.setState({errNotification: false});
-    };
+    submitReview = (rating, comment) => {
+        courseApi.reviews(this._getCourseId()).create({
+            rating: rating,
+            comment: comment,
+        })
+            .then(res => res.json())
+            .then(response => {
+                const {course} = this.state;
+                const reviews = [response, ...course.reviews];
+                course.reviews = reviews;
+                this.setState({course: course})
+            });
+    }
 
     render() {
         const {course, errNotification, loading} = this.state;
@@ -84,8 +94,8 @@ export class CourseDetail extends React.Component {
     }
 }
 
-CourseDetail.propTypes = {
+ClassRoom.propTypes = {
     history: PropTypes.object.isRequired,
 };
 
-export default withRouter(CourseDetail);
+export default withRouter(ClassRoom);

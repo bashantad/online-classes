@@ -63,14 +63,25 @@
       </div>
 
       <div class="col-md-6 col-sm-12 form-group">
-        <label class="input-label" for="full_name"> <%= form.label :price %></label>
-        <%= form.text_field :price, autofocus: true, autocomplete: "price", class: 'form-control', type: 'text', id: 'price', placeholder: 'Price' %>
+        <label class="input-label" for="full_name"> <%= form.label :original_price %></label>
+        <%= form.text_field :price, autofocus: true, class: 'form-control', type: 'text', placeholder: 'Fees for the course' %>
         <% if error_messages[:price] %>
           <div class="field-error">
             <%= error_messages[:price][0] %>
           </div>
         <% end %>
       </div>
+
+      <div class="col-md-6 col-sm-12 form-group">
+        <label class="input-label" for="full_name"> <%= form.label :discount_percentage %></label>
+        <%= form.text_field :discount_percentage, autofocus: true, class: 'form-control', type: 'text', placeholder: '0 to 100' %>
+        <% if error_messages[:discount_percentage] %>
+          <div class="field-error">
+            <%= error_messages[:discount_percentage][0] %>
+          </div>
+        <% end %>
+      </div>
+
 
       <div class="col-md-6 col-sm-12 form-group">
         <label class="input-label" for="full_name"> <%= form.label :category %></label>

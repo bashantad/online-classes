@@ -93,7 +93,7 @@ class Teaching::CoursesController < Teaching::BaseController
   end
 
   def course_params
-    params.require(:course).permit(:title, :body, :website, :course_for, :price, :category_id, :cover_image, :short_description, :course_highlights, :duration, :no_of_lessons, :level)
+    params.require(:course).permit(:title, :body, :website, :course_for, :price, :category_id, :cover_image, :short_description, :course_highlights, :duration, :no_of_lessons, :level, :discount_percentage)
   end
 
   def set_categories

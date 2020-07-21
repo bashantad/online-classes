@@ -48,7 +48,7 @@ const CourseCard = ({courses, handleEnroll, handleDetails}) => {
 
                                 <div className="mb-3">
                                     <h3>
-                                        <a className="text-inherit" href={() => handleDetails(course.id)}>{course.body}</a>
+                                        <a className="text-inherit" onClick={() => handleDetails(course.id)}>{course.body}</a>
                                     </h3>
                                 </div>
 

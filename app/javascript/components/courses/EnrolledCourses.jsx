@@ -22,7 +22,7 @@ export class EnrolledCourses extends React.Component {
     };
 
     handleDetails = (courseId) => {
-        this.props.history.push(`/courses/${courseId}`);
+        this.props.history.push(`/classrooms/courses/${courseId}`);
     };
 
     componentDidMount() {
