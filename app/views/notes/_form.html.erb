@@ -1,0 +1,26 @@
+<%= form_with(model: [@notebook, note], local: true) do |form| %>
+  <% error_messages = note.errors.messages %>
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+    <% if error_messages[:title] %>
+      <div class="field-error">
+        <%= error_messages[:title][0] %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+    <% if error_messages[:description] %>
+      <div class="field-error">
+        <%= error_messages[:description][0] %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

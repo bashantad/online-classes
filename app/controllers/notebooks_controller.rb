@@ -3,10 +3,12 @@ class NotebooksController < ApplicationController
   before_action :set_notebook, only: [:show, :edit, :update, :destroy]
 
   def index
-    @notebooks = current_user.notebooks.all
-  end
-
-  def show
+    @notebooks = current_user.notebooks.order("created_at DESC")
+    if(@notebooks.count > 0)
+      notebook_notes_path(@notebooks.first)
+    else
+      new_notebook_path
+    end
   end
 
   def new
@@ -55,8 +57,7 @@ class NotebooksController < ApplicationController
       @notebook = current_user.notebooks.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def notebook_params
-      params.require(:notebook).permit(:title, :user_id)
+      params.require(:notebook).permit(:title)
     end
 end

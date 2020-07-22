@@ -39,8 +39,8 @@ Rails.application.routes.draw do
   			put :do_upload
   		end
   end
-	resources :notebooks do
-		resources :notes
+	resources :notebooks, except: [:show] do
+		resources :notes, except: [:show]
 	end
 
   # Routes for API
