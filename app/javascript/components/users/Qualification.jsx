@@ -137,7 +137,7 @@ export default class Qualification extends React.Component {
                                     <div id="qualifications"
                                          aria-labelledby="qualifications-tab">
                                         <div className="card-header">
-                                            <h5 className="card-title">Qualifications</h5>
+                                            <h5 className="card-title">Education</h5>
                                             <span>
                                             <button type="button" data-toggle="collapse"
                                                     data-target="#qualificationForm" aria-expanded="false"
