@@ -1,4 +1,4 @@
-<div class="card mb-3 mb-lg-5">
+<div class="">
   <!-- Body -->
   <div class="card-body">
     <% if course_contents.present? %>
@@ -20,9 +20,9 @@
                 <td><%= course_content.duration %></td>
                 <td><%= course_content.preview? ? 'Yes' : 'No'%></td>
                 <td>
-                  <%= link_to 'view', teaching_course_chapter_course_content_path(@course, chapter, course_content), class: 'btn btn-xs btn-outline-success' %>&nbsp;&nbsp;
-                  <%= link_to 'Edit', edit_teaching_course_chapter_course_content_path(@course, chapter, course_content), class: 'btn btn-xs btn-outline-success' %>&nbsp;&nbsp;
-                  <%= link_to 'Delete', teaching_course_chapter_course_content_path(@course, chapter, course_content), method: :delete, data: {confirm: 'Are you sure delete course content?'}, class: 'btn btn-xs btn-outline-danger' %>
+                  <%= link_to 'View', teaching_course_chapter_course_content_path(@course, chapter, course_content), class: 'btn btn-xs btn-soft-success' %>&nbsp;&nbsp;
+                  <%= link_to 'Edit', edit_teaching_course_chapter_course_content_path(@course, chapter, course_content), class: 'btn btn-xs btn-soft-success' %>&nbsp;&nbsp;
+                  <%= link_to 'Delete', teaching_course_chapter_course_content_path(@course, chapter, course_content), method: :delete, data: {confirm: 'Are you sure delete course content?'}, class: 'btn btn-xs btn-soft-danger' %>
                 </td>
               </tr>
             <% end %>

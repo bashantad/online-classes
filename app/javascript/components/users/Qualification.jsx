@@ -21,7 +21,6 @@ export default class Qualification extends React.Component {
         showExperienceForm: false,
         educationFormErrors: {},
         experienceFormErrors: {},
-        modelId: ''
     }
 
     componentDidMount() {
@@ -29,7 +28,7 @@ export default class Qualification extends React.Component {
             .then(res => res.json())
             .then(response => {
                 const {experiences, education} = response;
-                this.setState({experiences, education});
+                this.setState({experiences, education, loading: false});
             }).catch(err => {
             this.setState({loading: false, errNotification: true, error: 'Something went wrong'});
         });
@@ -62,7 +61,7 @@ export default class Qualification extends React.Component {
         const formObj = {};
         const formKey = `show${qualificationType}Form`;
         formObj[formKey] = true;
-        this.setState({formObj, modelId: qualificationType});
+        this.setState(formObj);
     }
 
     render() {
@@ -130,42 +129,43 @@ export default class Qualification extends React.Component {
                     </div>
                 </div>
 
-                <div className="text-center">
-                    <ul className="nav nav-segment nav-pills scrollbar-horizontal" role="tablist">
-                        <li className="nav-item">
-                            <a className="nav-link active" id="pills-one-code-features-example1-tab" data-toggle="pill"
-                               href="#qualifications" role="tab"
-                               aria-controls="pills-one-code-features-example1" aria-selected="true">Qualifications</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" id="pills-two-code-features-example1-tab" data-toggle="pill"
-                               href="#experience" role="tab"
-                               aria-controls="pills-two-code-features-example1" aria-selected="false">Experience</a>
-                        </li>
-                    </ul>
-                </div>
-
                 <div className="container space-1">
                     <div className="row justify-content-lg-between align-items-lg-center">
                         <div className="col-sm-12 col-lg-12 mb-2 mb-lg-0">
                             <div className="card space-1">
-                                <div className="tab-content w-lg-85 mx-auto">
-                                    <div className="tab-pane fade show active" id="qualifications"
-                                         role="tabpanel"
+                                <div className=" w-lg-85 mx-auto">
+                                    <div id="qualifications"
                                          aria-labelledby="qualifications-tab">
                                         <div className="card-header">
-                                            <h5 className="card-title">Qualifications</h5>
+                                            <h5 className="card-title">Education</h5>
                                             <span>
-                                            <button type="button" data-toggle="modal" data-target="#userModal"
+                                            <button type="button" data-toggle="collapse"
+                                                    data-target="#qualificationForm" aria-expanded="false"
+                                                    aria-controls="qualificationForm"
                                                     onClick={this.showQualificationForm(QUALIFICATION_TYPES.education)}
                                                     className="btn btn-xs btn-outline-primary font-weight-bold text-nowrap ml-1">Add
                                                 New
                                             </button>
                                         </span>
                                         </div>
+                                        <div className="collapse" id="qualificationForm">
+                                            <div className="card card-body shadow-none">
+                                                {
+                                                    showEducationForm && <NewQualification
+                                                        addQualification={this.addQualification}
+                                                        qualificationType={QUALIFICATION_TYPES.education}
+                                                        key='education-new-form'
+                                                        formErrors={educationFormErrors}/>
+                                                }
+                                            </div>
+                                        </div>
                                         <div className="card-body">
                                             {
-                                                isEmpty(education) ? <div>
+                                                loading ? <div className="d-flex">
+                                                    <div className="spinner-border" role="status">
+                                                        <span className="sr-only"></span>
+                                                    </div>
+                                                </div> : isEmpty(education) ? <div>
                                                     <figure className="max-w-10rem mx-auto mt-4">
                                                         <img className="img-fluid" src="../../assets/icons/icon-21.svg"
                                                              alt="SVG"/>
@@ -175,22 +175,42 @@ export default class Qualification extends React.Component {
                                             }
                                         </div>
                                     </div>
+                                </div>
+                            </div>
 
-                                    <div className="tab-pane fade" id="experience" role="tabpanel"
+                            <div className="card space-1 mt-3">
+                                <div className=" w-lg-85 mx-auto">
+                                    <div id="experience"
                                          aria-labelledby="experience-tab">
                                         <div className="card-header">
                                             <h5 className="card-title">Experience</h5>
                                             <span>
-                                             <button type="button" data-toggle="modal" data-target="#userModal"
+                                             <button type="button" data-toggle="collapse" data-target="#educationForm"
+                                                     aria-expanded="false" aria-controls="educationForm"
                                                      onClick={this.showQualificationForm(QUALIFICATION_TYPES.experience)}
-                                                     className="btn btn-xs btn-outline-primary font-weight-bold text-nowrap ml-1">Add
-                                                New
+                                                     className="btn btn-xs btn-outline-primary font-weight-bold text-nowrap ml-1"
+                                             >Add New
                                             </button>
                                         </span>
                                         </div>
+                                        <div className="collapse" id="educationForm">
+                                            <div className="card card-body shadow-none">
+                                                {
+                                                    showExperienceForm && <NewQualification
+                                                        addQualification={this.addQualification}
+                                                        qualificationType={QUALIFICATION_TYPES.experience}
+                                                        key='education-new-form'
+                                                        formErrors={experienceFormErrors}/>
+                                                }
+                                            </div>
+                                        </div>
                                         <div className="card-body">
                                             {
-                                                isEmpty(experiences) ? <div>
+                                                loading ? <div className="d-flex">
+                                                    <div className="spinner-border" role="status">
+                                                        <span className="sr-only"></span>
+                                                    </div>
+                                                </div> : isEmpty(experiences) ? <div>
                                                     <figure className="max-w-10rem mx-auto mt-4">
                                                         <img className="img-fluid" src="../../assets/icons/icon-42.svg"
                                                              alt="SVG"/>
@@ -200,17 +220,11 @@ export default class Qualification extends React.Component {
                                             }
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-               <NewQualification
-                addQualification={this.addQualification}
-                qualificationType={this.state.modelId === 'education' ? QUALIFICATION_TYPES.education : QUALIFICATION_TYPES.experience}
-                key={this.state.modelId === 'education' ? 'education-new-form': 'experience-new-form'}
-                formErrors={this.state.modelId === 'education' ? educationFormErrors : experienceFormErrors}/>
             </>
         )
     }

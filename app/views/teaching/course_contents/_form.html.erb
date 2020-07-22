@@ -33,13 +33,15 @@
       </div>
 
       <div class="col-sm-12 form-group">
-        <label class="input-label" for="full_name"> <%= form.label :allow_preview %></label>
-        <%= form.check_box :preview %>
-        <% if error_messages[:preview] %>
-          <div class="field-error">
-            <%= error_messages[:preview][0] %>
-          </div>
-        <% end %>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" id="preview" class="custom-control-input">
+          <label class="custom-control-label" for="preview"><%= form.label :allow_preview %></label>
+          <% if error_messages[:preview] %>
+            <div class="field-error">
+              <%= error_messages[:preview][0] %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
 

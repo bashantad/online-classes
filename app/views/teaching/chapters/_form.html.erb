@@ -4,21 +4,20 @@
     <div class="row">
       <div class="col-sm-12 form-group">
         <label class="input-label" for="full_name"> <%= form.label :title %></label>
-        <%= form.text_field :title %>
+        <%= form.text_field :title, class:'form-control' %>
         <% if error_messages[:title] %>
           <div class="field-error">
             <%= error_messages[:title][0] %>
           </div>
         <% end %>
       </div>
-
-      <div class="row align-items-center mb-5 mt-4">
-        <div class="col-6 mb-sm-0 pl-4">
-          <%= link_to "Back", teaching_course_path(@course), class: 'font-size-1 font-weight-bold text-muted content-centered' %>
-        </div>
-        <div class="col-6 text-right">
-          <%= form.submit "Save", class: "btn btn-sm btn-primary" %>
-        </div>
+    </div>
+    <div class="row align-items-center mb-5 mt-4">
+      <div class="col-6 mb-sm-0 pl-4">
+        <%= link_to "Back", teaching_course_path(@course), class: 'font-size-1 font-weight-bold text-muted content-centered' %>
+      </div>
+      <div class="col-6 text-right">
+        <%= form.submit "Save", class: "btn btn-sm btn-primary" %>
       </div>
     </div>
   </div>
