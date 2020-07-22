@@ -1,3 +1,4 @@
+
 import React from "react";
 import {withRouter} from 'react-router';
 import PropTypes from "prop-types";
@@ -31,6 +32,10 @@ export class ClassRoom extends React.Component {
         });
     }
 
+    handleEnroll = (courseId) => {
+
+    }
+
     submitReview = (rating, comment) => {
         courseApi.reviews(this._getCourseId()).create({
             rating: rating,
@@ -45,9 +50,31 @@ export class ClassRoom extends React.Component {
             });
     }
 
+    renderCourse = (course) => {
+        const {reviews, teacher, chapters, body, lecture_count, duration} = course;
+        return (
+            <>
+                <div className="position-relative">
+                    <CourseHeader {...course} reviewCount={reviews.length}/>
+                    <Sidebar {...course} handleEnroll={this.handleEnroll}/>
+                </div>
+                <div className="container space-top-2 space-top-md-1">
+                    <div className="row">
+                        <div className="col-md-7 col-lg-8">
+                            <Learn/>
+                            <Description body={body}/>
+                            <CourseContent chapters={chapters} duration={duration} lecture_count={lecture_count}/>
+                            <AboutInstructor {...teacher}/>
+                            <Review reviews={reviews}/>
+                        </div>
+                    </div>
+                </div>
+            </>
+        )
+    }
+
     render() {
         const {course, errNotification, loading} = this.state;
-        const reviews = course && course.reviews;
 
         return (
             loading ?
@@ -58,29 +85,10 @@ export class ClassRoom extends React.Component {
                         </div>
                     </div>
                 </div>
-                :
-                <main id="content" role="main">
-                    <div className="position-relative">
-                        <CourseHeader {...this.state}/>
-
-                        <Sidebar {...this.state}/>
-                    </div>
-                    <div className="container space-top-2 space-top-md-1">
-                        <div className="row">
-                            <div className="col-md-7 col-lg-8">
-                                <Learn/>
-
-                                <Description/>
-
-                                <CourseContent/>
-
-                                <AboutInstructor/>
-
-                                <Review reviews={reviews}/>
-                            </div>
-                        </div>
-                    </div>
-
+                : <main id="content" role="main">
+                    {
+                        course && this.renderCourse(course)
+                    }
                     <div id="stickyBlockEndPoint"></div>
                     {
                         errNotification ?
@@ -99,3 +107,4 @@ ClassRoom.propTypes = {
 };
 
 export default withRouter(ClassRoom);
+
