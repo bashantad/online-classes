@@ -36,6 +36,11 @@ class Course < ApplicationRecord
 		"/courses/#{self.id}"
 	end
 
+	def lecture_count
+		chapter_ids = self.chapters.collect(&:id)
+		CourseContent.where(chapter_id: chapter_ids).count
+	end
+
 	def general_conversation
 		self.conversations.find_or_create_by(title: 'General', is_group: true)
 	end

@@ -2,13 +2,13 @@ import React from "react";
 import {withRouter} from 'react-router';
 import PropTypes from "prop-types";
 import courseApi from "../../apis/courseApi";
-import CourseHeader from "./sections/courseHeader";
-import Sidebar from "./sections/sidebar";
-import Learn from "./sections/learn";
-import Description from "./sections/description";
-import Contents from "./sections/contents";
-import AboutInstructor from "./sections/aboutInstructor";
-import Review from "./sections/review";
+import CourseHeader from "./sections/CourseHeader";
+import Sidebar from "./sections/Sidebar";
+import Learn from "./sections/Learn";
+import Description from "./sections/Description";
+import CourseContent from "./sections/CourseContent";
+import AboutInstructor from "./sections/AboutInstructor";
+import Review from "./sections/Review";
 
 export class ClassRoom extends React.Component {
     state = {
@@ -72,7 +72,7 @@ export class ClassRoom extends React.Component {
 
                                 <Description/>
 
-                                <Contents/>
+                                <CourseContent/>
 
                                 <AboutInstructor/>
 

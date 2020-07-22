@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Sidebar = ({course, handleEnroll}) => {
+const Sidebar = ({price, id, course_highlights, handleEnroll}) => {
     return (
         <div className="container space-top-md-2 position-md-absolute top-0 right-0 left-0">
             <div className="row justify-content-end">
@@ -45,14 +46,14 @@ const Sidebar = ({course, handleEnroll}) => {
 
                         <div className="card-body">
                             <div className="mb-3">
-                                <span className="h2 text-lh-sm mr-1 mb-0">${course.price}</span>
+                                <span className="h2 text-lh-sm mr-1 mb-0">${price}</span>
                                 <span className="lead text-muted text-lh-sm"></span>
                             </div>
 
                             <div className="mb-2">
                                 <a className="btn btn-block btn-primary transition-3d-hover"
                                    href="#"
-                                   onClick={() => handleEnroll(course.id) }>
+                                   onClick={() => handleEnroll(id) }>
                                     Enroll Now
                                 </a>
                             </div>
@@ -65,7 +66,7 @@ const Sidebar = ({course, handleEnroll}) => {
 
                             <div className="media text-body font-size-1 mb-2">
                                 <div className="media-body">
-                                    {course.course_highlights}
+                                    {course_highlights}
                                 </div>
                             </div>
                         </div>
@@ -82,5 +83,12 @@ const Sidebar = ({course, handleEnroll}) => {
         </div>
     );
 };
+
+Sidebar.propTypes = {
+    price: PropTypes.number.isRequired,
+    course_highlights: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    handleEnroll: PropTypes.func.isRequired,
+}
 
 export default Sidebar;

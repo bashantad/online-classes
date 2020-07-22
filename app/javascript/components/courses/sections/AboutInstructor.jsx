@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const AboutInstructor = () => {
+const AboutInstructor = ({avatar_image_urls, educations, experiences, full_name, linkedin_url, short_bio, twitter_url}) => {
     return (
         <div className="border-top pt-7 mt-7">
             <h3 className="mb-4">About the instructor</h3>
@@ -75,5 +76,15 @@ const AboutInstructor = () => {
         </div>
     );
 };
+
+AboutInstructor.propTypes = {
+    avatar_image_urls: PropTypes.object.isRequired,
+    educations: PropTypes.array.isRequired,
+    experiences: PropTypes.array.isRequired,
+    full_name: PropTypes.string.isRequired,
+    linkedin_url: PropTypes.string,
+    short_bio: PropTypes.string,
+    twitter_url: PropTypes.string,
+}
 
 export default AboutInstructor;

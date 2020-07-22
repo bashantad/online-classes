@@ -114,7 +114,7 @@
       </div>
       <div class="col-md-6 col-sm-12 form-group">
         <label class="input-label" for="full_name"> <%= form.label :level %></label>
-        <%= form.select :level, @categories.collect { |p| [p.title, p.id] }, autofocus: true, autocomplete: "level", class: 'form-control custom-select', type: 'text', id: 'level', placeholder: 'Level' %>
+        <%= form.select :level, @levels, autofocus: true, autocomplete: "level", class: 'form-control custom-select', type: 'text', id: 'level', placeholder: 'Level' %>
         <% if error_messages[:level] %>
           <div class="field-error">
             <%= error_messages[:level][0] %>
