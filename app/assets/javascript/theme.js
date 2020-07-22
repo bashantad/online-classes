@@ -6,7 +6,6 @@
  *= require hs-unfold.min.js
  *= require hs-header.min.js
  *= require hs-mega-menu.min.js
- *= require libraries/hs-sticky-block.min.js
  *= require_self
  */
 // initialization of header component
