@@ -5,7 +5,7 @@ class Api::CoursesController < Api::BaseController
 
 	def index
 		@courses = Course.approved
-		render json: @courses, include: ['owner']
+		render json: @courses, include: ['teacher']
 	end
 
 	def conversation_details
@@ -24,14 +24,14 @@ class Api::CoursesController < Api::BaseController
 				'reviews.user',
 				'chapters',
 				'chapters.course_contents',
-				'owner',
-				'owner.experiences',
-				'owner.educations',
+				'teacher',
+				'teacher.experiences',
+				'teacher.educations',
 		]
 	end
 
 	def enrolled
 		@courses = current_user.enrolled_courses.approved
-		render json: @courses, include: ['reviews', 'reviews.user', 'chapters', 'owner']
+		render json: @courses, include: ['reviews', 'reviews.user', 'chapters', 'teacher']
 	end
 end

@@ -22,7 +22,7 @@ const CourseHeader = (props) => {
                                           </span>
                                 </div>
                                 <span className="pl-2">Created by <a className="link-underline"
-                                                                     href="#">{course && course.owner.full_name}</a></span>
+                                                                     href="#">{course && course.teacher.full_name}</a></span>
                             </div>
                             <div className="d-flex align-items-center flex-wrap">
                                 <li className="list-inline-item mx-0"><img

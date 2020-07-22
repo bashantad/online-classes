@@ -1,6 +1,6 @@
 class Course < ApplicationRecord
 	include ImageUpload
-	belongs_to :owner, foreign_key: :user_id, class_name: 'User'
+	belongs_to :teacher, foreign_key: :user_id, class_name: 'User'
 	belongs_to :category
 	has_many :conversations
 	has_many :enrolled_course_users
@@ -19,7 +19,7 @@ class Course < ApplicationRecord
 
 	def approve
 		unless self.conversations.exists?
-			_enroll_in_general_conversation(self.owner)
+			_enroll_in_general_conversation(self.teacher)
 		end
 		update(:approved => true)
 	end
