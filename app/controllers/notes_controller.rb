@@ -1,13 +1,15 @@
 class NotesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_notebook
+  before_action :set_all_notes
   before_action :set_note, only: [:show, :edit, :update, :destroy]
 
   def index
-    @notes = @notebook.notes
-  end
-
-  def show
+    if @notes.count > 0
+      redirect_to edit_notebook_note_path(@notebook, @notes.first)
+    else
+      redirect_to new_notebook_note_path(@notebook)
+    end
   end
 
   def new
@@ -20,7 +22,7 @@ class NotesController < ApplicationController
   def create
     @note = @notebook.notes.new(note_params.merge(user_id: current_user.id))
     if @note.save
-      redirect_to notebook_notes_path(@notebook), notice: 'Note was successfully created.'
+      redirect_to edit_notebook_note_path(@notebook, @note), notice: 'Note was successfully created.'
     else
       render :new
     end
@@ -28,7 +30,7 @@ class NotesController < ApplicationController
 
   def update
     if @note.update(note_params)
-      redirect_to notebook_notes_path(@notebook), notice: 'Note was successfully updated.'
+      redirect_to edit_notebook_note_path(@notebook, @note), notice: 'Note was successfully updated.'
     else
       render :edit
     end
@@ -40,17 +42,19 @@ class NotesController < ApplicationController
   end
 
   private
-    def set_note
-      @note = @notebook.notes.find(params[:id])
-    end
+  def set_note
+    @note = @notebook.notes.find(params[:id])
+  end
 
-    def set_notebook
-      @notebooks = current_user.notebooks.order("created_at DESC")
-      @all_notes = current_user.notes
-      @notebook = current_user.notebooks.find(params[:notebook_id])
-    end
+  def set_notebook
+    @notebook = current_user.notebooks.find(params[:notebook_id])
+  end
 
-    def note_params
-      params.require(:note).permit(:title, :description)
-    end
+  def set_all_notes
+    @notes = @notebook.notes.order("created_at DESC")
+  end
+
+  def note_params
+    params.require(:note).permit(:title, :description)
+  end
 end

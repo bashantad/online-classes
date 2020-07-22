@@ -103,6 +103,14 @@ user2.educations.create(name_of_institution: 'Stanford University', year_start: 
 user2.experiences.create(name_of_institution: 'Google', year_start: 2012, year_end: 2016, title: 'Software Engineer', location: 'Mountain View', country: 'USA')
 user2.experiences.create(name_of_institution: 'Facebook', year_start: 2010, year_end: 2012, title: 'Senior Software Engineer', location: 'Menlo Park', country: 'USA')
 
+user2.notebooks.create(title: 'Engineering Management')
+user2.notebooks.create(title: 'Senior React Development')
+user2.notebooks.create(title: 'Machine Learning')
+user2.notebooks.create(title: 'Docker Fundamentals')
+user2.notebooks.create(title: 'AI for everyone')
+user2.notebooks.create(title: 'Python Development')
+user2.notebooks.create(title: 'Database')
+
 courses.each(&:approve)
 courses[0..1].each do |course|
   users[1..2].each do |user|

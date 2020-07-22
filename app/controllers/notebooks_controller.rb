@@ -1,13 +1,13 @@
 class NotebooksController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_notebooks
   before_action :set_notebook, only: [:show, :edit, :update, :destroy]
 
   def index
-    @notebooks = current_user.notebooks.order("created_at DESC")
     if(@notebooks.count > 0)
-      notebook_notes_path(@notebooks.first)
+      redirect_to notebook_notes_path(@notebooks.first)
     else
-      new_notebook_path
+      redirect_to new_notebook_path
     end
   end
 
@@ -21,40 +21,33 @@ class NotebooksController < ApplicationController
   def create
     @notebook = current_user.notebooks.new(notebook_params)
 
-    respond_to do |format|
-      if @notebook.save
-        format.html { redirect_to @notebook, notice: 'Notebook was successfully created.' }
-        format.json { render :show, status: :created, location: @notebook }
-      else
-        format.html { render :new }
-        format.json { render json: @notebook.errors, status: :unprocessable_entity }
-      end
+    if @notebook.save
+      redirect_to notebook_notes_path(@notebook), notice: 'Notebook was successfully created.'
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @notebook.update(notebook_params)
-        format.html { redirect_to @notebook, notice: 'Notebook was successfully updated.' }
-        format.json { render :show, status: :ok, location: @notebook }
-      else
-        format.html { render :edit }
-        format.json { render json: @notebook.errors, status: :unprocessable_entity }
-      end
+    if @notebook.update(notebook_params)
+      redirect_to notebook_notes_path(@notebook), notice: 'Notebook was successfully updated.'
+    else
+      render :edit
     end
   end
 
   def destroy
     @notebook.destroy
-    respond_to do |format|
-      format.html { redirect_to notebooks_url, notice: 'Notebook was successfully deleted.' }
-      format.json { head :no_content }
-    end
+    redirect_to notebooks_path, notice: 'Notebook was successfully deleted.'
   end
 
   private
     def set_notebook
       @notebook = current_user.notebooks.find(params[:id])
+    end
+
+    def set_notebooks
+      @notebooks = current_user.notebooks.includes(:notes).order("created_at DESC")
     end
 
     def notebook_params

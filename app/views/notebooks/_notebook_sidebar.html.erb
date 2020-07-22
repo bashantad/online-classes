@@ -1,0 +1,13 @@
+<div class="navbar-expand-lg navbar-expand-lg-collapse-block navbar-light">
+  <div id="sidebarNav" class="collapse navbar-collapse navbar-vertical">
+    <div class="card">
+      <div class="card-body">
+        <% @notebooks.each do |notebook| %>
+          <div>
+              <%= link_to "#{notebook.title} (#{notebook.notes.count})", notebook_notes_path(notebook) %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

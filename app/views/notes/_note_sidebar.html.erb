@@ -1,0 +1,14 @@
+<div class="navbar-expand-lg navbar-expand-lg-collapse-block navbar-light">
+  <div id="sidebarNav" class="collapse navbar-collapse navbar-vertical">
+    <div class="card">
+      <div class="card-body">
+        <h3><%= link_to @notebook.title, edit_notebook_path(@notebook) %> > Notes</h3>
+        <% @notes.each do |note| %>
+          <div>
+            <%= link_to note.title, edit_notebook_note_path(@notebook, note) %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

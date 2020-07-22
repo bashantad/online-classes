@@ -1,6 +1,32 @@
-<h1>Editing Notebook</h1>
+<main id="content" role="main" class="bg-light">
+  <div class="container space-2 space-top-lg-2 mt-lg-n10">
+    <div class="row">
+      <div class="col-lg-4">
+        <%= render "notebooks/notebook_sidebar" %>
+      </div>
 
-<%= render 'form', notebook: @notebook %>
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">
+              Edit Notebook
+              <span>
+                | <%= link_to 'Delete', @notebook, method: :delete, data: { confirm: 'Are you sure you want to delete?' } %>
+              </span>
+              <span>
+                | <%= link_to 'Edit', edit_notebook_path(@notebook) %>
+              </span>
+              <span>
+                <%= link_to 'Create New Notebook', new_notebook_path %>
+              </span>
+            </h5>
+          </div>
+          <div class="card-body">
+            <%= render 'form', notebook: @notebook %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
 
-<%= link_to 'Show', @notebook %> |
-<%= link_to 'Back', notebooks_path %>
