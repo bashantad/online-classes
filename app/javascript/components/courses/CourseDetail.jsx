@@ -32,7 +32,7 @@ export class CourseDetail extends React.Component {
     }
 
     handleEnroll = (courseId) => {
-        
+
     }
 
     render() {

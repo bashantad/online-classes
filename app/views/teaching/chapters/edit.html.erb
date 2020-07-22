@@ -6,9 +6,8 @@
        <nav aria-label="breadcrumb">
          <ol class="breadcrumb breadcrumb-light breadcrumb-no-margin">
            <li class="breadcrumb-item"><a href="<%= teaching_courses_path %>" class="text-light text-highlight-light">My Courses</a></li>
-           <li class="breadcrumb-item"><a href="<%= teaching_course_path(@course) %>" class="text-light text-highlight-light"><%= @course.title %></a></li>
-           <li class="breadcrumb-item"><a href="<%= teaching_course_chapter_path(@course, @chapter) %>" class="text-light text-highlight-light"><%= @chapter.title %></a></li>
-          <li class="breadcrumb-item active" aria-current="page">Edit <%= @course_content.title %></li>
+          <li class="breadcrumb-item"><a href="<%= teaching_course_path(@course) %>" class="text-light text-highlight-light"><%= @course.title %></a></li>
+          <li class="breadcrumb-item active" aria-current="page">Edit <%= @course.title %></li>
         </ol>
         </nav>
       </span>
@@ -21,12 +20,12 @@
   <!-- Card -->
   <div class="card mx-auto w-lg-60">
     <!-- Form -->
-    <%= render 'form', course_content: @course_content %>
+    <%= render 'form', chapter: @chapter %>
     <!-- End Card -->
     <!-- SVG Elements -->
     <figure class="max-w-19rem w-100 position-absolute bottom-0 right-0 z-index-n1 hide-svg">
       <div class="mb-n7 mr-n7">
-        <img class="img-fluid" src="<%= asset_path('components/dots-5.svg') %>" alt="Image Description">
+        <img class="img-fluid" src="<%= asset_path('components/dots-3.svg') %>" alt="Image Description">
       </div>
     </figure>
     <!-- End SVG Elements -->

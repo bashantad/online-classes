@@ -5,8 +5,10 @@
       <span class="badge badge-soft-light badge-pill font-size-1 py-3 px-4 mb-3">
        <nav aria-label="breadcrumb">
          <ol class="breadcrumb breadcrumb-light breadcrumb-no-margin">
-          <li class="breadcrumb-item"><a href="<%= root_path %>" class="text-light text-highlight-light">Course Contents</a></li>
-          <li class="breadcrumb-item active" aria-current="page">New</li>
+           <li class="breadcrumb-item"><a href="<%= teaching_courses_path %>" class="text-light text-highlight-light">My Courses</a></li>
+           <li class="breadcrumb-item"><a href="<%= teaching_course_path(@course) %>" class="text-light text-highlight-light"><%= @course.title %></a></li>
+           <li class="breadcrumb-item"><a href="<%= teaching_course_chapter_path(@course, @chapter) %>" class="text-light text-highlight-light"><%= @chapter.title %></a></li>
+           <li class="breadcrumb-item active" aria-current="page">New</li>
         </ol>
         </nav>
       </span>
@@ -24,7 +26,7 @@
     <!-- SVG Elements -->
     <figure class="max-w-19rem w-100 position-absolute bottom-0 right-0 z-index-n1 hide-svg">
       <div class="mb-n7 mr-n7">
-        <img class="img-fluid" src="/assets/components/dots-3.svg" alt="Image Description">
+        <img class="img-fluid" src="<%= asset_path('components/dots-3.svg') %>" alt="Image Description">
       </div>
     </figure>
     <!-- End SVG Elements -->

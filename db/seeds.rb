@@ -41,7 +41,7 @@ courses = [
       website: 'https://google.com',
       price: 2000,
       course_for: 'Recent Graduates',
-      user_id: user.id
+      user_id: user2.id
     ),
     category.courses.create!(
       title: 'java Fundamentals',
@@ -67,27 +67,32 @@ courses = [
       website: 'https://google.com',
       price: 2500,
       course_for: 'Recent Graduates',
-      user_id: user2.id
+      user_id: user.id
     )
 ]
 
-courses.first.course_contents.create(
+course = courses.first
+chapter1 = course.chapters.create(title: 'Chapter 1')
+chapter2 = course.chapters.create(title: 'Chapter 2')
+
+chapter1.course_contents.create(
     title: 'Course Overview',
     description: 'Introduction, overview and content',
     duration: '1 week'
 )
-courses.first.course_contents.create(
+
+chapter1.course_contents.create(
     title: 'Installation steps',
     description: 'Setting up the view, Running code, finding help, Getting the notebook and course material',
     duration: '2 weeks',
 )
 
-courses.first.course_contents.create(
+chapter2.course_contents.create(
     title: 'Modules and Packages',
     description: 'Packages, libraries, MVPs etc',
     duration: '2.5 weeks',
 )
-courses.first.course_contents.create(
+chapter2.course_contents.create(
     title: 'Finishing up and further reading',
     description: 'Practical applications, further reading etc.',
     duration: '2 weeks',
@@ -101,7 +106,7 @@ user2.experiences.create(name_of_institution: 'Facebook', year_start: 2010, year
 courses.each(&:approve)
 courses[0..1].each do |course|
   users[1..2].each do |user|
-    course.enrolled_users << user
+    course.enrolled_users << user unless course.user_id == user.id
     course.general_conversation.users << user
   end
 end

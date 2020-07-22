@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  	# Routes for admin pages
+  # Routes for admin pages
 	namespace :admin do
 		resources :courses, only: [:index, :show] do
 			get :approve
 			get :disapprove
-    	end
-    	resources :categories
-  	end
+    end
+    resources :categories
+  end
 
 	# Routes for on-boarding Rails pages
 	namespace :teaching do
@@ -15,29 +15,32 @@ Rails.application.routes.draw do
   				get :start_teaching
   			end
   			get :enrollment
-			post :enroll_users
-			get :enrollment_requests
-  			resources :course_contents, except: [:index, :show]
+				post :enroll_users
+				get :enrollment_requests
+				resources :chapters, except: [:index] do
+					resources :course_contents, except: [:index]
+        end
   		end
-  	end
-  	devise_for :users, controllers: {
+  end
+
+  devise_for :users, controllers: {
   		registrations: 'registrations',
   		sessions: 'sessions',
   		passwords: 'passwords',
   		confirmations: 'confirmations'
-  	}
-  	resources :users, only: [] do
+  }
+  resources :users, only: [] do
   		collection do
-  			get :edit_password
-  			put :update_password
+        get :edit_password
+        put :update_password
   			get :cancel_account
   			get :details
   			get :upload
   			put :do_upload
   		end
-  	end
+  end
 
-  	# Routes for API
+  # Routes for API
 	namespace :api, constraints: { format: 'json' } do
 		resources :courses, only: [:index, :show] do
 			resources :conversations do
@@ -57,7 +60,7 @@ Rails.application.routes.draw do
 			resources :messages
 		end
 		resources :calls, only: [:create] do
-      		match '/:user_id/join/:calling_code', to: 'calls#join', on: :collection, :via => [:get, :post]
+      match '/:user_id/join/:calling_code', to: 'calls#join', on: :collection, :via => [:get, :post]
 		end
 		resources :users, only: [] do
 			collection do

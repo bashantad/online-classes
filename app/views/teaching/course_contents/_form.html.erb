@@ -1,4 +1,4 @@
-<%= form_with(model: [:teaching, @course, @course_content]) do |form| %>
+<%= form_with(model: [:teaching, @course, @chapter, @course_content]) do |form| %>
   <% error_messages = @course_content.errors.messages %>
   <div class="pl-4 pr-4 space-top-1">
     <div class="row">
@@ -31,6 +31,16 @@
           </div>
         <% end %>
       </div>
+
+      <div class="col-sm-12 form-group">
+        <label class="input-label" for="full_name"> <%= form.label :allow_preview %></label>
+        <%= form.check_box :preview %>
+        <% if error_messages[:preview] %>
+          <div class="field-error">
+            <%= error_messages[:preview][0] %>
+          </div>
+        <% end %>
+      </div>
     </div>
 
     <div class="row align-items-center mb-5 mt-4">
@@ -38,11 +48,7 @@
         <%= link_to "Back", teaching_course_path(@course), class: 'font-size-1 font-weight-bold text-muted content-centered' %>
       </div>
       <div class="col-6 text-right">
-        <% if params[:action] == "edit" %>
-          <%= form.submit "Edit", class: "btn btn-sm btn-primary" %>
-        <% else %>
-          <%= form.submit "Add", class: "btn btn-sm btn-primary" %>
-        <% end %>
+        <%= form.submit "Save", class: "btn btn-sm btn-primary" %>
       </div>
     </div>
   </div>

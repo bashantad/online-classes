@@ -1,17 +1,17 @@
 class Teaching::CourseContentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_course
+  before_action :set_course_and_chapter
   before_action :set_course_content, only: [:show, :edit, :update, :destroy]
 
   def new
-    @course_content = @course.course_contents.new
+    @course_content = @chapter.course_contents.new
   end
 
   def edit
   end
 
   def create
-    @course_content = @course.course_contents.new(course_content_params)
+    @course_content = @chapter.course_contents.new(course_content_params)
 
     respond_to do |format|
       if @course_content.save
@@ -39,18 +39,19 @@ class Teaching::CourseContentsController < ApplicationController
   def destroy
     @course_content.destroy
     respond_to do |format|
-      format.html { redirect_to teaching_course_path(@course), notice: 'Course content was successfully destroyed.' }
+      format.html { redirect_to teaching_course_path(@course), notice: 'Course content was successfully deleted.' }
       format.json { head :no_content }
     end
   end
 
   private
     def set_course_content
-      @course_content = @course.course_contents.find(params[:id])
+      @course_content = @chapter.course_contents.find(params[:id])
     end
 
-    def set_course
+    def set_course_and_chapter
       @course = current_user.courses.find(params[:course_id])
+      @chapter = @course.chapters.find(params[:chapter_id])
     end
 
     def course_content_params

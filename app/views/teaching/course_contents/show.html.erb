@@ -8,27 +8,33 @@
            <li class="breadcrumb-item"><a href="<%= teaching_courses_path %>" class="text-light text-highlight-light">My Courses</a></li>
            <li class="breadcrumb-item"><a href="<%= teaching_course_path(@course) %>" class="text-light text-highlight-light"><%= @course.title %></a></li>
            <li class="breadcrumb-item"><a href="<%= teaching_course_chapter_path(@course, @chapter) %>" class="text-light text-highlight-light"><%= @chapter.title %></a></li>
-          <li class="breadcrumb-item active" aria-current="page">Edit <%= @course_content.title %></li>
-        </ol>
+           <li class="breadcrumb-item active"><%= @course_content.title %></li>
+          </ol>
         </nav>
       </span>
     </div>
   </div>
 </div>
 <!-- End Hero Section -->
-
 <div class="container space-1">
   <!-- Card -->
   <div class="card mx-auto w-lg-60">
-    <!-- Form -->
-    <%= render 'form', course_content: @course_content %>
-    <!-- End Card -->
-    <!-- SVG Elements -->
-    <figure class="max-w-19rem w-100 position-absolute bottom-0 right-0 z-index-n1 hide-svg">
-      <div class="mb-n7 mr-n7">
-        <img class="img-fluid" src="<%= asset_path('components/dots-5.svg') %>" alt="Image Description">
+    <div class="card-header">
+      <%= @course_content.title %>
+    </div>
+    <div class="card-body">
+      <div>
+        <%= @course_content.description %>
       </div>
-    </figure>
-    <!-- End SVG Elements -->
+      <div>
+        Duration: <%= @course_content.duration %>
+      </div>
+      <div>
+        Preview available: <%= @course_content.preview? ? 'Yes' : 'No' %>
+      </div>
+      <div>
+        <%= link_to "Back", teaching_course_path(@course) %>
+      </div>
+    </div>
   </div>
 </div>

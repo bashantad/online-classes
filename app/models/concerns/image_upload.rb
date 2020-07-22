@@ -6,7 +6,7 @@ module ImageUpload
 	included do
 		STANDARD_SIZES = [
 				[1280, 720],
-				[460, 308 ],
+				[460, 308],
 				[220, 148],
 				[60, 40]
 		]

@@ -26,8 +26,10 @@
             <th>Title</th>
             <th>Level</th>
             <th>Price</th>
+            <th>Discount</th>
             <th>Is approved?</th>
-            <th colspan="4">Actions</th>
+            <th>Enrollment requests</th>
+            <th>Actions</th>
           </tr>
           </thead>
           <tbody>
@@ -43,6 +45,9 @@
                 $<%= course.price %>
               </td>
               <td>
+                <%= course.discount_percentage %>%
+              </td>
+              <td>
                 <span class="badge badge-soft-secondary custom-align-center">
                   <%= course.approved_text %>
                 </span>
@@ -55,12 +60,8 @@
                 <% end %>
               </td>
               <td>
-                <%= link_to 'View', teaching_course_path(course), class: 'btn btn-xs btn-outline-success' %>
-              </td>
-              <td>
-                <%= link_to 'Edit', edit_teaching_course_path(course), class: 'btn btn-xs btn-outline-success' %>
-              </td>
-              <td>
+                <%= link_to 'View', teaching_course_path(course), class: 'btn btn-xs btn-outline-success' %>&nbsp;&nbsp;
+                <%= link_to 'Edit', edit_teaching_course_path(course), class: 'btn btn-xs btn-outline-success' %>&nbsp;&nbsp;
                 <%= link_to 'Delete',  teaching_course_path(course), method: :delete, data: {confirm: 'Are you sure you want to delete this course?'}, class: 'btn btn-xs btn-outline-danger' %>
               </td>
             </tr>

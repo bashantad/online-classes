@@ -5,7 +5,7 @@
       <span class="badge badge-soft-light badge-pill font-size-1 py-3 px-4 mb-3">
       <nav aria-label="breadcrumb">
          <ol class="breadcrumb breadcrumb-light breadcrumb-no-margin">
-          <li class="breadcrumb-item"><a href="/teaching/courses" class="text-light text-highlight-light">Course</a></li>
+          <li class="breadcrumb-item"><a href="/teaching/courses" class="text-light text-highlight-light">My Courses</a></li>
           <li class="breadcrumb-item">Details</li>
         </ol>
         </nav>
@@ -27,8 +27,7 @@
          <a href="<%= teaching_courses_path %>" class="btn btn-xs btn-no-focus btn-ghost-primary">
            Back
           </a>
-            </span>
-
+      </span>
     </div>
 
     <!-- Body -->
@@ -39,7 +38,7 @@
           <label for="image" class="col-sm-3 col-form-label input-label">Image</label>
 
           <div class="col-sm-9">
-            <input type="image" class="form-control-plaintext" name="image" id="image" value="<%= image_tag @course.cover_image if @course.cover_image.attached? %>" readonly>
+            <%= image_tag @course.image_urls["460x308"] if @course.cover_image.attached? %>
           </div>
         </div>
         <!-- End Form Group -->
@@ -104,6 +103,15 @@
         </div>
         <!-- End Form Group -->
 
+        <div class="row form-group">
+          <label for="price" class="col-sm-3 col-form-label input-label">Discount</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control-plaintext" name="price" id="price" value="<%= @course.discount_percentage %>%" readonly>
+          </div>
+        </div>
+        <!-- End Form Group -->
+
         <!-- Form Group -->
         <div class="row form-group">
           <label for="category" class="col-sm-3 col-form-label input-label">Category</label>
@@ -123,7 +131,6 @@
           </div>
         </div>
         <!-- End Form Group -->
-
       </form>
     </div>
     <!-- End Body -->
@@ -136,6 +143,6 @@
     <!-- End SVG Elements -->
   </div>
   <!-- End Card -->
-  <%= render "teaching/course_contents/index" %>
+  <%= render "teaching/chapters/index" %>
 </div>
 

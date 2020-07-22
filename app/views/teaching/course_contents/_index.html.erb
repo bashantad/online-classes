@@ -1,41 +1,31 @@
 <div class="card mb-3 mb-lg-5">
-  <div class="card-header">
-    <h5 class="card-title">Course Contents</h5>
-    <span>
-        <a href="<%= new_teaching_course_course_content_path(@course) %>" class="btn btn-xs btn-no-focus btn-primary">
-          <i class="fas fa-pen mr-1"></i>
-           Add Course Contents
-        </a>
-    </span>
-
-  </div>
-
   <!-- Body -->
   <div class="card-body">
-    <% if @course_contents.present? %>
+    <% if course_contents.present? %>
       <!-- Table -->
       <div class="table-responsive">
         <table class="table table-thead-bordered table-nowrap table-align-middle">
           <thead class="thead-light">
-          <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Duration</th>
-            <th>Course</th>
-            <th colspan="2">Action</th>
-          </tr>
+            <tr>
+              <th>Title</th>
+              <th>Duration</th>
+              <th>Preview available</th>
+              <th>Action</th>
+            </tr>
           </thead>
           <tbody>
-          <% @course_contents.each do |course_content| %>
-            <tr>
-              <td><%= course_content.title %></td>
-              <td><%= course_content.description %></td>
-              <td><%= course_content.duration %></td>
-              <td><%= course_content.course_id %></td>
-              <td><%= link_to 'Edit', edit_teaching_course_course_content_path(course_content), class: 'btn btn-xs btn-outline-success' %></td>
-              <td><%= link_to 'Delete', teaching_course_course_content_path(course_content), method: :delete, data: {confirm: 'Are you sure delete course content?'}, class: 'btn btn-xs btn-outline-danger' %></td>
-            </tr>
-          <% end %>
+            <% course_contents.each do |course_content| %>
+              <tr>
+                <td><%= course_content.title %></td>
+                <td><%= course_content.duration %></td>
+                <td><%= course_content.preview? ? 'Yes' : 'No'%></td>
+                <td>
+                  <%= link_to 'view', teaching_course_chapter_course_content_path(@course, chapter, course_content), class: 'btn btn-xs btn-outline-success' %>&nbsp;&nbsp;
+                  <%= link_to 'Edit', edit_teaching_course_chapter_course_content_path(@course, chapter, course_content), class: 'btn btn-xs btn-outline-success' %>&nbsp;&nbsp;
+                  <%= link_to 'Delete', teaching_course_chapter_course_content_path(@course, chapter, course_content), method: :delete, data: {confirm: 'Are you sure delete course content?'}, class: 'btn btn-xs btn-outline-danger' %>
+                </td>
+              </tr>
+            <% end %>
           </tbody>
         </table>
         <!-- End Table -->

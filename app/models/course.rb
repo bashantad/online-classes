@@ -7,13 +7,13 @@ class Course < ApplicationRecord
 	has_many :enroll_requests
 	has_many :enrolled_users, through: :enrolled_course_users, source: :user
 	has_many :reviews, -> { order "created_at desc" }, as: :reviewable
-	has_many :course_contents
+	has_many :chapters
 	has_one_attached :cover_image, dependent: :destroy
 	scope :approved, -> { where(approved: true) }
 
 	validates :title, :body, :short_description, :course_highlights, :course_for, :price, :category, :duration, :no_of_lessons, :level, presence: true
 
-	def cover_urls
+	def image_urls
 		resized_images(self.cover_image)
 	end
 
