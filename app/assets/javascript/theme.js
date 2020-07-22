@@ -16,8 +16,3 @@ const megaMenu = new HSMegaMenu($('.js-mega-menu')).init();
 
 // initialization of unfold
 var unfold = new HSUnfold('.js-hs-unfold-invoker').init();
-
-// initialization of sticky blocks
-$('.js-sticky-block').each(function () {
-    var stickyBlock = new HSStickyBlock($(this)).init();
-});
