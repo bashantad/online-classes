@@ -6,13 +6,17 @@ export default class EducationList extends React.Component {
         const {education} = this.props;
         return (
             <div className='education-list'>
-                <h3>Education</h3>
                 <div>
                     {
                         education.map((education, index) => (
                             <div className='education-item' key={`education-item-${index}`}>
-                                <h4> {education.title}</h4>
-                                {JSON.stringify(education)}
+                                <div className="media-body mb-2">
+                                    <small className="d-block small font-weight-bold text-cap">{education.year_start} - {education.year_end}</small>
+                                    <h3 className="mt-1 mb-1">{education.title}
+                                    </h3>
+                                    <p className="mb-1">{education.location}, {education.country}</p>
+                                    <div className="divider divider-xs divider-text ml-6 mb-2"></div>
+                                </div>
                             </div>
                         ))
 

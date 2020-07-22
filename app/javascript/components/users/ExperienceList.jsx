@@ -6,12 +6,16 @@ export default class ExperienceList extends React.Component {
         const {experiences} = this.props;
         return (
             <div className='education-list'>
-                <h3>Experience</h3>
                 {
                     experiences.map((experience, index) => (
                         <div className='experience-item' key={`experience-item-${index}`}>
-                            <h4> {experience.title}</h4>
-                            {JSON.stringify(experience)}
+                            <div className="media-body mb-2">
+                                <small className="d-block small font-weight-bold text-cap">{experience.year_start} - {experience.year_end}</small>
+                                <h3 className="mt-1 mb-1">{experience.title}
+                                </h3>
+                                <p className="mb-1">{experience.location}, {experience.country}</p>
+                                <div className="divider divider-xs divider-text ml-6 mb-2"></div>
+                            </div>
                         </div>
                     ))
                 }
