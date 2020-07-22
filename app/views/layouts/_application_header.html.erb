@@ -33,7 +33,7 @@
         <div id="nav" class="collapse navbar-collapse">
           <ul class="navbar-nav">
             <% if current_user.is_admin? %>
-              <!-- Dropdown -->
+              <!-- Dropdown admin menu-->
               <li class="hs-has-sub-menu navbar-nav-item"
                   data-hs-mega-menu-item-options='{
                   "desktop": {
@@ -51,6 +51,29 @@
               </li>
               <!-- End Dropdown -->
             <% end %>
+
+            <% if current_user.courses.count > 0 %>
+              <!-- Dropdown teacher menu -->
+              <li class="hs-has-sub-menu navbar-nav-item"
+                  data-hs-mega-menu-item-options='{
+                    "desktop": {
+                      "position": "left"
+                    }
+                  }'>
+                <a id="admin" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Teaching</a>
+
+                <div id="pagesSubMenu" class="hs-sub-menu dropdown-menu" aria-labelledby="pagesMegaMenu" style="min-width: 230px;">
+                  <a class="dropdown-item" href="<%= teaching_courses_path %>">My Courses</a>
+                  <a class="dropdown-item" href="<%= new_teaching_course_path%>">Create a new Course</a>
+                </div>
+              </li>
+              <!-- End Dropdown teacher menu -->
+            <% end %>
+
+            <li>
+              <a class="dropdown-item" href="<%= start_teaching_teaching_courses_path %>">Start Teaching</a>
+            </li>
+
             <!-- Dropdown -->
             <li class="hs-has-sub-menu navbar-nav-item"
                 data-hs-mega-menu-item-options='{
@@ -58,13 +81,18 @@
                     "position": "left"
                   }
                 }'>
-              <a id="courses" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Courses</a>
+              <a id="courses" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Study Room</a>
 
               <div id="pagesSubMenu" class="hs-sub-menu dropdown-menu" aria-labelledby="pagesMegaMenu" style="min-width: 230px;">
-                <a class="dropdown-item" href="/teaching/courses">My Courses</a>
-                <a class="dropdown-item" href="/enrolled_courses">Enrolled Courses</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="<%= start_teaching_teaching_courses_path %>">Teach A Course</a>
+                <a class="dropdown-item" href="/enrolled_courses">
+                  Enrolled Courses
+                </a>
+                <a class="dropdown-item" href="/courses">
+                  Explore Courses
+                </a>
+                <a class="dropdown-item" href="/notebooks">
+                  My Notes
+                </a>
               </div>
             </li>
             <!-- End Dropdown -->
@@ -79,7 +107,7 @@
               <div id="settings" class="hs-sub-menu dropdown-menu" aria-labelledby="settingsMegaMenu" style="min-width: 230px;">
                 <a class="dropdown-item" href="<%= details_users_path %>">
                   <i class="fas fa-id-card dropdown-item-icon"></i>
-                  Personal info
+                  Personal Info
                 </a>
                 <a class="dropdown-item" href="<%= edit_user_registration_path %>">
                   <i class="fas fa-pen dropdown-item-icon"></i>
@@ -87,7 +115,7 @@
                 </a>
                 <a class="dropdown-item" href="<%= edit_password_users_path %>">
                   <i class="fas fa-shield-alt dropdown-item-icon"></i>
-                  Password &amp; security
+                  Password &amp; Security
                 </a>
                 <a class="dropdown-item" href="<%= upload_users_path %>">
                   <i class="fas fa-camera dropdown-item-icon"></i>

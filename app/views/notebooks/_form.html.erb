@@ -1,0 +1,17 @@
+<%= form_with(model: notebook, local: true) do |form| %>
+  <% error_messages = notebook.errors.messages %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+    <% if error_messages[:title] %>
+      <div class="field-error">
+        <%= error_messages[:title][0] %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

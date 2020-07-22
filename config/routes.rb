@@ -39,6 +39,9 @@ Rails.application.routes.draw do
   			put :do_upload
   		end
   end
+	resources :notebooks do
+		resources :notes
+	end
 
   # Routes for API
 	namespace :api, constraints: { format: 'json' } do
@@ -53,7 +56,7 @@ Rails.application.routes.draw do
 			collection do
 				get :enrolled
 			end
-		end
+    end
 		resources :qualifications, only: [:index, :create, :update, :destroy]
 		resources :reviews
     	resources :conversations, only: [] do

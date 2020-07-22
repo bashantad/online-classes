@@ -1,0 +1,22 @@
+<h1>Notebooks</h1>
+<%= link_to 'New Notebook', new_notebook_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @notebooks.each do |notebook| %>
+      <tr>
+        <td><%= notebook.title %></td>
+        <td><%= link_to 'Show', notebook %></td>
+        <td><%= link_to 'Edit', edit_notebook_path(notebook) %></td>
+        <td><%= link_to 'Delete', notebook, method: :delete, data: { confirm: 'Are you sure you want to delete?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
