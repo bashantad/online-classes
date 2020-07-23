@@ -5,10 +5,11 @@
       <span class="badge badge-soft-light badge-pill font-size-1 py-3 px-4 mb-3">
       <nav aria-label="breadcrumb">
          <ol class="breadcrumb breadcrumb-light breadcrumb-no-margin">
-          <li class="breadcrumb-item"><a href="/teaching/courses" class="text-light text-highlight-light">Courses</a></li>
-          <li class="breadcrumb-item">Enrollment Requests</li>
-          <li class="breadcrumb-item active" aria-current="page"><%= @course.title %></li>
-          <li class="breadcrumb-item active" aria-current="page">Send</li>
+           <li class="breadcrumb-item"><a href="<%= teaching_courses_path %>" class="text-light text-highlight-light">My Courses</a></li>
+           <li class="breadcrumb-item"><a href="<%= teaching_course_path(@course) %>" class="text-light text-highlight-light"><%= @course.title %></a></li>
+           <li class="breadcrumb-item active" aria-current="page">
+              Send Enrollment Request
+           </li>
         </ol>
         </nav>
       </span>

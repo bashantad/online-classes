@@ -12,7 +12,7 @@ module ImageUpload
 		]
 
 		def resized_images(image)
-			return {} unless image.present?
+			return {} unless image.attached?
 			STANDARD_SIZES.inject({}) do |memo, size|
 				key = "#{size[0]}x#{size[1]}"
 				memo[key] = rails_representation_url(image.variant(resize_to_limit: size).processed, only_path: true)

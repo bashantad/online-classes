@@ -5,10 +5,10 @@
       <span class="badge badge-soft-light badge-pill font-size-1 py-3 px-4 mb-3">
       <nav aria-label="breadcrumb">
          <ol class="breadcrumb breadcrumb-light breadcrumb-no-margin">
-          <li class="breadcrumb-item"><a href="/teaching/courses" class="text-light text-highlight-light">Courses</a></li>
-          <li class="breadcrumb-item">Enrollment Requests</li>
-          <li class="breadcrumb-item active" aria-current="page"> <%= @course.title %></li>
-        </ol>
+           <li class="breadcrumb-item"><a href="<%= teaching_courses_path %>" class="text-light text-highlight-light">My Courses</a></li>
+           <li class="breadcrumb-item"><a href="<%= teaching_course_path(@course) %>" class="text-light text-highlight-light"><%= @course.title %></a></li>
+           <li class="breadcrumb-item active" aria-current="page">Enrollment Requests</li>
+         </ol>
         </nav>
       </span>
     </div>
@@ -38,15 +38,15 @@
           </tr>
           </thead>
           <tbody>
-          <% @enroll_user_requests.each_with_index do |enroll_request, index| %>
-            <tr>
-              <td> <%= index + 1 %></td>
-              <td> <%= enroll_request.full_name %></td>
-              <td> <%= enroll_request.email %></td>
-              <td> <%= enroll_request.phone %></td>
-              <td> <%= enroll_request.user ? 'Accepted' : 'Not accepted' %></td>
-            </tr>
-          <% end %>
+            <% @enroll_user_requests.each_with_index do |enroll_request, index| %>
+              <tr>
+                <td> <%= index + 1 %></td>
+                <td> <%= enroll_request.full_name %></td>
+                <td> <%= enroll_request.email %></td>
+                <td> <%= enroll_request.phone %></td>
+                <td> <%= enroll_request.user ? 'Accepted' : 'Not accepted' %></td>
+              </tr>
+            <% end %>
           </tbody>
         </table>
         <!-- End Table -->
@@ -77,7 +77,7 @@
                 <h4 class="h5 mb-0 text-muted">Oops! Looks Like there are no enrollment request.</h4>
               </div>
               <div class="col-lg-12 text-left">
-                <%= link_to "Go Back", '/teaching/courses', class: 'font-size-1 btn btn-soft-primary' %>
+                <%= link_to "Go Back", teaching_courses_path, class: 'font-size-1 btn btn-soft-primary' %>
               </div>
             </div>
             <!-- Input -->
