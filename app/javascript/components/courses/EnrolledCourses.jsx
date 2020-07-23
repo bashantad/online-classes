@@ -17,11 +17,7 @@ export class EnrolledCourses extends React.Component {
         this.setState({errNotification: false});
     };
 
-    handleEnroll = (courseId) => {
-
-    };
-
-    handleDetails = (courseId) => {
+    gotoClassRoom = (courseId) => {
         this.props.history.push(`/classrooms/courses/${courseId}`);
     };
 
@@ -54,10 +50,18 @@ export class EnrolledCourses extends React.Component {
                                 </div>
                             </div>
                             :
-                            <CourseCard
-                                courses={courses}
-                                handleEnroll={this.handleEnroll}
-                                handleDetails={this.handleDetails}/>
+                            <div className="course-cards">
+                                {
+                                    courses.map((course, index) =>
+                                        <CourseCard
+                                            key={`course-${index}-card`}
+                                            isEnrolled={true}
+                                            course={course}
+                                            handleButtonClick={this.gotoClassRoom}
+                                            handleDetails={this.gotoClassRoom} />
+                                    )
+                                }
+                            </div>
                     }
                 </div>
                 {

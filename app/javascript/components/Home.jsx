@@ -114,9 +114,10 @@ export class Home extends React.Component {
                                     {
                                         courses.map((course, index) =>
                                             <CourseCard
+                                                isEnrolled={false}
                                                 key={`course-${index}-card`}
                                                 course={course}
-                                                handleEnroll={this.handleEnroll}
+                                                handleButtonClick={this.handleEnroll}
                                                 handleDetails={this.handleDetails}/>
                                         )
                                     }

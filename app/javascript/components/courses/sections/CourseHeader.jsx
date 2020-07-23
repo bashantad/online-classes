@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import StarCard from "../../common/StarCard";
+import CourseBackground from '../../../../assets/images/components/160x160/img1.jpg';
 
 const CourseHeader = ({course_for, title, short_description, reviewCount, teacher}) => {
     return (
@@ -16,36 +18,13 @@ const CourseHeader = ({course_for, title, short_description, reviewCount, teache
                             <div className="d-flex align-items-center mr-4">
                                 <div className="avatar-group">
                                          <span className="avatar avatar-xs avatar-circle">
-                                          <img className="avatar-img" src="../../assets/components/160x160/img1.jpg"
-                                               alt="Image Description"/>
+                                          <img className="avatar-img" src={CourseBackground} alt="Course Background"/>
                                           </span>
                                 </div>
                                 <span className="pl-2">Created by <a className="link-underline"
                                                                      href="#">{teacher.full_name}</a></span>
                             </div>
-                            <div className="d-flex align-items-center flex-wrap">
-                                <li className="list-inline-item mx-0"><img
-                                    src="../../assets/illustrations/star.svg" alt="Review rating"
-                                    width="14"/></li>
-                                <li className="list-inline-item mx-0"><img
-                                    src="../../assets/illustrations/star.svg" alt="Review rating"
-                                    width="14"/></li>
-                                <li className="list-inline-item mx-0"><img
-                                    src="../../assets/illustrations/star.svg" alt="Review rating"
-                                    width="14"/></li>
-                                <li className="list-inline-item mx-0"><img
-                                    src="../../assets/illustrations/star.svg" alt="Review rating"
-                                    width="14"/></li>
-                                <li className="list-inline-item mx-0"><img
-                                    src="../../assets/illustrations/star-half.svg"
-                                    alt="Review rating"
-                                    width="16"/></li>
-
-                                <span className="d-inline-block ml-2">
-                                    <span className="text-dark font-weight-bold mr-1">4.87</span>
-                                    <span className="text-muted">({reviewCount} reviews)</span>
-                                </span>
-                            </div>
+                            <StarCard reviewsCount={reviewCount} whiteBg={false}/>
                         </div>
                     </div>
                 </div>

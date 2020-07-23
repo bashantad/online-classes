@@ -1,43 +1,23 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import StarImg from '../../../assets/images/illustrations/star.svg';
 
-const CourseCard = ({course, handleEnroll, handleDetails}) => {
-    const {id, course_for, duration, no_of_lessons, title, short_description, original_price, discounted_price, reviews_count} = course;
+import DefaultCourseImage from '../../../assets/images/default-course-image.jpeg';
+import StarCard from "./StarCard";
+
+const CourseCard = ({course, handleButtonClick, handleDetails, isEnrolled}) => {
+    const {id, course_for, duration, no_of_lessons, title, short_description, original_price, discounted_price, reviews_count, image_urls} = course;
+    const imageUrl = image_urls['220x148'] || DefaultCourseImage;
     return (
         <article className="col-md-6 col-lg-4 mb-5"  key={id}>
             <div className="card border card-hover-shadow h-100 transition-3d-hover" onClick={() => handleDetails(id)}>
                 <div className="card-img-top position-relative">
-                    <img className="card-img-top" src="https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80"
-                         alt="Image Description"/>
+                    <img className="card-img-top" src={imageUrl} alt="Image Description"/>
                     <div className="position-absolute top-0 left-0 mt-3 ml-3">
                         <small
                             className="btn btn-xs btn-success btn-pill text-uppercase shadow-soft mb-3">For {course_for}</small>
                     </div>
                         <div className="position-absolute bottom-0 left-0 mb-3 ml-4">
-                            <div className="d-flex align-items-center flex-wrap">
-                                <ul className="list-inline mt-n1 mb-0 mr-2">
-                                    <li className="list-inline-item mx-0"><img
-                                        src={StarImg} alt="Review rating"
-                                        width="14"/></li>
-                                    <li className="list-inline-item mx-0"><img
-                                        src={StarImg} alt="Review rating"
-                                        width="14"/></li>
-                                    <li className="list-inline-item mx-0"><img
-                                        src={StarImg} alt="Review rating"
-                                        width="14"/></li>
-                                    <li className="list-inline-item mx-0"><img
-                                        src={StarImg} alt="Review rating"
-                                        width="14"/></li>
-                                    <li className="list-inline-item mx-0"><img
-                                        src={StarImg} alt="Review rating"
-                                        width="14"/></li>
-                                </ul>
-                                <span className="d-inline-block">
-                                    <small className="font-weight-bold text-white mr-1">4.95</small>
-                                    <small className="text-white-70">({reviews_count} reviews)</small>
-                                </span>
-                            </div>
+                            <StarCard reviewsCount={reviews_count} whiteBg/>
                         </div>
                 </div>
 
@@ -48,9 +28,7 @@ const CourseCard = ({course, handleEnroll, handleDetails}) => {
 
                     <div className="mb-3">
                         <h3>
-                            <a className="text-inherit" onClick={() => handleDetails(id)}>
-                                {short_description}
-                            </a>
+                            {short_description}
                         </h3>
                     </div>
 
@@ -78,7 +56,11 @@ const CourseCard = ({course, handleEnroll, handleDetails}) => {
                             <span className="d-block h5 text-lh-sm mb-0">${discounted_price}</span>
                         </div>
                         <a className="btn btn-sm btn-primary transition-3d-hover text-white"
-                           onClick={() => handleEnroll(id)}>Enroll Now</a>
+                           onClick={() => handleButtonClick(id)}>
+                            {
+                                isEnrolled ? 'Goto Classroom' : 'Enroll Now'
+                            }
+                        </a>
                     </div>
                 </div>
             </div>
@@ -87,8 +69,9 @@ const CourseCard = ({course, handleEnroll, handleDetails}) => {
 };
 
 CourseCard.propTypes = {
+    isEnrolled: PropTypes.bool.isRequired,
     course: PropTypes.object.isRequired,
-    handleEnroll: PropTypes.func.isRequired,
+    handleButtonClick: PropTypes.func.isRequired,
     handleDetails: PropTypes.func.isRequired,
 };
 
