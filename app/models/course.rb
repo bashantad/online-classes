@@ -12,9 +12,22 @@ class Course < ApplicationRecord
 	scope :approved, -> { where(approved: true) }
 
 	validates :title, :body, :short_description, :course_highlights, :course_for, :price, :category, :duration, :no_of_lessons, :level, presence: true
+	validates_inclusion_of :discount_percentage, in: 0..100, allow_blank: true, message: 'should be between 0 and 100'
 
 	def image_urls
 		resized_images(self.cover_image)
+	end
+
+	def	original_price
+		price
+	end
+
+	def reviews_count
+		reviews.count
+	end
+
+	def	discounted_price
+		price - price * discount_percentage/100
 	end
 
 	def approve

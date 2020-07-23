@@ -36,11 +36,11 @@ export class CourseDetail extends React.Component {
     }
 
     renderCourse = (course) => {
-        const {reviews, teacher, chapters, body, lecture_count, duration} = course;
+        const {reviews, teacher, chapters, body, lecture_count, duration, reviews_count} = course;
         return (
             <>
                 <div className="position-relative">
-                    <CourseHeader {...course} reviewCount={reviews.length}/>
+                    <CourseHeader {...course} reviewCount={reviews_count}/>
                     <Sidebar {...course} handleEnroll={this.handleEnroll}/>
                 </div>
                 <div className="container space-top-2 space-top-md-1">

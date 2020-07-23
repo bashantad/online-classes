@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Sidebar = ({price, id, course_highlights, handleEnroll}) => {
+const Sidebar = ({original_price, discounted_price, id, course_highlights, handleEnroll}) => {
     return (
         <div className="container space-top-md-2 position-md-absolute top-0 right-0 left-0">
             <div className="row justify-content-end">
@@ -46,7 +46,7 @@ const Sidebar = ({price, id, course_highlights, handleEnroll}) => {
 
                         <div className="card-body">
                             <div className="mb-3">
-                                <span className="h2 text-lh-sm mr-1 mb-0">${price}</span>
+                                <span className="h2 text-lh-sm mr-1 mb-0">${discounted_price}</span>
                                 <span className="lead text-muted text-lh-sm"></span>
                             </div>
 
@@ -85,7 +85,8 @@ const Sidebar = ({price, id, course_highlights, handleEnroll}) => {
 };
 
 Sidebar.propTypes = {
-    price: PropTypes.number.isRequired,
+    discounted_price: PropTypes.number.isRequired,
+    original_price: PropTypes.number.isRequired,
     course_highlights: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
     handleEnroll: PropTypes.func.isRequired,

@@ -9,6 +9,7 @@ import Snackbar from "@material-ui/core/Snackbar";
 import '../packs/index.scss'
 import courseApi from "../apis/courseApi";
 import CourseCard from "./common/CourseCard";
+import ReadingImage from "../../assets/images/illustrations/reading.svg";
 
 export class Home extends React.Component {
     state = {
@@ -51,8 +52,7 @@ export class Home extends React.Component {
                     <div className="container space-2">
                         <div className="row justify-content-lg-between align-items-lg-center">
                             <div className="col-sm-10 col-lg-5 mb-7 mb-lg-0">
-                                <img className="img-fluid" src="../../assets/illustrations/reading.svg"
-                                     alt="Image Description"/>
+                                <img className="img-fluid" src={ReadingImage} alt="Reading image"/>
                             </div>
 
                             <div className="col-lg-6">
@@ -67,8 +67,9 @@ export class Home extends React.Component {
                                 </div>
 
                                 <div className="d-sm-flex align-items-sm-center flex-sm-wrap">
-                                    <a className="btn btn-primary mb-2" href="../pages/login.html">Start a Free
-                                        Trial</a>
+                                    <a className="btn btn-primary mb-2" href="/users/sign_up">
+                                        Get Started
+                                    </a>
 
                                     <div className="mx-2"></div>
 
@@ -109,10 +110,17 @@ export class Home extends React.Component {
                                     </div>
                                 </div>
                                 :
-                                <CourseCard
-                                    courses={courses}
-                                    handleEnroll={this.handleEnroll}
-                                    handleDetails={this.handleDetails}/>
+                                <div className="course-cards">
+                                    {
+                                        courses.map((course, index) =>
+                                            <CourseCard
+                                                key={`course-${index}-card`}
+                                                course={course}
+                                                handleEnroll={this.handleEnroll}
+                                                handleDetails={this.handleDetails}/>
+                                        )
+                                    }
+                                </div>
                         }
                     </div>
                     {
