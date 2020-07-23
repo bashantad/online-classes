@@ -19,6 +19,9 @@ Rails.application.routes.draw do
 				get :enrollment_requests
 				resources :chapters, except: [:index] do
 					resources :course_contents, except: [:index]
+					resources :assignments do
+						get :answers
+					end
         end
   		end
   end

@@ -1,5 +1,4 @@
-class Teaching::CourseContentsController < ApplicationController
-  before_action :authenticate_user!
+class Teaching::CourseContentsController < Teaching::BaseController
   before_action :set_course_and_chapter
   before_action :set_course_content, only: [:show, :edit, :update, :destroy]
 
@@ -47,11 +46,6 @@ class Teaching::CourseContentsController < ApplicationController
   private
     def set_course_content
       @course_content = @chapter.course_contents.find(params[:id])
-    end
-
-    def set_course_and_chapter
-      @course = current_user.courses.find(params[:course_id])
-      @chapter = @course.chapters.find(params[:chapter_id])
     end
 
     def course_content_params

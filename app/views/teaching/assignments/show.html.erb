@@ -8,27 +8,38 @@
            <li class="breadcrumb-item"><a href="<%= teaching_courses_path %>" class="text-light text-highlight-light">My Courses</a></li>
            <li class="breadcrumb-item"><a href="<%= teaching_course_path(@course) %>" class="text-light text-highlight-light"><%= @course.title %></a></li>
            <li class="breadcrumb-item"><a href="<%= teaching_course_chapter_path(@course, @chapter) %>" class="text-light text-highlight-light"><%= @chapter.title %></a></li>
-           <li class="breadcrumb-item active" aria-current="page">New Course Content</li>
-        </ol>
+           <li class="breadcrumb-item active"><%= @assignment.question %></li>
+          </ol>
         </nav>
       </span>
     </div>
   </div>
 </div>
 <!-- End Hero Section -->
-
 <div class="container space-1">
   <!-- Card -->
   <div class="card mx-auto w-lg-60">
-    <!-- Form -->
-    <%= render 'form', course_content: @course_content %>
-    <!-- End Card -->
-    <!-- SVG Elements -->
-    <figure class="max-w-19rem w-100 position-absolute bottom-0 right-0 z-index-n1 hide-svg">
-      <div class="mb-n7 mr-n7">
-        <img class="img-fluid" src="<%= asset_path('components/dots-3.svg') %>" alt="Image Description">
+    <div class="card-header">
+      <%= @assignment.question %>
+    </div>
+    <div class="card-body">
+      <div>
+        <strong>Instructions:</strong>
+        <%= @assignment.instructions %>
       </div>
-    </figure>
-    <!-- End SVG Elements -->
+
+      <div>
+        <strong>Points:</strong>
+        <%= @assignment.points %>
+      </div>
+
+      <div>
+        <strong>Due:</strong>
+        <%= @assignment.due_date %>
+      </div>
+      <div>
+        <%= link_to "Back", teaching_course_path(@course) %>
+      </div>
+    </div>
   </div>
 </div>

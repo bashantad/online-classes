@@ -1,0 +1,46 @@
+<%= form_with(model: [:teaching, @course, @chapter, @assignment], local: true) do |form| %>
+  <% error_messages = @assignment.errors.messages %>
+  <div class="field">
+    <%= form.label :question %>
+    <%= form.text_field :question %>
+    <% if error_messages[:question] %>
+      <div class="field-error">
+        <%= error_messages[:question][0] %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :instructions %>
+    <%= form.text_area :instructions %>
+    <% if error_messages[:instructions] %>
+      <div class="field-error">
+        <%= error_messages[:instructions][0] %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :points %>
+    <%= form.number_field :points %>
+    <% if error_messages[:points] %>
+      <div class="field-error">
+        <%= error_messages[:points][0] %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :due_date %>
+    <%= form.date_select :due_date %>
+    <% if error_messages[:due_date] %>
+      <div class="field-error">
+        <%= error_messages[:due_date][0] %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -9,7 +9,7 @@ class Teaching::CoursesController < Teaching::BaseController
 
   def show
     @course = Course.find(params[:id])
-    @chapters = @course.chapters
+    @chapters = @course.chapters.includes(:course_contents).includes(:assignments)
   end
 
   def new

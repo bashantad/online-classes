@@ -9,6 +9,9 @@ class Teaching::ChaptersController < Teaching::BaseController
   def edit
   end
 
+  def show
+  end
+
   def create
     @chapter = @course.chapters.new(chapter_params)
 
@@ -35,10 +38,6 @@ class Teaching::ChaptersController < Teaching::BaseController
   private
   def set_chapter
     @chapter = @course.chapters.find(params[:id])
-  end
-
-  def set_course
-    @course = current_user.courses.find(params[:course_id])
   end
 
   def chapter_params

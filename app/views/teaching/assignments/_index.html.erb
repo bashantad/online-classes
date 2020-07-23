@@ -1,0 +1,25 @@
+<h3>Assignments</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Points</th>
+      <th>Due date</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% assignments.each do |assignment| %>
+      <tr>
+        <td><%= assignment.question %></td>
+        <td><%= assignment.points %></td>
+        <td><%= assignment.due_date %></td>
+        <td><%= link_to 'View', teaching_course_chapter_assignment_path(@course, chapter, assignment) %></td>
+        <td><%= link_to 'Edit', edit_teaching_course_chapter_assignment_path(@course, chapter, assignment) %></td>
+        <td><%= link_to 'Delete', teaching_course_chapter_assignment_path(@course, chapter, assignment), method: :delete, data: { confirm: 'Are you sure you want to delete?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

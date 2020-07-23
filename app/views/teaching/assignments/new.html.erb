@@ -6,8 +6,9 @@
        <nav aria-label="breadcrumb">
          <ol class="breadcrumb breadcrumb-light breadcrumb-no-margin">
            <li class="breadcrumb-item"><a href="<%= teaching_courses_path %>" class="text-light text-highlight-light">My Courses</a></li>
-          <li class="breadcrumb-item"><a href="<%= teaching_course_path(@course) %>" class="text-light text-highlight-light"><%= @course.title %></a></li>
-          <li class="breadcrumb-item active" aria-current="page">Edit <%= @chapter.title %></li>
+           <li class="breadcrumb-item"><a href="<%= teaching_course_path(@course) %>" class="text-light text-highlight-light"><%= @course.title %></a></li>
+           <li class="breadcrumb-item"><a href="<%= teaching_course_chapter_path(@course, @chapter) %>" class="text-light text-highlight-light"><%= @chapter.title %></a></li>
+           <li class="breadcrumb-item active" aria-current="page">New Assignment</li>
         </ol>
         </nav>
       </span>
@@ -20,7 +21,7 @@
   <!-- Card -->
   <div class="card mx-auto w-lg-60">
     <!-- Form -->
-    <%= render 'form', chapter: @chapter %>
+    <%= render 'form', assignment: @assignment %>
     <!-- End Card -->
     <!-- SVG Elements -->
     <figure class="max-w-19rem w-100 position-absolute bottom-0 right-0 z-index-n1 hide-svg">
@@ -31,3 +32,4 @@
     <!-- End SVG Elements -->
   </div>
 </div>
+
