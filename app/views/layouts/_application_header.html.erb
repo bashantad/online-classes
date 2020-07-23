@@ -52,6 +52,10 @@
               <!-- End Dropdown -->
             <% end %>
 
+            <li class="navbar-nav-item">
+              <a class="nav-link" href="<%= start_teaching_teaching_courses_path %>">Start Teaching</a>
+            </li>
+
             <% if current_user.courses.count > 0 %>
               <!-- Dropdown teacher menu -->
               <li class="hs-has-sub-menu navbar-nav-item"
@@ -69,10 +73,6 @@
               </li>
               <!-- End Dropdown teacher menu -->
             <% end %>
-
-            <li>
-              <a class="dropdown-item" href="<%= start_teaching_teaching_courses_path %>">Start Teaching</a>
-            </li>
 
             <!-- Dropdown -->
             <li class="hs-has-sub-menu navbar-nav-item"
@@ -112,6 +112,10 @@
                 <a class="dropdown-item" href="<%= edit_user_registration_path %>">
                   <i class="fas fa-pen dropdown-item-icon"></i>
                   Edit Info
+                </a>
+                <a class="dropdown-item" href="/users/qualifications">
+                  <i class="fas fa-star dropdown-item-icon"></i>
+                  Edit Qualifications
                 </a>
                 <a class="dropdown-item" href="<%= edit_password_users_path %>">
                   <i class="fas fa-shield-alt dropdown-item-icon"></i>

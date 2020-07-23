@@ -34,6 +34,12 @@ const initialState = {
     country: '',
 };
 
+const notification =
+    (<div className="alert alert-soft-info" role="alert">
+        This is a soft info alert—check it out!
+    </div>)
+
+
 export default class NewQualification extends React.Component {
     state = {
         ...initialState,
@@ -55,19 +61,32 @@ export default class NewQualification extends React.Component {
         )
     }
 
-    submitForm = () => {
+    handleEmpty = () => {
+        let target = document.getElementById("notification");
+        target.classList.remove("hide");
+        setTimeout(() => {
+            document.getElementById("notification").classList.add("hide");
+        }, 4000)
+    }
+
+    submitForm = (event) => {
         const {name_of_institution, year_start, year_end, location, country, title} = this.state;
         const {qualificationType, addQualification} = this.props;
-        addQualification({
-            type: qualificationType,
-            name_of_institution,
-            year_start,
-            year_end,
-            location,
-            country,
-            title,
-        });
-        this.resetForm(); //TODO this is a temporary solution as it does clear the form on validation errors and has to be fixed
+        if (name_of_institution || year_start || year_end || location || country === '') {
+            this.handleEmpty()
+        } else {
+            addQualification({
+                type: qualificationType,
+                name_of_institution,
+                year_start,
+                year_end,
+                location,
+                country,
+                title,
+            });
+        }
+
+        // this.resetForm(); //TODO this is a temporary solution as it does clear the form on validation errors and has to be fixed
     }
 
     render() {
@@ -76,14 +95,18 @@ export default class NewQualification extends React.Component {
         const labels = mappingLabels[qualificationType];
         return (
             <div className='new-qualification bg-light p-3 rounded'>
+                <div id="notification" className="alert alert-soft-danger hide" role="alert">
+                    Please fill out all the fields.
+                </div>
                 <div className='row'>
                     <div className="form-group col-md-6 col-sm-12">
-                        <input type="text" name="name_of_institution" value={name_of_institution} className="form-control"
+                        <input type="text" name="name_of_institution" value={name_of_institution}
+                               className="form-control"
                                onChange={this.handleValueChange}
                                placeholder={labels.name_of_institution}/>
                         {
                             formErrors.name_of_institution && <span>
-                                { formErrors.name_of_institution }
+                                {formErrors.name_of_institution}
                             </span>
                         }
                     </div>
@@ -93,7 +116,7 @@ export default class NewQualification extends React.Component {
                                placeholder={labels.title}/>
                         {
                             formErrors.title && <span>
-                                { formErrors.title }
+                                {formErrors.title}
                             </span>
                         }
                     </div>
@@ -103,7 +126,7 @@ export default class NewQualification extends React.Component {
                                placeholder={labels.year_start}/>
                         {
                             formErrors.year_start && <span>
-                                { formErrors.year_start }
+                                {formErrors.year_start}
                             </span>
                         }
                     </div>
@@ -113,7 +136,7 @@ export default class NewQualification extends React.Component {
                                placeholder={labels.year_end}/>
                         {
                             formErrors.year_end && <span>
-                                { formErrors.year_end }
+                                {formErrors.year_end}
                             </span>
                         }
                     </div>
@@ -123,7 +146,7 @@ export default class NewQualification extends React.Component {
                                placeholder={labels.location}/>
                         {
                             formErrors.location && <span>
-                                { formErrors.location }
+                                {formErrors.location}
                             </span>
                         }
                     </div>
@@ -133,11 +156,11 @@ export default class NewQualification extends React.Component {
                                placeholder={labels.country}/>
                         {
                             formErrors.country && <span>
-                                { formErrors.country }
+                                {formErrors.country}
                             </span>
                         }
                     </div>
-                    <div className='form-group col-md-12 col-sm-12'>
+                    <div className='form-group col-md-12 col-sm-12 mb-0'>
                         <button className='btn btn-sm btn-primary' style={{float: 'right'}}
                                 onClick={this.submitForm}>Add
                         </button>

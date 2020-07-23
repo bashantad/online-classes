@@ -9,21 +9,20 @@ export default class EducationList extends React.Component {
         const {education} = this.props;
         return (
             <div className='education-list'>
-                <div>
+                <ul className='timeline'>
                     {
                         education.map((education, index) => (
-                            <div className='education-item' key={`education-item-${index}`}>
-                                <div className="media-body mb-2">
+                            <li className='education-item ' key={`education-item-${index}`}>
+                                <span className="media-body mb-2">
                                     <h3 className="mt-1 mb-1">
-                                        {education.name_of_institution}, <span className='use-color-grey'>{education.year_start} - {this.endLabel(education)}</span>
+                                        {education.name_of_institution}, <span className='text-body h4'>{education.year_start} - {this.endLabel(education)}</span>
                                     </h3>
                                     <p className="mb-1">{education.title}, {education.location}, {education.country} </p>
-                                    <div className="divider divider-xs divider-text ml-6 mb-2"></div>
-                                </div>
-                            </div>
+                                </span>
+                            </li>
                         ))
                     }
-                </div>
+                </ul>
             </div>
         )
     }
