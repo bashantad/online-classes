@@ -61,20 +61,10 @@ export default class NewQualification extends React.Component {
         )
     }
 
-    handleEmpty = () => {
-        let target = document.getElementById("notification");
-        target.classList.remove("hide");
-        setTimeout(() => {
-            document.getElementById("notification").classList.add("hide");
-        }, 4000)
-    }
-
     submitForm = (event) => {
         const {name_of_institution, year_start, year_end, location, country, title} = this.state;
         const {qualificationType, addQualification} = this.props;
-        if (name_of_institution || year_start || year_end || location || country === '') {
-            this.handleEmpty()
-        } else {
+        console.log(this.state)
             addQualification({
                 type: qualificationType,
                 name_of_institution,
@@ -84,7 +74,6 @@ export default class NewQualification extends React.Component {
                 country,
                 title,
             });
-        }
 
         // this.resetForm(); //TODO this is a temporary solution as it does clear the form on validation errors and has to be fixed
     }
@@ -96,10 +85,10 @@ export default class NewQualification extends React.Component {
         return (
             <div className='new-qualification bg-light p-3 rounded'>
                 <div id="notification" className="alert alert-soft-danger hide" role="alert">
-                    Please fill out all the fields.
+                    Please fill out the required fields.
                 </div>
                 <div className='row'>
-                    <div className="form-group col-md-6 col-sm-12">
+                    <div className="form-group qualification-input col-md-6 col-sm-12">
                         <input type="text" name="name_of_institution" value={name_of_institution}
                                className="form-control"
                                onChange={this.handleValueChange}
@@ -110,7 +99,7 @@ export default class NewQualification extends React.Component {
                             </span>
                         }
                     </div>
-                    <div className="form-group col-md-6 col-sm-12">
+                    <div className="form-group qualification-input col-md-6 col-sm-12">
                         <input type="text" name="title" value={title} className="form-control"
                                onChange={this.handleValueChange}
                                placeholder={labels.title}/>
@@ -120,7 +109,7 @@ export default class NewQualification extends React.Component {
                             </span>
                         }
                     </div>
-                    <div className="form-group col-md-6 col-sm-12">
+                    <div className="form-group qualification-input col-md-6 col-sm-12">
                         <input type="text" name="year_start" value={year_start} className="form-control"
                                onChange={this.handleValueChange}
                                placeholder={labels.year_start}/>
@@ -130,7 +119,7 @@ export default class NewQualification extends React.Component {
                             </span>
                         }
                     </div>
-                    <div className="form-group col-md-6 col-sm-12">
+                    <div className="form-group qualification-input col-md-6 col-sm-12">
                         <input type="text" name="year_end" value={year_end} className="form-control"
                                onChange={this.handleValueChange}
                                placeholder={labels.year_end}/>
@@ -140,7 +129,7 @@ export default class NewQualification extends React.Component {
                             </span>
                         }
                     </div>
-                    <div className="form-group col-md-6 col-sm-12">
+                    <div className="form-group qualification-input col-md-6 col-sm-12">
                         <input type="text" name="location" value={location} className="form-control"
                                onChange={this.handleValueChange}
                                placeholder={labels.location}/>
@@ -150,7 +139,7 @@ export default class NewQualification extends React.Component {
                             </span>
                         }
                     </div>
-                    <div className="form-group col-md-6 col-sm-12">
+                    <div className="form-group qualification-input col-md-6 col-sm-12">
                         <input type="text" name="country" value={country} className="form-control"
                                onChange={this.handleValueChange}
                                placeholder={labels.country}/>
@@ -160,7 +149,7 @@ export default class NewQualification extends React.Component {
                             </span>
                         }
                     </div>
-                    <div className='form-group col-md-12 col-sm-12 mb-0'>
+                    <div className='form-group qualification-input col-md-12 col-sm-12 mb-0'>
                         <button className='btn btn-sm btn-primary' style={{float: 'right'}}
                                 onClick={this.submitForm}>Add
                         </button>
