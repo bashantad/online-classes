@@ -1,46 +1,54 @@
 <%= form_with(model: [:teaching, @course, @chapter, @assignment], local: true) do |form| %>
   <% error_messages = @assignment.errors.messages %>
-  <div class="field">
-    <%= form.label :question %>
-    <%= form.text_field :question %>
-    <% if error_messages[:question] %>
-      <div class="field-error">
-        <%= error_messages[:question][0] %>
+  <div class="pl-4 pr-4 space-top-1">
+    <div class="row">
+      <div class="col-sm-12 form-group">
+        <label class="input-label" for="full_name"><%= form.label :question %></label>
+        <%= form.text_field :question,autofocus: true, autocomplete: "question", class: 'form-control', type: 'text', id: 'question', placeholder: 'Question'  %>
+        <% if error_messages[:question] %>
+          <div class="field-error">
+            <%= error_messages[:question][0] %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
 
-  <div class="field">
-    <%= form.label :instructions %>
-    <%= form.text_area :instructions %>
-    <% if error_messages[:instructions] %>
-      <div class="field-error">
-        <%= error_messages[:instructions][0] %>
+      <div class="col-sm-12 form-group">
+        <label class="input-label" for="full_name"><%= form.label :instructions %></label>
+        <%= form.text_area :instructions,autofocus: true, autocomplete: "instructions", class: 'form-control', type: 'text', id: 'instructions', placeholder: 'Instructions'  %>
+        <% if error_messages[:instructions] %>
+          <div class="field-error">
+            <%= error_messages[:instructions][0] %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
 
-  <div class="field">
-    <%= form.label :points %>
-    <%= form.number_field :points %>
-    <% if error_messages[:points] %>
-      <div class="field-error">
-        <%= error_messages[:points][0] %>
+      <div class="col-sm-12 form-group">
+        <label class="input-label" for="full_name"><%= form.label :points %></label>
+        <%= form.number_field :points,autofocus: true, autocomplete: "points", class: 'form-control', type: 'text', id: 'points', placeholder: 'Points'  %>
+        <% if error_messages[:points] %>
+          <div class="field-error">
+            <%= error_messages[:points][0] %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
 
-  <div class="field">
-    <%= form.label :due_date %>
-    <%= form.date_select :due_date %>
-    <% if error_messages[:due_date] %>
-      <div class="field-error">
-        <%= error_messages[:due_date][0] %>
+      <div class="col-sm-12 form-group">
+        <label class="input-label" for="full_name"><%= form.label :due_date %></label>
+        <%= form.date_select :due_date,autofocus: true, autocomplete: "due_date", class: 'form-control', type: 'text', id: 'due_date' %>
+        <% if error_messages[:due_date] %>
+          <div class="field-error">
+            <%= error_messages[:due_date][0] %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+    </div>
+    <div class="row align-items-center mb-5 mt-4">
+      <div class="col-6 mb-sm-0 pl-4">
+        <%= link_to "Back", teaching_course_path(@course), class: 'font-size-1 font-weight-bold text-muted content-centered' %>
+      </div>
+      <div class="col-6 text-right">
+        <%= form.submit "Add", class: "btn btn-sm btn-primary" %>
+      </div>
+    </div>
   </div>
 <% end %>

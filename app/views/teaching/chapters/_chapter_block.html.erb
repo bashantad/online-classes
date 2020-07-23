@@ -1,6 +1,4 @@
-<div>
-  <%= link_to "Add New Content", new_teaching_course_chapter_course_content_path(@course, chapter), class: 'btn btn-xs btn-outline-primary mr-2 mt-4' %>
-  <%= link_to "Add New Assignment", new_teaching_course_chapter_assignment_path(@course, chapter), class: 'btn btn-xs btn-outline-primary mr-2 mt-4' %>
+<div class="p-3">
   <%= render "teaching/course_contents/index", :course_contents => chapter.course_contents, :chapter => chapter %>
   <%= render "teaching/assignments/index", :assignments => chapter.assignments, :chapter => chapter %>
 </div>

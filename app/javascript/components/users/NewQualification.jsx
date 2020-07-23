@@ -83,7 +83,7 @@ export default class NewQualification extends React.Component {
         const {qualificationType, formErrors} = this.props;
         const labels = mappingLabels[qualificationType];
         return (
-            <div className='new-qualification bg-light p-3 rounded'>
+            <div className='new-qualification border p-3 rounded'>
                 <div id="notification" className="alert alert-soft-danger hide" role="alert">
                     Please fill out the required fields.
                 </div>

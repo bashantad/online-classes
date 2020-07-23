@@ -143,8 +143,8 @@ export default class Qualification extends React.Component {
                                                     data-target="#qualificationForm" aria-expanded="false"
                                                     aria-controls="qualificationForm"
                                                     onClick={this.showQualificationForm(QUALIFICATION_TYPES.education)}
-                                                    className="btn btn-xs btn-outline-primary font-weight-bold text-nowrap ml-1">Add
-                                                New
+                                                    className="btn btn-xs btn-outline-primary font-weight-bold text-nowrap ml-1">
+                                                <i class='fas fa-plus mr-1'></i> Add New
                                             </button>
                                         </span>
                                         </div>
@@ -189,7 +189,7 @@ export default class Qualification extends React.Component {
                                                      aria-expanded="false" aria-controls="educationForm"
                                                      onClick={this.showQualificationForm(QUALIFICATION_TYPES.experience)}
                                                      className="btn btn-xs btn-outline-primary font-weight-bold text-nowrap ml-1"
-                                             >Add New
+                                             ><i class='fas fa-plus mr-1'></i> Add New
                                             </button>
                                         </span>
                                         </div>

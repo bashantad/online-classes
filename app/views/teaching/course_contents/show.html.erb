@@ -20,21 +20,44 @@
   <!-- Card -->
   <div class="card mx-auto w-lg-60">
     <div class="card-header">
-      <%= @course_content.title %>
+      <h5><%= @course_content.title %></h5>
+      <span>
+         <a href="<%= teaching_course_path(@course) %>" class="btn btn-xs btn-no-focus btn-ghost-primary">
+           Back
+          </a>
+      </span>
     </div>
     <div class="card-body">
-      <div>
-        <%= @course_content.description %>
-      </div>
-      <div>
-        Duration: <%= @course_content.duration %>
-      </div>
-      <div>
-        Preview available: <%= @course_content.preview? ? 'Yes' : 'No' %>
-      </div>
-      <div>
-        <%= link_to "Back", teaching_course_path(@course) %>
-      </div>
+      <form>
+        <!-- Form Group -->
+        <div class="row form-group">
+          <label for="description" class="col-sm-3 col-form-label input-label">Description</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control-plaintext" name="description" id="description" value="<%= @course_content.description %>" readonly>
+          </div>
+        </div>
+        <!-- End Form Group -->
+
+        <!-- Form Group -->
+        <div class="row form-group">
+          <label for="duration" class="col-sm-3 col-form-label input-label">Duration</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control-plaintext" name="duration" id="duration" value="<%= @course_content.duration %>" readonly>
+          </div>
+        </div>
+        <!-- End Form Group -->
+
+        <!-- Form Group -->
+        <div class="row form-group">
+          <label for="preview" class="col-sm-3 col-form-label input-label">Preview Available</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control-plaintext" name="preview" id="preview" value=" <%= @course_content.preview? ? 'Yes' : 'No' %>" readonly>
+          </div>
+        </div>
+        <!-- End Form Group -->
+      </form>
     </div>
   </div>
 </div>

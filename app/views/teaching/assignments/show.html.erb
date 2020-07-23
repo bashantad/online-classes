@@ -21,25 +21,44 @@
   <div class="card mx-auto w-lg-60">
     <div class="card-header">
       <%= @assignment.question %>
+      <span>
+         <a href="<%= teaching_course_path(@course) %>" class="btn btn-xs btn-no-focus btn-ghost-primary">
+           Back
+          </a>
+      </span>
     </div>
     <div class="card-body">
-      <div>
-        <strong>Instructions:</strong>
-        <%= @assignment.instructions %>
-      </div>
+      <form>
+        <!-- Form Group -->
+        <div class="row form-group">
+          <label for="instructions" class="col-sm-3 col-form-label input-label">Instructions</label>
 
-      <div>
-        <strong>Points:</strong>
-        <%= @assignment.points %>
-      </div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control-plaintext" name="instructions" id="instructions" value="<%= @assignment.instructions %>" readonly>
+          </div>
+        </div>
+        <!-- End Form Group -->
 
-      <div>
-        <strong>Due:</strong>
-        <%= @assignment.due_date %>
-      </div>
-      <div>
-        <%= link_to "Back", teaching_course_path(@course) %>
-      </div>
+        <!-- Form Group -->
+        <div class="row form-group">
+          <label for="points" class="col-sm-3 col-form-label input-label">Points</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control-plaintext" name="points" id="points" value="<%= @assignment.points %>" readonly>
+          </div>
+        </div>
+        <!-- End Form Group -->
+
+        <div class="row form-group">
+          <label for="due_date" class="col-sm-3 col-form-label input-label">Due Date</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control-plaintext" name="due_date" id="due_date" value="<%= @assignment.due_date %>" readonly>
+          </div>
+        </div>
+        <!-- End Form Group -->
+      </form>
+
     </div>
   </div>
 </div>

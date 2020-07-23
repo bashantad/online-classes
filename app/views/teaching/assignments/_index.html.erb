@@ -1,25 +1,50 @@
-<h3>Assignments</h3>
+<div class="border mb-2">
+  <div class="card-header">
+    <div class="media-body">
+      <h5 class="mb-0"> <i class="fas fa-pencil-alt pt-1 mr-2 text-body"></i>Assignments</h5>
+    </div>
+    <span>
+      <%= link_to "Add New Assignment", new_teaching_course_chapter_assignment_path(@course, chapter), class: 'btn btn-xs btn-soft-primary mr-2' %></span>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Question</th>
-      <th>Points</th>
-      <th>Due date</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% assignments.each do |assignment| %>
-      <tr>
-        <td><%= assignment.question %></td>
-        <td><%= assignment.points %></td>
-        <td><%= assignment.due_date %></td>
-        <td><%= link_to 'View', teaching_course_chapter_assignment_path(@course, chapter, assignment) %></td>
-        <td><%= link_to 'Edit', edit_teaching_course_chapter_assignment_path(@course, chapter, assignment) %></td>
-        <td><%= link_to 'Delete', teaching_course_chapter_assignment_path(@course, chapter, assignment), method: :delete, data: { confirm: 'Are you sure you want to delete?' } %></td>
-      </tr>
+  <!-- Body -->
+  <div>
+    <% if assignments.present? %>
+      <!-- Table -->
+      <div class="table-responsive">
+        <table class="table table-thead-bordered table-nowrap table-align-middle">
+          <thead class="thead-light">
+          <tr>
+            <th>Question</th>
+            <th>Points</th>
+            <th>Due date</th>
+            <th colspan="3">Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% assignments.each do |assignment| %>
+            <tr>
+              <td><%= assignment.question %></td>
+              <td><%= assignment.points %></td>
+              <td><%= assignment.due_date %></td>
+              <td>
+                <%= link_to 'View', teaching_course_chapter_assignment_path(@course, chapter, assignment), class: 'btn btn-xs btn-soft-success' %>
+                <%= link_to 'Edit', edit_teaching_course_chapter_assignment_path(@course, chapter, assignment), class: 'btn btn-xs btn-soft-success' %>
+                <%= link_to 'Delete', teaching_course_chapter_assignment_path(@course, chapter, assignment), method: :delete, data: {confirm: 'Are you sure you want to delete?'}, class: 'btn btn-xs btn-soft-danger' %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <!-- End Table -->
+      </div>
+    <% else %>
+      <div class="space-1">
+        <figure class="max-w-8rem mx-auto">
+          <img class="img-fluid" src="
+          <%= asset_path("icons/icon-67.svg") %>" alt="SVG">
+        </figure>
+        <div class="text-center mt-2">No Assignments</div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>
