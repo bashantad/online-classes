@@ -5,8 +5,9 @@
       <div class="w-lg-65 text-center mx-lg-auto">
       <span class="badge badge-soft-light badge-pill font-size-1 py-3 px-4 mb-3">
         <ol class="breadcrumb breadcrumb-light breadcrumb-no-gutter mb-0">
-            <li class="breadcrumb-item">My Notes</li>
-            <li class="breadcrumb-item active" aria-current="page">Edit</li>
+            <li class="breadcrumb-item"><%= link_to 'My Notebooks', edit_notebook_path(@notebook), class: "text-light text-highlight-light" %></li>
+            <li class="breadcrumb-item"><%= link_to @notebook.title, edit_notebook_path(@notebook), class: "text-light text-highlight-light" %></li>
+            <li class="breadcrumb-item active" aria-current="page">Edit Note</li>
           </ol>
       </span>
       </div>
@@ -41,4 +42,8 @@
     </div>
   </div>
 </main>
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "jquery_ujs" %>
+<% end %>
+
 

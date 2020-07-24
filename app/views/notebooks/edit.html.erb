@@ -5,7 +5,7 @@
       <div class="w-lg-65 text-center mx-lg-auto">
       <span class="badge badge-soft-light badge-pill font-size-1 py-3 px-4 mb-3">
         <ol class="breadcrumb breadcrumb-light breadcrumb-no-gutter mb-0">
-            <li class="breadcrumb-item">Notebook</li>
+            <li class="breadcrumb-item"><%= link_to 'My Notebooks', edit_notebook_path(@notebook), class: "text-light text-highlight-light" %></li>
             <li class="breadcrumb-item active" aria-current="page">Edit</li>
           </ol>
       </span>
@@ -38,7 +38,6 @@
             </div>
             <span>
               <%= link_to 'Create New Notebook', new_notebook_path, class:'btn btn-xs btn-primary mr-1'%>
-              <%#= link_to 'Edit', edit_notebook_path(@notebook) , class:'btn btn-xs btn-soft-success' %>
               <%= link_to 'Delete', @notebook, method: :delete, data: {confirm: 'Are you sure you want to delete?'}, class:'btn btn-xs btn-soft-danger' %>
               </span>
             </h5>
@@ -52,11 +51,11 @@
   </div>
 </main>
 <% content_for :javascript_includes do %>
+  <%= javascript_include_tag "jquery_ujs" %>
   <%= javascript_include_tag "libraries/hs-sticky-block.min" %>
   <script type="text/javascript" charset="utf-8">
-      // initialization of sticky blocks
       $('.js-sticky-block').each(function () {
-          var stickyBlock = new HSStickyBlock($(this)).init();
+          new HSStickyBlock($(this)).init();
       });
   </script>
 <% end %>

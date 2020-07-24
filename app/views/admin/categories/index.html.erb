@@ -68,7 +68,7 @@
         <div class="row justify-content-md-between align-items-md-center pl-4 pr-4">
           <div class="col-md-5 mb-3 mb-md-0 text-align-middle">
             <figure class="max-w-8rem mx-auto">
-              <img class="img-fluid" src="/assets/icons/icon-36.svg" alt="SVG">
+              <img class="img-fluid" src="<%= asset_path('icons/icon-36.svg') %>" alt="SVG">
             </figure>
           </div>
 
@@ -81,9 +81,9 @@
                 <form class="input-group input-group-merge">
                   <input type="search" class="form-control" placeholder="Find a course" aria-label="Find a course" aria-describedby="searchApp">
                   <div class="input-group-append">
-          <span class="input-group-text" id="searchApp">
-            <i class="fas fa-search"></i>
-          </span>
+                    <span class="input-group-text" id="searchApp">
+                      <i class="fas fa-search"></i>
+                    </span>
                   </div>
                 </form>
               </div>
@@ -92,7 +92,6 @@
               </div>
             </div>
             <!-- Input -->
-
             <!-- End Input -->
           </div>
         </div>
@@ -102,3 +101,6 @@
   <% end %>
 </div>
 
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "jquery_ujs" %>
+<% end %>
