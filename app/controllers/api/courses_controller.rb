@@ -24,6 +24,7 @@ class Api::CoursesController < Api::BaseController
 				'reviews.user',
 				'chapters',
 				'chapters.course_contents',
+				'chapters.assignments',
 				'teacher',
 				'teacher.experiences',
 				'teacher.educations',

@@ -1,10 +1,15 @@
 <div class="navbar-expand-lg navbar-expand-lg-collapse-block navbar-light">
   <div id="sidebarNav" class="collapse navbar-collapse navbar-vertical">
     <div class="card">
+      <div class="card-header">
+        <div class="media-body">
+          <h3>My Notebooks</h3>
+        </div>
+      </div>
       <div class="card-body">
-        <ul class="nav nav-sub nav-sm nav-tabs nav-list-y-2 mb-4">
+        <ul class="nav nav-sub nav-tabs nav-list-y-2 mb-4">
           <% @notebooks.each do |notebook| %>
-            <li class="nav-item">
+            <li class="nav-item note-nav-item">
               <%= link_to "#{notebook.title} (#{notebook.notes.count})", notebook_notes_path(notebook), class:"nav-link" %>
             </li>
           <% end %>

@@ -98,6 +98,26 @@ chapter2.course_contents.create(
     duration: '2 weeks',
 )
 
+chapter1.assignments.create(
+    question: 'What is the Capital of United States?',
+    instructions: 'Read the first chapter in detail',
+    points: 25,
+    due_date: 1.months.after,
+)
+chapter1.assignments.create(
+    question: 'Who is the prime minister of Australia?',
+    instructions: 'It should be the recent one.',
+    points: 20,
+    due_date: 2.months.after,
+)
+
+chapter2.assignments.create(
+    question: 'Who is the first man to go to moon?',
+    instructions: 'You can refer internet to find the solution of this question',
+    points: 50,
+    due_date: 1.months.after,
+)
+
 user2.educations.create(name_of_institution: 'Harvard University', year_start: 2006, year_end: 2010, title: 'Bachelor of Computer Science', location: 'Boston', country: 'USA')
 user2.educations.create(name_of_institution: 'Stanford University', year_start: 2010, year_end: 2012, title: 'Masters in Artificial Intelligence', location: 'San Francisco', country: 'USA')
 user2.experiences.create(name_of_institution: 'Google', year_start: 2012, year_end: 2016, title: 'Software Engineer', location: 'Mountain View', country: 'USA')

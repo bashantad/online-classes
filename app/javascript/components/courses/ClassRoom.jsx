@@ -40,7 +40,11 @@ export class ClassRoom extends React.Component {
     }
 
     navigateToCourseContent = (chapterId, courseContentId) => {
-        return this.props.history.push(`./${this._getCourseId()}/chapters/${chapterId}/contents/${courseContentId}`);
+        return this.props.history.push(`/classrooms/courses/${this._getCourseId()}/chapters/${chapterId}/assignments/${courseContentId}`);
+    }
+
+    navigateToAssignmentContent = (chapterId, assignmentId) => {
+        return this.props.history.push(`./${this._getCourseId()}/chapters/${chapterId}/assignments/${assignmentId}`);
     }
 
     renderClassRoom = (course) => {
@@ -49,7 +53,10 @@ export class ClassRoom extends React.Component {
             <div className='enrolled-classroom'>
                 <div className="row">
                     <div className="col-md-5 col-lg-4">
-                        <ChapterList chapters={chapters} navigateToCourseContent={this.navigateToCourseContent} />
+                        <ChapterList chapters={chapters}
+                                     navigateToCourseContent={this.navigateToCourseContent}
+                                     navigateToAssignmentContent={this.navigateToAssignmentContent}
+                        />
                     </div>
                     <div className="col-md-7 col-lg-8">
                         {body}

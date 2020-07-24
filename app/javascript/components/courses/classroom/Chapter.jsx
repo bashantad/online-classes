@@ -1,8 +1,9 @@
-import PropTypes from "prop-types";
 import React from "react";
+import PropTypes from "prop-types";
 import ChapterContent from "./ChapterContent";
+import AssignmentContent from "./AssignmentContent";
 
-const Chapter = ({chapterTitle, chapterId, courseContents, navigateToCourseContent}) => {
+const Chapter = ({chapterTitle, chapterId, courseContents, assignments, navigateToCourseContent, navigateToAssignmentContent}) => {
     return (
         <div className="card border mb-1">
             <div>
@@ -27,6 +28,18 @@ const Chapter = ({chapterTitle, chapterId, courseContents, navigateToCourseConte
                                            duration={duration} />
                 })
             }
+            {
+                assignments.map((assignment) => {
+                    const {question, points, id, due_date} = assignment;
+                    return <AssignmentContent key={`content-${chapterId}-${id}`}
+                                              question={question}
+                                              points={points}
+                                              dueDate={due_date}
+                                              navigateToAssignmentContent={navigateToAssignmentContent}
+                                              chapterId={chapterId}
+                                              assignmentId={id} />
+                })
+            }
         </div>
     )
 }
@@ -35,7 +48,9 @@ Chapter.propTypes = {
     chapterTitle: PropTypes.string.isRequired,
     chapterId: PropTypes.number.isRequired,
     courseContents: PropTypes.array.isRequired,
+    assignments: PropTypes.array.isRequired,
     navigateToCourseContent: PropTypes.func.isRequired,
+    navigateToAssignmentContent: PropTypes.func.isRequired,
 }
 
 export default Chapter;

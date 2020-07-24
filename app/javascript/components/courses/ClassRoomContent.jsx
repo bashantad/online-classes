@@ -21,6 +21,11 @@ export class ClassRoomContent extends React.Component {
         });
     }
 
+    navigateToAssignmentContent = (chapterId, assignmentId) => {
+        const params = this.props.match.params;
+        this.props.history.push(`/classrooms/courses/${params.courseId}/chapters/${chapterId}/assignments/${assignmentId}`);
+    }
+
     navigateToCourseContent = (chapterId, courseContentId) => {
         const params = this.props.match.params;
         this.props.history.push(`/classrooms/courses/${params.courseId}/chapters/${chapterId}/contents/${courseContentId}`);
@@ -36,7 +41,10 @@ export class ClassRoomContent extends React.Component {
             <div className='enrolled-classroom'>
                 <div className="row">
                     <div className="col-md-5 col-lg-4">
-                        <ChapterList chapters={chapters} navigateToCourseContent={this.navigateToCourseContent} />
+                        <ChapterList chapters={chapters}
+                                     navigateToCourseContent={this.navigateToCourseContent}
+                                     navigateToAssignmentContent={this.navigateToAssignmentContent}
+                        />
                     </div>
                     <div className="col-md-7 col-lg-8">
                         <h3>{activeChapter.title}</h3>

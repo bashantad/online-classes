@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_21_213021) do
+ActiveRecord::Schema.define(version: 2020_07_23_031927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,17 @@ ActiveRecord::Schema.define(version: 2020_07_21_213021) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "assignments", force: :cascade do |t|
+    t.string "question"
+    t.text "instructions"
+    t.integer "points"
+    t.datetime "due_date"
+    t.bigint "chapter_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chapter_id"], name: "index_assignments_on_chapter_id"
   end
 
   create_table "calls", force: :cascade do |t|
@@ -145,6 +156,25 @@ ActiveRecord::Schema.define(version: 2020_07_21_213021) do
     t.index ["sender_id"], name: "index_messages_on_sender_id"
   end
 
+  create_table "notebooks", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_notebooks_on_user_id"
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.bigint "user_id", null: false
+    t.bigint "notebook_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["notebook_id"], name: "index_notes_on_notebook_id"
+    t.index ["user_id"], name: "index_notes_on_user_id"
+  end
+
   create_table "qualifications", force: :cascade do |t|
     t.string "name_of_institution"
     t.integer "year_start"
@@ -221,6 +251,7 @@ ActiveRecord::Schema.define(version: 2020_07_21_213021) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "assignments", "chapters"
   add_foreign_key "calls", "users"
   add_foreign_key "chapters", "courses"
   add_foreign_key "conversation_enrolled_users", "conversations"
@@ -234,6 +265,9 @@ ActiveRecord::Schema.define(version: 2020_07_21_213021) do
   add_foreign_key "enrolled_course_users", "courses"
   add_foreign_key "enrolled_course_users", "users"
   add_foreign_key "messages", "conversations"
+  add_foreign_key "notebooks", "users"
+  add_foreign_key "notes", "notebooks"
+  add_foreign_key "notes", "users"
   add_foreign_key "qualifications", "users"
   add_foreign_key "reviews", "users"
   add_foreign_key "user_message_notifications", "messages"

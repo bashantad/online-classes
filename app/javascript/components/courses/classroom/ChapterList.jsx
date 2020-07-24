@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Chapter from "./Chapter";
 
-const ChapterList = ({chapters, navigateToCourseContent}) => {
+const ChapterList = ({chapters, navigateToCourseContent, navigateToAssignmentContent}) => {
     return (
         <div className='chapter-list'>
             {
@@ -13,6 +13,7 @@ const ChapterList = ({chapters, navigateToCourseContent}) => {
                                     assignments={assignments}
                                     chapterId={id}
                                     navigateToCourseContent={navigateToCourseContent}
+                                    navigateToAssignmentContent={navigateToAssignmentContent}
                                     chapterTitle={title} />
                 })
             }
@@ -23,6 +24,7 @@ const ChapterList = ({chapters, navigateToCourseContent}) => {
 ChapterList.propTypes = {
     chapters: PropTypes.array.isRequired,
     navigateToCourseContent: PropTypes.func.isRequired,
+    navigateToAssignmentContent: PropTypes.func.isRequired,
 }
 
 export default ChapterList;

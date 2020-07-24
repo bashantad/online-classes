@@ -9,7 +9,7 @@
       <div class="card-body">
           <ul class="nav nav-sub nav-tabs nav-list-y-2 mb-4">
         <% @notes.each do |note| %>
-            <li class="nav-item">
+            <li class="nav-item note-nav-item">
               <%= link_to note.title, edit_notebook_note_path(@notebook, note), class:"nav-link"  %>
             </li>
         <% end %>
