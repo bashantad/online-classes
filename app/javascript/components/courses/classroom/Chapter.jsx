@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import ChapterContent from "./ChapterContent";
 
-const Chapter = ({chapterTitle, chapterId, course_contents, navigateToCourseContent}) => {
+const Chapter = ({chapterTitle, chapterId, courseContents, navigateToCourseContent}) => {
     return (
         <div className="card border mb-1">
             <div>
@@ -10,14 +10,14 @@ const Chapter = ({chapterTitle, chapterId, course_contents, navigateToCourseCont
                     {chapterTitle}
                 </span>
                 <span>
-                    {course_contents.length} lectures
+                    {courseContents.length} lectures
                 </span>
                 <span>
                     duration
                 </span>
             </div>
             {
-                course_contents.map((course_content) => {
+                courseContents.map((course_content) => {
                     const {title, duration, id} = course_content;
                     return <ChapterContent key={`content-${chapterId}-${id}`}
                                            courseContentTitle={title}
@@ -34,7 +34,7 @@ const Chapter = ({chapterTitle, chapterId, course_contents, navigateToCourseCont
 Chapter.propTypes = {
     chapterTitle: PropTypes.string.isRequired,
     chapterId: PropTypes.number.isRequired,
-    course_contents: PropTypes.array.isRequired,
+    courseContents: PropTypes.array.isRequired,
     navigateToCourseContent: PropTypes.func.isRequired,
 }
 

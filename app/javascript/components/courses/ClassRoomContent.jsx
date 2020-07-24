@@ -4,19 +4,15 @@ import PropTypes from "prop-types";
 import courseApi from "../../apis/courseApi";
 import ChapterList from "./classroom/ChapterList";
 
-export class ClassRoom extends React.Component {
+export class ClassRoomContent extends React.Component {
     state = {
         course: null,
         loading: true,
         errNotification: false,
     }
 
-    _getCourseId = () => {
-        return this.props.match.params.courseId;
-    }
-
     componentDidMount() {
-        courseApi.getById(this._getCourseId())
+        courseApi.getById(this.props.match.params.courseId)
             .then(res => res.json())
             .then(response => {
                 this.setState({course: response, loading: false});
@@ -25,26 +21,17 @@ export class ClassRoom extends React.Component {
         });
     }
 
-    submitReview = (rating, comment) => {
-        courseApi.reviews(this._getCourseId()).create({
-            rating: rating,
-            comment: comment,
-        })
-            .then(res => res.json())
-            .then(response => {
-                const {course} = this.state;
-                const reviews = [response, ...course.reviews];
-                course.reviews = reviews;
-                this.setState({course: course})
-            });
-    }
-
     navigateToCourseContent = (chapterId, courseContentId) => {
-        return this.props.history.push(`./${this._getCourseId()}/chapters/${chapterId}/contents/${courseContentId}`);
+        const params = this.props.match.params;
+        this.props.history.push(`/classrooms/courses/${params.courseId}/chapters/${chapterId}/contents/${courseContentId}`);
     }
 
     renderClassRoom = (course) => {
-        const {chapters, reviews, body} = course;
+        const {chapters} = course;
+        const {chapterId, courseContentId} = this.props.match.params;
+
+        const activeChapter = chapters.find(chapter => chapter.id === parseInt(chapterId));
+        const activeCourseContent = activeChapter.course_contents.find(content => content.id === parseInt(courseContentId));
         return (
             <div className='enrolled-classroom'>
                 <div className="row">
@@ -52,11 +39,12 @@ export class ClassRoom extends React.Component {
                         <ChapterList chapters={chapters} navigateToCourseContent={this.navigateToCourseContent} />
                     </div>
                     <div className="col-md-7 col-lg-8">
-                        {body}
+                        <h3>{activeChapter.title}</h3>
+                        {JSON.stringify(activeCourseContent)}
                     </div>
                 </div>
                 <div>
-                    {JSON.stringify(reviews)}
+
                 </div>
             </div>
         )
@@ -91,9 +79,9 @@ export class ClassRoom extends React.Component {
     }
 }
 
-ClassRoom.propTypes = {
+ClassRoomContent.propTypes = {
     history: PropTypes.object.isRequired,
 };
 
-export default withRouter(ClassRoom);
+export default withRouter(ClassRoomContent);
 

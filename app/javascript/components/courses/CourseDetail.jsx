@@ -18,7 +18,7 @@ export class CourseDetail extends React.Component {
     }
 
     _getCourseId = () => {
-        return this.props.match.params.course_id;
+        return this.props.match.params.courseId;
     }
 
     componentDidMount() {

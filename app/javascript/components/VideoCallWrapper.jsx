@@ -74,10 +74,10 @@ class VideoCallWrapper extends React.Component{
     }
 
     _getCallerParams = () => {
-        const {user_id, calling_code} = this.props.match.params;
+        const {userId, callingCode} = this.props.match.params;
         return {
-            creatorId: user_id,
-            callingCode: calling_code,
+            creatorId: userId,
+            callingCode: callingCode,
         }
     }
 
@@ -100,27 +100,24 @@ class VideoCallWrapper extends React.Component{
                    <Toolbar></Toolbar>
                         {
                             this._hasFetchingFinished() ?
-                                <>
-                                    {
-                                        error ?
-                                            <div className='video-wrapper'>
-                                                <ErrorOutlineIcon fontSize="large"/>
-                                                <Typography variant="caption" display="block" gutterBottom className='loading-caption'>
-                                                    {error}
-                                                </Typography>
-                                            </div>
-                                            : <VideoCall {...videoCallParams } />
-                                    }
-                                </>
-                                :
-                                <div className='video-wrapper loading'>
-                                    <CircularProgress/>
-                                    <Typography variant="caption" display="block" gutterBottom className='loading-caption'>
-                                       Loading...
-                                    </Typography>
-                                </div>
-
-
+                            <>
+                                {
+                                    error ?
+                                        <div className='video-wrapper'>
+                                            <ErrorOutlineIcon fontSize="large"/>
+                                            <Typography variant="caption" display="block" gutterBottom className='loading-caption'>
+                                                {error}
+                                            </Typography>
+                                        </div>
+                                        : <VideoCall {...videoCallParams } />
+                                }
+                            </>
+                            : <div className='video-wrapper loading'>
+                                <CircularProgress/>
+                                <Typography variant="caption" display="block" gutterBottom className='loading-caption'>
+                                   Loading...
+                                </Typography>
+                            </div>
                         }
                 </div>
 
