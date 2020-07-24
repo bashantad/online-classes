@@ -1,14 +1,39 @@
 <main id="content" role="main" class="bg-light">
-  <div class="container space-2 space-top-lg-2 mt-lg-n10">
+  <!-- Breadcrumb Section -->
+  <div class="bg-navy">
+    <div class="container space-1 space-top-lg-2 space-bottom-lg-3">
+      <div class="w-lg-65 text-center mx-lg-auto">
+      <span class="badge badge-soft-light badge-pill font-size-1 py-3 px-4 mb-3">
+        <ol class="breadcrumb breadcrumb-light breadcrumb-no-gutter mb-0">
+            <li class="breadcrumb-item">Notebook</li>
+            <li class="breadcrumb-item active" aria-current="page">New</li>
+          </ol>
+      </span>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- End Breadcrumb Section -->
+
+  <div class="container space-2 space-top-lg-0 mt-lg-n10">
     <div class="row">
       <div class="col-lg-4">
         <%= render "notebooks/notebook_sidebar" %>
+        <div id="stickyBlockEndPoint"></div>
       </div>
 
-      <div class="col-lg-8">
-        <div class="card">
+      <div id="stickyBlockStartPoint" class="col-lg-8">
+        <div  class="js-sticky-block card"
+              data-hs-sticky-block-options='{
+                   "parentSelector": "#stickyBlockStartPoint",
+                   "breakpoint": "md",
+                   "startPoint": "#stickyBlockStartPoint",
+                   "endPoint": "#stickyBlockEndPoint",
+                   "stickyOffsetTop": 12,
+                   "stickyOffsetBottom": 12
+                 }'>
           <div class="card-header">
-            <h5 class="card-title">Create new Notebook</h5>
+            <h5 class="card-title">Create New Notebook</h5>
           </div>
           <div class="card-body">
             <%= render 'form', notebook: @notebook %>
@@ -18,4 +43,12 @@
     </div>
   </div>
 </main>
-
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "libraries/hs-sticky-block.min" %>
+  <script type="text/javascript" charset="utf-8">
+      // initialization of sticky blocks
+      $('.js-sticky-block').each(function () {
+          var stickyBlock = new HSStickyBlock($(this)).init();
+      });
+  </script>
+<% end %>

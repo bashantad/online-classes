@@ -1,5 +1,21 @@
 <main id="content" role="main" class="bg-light">
-  <div class="container space-2 space-top-lg-2 mt-lg-n10">
+  <!-- Breadcrumb Section -->
+  <div class="bg-navy">
+    <div class="container space-1 space-top-lg-2 space-bottom-lg-3">
+      <div class="w-lg-65 text-center mx-lg-auto">
+      <span class="badge badge-soft-light badge-pill font-size-1 py-3 px-4 mb-3">
+        <ol class="breadcrumb breadcrumb-light breadcrumb-no-gutter mb-0">
+            <li class="breadcrumb-item">My Notes</li>
+            <li class="breadcrumb-item active" aria-current="page">Edit</li>
+          </ol>
+      </span>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- End Breadcrumb Section -->
+
+  <div class="container space-2 space-top-lg-0 mt-lg-n10">
     <div class="row">
       <div class="col-lg-4">
         <%= render "notes/note_sidebar" %>
@@ -8,13 +24,12 @@
       <div class="col-lg-8">
         <div class="card">
           <div class="card-header">
-            <h5 class="card-title">
-              <span>Edit note</span>
-              <span>
-                | <%= link_to 'Delete', notebook_note_path(@notebook, @note), method: :delete, data: { confirm: 'Are you sure you want to delete?' } %>
-              </span>
-              <span>
-                | <%= link_to 'Create New Note', new_notebook_note_path(@notebook) %>
+            <div class="media-body">
+              <h5 class="mb-0 card-title"><i class="fas fa-pencil-alt pt-1 mr-2 text-body"></i>Edit Note</h5>
+            </div>
+            <span>
+              <%= link_to 'Create New Note', new_notebook_note_path(@notebook), class:'btn btn-xs btn-primary mr-1'%>
+              <%= link_to 'Delete',  notebook_note_path(@notebook, @note), method: :delete, data: {confirm: 'Are you sure you want to delete?'}, class:'btn btn-xs btn-soft-danger' %>
               </span>
             </h5>
           </div>

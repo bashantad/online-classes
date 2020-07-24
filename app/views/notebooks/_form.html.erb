@@ -1,17 +1,23 @@
 <%= form_with(model: notebook, local: true) do |form| %>
   <% error_messages = notebook.errors.messages %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-    <% if error_messages[:title] %>
-      <div class="field-error">
-        <%= error_messages[:title][0] %>
-      </div>
-    <% end %>
+  <div class="row form-group">
+    <label class="col-sm-3 col-form-label input-label">
+      <%= form.label :title %>
+    </label>
+    <div class="col-sm-9">
+      <%= form.text_field :title, autofocus: true, autocomplete: "new-title", class: 'form-control', type: 'title' %>
+      <% if error_messages[:title] %>
+        <div class="field-error">
+          <%= error_messages[:title][0] %>
+        </div>
+      <% end %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="row align-items-center mb-5 ">
+    <div class="col-12 text-right">
+      <%= form.submit "Save", class: "btn btn-xs btn-primary" %>
+    </div>
   </div>
 <% end %>

@@ -1,13 +1,19 @@
 <div class="navbar-expand-lg navbar-expand-lg-collapse-block navbar-light">
   <div id="sidebarNav" class="collapse navbar-collapse navbar-vertical">
     <div class="card">
+      <div class="card-header">
+        <div class="media-body">
+          <h3><%= link_to @notebook.title, edit_notebook_path(@notebook) %></h3>
+        </div>
+      </div>
       <div class="card-body">
-        <h3><%= link_to @notebook.title, edit_notebook_path(@notebook) %> > Notes</h3>
+          <ul class="nav nav-sub nav-tabs nav-list-y-2 mb-4">
         <% @notes.each do |note| %>
-          <div>
-            <%= link_to note.title, edit_notebook_note_path(@notebook, note) %>
-          </div>
+            <li class="nav-item">
+              <%= link_to note.title, edit_notebook_note_path(@notebook, note), class:"nav-link"  %>
+            </li>
         <% end %>
+          </ul>
       </div>
     </div>
   </div>

@@ -1,26 +1,36 @@
 <%= form_with(model: [@notebook, note], local: true) do |form| %>
   <% error_messages = note.errors.messages %>
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-    <% if error_messages[:title] %>
-      <div class="field-error">
-        <%= error_messages[:title][0] %>
+  <div class="row form-group">
+      <label class="col-sm-3 col-form-label input-label">
+        <%= form.label :title %>
+      </label>
+      <div class="col-sm-9">
+        <%= form.text_field :title, autofocus: true, autocomplete: "new-title", class: 'form-control', type: 'title' %>
+        <% if error_messages[:title] %>
+          <div class="field-error">
+            <%= error_messages[:title][0] %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-    <% if error_messages[:description] %>
-      <div class="field-error">
-        <%= error_messages[:description][0] %>
+  <div class="row form-group">
+      <label class="col-sm-3 col-form-label input-label">
+        <%= form.label :description %>
+      </label>
+      <div class="col-sm-9">
+        <%= form.text_area :description, autofocus: true, autocomplete: "new-description", class: 'form-control', type: 'description' %>
+        <% if error_messages[:description] %>
+          <div class="field-error">
+            <%= error_messages[:description][0] %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="row align-items-center mb-2 ">
+    <div class="col-12 text-right">
+      <%= form.submit "Save", class: "btn btn-sm btn-primary" %>
+    </div>
   </div>
 <% end %>

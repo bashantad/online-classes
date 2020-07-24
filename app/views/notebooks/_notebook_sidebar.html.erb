@@ -2,11 +2,13 @@
   <div id="sidebarNav" class="collapse navbar-collapse navbar-vertical">
     <div class="card">
       <div class="card-body">
-        <% @notebooks.each do |notebook| %>
-          <div>
-              <%= link_to "#{notebook.title} (#{notebook.notes.count})", notebook_notes_path(notebook) %>
-            </div>
-        <% end %>
+        <ul class="nav nav-sub nav-sm nav-tabs nav-list-y-2 mb-4">
+          <% @notebooks.each do |notebook| %>
+            <li class="nav-item">
+              <%= link_to "#{notebook.title} (#{notebook.notes.count})", notebook_notes_path(notebook), class:"nav-link" %>
+            </li>
+          <% end %>
+        </ul>
       </div>
     </div>
   </div>
