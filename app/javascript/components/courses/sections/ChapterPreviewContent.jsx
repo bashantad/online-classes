@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ChapterContent = ({contentTitle, duration, preview}) => {
+const ChapterPreviewContent = ({contentTitle, duration, preview}) => {
     return (
         <div id="coursesCollapseOne" className="collapse show"
              aria-labelledby="coursesHeadingOne">
@@ -37,10 +37,10 @@ const ChapterContent = ({contentTitle, duration, preview}) => {
     )
 }
 
-ChapterContent.propTypes = {
+ChapterPreviewContent.propTypes = {
     contentTitle: PropTypes.string.isRequired,
     duration: PropTypes.string,
     preview: PropTypes.bool.isRequired,
 }
 
-export default ChapterContent;
+export default ChapterPreviewContent;

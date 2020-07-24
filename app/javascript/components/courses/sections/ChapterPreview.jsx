@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
-import ChapterContent from "./ChapterContent";
+import ChapterPreviewContent from "./ChapterPreviewContent";
 
-const Chapter = ({chapterTitle, chapterId, course_contents}) => {
+const ChapterPreview = ({chapterTitle, chapterId, course_contents}) => {
     return (
         <div className="card border mb-1">
             <div className="card-header card-collapse" id="coursesHeadingOne">
@@ -46,17 +46,17 @@ const Chapter = ({chapterTitle, chapterId, course_contents}) => {
             {
                 course_contents.map((course_content) => {
                     const {title, duration, preview, id} = course_content;
-                    return <ChapterContent contentTitle={title} duration={duration} key={`content-${chapterId}-${id}`} preview={preview}/>
+                    return <ChapterPreviewContent contentTitle={title} duration={duration} key={`content-${chapterId}-${id}`} preview={preview}/>
                 })
             }
         </div>
     )
 }
 
-Chapter.propTypes = {
+ChapterPreview.propTypes = {
     chapterTitle: PropTypes.string.isRequired,
     chapterId: PropTypes.number.isRequired,
     course_contents: PropTypes.array.isRequired,
 }
 
-export default Chapter;
+export default ChapterPreview;

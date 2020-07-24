@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Chapter from "./Chapter";
+import ChapterPreview from "./ChapterPreview";
 
-const CourseContent = ({chapters, lecture_count, duration}) => {
+const CourseSyllabus = ({chapters, lecture_count, duration}) => {
     return (
         <div className="border-top pt-7 mt-7 mb-7">
             <div className="row mb-4">
@@ -23,7 +23,7 @@ const CourseContent = ({chapters, lecture_count, duration}) => {
             {
                 chapters.map((chapter, index) => {
                     const {id, title, course_contents} = chapter;
-                    return <Chapter chapterTitle={title} chapterId={id} course_contents={course_contents} key={`chapter-${index}-content`}/>
+                    return <ChapterPreview chapterTitle={title} chapterId={id} course_contents={course_contents} key={`chapter-${index}-content`}/>
                 })
             }
 
@@ -40,10 +40,10 @@ const CourseContent = ({chapters, lecture_count, duration}) => {
     );
 };
 
-CourseContent.propTypes = {
+CourseSyllabus.propTypes = {
     chapters: PropTypes.array.isRequired,
     lecture_count: PropTypes.number.isRequired,
     duration: PropTypes.string.isRequired,
 }
 
-export default CourseContent;
+export default CourseSyllabus;

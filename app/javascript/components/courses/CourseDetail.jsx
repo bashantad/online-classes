@@ -6,7 +6,7 @@ import CourseHeader from "./sections/CourseHeader";
 import Sidebar from "./sections/Sidebar";
 import Learn from "./sections/Learn";
 import Description from "./sections/Description";
-import CourseContent from "./sections/CourseContent";
+import CourseSyllabus from "./sections/CourseSyllabus";
 import AboutInstructor from "./sections/AboutInstructor";
 import Review from "./sections/Review";
 
@@ -48,7 +48,7 @@ export class CourseDetail extends React.Component {
                         <div className="col-md-7 col-lg-8">
                             <Learn/>
                             <Description body={body}/>
-                            <CourseContent chapters={chapters} duration={duration} lecture_count={lecture_count}/>
+                            <CourseSyllabus chapters={chapters} duration={duration} lecture_count={lecture_count}/>
                             <AboutInstructor {...teacher}/>
                             <Review reviews={reviews}/>
                         </div>

@@ -1,14 +1,8 @@
 import React from "react";
-import {withRouter} from 'react-router';
+import {withRouter} from "react-router";
 import PropTypes from "prop-types";
 import courseApi from "../../apis/courseApi";
-import CourseHeader from "./sections/CourseHeader";
-import Sidebar from "./sections/Sidebar";
-import Learn from "./sections/Learn";
-import Description from "./sections/Description";
-import CourseContent from "./sections/CourseContent";
-import AboutInstructor from "./sections/AboutInstructor";
-import Review from "./sections/Review";
+import Chapter from "./classroom/Chapter";
 
 export class ClassRoom extends React.Component {
     state = {
@@ -31,10 +25,6 @@ export class ClassRoom extends React.Component {
         });
     }
 
-    handleEnroll = (courseId) => {
-
-    }
-
     submitReview = (rating, comment) => {
         courseApi.reviews(this._getCourseId()).create({
             rating: rating,
@@ -49,26 +39,33 @@ export class ClassRoom extends React.Component {
             });
     }
 
-    renderCourse = (course) => {
-        const {reviews, teacher, chapters, body, lecture_count, duration} = course;
+    navigateToCourseContent = (chapterId, courseContentId) => {
+
+    }
+
+    renderClassRoom = (course) => {
+        const {chapters, reviews} = course;
         return (
-            <>
-                <div className="position-relative">
-                    <CourseHeader {...course} reviewCount={reviews.length}/>
-                    <Sidebar {...course} handleEnroll={this.handleEnroll}/>
-                </div>
-                <div className="container space-top-2 space-top-md-1">
-                    <div className="row">
-                        <div className="col-md-7 col-lg-8">
-                            <Learn/>
-                            <Description body={body}/>
-                            <CourseContent chapters={chapters} duration={duration} lecture_count={lecture_count}/>
-                            <AboutInstructor {...teacher}/>
-                            <Review reviews={reviews}/>
-                        </div>
+            <div className='enrolled-classroom'>
+                <div className="row">
+                    <div className="col-md-5 col-lg-4">
+                        {
+                            chapters.map((chapter, index) => {
+                                const {course_contents, assignments, title, id} = chapter;
+                                return <Chapter key={`chapter-${index}-content`}
+                                                course_contents={course_contents}
+                                                assignments={assignments}
+                                                chapterId={id}
+                                                navigateToCourseContent={this.navigateToCourseContent}
+                                                chapterTitle={title} />
+                            })
+                        }
+                    </div>
+                    <div className="col-md-7 col-lg-8">
+                        Main body
                     </div>
                 </div>
-            </>
+            </div>
         )
     }
 
@@ -86,7 +83,7 @@ export class ClassRoom extends React.Component {
                 </div>
                 : <main id="content" role="main">
                     {
-                        course && this.renderCourse(course)
+                        course && this.renderClassRoom(course)
                     }
                     <div id="stickyBlockEndPoint"></div>
                     {
