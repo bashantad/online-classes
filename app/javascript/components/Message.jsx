@@ -209,71 +209,83 @@ export class Message extends React.Component {
         const activeConversation = this.findActiveConversation();
 
         return (
-            <div>
-                {
-                    conversations.length ?
-                        <Cable
-                            conversations={conversations}
-                            handleReceivedMessage={this.handleReceivedMessage}
-                        />
-                        : null
-                }
-                <div className='root'>
-                    <CssBaseline/>
-                        <nav>
-                            <Hidden lgUp implementation="css">
-                                <Drawer
-                                    variant="temporary"
-                                    open={this.state.mobileOpen}
-                                    onClose={this.handleDrawerToggle}
-                                    ModalProps={{
-                                        keepMounted: true, // Better open performance on mobile.
-                                    }}
-                                >
-                                    <PeopleInTheChat {...peopleInTheChatProps} handleClick={this.handleDrawerToggle}/>
-                                </Drawer>
-                            </Hidden>
-                        </nav>
-                    <Hidden mdDown><PeopleInTheChat {...peopleInTheChatProps}/></Hidden>
+            <>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-3">
+                            <PeopleInTheChat {...peopleInTheChatProps}/>
+                        </div>
+                        <div className="col-lg-9">
+                        </div>
 
-                    <main className='content'>
-                        {
-                            showNewGroupForm || showUpdateMembers ?
-                                <div>
-                                    {
-                                        showNewGroupForm ?
-                                            <NewGroupForm
-                                                courseId={this._getCourseId()}
-                                                handleSuccessGroupCreate={this.handleSuccessGroupCreate}
-                                                handleCancelGroupCreate={this.handleCancelGroupCreate}/>
-                                            : <UpdateMembers
-                                                courseId={this._getCourseId()}
-                                                allUsers={enrolledUsers}
-                                                conversation={activeConversation}
-                                                handleUpdateMembersSuccess={this.handleUpdateMembersSuccess}/>
-                                    }
-                                </div>
-                                : <div>
-                                    <div className='message-body'>
-                                        <Toolbar/>
-                                        <div className='message-main'>
-                                            <ActiveMessageArea
-                                                activeConversation={activeConversation}
-                                                currentUserId={currentUserId}
-                                                handleDrawerToggle={this.handleDrawerToggle}
-                                                userIdToNameMapping={userIdToNameMapping(enrolledUsers)}
-                                                handleGroupUpdate={this.handleGroupUpdate}
-                                            />
-                                        </div>
-                                        <div className='message-text'>
-                                            <NewMessage conversationId={activeConversationId}/>
-                                        </div>
-                                    </div>
-                                </div>
-                        }
-                    </main>
+                    </div>
                 </div>
-            </div>
+
+
+                {/*{*/}
+                {/*    conversations.length ?*/}
+                {/*        <Cable*/}
+                {/*            conversations={conversations}*/}
+                {/*            handleReceivedMessage={this.handleReceivedMessage}*/}
+                {/*        />*/}
+                {/*        : null*/}
+                {/*}*/}
+                {/*<div className='root'>*/}
+                {/*    <CssBaseline/>*/}
+                {/*        <nav>*/}
+                {/*            <Hidden lgUp implementation="css">*/}
+                {/*                <Drawer*/}
+                {/*                    variant="temporary"*/}
+                {/*                    open={this.state.mobileOpen}*/}
+                {/*                    onClose={this.handleDrawerToggle}*/}
+                {/*                    ModalProps={{*/}
+                {/*                        keepMounted: true, // Better open performance on mobile.*/}
+                {/*                    }}*/}
+                {/*                >*/}
+                {/*                    <PeopleInTheChat {...peopleInTheChatProps} handleClick={this.handleDrawerToggle}/>*/}
+                {/*                </Drawer>*/}
+                {/*            </Hidden>*/}
+                {/*        </nav>*/}
+                {/*    <Hidden mdDown><PeopleInTheChat {...peopleInTheChatProps}/></Hidden>*/}
+
+                {/*    <main className='content'>*/}
+                {/*        {*/}
+                {/*            showNewGroupForm || showUpdateMembers ?*/}
+                {/*                <div>*/}
+                {/*                    {*/}
+                {/*                        showNewGroupForm ?*/}
+                {/*                            <NewGroupForm*/}
+                {/*                                courseId={this._getCourseId()}*/}
+                {/*                                handleSuccessGroupCreate={this.handleSuccessGroupCreate}*/}
+                {/*                                handleCancelGroupCreate={this.handleCancelGroupCreate}/>*/}
+                {/*                            : <UpdateMembers*/}
+                {/*                                courseId={this._getCourseId()}*/}
+                {/*                                allUsers={enrolledUsers}*/}
+                {/*                                conversation={activeConversation}*/}
+                {/*                                handleUpdateMembersSuccess={this.handleUpdateMembersSuccess}/>*/}
+                {/*                    }*/}
+                {/*                </div>*/}
+                {/*                : <div>*/}
+                {/*                    <div className='message-body'>*/}
+                {/*                        <Toolbar/>*/}
+                {/*                        <div className='message-main'>*/}
+                {/*                            <ActiveMessageArea*/}
+                {/*                                activeConversation={activeConversation}*/}
+                {/*                                currentUserId={currentUserId}*/}
+                {/*                                handleDrawerToggle={this.handleDrawerToggle}*/}
+                {/*                                userIdToNameMapping={userIdToNameMapping(enrolledUsers)}*/}
+                {/*                                handleGroupUpdate={this.handleGroupUpdate}*/}
+                {/*                            />*/}
+                {/*                        </div>*/}
+                {/*                        <div className='message-text'>*/}
+                {/*                            <NewMessage conversationId={activeConversationId}/>*/}
+                {/*                        </div>*/}
+                {/*                    </div>*/}
+                {/*                </div>*/}
+                {/*        }*/}
+                {/*    </main>*/}
+                {/*</div>*/}
+            </>
         );
     }
 }
