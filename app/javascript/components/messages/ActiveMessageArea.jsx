@@ -2,19 +2,6 @@ import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import './ActiveMessageArea.scss';
 
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import Typography from '@material-ui/core/Typography';
-import Toolbar from '@material-ui/core/Toolbar';
-import Paper from '@material-ui/core/Paper';
-import SpeakerNotesOffIcon from '@material-ui/icons/SpeakerNotesOff';
-import IconButton from "@material-ui/core/IconButton";
-import MenuOpenIcon from '@material-ui/icons/MenuOpen';
-import Hidden from "@material-ui/core/Hidden";
-import InfoIcon from '@material-ui/icons/Info';
-import Popover from '@material-ui/core/Popover';
-import Button from '@material-ui/core/Button';
-import GroupIcon from '@material-ui/icons/Group';
-
 export default class ActiveMessageArea extends React.Component {
     constructor(props) {
         super(props);
@@ -57,15 +44,15 @@ export default class ActiveMessageArea extends React.Component {
                         {
                             isSenderChanged &&
                             <div className='person-name'>
-                                <AccountCircleIcon className='person-icon'/><span
-                                className='person-name-item'>{sender.full_name}</span>
+                                <i className="fas fa-user mr-2 mt-1 person-icon"></i>
+                               <span className='person-name-item'>{sender.full_name}</span>
                             </div>
                         }
                     </div>
                     <div className='message-item-wrapper'>
-                        <Paper className='message-content'>
+                        <div className='border message-content'>
                             {content}
-                        </Paper>
+                        </div>
                         <div className='message-created-time'>
                             {created_time}
                         </div>
@@ -103,64 +90,41 @@ export default class ActiveMessageArea extends React.Component {
 
         return (
             <Fragment>
-                {
-                    activeConversation && <Toolbar className='conversation-title'><Hidden lgUp>
-                        <IconButton
-                            color="inherit"
-                            aria-label="open drawer"
-                            edge="start"
-                            onClick={handleDrawerToggle}
-                        >
-                            <MenuOpenIcon/>
-                        </IconButton>
-                    </Hidden>
-                        <span className='message-header-icon'>
+                <div className="chat-header">
+                    {
+                        activeConversation && <div>
+                         <span className='message-header-icon'>
                              {
-                                 !activeConversation.title ? <AccountCircleIcon/> :<GroupIcon/>
+                                 !activeConversation.title ?  <i className="fas fa-user-circle mr-2 fa-lg"></i> :  <i className="fas fa-users mr-2 fa-lg"></i>
                              }
                         </span>
-
-
-                        <Typography variant="h5">
-                            {this.displayTitle()}
-                        </Typography>
-                        {
-                            activeConversation.title &&
+                                {this.displayTitle()}
+                            {
+                                activeConversation.title &&
                                 <span className='group-option'>
-                                    <IconButton color="primary"
-                                                aria-label="Info"
-                                                component="span"
-                                                onClick={this.handlePopover}>
-                                        <InfoIcon />
-                                    </IconButton>
+                                    <ul>
+                                        <li className="dropdown">
+                                             <button type="button" className="hs-mega-menu-invoker btn btn-primary btn-icon btn-xs" id="dropdownSubMenu" role="button" data-toggle="dropdown"
+                                                     aria-haspopup="true" aria-expanded="false">
+                                              <i className="fas fa-info"></i>
+                                            </button>
+                                            <div className="dropdown-menu" aria-labelledby="dropdownSubMenu">
+                                                <a type='button' className="dropdown-item" href="#" onClick={this.handleUpdate}>Update Members</a>
+                                                <a type='button' className="dropdown-item" href="#" onClick={this.handleUpdate}>Details</a>
+                                                <a type='button' className="dropdown-item text-danger" href="#" onClick={this.handleUpdate}>Delete</a>
+                                            </div>
+                                        </li>
+                                    </ul>
                                 </span>
-                        }
-                        <Popover
-                            id={id}
-                            open={open}
-                            anchorEl={this.state.anchorEl}
-                            onClose={this.handleClose}
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'center',
-                            }}
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'center',
-                            }}
-                            className='group-popover'
-                        >
-                            <div><Button color="primary" onClick={this.handleUpdate}>Update Members</Button></div>
-                            <div><Button color="primary">Details</Button></div>
-                            <div><Button color="secondary">Delete</Button></div>
-                        </Popover>
-                    </Toolbar>
-                }
-                <div className='active-conversation-wrapper'>
-                    <Toolbar className='dummy-toolbar'/>
-                    <div className='active-conversation-paper'>
+
+                            }
+                        </div>
+                    }
+
+                </div>
+                    <div>
                         {
-                            activeConversation && <div className='active-conversation'>
+                            activeConversation && <div className='active-conversation bg-soft-primary'>
                                 {
                                     Array.isArray(activeConversation.messages) && activeConversation.messages.length ?
                                         <div className='message-card'>
@@ -175,15 +139,18 @@ export default class ActiveMessageArea extends React.Component {
                                             }
                                         </div>
                                         : <div className='message-card no-message'>
-                                            <div className='no-message-card'><SpeakerNotesOffIcon/>
-                                                <div>No Messages</div>
+                                            <div className='no-message-card'>
+                                                <figure className="max-w-8rem mx-auto mb-2">
+                                                    <img className="img-fluid" src="../../assets/icons/icon-4.svg"
+                                                         alt="SVG"/>
+                                                </figure>
+                                                <div class='text-body'>No Messages</div>
                                             </div>
                                         </div>
                                 }
                                 <div ref={this.messagesEndRef}/>
                             </div>
                         }
-                    </div>
                 </div>
             </Fragment>
 

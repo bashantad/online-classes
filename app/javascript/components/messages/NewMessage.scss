@@ -1,8 +1,7 @@
 .new-message-box-container {
-	width: 100%;
-	padding: 2rem;
-	background-color: white;
-	border-top: 1px solid rgba(0, 0, 0, 0.12);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	.message-input {
 		border: 1px solid #eee;
 		height: 80px;
@@ -13,7 +12,7 @@
 	}
 }
 .send-btn{
-	margin-top: 10px;
+	text-align: right;
 
 	input{
 		display: none;

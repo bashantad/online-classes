@@ -1,17 +1,9 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {withRouter} from 'react-router';
 import {Link} from "react-router-dom";
 
 import './message.scss';
 
-import AppBar from '@material-ui/core/AppBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Hidden from '@material-ui/core/Hidden';
-import Drawer from '@material-ui/core/Drawer';
-import IconButton from '@material-ui/core/IconButton';
-import HomeIcon from '@material-ui/icons/Home';
 
 import PeopleInTheChat from '../components/messages/PeopleInTheChat';
 import ActiveMessageArea from '../components/messages/ActiveMessageArea';
@@ -175,6 +167,23 @@ export class Message extends React.Component {
             });
     }
 
+    displayTitle = () => {
+        const {currentUserId, userIdToNameMapping} = this.props;
+        const activeConversation = this.findActiveConversation();
+        if (!!activeConversation.title) {
+            return activeConversation.title;
+        } else {
+            const conversation_users = activeConversation.conversation_enrolled_users;
+            let userId = currentUserId;
+            if (conversation_users.length > 1) {
+                const conversation_user = conversation_users.find(conversation_user => conversation_user.user_id !== currentUserId);
+                userId = conversation_user.user_id;
+            }
+            return userIdToNameMapping[userId];
+        }
+    }
+
+
     handleDrawerToggle = () => {
         this.setState({
             mobileOpen: !this.state.mobileOpen
@@ -209,71 +218,59 @@ export class Message extends React.Component {
         const activeConversation = this.findActiveConversation();
 
         return (
-            <div>
-                {
-                    conversations.length ?
-                        <Cable
-                            conversations={conversations}
-                            handleReceivedMessage={this.handleReceivedMessage}
-                        />
-                        : null
-                }
-                <div className='root'>
-                    <CssBaseline/>
-                        <nav>
-                            <Hidden lgUp implementation="css">
-                                <Drawer
-                                    variant="temporary"
-                                    open={this.state.mobileOpen}
-                                    onClose={this.handleDrawerToggle}
-                                    ModalProps={{
-                                        keepMounted: true, // Better open performance on mobile.
-                                    }}
-                                >
-                                    <PeopleInTheChat {...peopleInTheChatProps} handleClick={this.handleDrawerToggle}/>
-                                </Drawer>
-                            </Hidden>
-                        </nav>
-                    <Hidden mdDown><PeopleInTheChat {...peopleInTheChatProps}/></Hidden>
-
-                    <main className='content'>
-                        {
-                            showNewGroupForm || showUpdateMembers ?
+            <>
+                <div className="main-layout">
+                    <aside class='col-lg-3 col-xl-3 border-right border-top p-0 bg-white'>
+                        <PeopleInTheChat {...peopleInTheChatProps}/>
+                    </aside>
+                    <main className='col-lg-9 col-xl-9 main-content border-top p-0'>
+                        <div className="chats">
+                            <div className="chat-body">
                                 <div>
+                                    {conversations.length ?
+                                        <Cable
+                                            conversations={conversations}
+                                            handleReceivedMessage={this.handleReceivedMessage}
+                                        />
+                                        : null
+                                    }
                                     {
-                                        showNewGroupForm ?
-                                            <NewGroupForm
-                                                courseId={this._getCourseId()}
-                                                handleSuccessGroupCreate={this.handleSuccessGroupCreate}
-                                                handleCancelGroupCreate={this.handleCancelGroupCreate}/>
-                                            : <UpdateMembers
-                                                courseId={this._getCourseId()}
-                                                allUsers={enrolledUsers}
-                                                conversation={activeConversation}
-                                                handleUpdateMembersSuccess={this.handleUpdateMembersSuccess}/>
+                                        showNewGroupForm || showUpdateMembers ?
+                                            <div>
+                                                {
+                                                    showNewGroupForm ?
+                                                        <NewGroupForm
+                                                            courseId={this._getCourseId()}
+                                                            handleSuccessGroupCreate={this.handleSuccessGroupCreate}
+                                                            handleCancelGroupCreate={this.handleCancelGroupCreate}/>
+                                                        : <UpdateMembers
+                                                            courseId={this._getCourseId()}
+                                                            allUsers={enrolledUsers}
+                                                            conversation={activeConversation}
+                                                            handleUpdateMembersSuccess={this.handleUpdateMembersSuccess}/>
+                                                }
+                                            </div>
+                                            : <div>
+                                                <div className="chat-content">
+                                                    <ActiveMessageArea
+                                                        activeConversation={activeConversation}
+                                                        currentUserId={currentUserId}
+                                                        handleDrawerToggle={this.handleDrawerToggle}
+                                                        userIdToNameMapping={userIdToNameMapping(enrolledUsers)}
+                                                        handleGroupUpdate={this.handleGroupUpdate}
+                                                    />
+                                                </div>
+                                                <div className="chat-footer border-top">
+                                                    <NewMessage conversationId={activeConversationId}/>
+                                                </div>
+                                            </div>
                                     }
                                 </div>
-                                : <div>
-                                    <div className='message-body'>
-                                        <Toolbar/>
-                                        <div className='message-main'>
-                                            <ActiveMessageArea
-                                                activeConversation={activeConversation}
-                                                currentUserId={currentUserId}
-                                                handleDrawerToggle={this.handleDrawerToggle}
-                                                userIdToNameMapping={userIdToNameMapping(enrolledUsers)}
-                                                handleGroupUpdate={this.handleGroupUpdate}
-                                            />
-                                        </div>
-                                        <div className='message-text'>
-                                            <NewMessage conversationId={activeConversationId}/>
-                                        </div>
-                                    </div>
-                                </div>
-                        }
+                            </div>
+                        </div>
                     </main>
                 </div>
-            </div>
+            </>
         );
     }
 }

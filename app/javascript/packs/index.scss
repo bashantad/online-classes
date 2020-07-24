@@ -387,6 +387,35 @@ ul.timeline > li:before {
   margin-bottom: 0;
 }
 
+.main-layout{
+  height: 100%;
+  display: flex;
+}
+
+.chat-side-nav{
+  max-width: inherit;
+}
+
+.side-nav-flex{
+  height: 100%;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.messages-main{
+  flex-grow: 1;
+}
+
+.main-layout .main {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  order: 3;
+  flex: 1;
+  background: #fff;
+}
+
 .qualification-input span{
   text-transform: capitalize;
   color: red;
@@ -394,6 +423,93 @@ ul.timeline > li:before {
   font-size: 12px;
   margin-left: 4px;
 }
+
+.message-main nav{
+  display: flex;
+}
+
+.main-layout .sidebar {
+  background: #f8f9fa;
+  flex-grow: 2;
+}
+
+.main-layout .chats {
+  display: flex;
+  height: 100%;
+  flex-grow: 1;
+}
+
+.chat-body {
+  display: flex;
+  flex-grow: 1;
+  flex-flow: column;
+  min-width: 0;
+  width: 100%;
+}
+
+.chat-body .chat-header {
+  padding: .75rem 1rem;
+  border-bottom: 1px solid #e5e9f2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+
+.chat-body .chat-content {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+@media (min-width: 768px) {
+  .chat-body .chat-footer {
+    padding: .75rem 2.25rem;
+  }
+}
+
+.sidebar {
+  position: relative;
+  top: 0;
+  right: 0;
+  z-index: 1003;
+  width: 23.4375rem;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: -5px 0px 12px rgba(103, 119, 136, 0.1);
+}
+
+#core-root{
+  height: 100%;
+}
+
+#main-container{
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+}
+
+@media (min-width: 1200px) {
+  .main-layout {
+    flex-direction: row;
+  }
+  .main-layout .sidebar {
+    flex-grow: 0;
+    width: 26.25rem;
+    border-right: 1px solid #e5e9f2;
+  }
+  .main-layout .main {
+    height: 100vh;
+  }
+}
+
+@media (max-width: 990px) {
+  .main-layout {
+    flex-direction: column;
+  }
+}
+
 @media only screen and (max-width: 600px) {
   .notification {
     margin-top: 3.5rem !important;

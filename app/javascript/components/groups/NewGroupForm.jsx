@@ -58,32 +58,31 @@ export default class NewGroupForm extends React.Component {
         const disabled = !title.trim();
         const hasError = !!errors;
         return (
-            <Container maxWidth="md">
-                <Toolbar/>
-                <Paper className='create-group-form'>
-                <div className='input-box'>
-                    <TextField  className='new-group-input'
-                           label="Enter a group name" variant="outlined"
-                           onChange={this.handleTitleChange}
-                           fullWidth={true}
+            <div className='card card-bordered create-group-form'>
+            <form>
+                <div className="form-group">
+                    <label className="input-label" htmlFor="groupName">Enter a group name</label>
+                    <input type="text" id="groupName" className="form-control" placeholder="John Doe" onChange={this.handleTitleChange} fullWidth={true}
                            error={hasError}
-                           value={title} />
+                           value={title}/>
                     {
                         hasError && this.renderError()
                     }
                 </div>
-                <Button variant="contained"
-                        color="primary"
-                        disabled={disabled}
-                        onClick={this.handleSendClick}>
-                    Create
-                </Button>
-                <Button color="secondary" className='group-cancel'
-                        onClick={this.handleCancelClick}>
-                    Cancel
-                </Button>
-                </Paper>
-            </Container>
+            </form>
+                <div className="flex-row">
+                    <button className='btn btn-primary btn-sm'
+                            color="primary"
+                            disabled={disabled}
+                            onClick={this.handleSendClick}>
+                        Create
+                    </button>
+                    <button className='btn btn-ghost-danger btn-sm group-cancel justify-content-end'
+                            onClick={this.handleCancelClick}>
+                        Cancel
+                    </button>
+                </div>
+            </div>
         );
     }
 }

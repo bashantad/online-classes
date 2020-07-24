@@ -17,10 +17,7 @@ ul.people-list {
         }
 
         .no-of-messages {
-            background: red;
-            color: #fff;
             padding:4px 8px;
-            border-radius: 50%;
             text-align: right;
         }
     }
@@ -63,13 +60,25 @@ ul.people-list {
 }
 
 .no-of-messages{
-    background: $accent-color;
-    color: white;
-    padding: 4px;
-    width: 24px;
-    height: 24px;
-    font-size: 12px;
-    border-radius: 12px;
+    float:right;
     text-align: center;
 }
 
+.aside-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+}
+
+.people:hover{
+    background-color: #ebf2ff;
+    border-radius: 0;
+    border-right: 2px solid rgba(55, 125, 255, 0.36);
+}
+
+.aside-active{
+    background-color: #ebf2ff;
+    border-radius: 0;
+    border-right: 2px solid $primary-color !important;
+}

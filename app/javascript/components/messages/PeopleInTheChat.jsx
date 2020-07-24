@@ -2,24 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './PeopleInTheChat.scss';
 
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
-import GroupIcon from '@material-ui/icons/Group';
-import Divider from '@material-ui/core/Divider';
-import Toolbar from '@material-ui/core/Toolbar';
-
 export default class PeopleInTheChat extends React.Component {
     handleConversationClick = (conversationId) => {
         this.props.handleConversationClick(conversationId);
     }
     handleUserClick = (mappingPersonToConversation, userId) => {
         const conversationId = mappingPersonToConversation[userId];
-        if(conversationId) {
+        if (conversationId) {
             this.handleConversationClick(conversationId);
         } else {
             this.props.handleUserClick(userId);
@@ -28,21 +17,21 @@ export default class PeopleInTheChat extends React.Component {
 
     _getMappingPersonToConversation = (individualConversations) => {
         const currentUserMapping = {};
-        const mapping =  individualConversations.reduce((accumulator, conversation) => {
+        const mapping = individualConversations.reduce((accumulator, conversation) => {
             const conversationEnrolledUsers = conversation.conversation_enrolled_users;
-            if(conversationEnrolledUsers.length === 1) {
+            if (conversationEnrolledUsers.length === 1) {
                 const conversationEnrolledUser = conversationEnrolledUsers[0];
                 currentUserMapping[conversationEnrolledUser.user_id] = conversationEnrolledUser.conversation_id;
             }
             conversationEnrolledUsers.forEach((convUser) => {
-                if(convUser.user_id !== this.props.currentUserId) {
+                if (convUser.user_id !== this.props.currentUserId) {
                     accumulator[convUser.user_id] = convUser.conversation_id
                 }
             })
             return accumulator;
         }, {});
         const currentUserKey = Object.keys(currentUserMapping)[0];
-        if(currentUserKey) {
+        if (currentUserKey) {
             mapping[currentUserKey] = currentUserMapping[currentUserKey];
         }
         return mapping;
@@ -57,21 +46,29 @@ export default class PeopleInTheChat extends React.Component {
         const {avatar_image_urls, full_name} = user;
         const imageUrl = avatar_image_urls["60x40"];
         return (
-            <ListItem button
-                      key={`person-${user.id}-conversation-${conversationId}`}
-                      onClick={() => this.handleUserClick(mappingPersonToConversation, user.id)}
-                      className='message-list-item'
-                      selected={this.getActiveClass(conversationId)}>
-                <ListItemIcon>
-                    {
-                        imageUrl ?
-                            <img src={imageUrl} className='image-circle'/>
-                            : <AccountCircleIcon/>
-                    }
-                </ListItemIcon>
-                <ListItemText primary={full_name} className="list-title"/>
-                    {this.renderNotification(conversationId)}
-            </ListItem>
+            <div
+                className={this.getActiveClass((conversationId)) ? "list-group people aside-active" : "list-group people"}>
+                <a type='button' className="ml-2 mr-2 p-2"
+                   key={`person-${user.id}-conversation-${conversationId}`}
+                   onClick={() => this.handleUserClick(mappingPersonToConversation, user.id)}
+                >
+                    <div className="p-2 row align-items-center">
+                        <div className="col-2">
+                            <span>
+                            {
+                                imageUrl ?
+                                    <img className="avatar-img" src={imageUrl} alt="Image Description"/>
+                                    : <i className="fas fa-user-circle fa-2x list-group-icon mr-4"></i>
+                            }
+                        </span>
+                        </div>
+                        <div className="col-10">
+                            <span className='mt-2 text-dark'>{full_name}</span>
+                            {this.renderNotification(conversationId)}
+                        </div>
+                    </div>
+                </a>
+            </div>
         );
     }
 
@@ -79,23 +76,33 @@ export default class PeopleInTheChat extends React.Component {
         const {messageNotificationMap} = this.props;
         return (
             messageNotificationMap[conversationId] &&
-                <span className='no-of-messages'>
-                    {messageNotificationMap[conversationId].length}
-                </span>
+            <span
+                className="badge badge-pill badge-primary no-of-messages"> {messageNotificationMap[conversationId].length}</span>
         );
     }
 
     renderGroupConversation = (conversation) => {
         const {title, id} = conversation;
         return (
-            <ListItem button key={id} onClick={() => this.handleConversationClick(id)} className='message-list-item' selected={this.getActiveClass(id)}>
-                <ListItemIcon>
-                    <GroupIcon />
-                </ListItemIcon>
-                <ListItemText primary={title} className="list-title" />
-                    {this.renderNotification(id)}
-            </ListItem>
-        );
+            <div
+                className={this.getActiveClass((id)) ? "list-group border-bottom people aside-active" : "list-group border-bottom people"}>
+                <a type='button' className="ml-2 mr-2 p-2"
+                   key={id}
+                   onClick={() => this.handleConversationClick(id)}>
+                    <div className="p-2 row align-items-center">
+                        <div className="col-2">
+                            <span>
+                            <i className="fas fa-users fa-2x mr-2"></i>
+                        </span>
+                        </div>
+                        <div className="col-10">
+                            <span className='mt-2 text-dark'>{title}</span>
+                            {this.renderNotification(id)}
+                        </div>
+                    </div>
+                </a>
+            </div>
+        )
     }
 
     render() {
@@ -104,27 +111,49 @@ export default class PeopleInTheChat extends React.Component {
         const mappingPersonToConversation = this._getMappingPersonToConversation(individualConversations);
 
         return (
-            <Drawer variant="permanent"  className="drawer people-in-chat">
-                <Toolbar />
-                <div className="drawer-container">
-                <List onClick={handleClick}>
-                    <ListItem button onClick={() => this.props.handleCreateCourseGroup()}  className='message-list-item'>
-                        <ListItemIcon><AddCircleIcon /></ListItemIcon>
-                        <ListItemText primary='Create a new group' className="list-title"/>
-                    </ListItem>
-                    <Divider />
-                {
-                    groupConversations.map(conversation => this.renderGroupConversation(conversation, messageNotificationMap))
-                }
-                    <Divider />
-                {
-                    enrolledUsers.map(user => this.renderIndividualPerson(user, mappingPersonToConversation))
-                }
-                </List>
+            <>
+                <div className="navbar-expand-lg navbar-expand-lg-collapse-block navbar-light">
+                    <button type="button" className="navbar-toggler btn btn-block border py-3"
+                            aria-label="Toggle navigation"
+                            aria-expanded="false"
+                            aria-controls="sidebarNavExample1"
+                            data-toggle="collapse"
+                            data-target="#peopleInChat">
+                            <span className="d-flex justify-content-between align-items-center">
+                              <span className="h5 mb-0">Chat</span>
+                               <span className="navbar-toggler-default mr-3">
+                                <i className="fas fa-xs fa-bars"></i>
+                              </span>
+                          <span className="navbar-toggler-toggled mr-3">
+                                 <i className="fas fa-xs fa-times"></i>
+                              </span>
+                            </span>
+                    </button>
+
+                    <div id="peopleInChat" className="collapse navbar-collapse">
+                        <div>
+                            <div>
+                                <div className='border-bottom aside-header'>
+                                    <span className='h5 text-dark ml-4'>Messages</span>
+                                    <button type="button" className="btn btn-xs btn-outline-primary mt-2 mb-2 mr-4 "
+                                            onClick={() => this.props.handleCreateCourseGroup()}>
+                                        <i className="fas fa-user-plus mr-2"></i>
+                                        Create New Group
+                                    </button>
+                                </div>
+                            </div>
+                            {
+                                groupConversations.map(conversation => this.renderGroupConversation(conversation, messageNotificationMap))
+                            }
+                            {
+                                enrolledUsers.map(user => this.renderIndividualPerson(user, mappingPersonToConversation))
+                            }
+                        </div>
+                    </div>
                 </div>
-            </Drawer>
-		);
-	}
+            </>
+        );
+    }
 }
 
 PeopleInTheChat.propTypes = {

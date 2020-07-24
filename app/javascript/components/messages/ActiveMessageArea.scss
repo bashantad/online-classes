@@ -7,7 +7,7 @@
   .message-content {
     padding: 10px;
     border-radius: 10px;
-    background: #eee;
+    background: #ffffff;
     display: inline-block;
     max-width: 70%;
   }
@@ -30,7 +30,7 @@
   text-align: right;
 
   .message-content {
-    background: $primary-color;
+    background: #377dff;
     margin: 0 10px;
     color: #fff;
     border-bottom-right-radius: 0;
@@ -45,11 +45,12 @@
 
 .person-name-item {
   margin-left: 4px;
+  margin-right: 12px;
 }
 
 .person-icon {
-  font-size: 1.8rem !important;
-  color: $primary-color;
+  //font-size: 1.8rem !important;
+  color: #377dff;
 }
 
 .sender-changed.conversation-item {
@@ -69,14 +70,12 @@
 }
 
 .message-card {
-  //margin: 5rem 1rem 1rem 1rem;
+  padding: 0px 10px;
 }
 
 .active-conversation {
-  display: flex;
-  height: 67vh;
+  height: 77vh;
   overflow: auto;
-  flex-flow: column nowrap;
 }
 
 .active-conversation-paper{
@@ -105,8 +104,11 @@
 }
 
 .group-option{
-  right: 34rem;
+  right: 2.5rem;
   position: absolute;
+  ul {
+    list-style: none;
+  }
 }
 
 .group-popover{
@@ -132,9 +134,25 @@
   line-height: 1px;
   margin-top: 2px;
   margin-right: 10px;
-  color: $primary-color;
 }
 
+@media (min-width: 1200px) {
+  .main-layout .navigation {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    order: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 4.375rem;
+    border-top: 0;
+    border-right: 1px solid #e5e9f2;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+  }
+}
 @media only screen and (max-width: 1500px) {
   .no-message-card {
     width: 20%;
@@ -169,10 +187,8 @@
 
 @media only screen and (max-width: 3000px) and ( min-height: 1100px)  {
   .active-conversation {
-    display: flex;
-    height: 75vh;
+    height: 77vh;
     overflow: auto;
-    flex-flow: column nowrap;
   }
 }
 

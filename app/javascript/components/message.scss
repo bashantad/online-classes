@@ -17,10 +17,6 @@
 .message-body{
 	display: flex;
 	flex-flow: column nowrap;
-	height: 100vh;
-}
-.message-main{
-	flex-grow: 1;
 }
 
 .message-text{
@@ -38,3 +34,8 @@
 	}
 }
 
+
+.main-layout{
+	height: 100%;
+	display: flex;
+}

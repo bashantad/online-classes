@@ -1,13 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Checkbox from '@material-ui/core/Checkbox';
-import Button from "@material-ui/core/Button";
-
 import conversationApi from "../../apis/conversationApi";
-import Container from "@material-ui/core/Container";
-import Toolbar from "@material-ui/core/Toolbar";
-import Paper from "@material-ui/core/Paper";
 
 export default class UpdateMembers extends React.Component {
     state = {
@@ -16,7 +10,7 @@ export default class UpdateMembers extends React.Component {
 
     updateMembers = (userId) => {
         const {enrolledUsersMap} = this.state;
-        if(enrolledUsersMap[userId]) {
+        if (enrolledUsersMap[userId]) {
             delete enrolledUsersMap[userId];
         } else {
             enrolledUsersMap[userId] = true;
@@ -28,14 +22,13 @@ export default class UpdateMembers extends React.Component {
 
     renderUser = (user, enrolledUsersMap) => {
         return (
-            <li className='enroll-user' key={`add-members-${user.id}`}>
-                <Checkbox
-                    onChange={() => this.updateMembers(user.id)}
-                    value={user.id}
-                    checked={enrolledUsersMap[user.id] === true}
-                />
-                {user.full_name}
-            </li>
+            <div className="form-group" key={`add-members-${user.id}`}>
+                <div className="custom-control custom-checkbox">
+                    <input type="checkbox" id={user.id} value={user.id} className="custom-control-input"
+                           onClick={() => this.updateMembers(user.id)} checked={enrolledUsersMap[user.id] === true}/>
+                    <label className="custom-control-label" htmlFor={user.id}>{user.full_name}</label>
+                </div>
+            </div>
         );
     }
     handleSave = () => {
@@ -49,14 +42,14 @@ export default class UpdateMembers extends React.Component {
 
     componentDidUpdate(prevProps) {
         const {conversation} = this.props;
-        if(prevProps.conversation !== conversation && conversation) {
+        if (prevProps.conversation !== conversation && conversation) {
             const enrolledUsersMap = this._getEnrolledUsersMap(conversation.conversation_enrolled_users);
             this.setState({enrolledUsersMap: enrolledUsersMap});
         }
     }
 
     _getEnrolledUsersMap = (users) => {
-        if(users.length > 0) {
+        if (users.length > 0) {
             return users.reduce((acc, item) => {
                 acc[item.user_id] = true;
                 return acc;
@@ -70,21 +63,19 @@ export default class UpdateMembers extends React.Component {
         const {allUsers} = this.props;
         const {enrolledUsersMap} = this.state;
         return (
-            <Container maxWidthSm>
-                <Toolbar/>
-                <Paper className='create-group-form'>
-                <ul>
-                    {
-                        allUsers.map(user => this.renderUser(user, enrolledUsersMap))
-                    }
-                </ul>
-                <Button variant="contained"
-                        color="primary"
-                        onClick={this.handleSave}>
-                    Save
-                </Button>
-                </Paper>
-            </Container>
+            <div className="card card-bordered create-group-form" style={{width: '300px'}}>
+                <div className="card-header text-dark">
+                    Members
+                </div>
+                <div className="card-body">
+                    <ul>
+                        {
+                            allUsers.map(user => this.renderUser(user, enrolledUsersMap))
+                        }
+                    </ul>
+                    <button type="button" className="btn btn-primary" onClick={this.handleSave}>Save</button>
+                </div>
+            </div>
         )
     }
 }
