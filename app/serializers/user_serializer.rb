@@ -1,4 +1,4 @@
-class UserSerializer < ActiveModel::Serializer
+class UserSerializer < ApplicationSerializer
   	attributes :id, :email, :full_name, :short_bio, :linkedin_url, :twitter_url, :is_teacher, :avatar_image_urls
   	has_many :conversations do
   		object.conversations.individuals

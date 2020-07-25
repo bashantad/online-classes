@@ -11,7 +11,7 @@ import Review from "./sections/Review";
 import WithLoading from "../common/WithLoading";
 
 export const CourseDetailBody = ({course, handleEnroll}) => {
-    const {reviews, teacher, chapters, body, lecture_count, duration, reviews_count} = course;
+    const {reviews, teacher, chapters, body_html, lecture_count, duration, reviews_count} = course;
     return <>
         <div className="position-relative">
             <CourseHeader {...course} reviewCount={reviews_count}/>
@@ -21,7 +21,7 @@ export const CourseDetailBody = ({course, handleEnroll}) => {
             <div className="row">
                 <div className="col-md-7 col-lg-8">
                     <Learn/>
-                    <Description body={body}/>
+                    <Description body={body_html}/>
                     <CourseSyllabus chapters={chapters} duration={duration}
                                     lecture_count={lecture_count}/>
                     <AboutInstructor {...teacher}/>

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const AssignmentBody = ({chapterTitle, question, instructions, points, due_date}) => {
+const AssignmentBody = ({chapterTitle, question, instructions_html, points, due_date}) => {
     return (
         <div className='assignment-body'>
             <h3>{chapterTitle}</h3>
@@ -9,7 +9,7 @@ const AssignmentBody = ({chapterTitle, question, instructions, points, due_date}
             <div>Total points: <span>{points}</span></div>
             <div>Due date: <span>{due_date}</span></div>
             <div>
-                {instructions}
+                {instructions_html}
             </div>
         </div>
     )
@@ -17,7 +17,7 @@ const AssignmentBody = ({chapterTitle, question, instructions, points, due_date}
 
 AssignmentBody.propTypes = {
     question: PropTypes.string.isRequired,
-    instructions: PropTypes.string.isRequired,
+    instructions_html: PropTypes.string.isRequired,
     points: PropTypes.number.isRequired,
     due_date: PropTypes.string.isRequired,
     chapterTitle: PropTypes.string.isRequired,

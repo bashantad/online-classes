@@ -1,3 +1,3 @@
-class CategorySerializer < ActiveModel::Serializer
+class CategorySerializer < ApplicationSerializer
   attributes :id, :title, :description
 end

@@ -19,18 +19,6 @@ class Course < ApplicationRecord
 		resized_images(self.cover_image)
 	end
 
-	def	original_price
-		price
-	end
-
-	def reviews_count
-		reviews.count
-	end
-
-	def	discounted_price
-		price - price * discount_percentage/100
-	end
-
 	def approve
 		unless self.conversations.exists?
 			_enroll_in_general_conversation(self.teacher)

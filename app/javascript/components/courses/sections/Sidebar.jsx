@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import GraphicsImage from '../../../../assets/images/components/graphics-1.svg';
 
-const Sidebar = ({original_price, discounted_price, id, course_highlights, handleEnroll}) => {
+const Sidebar = ({original_price, title, discounted_price, id, course_highlights_html, handleEnroll}) => {
     return (
         <div className="container space-top-md-2 position-md-absolute top-0 right-0 left-0">
             <div className="row justify-content-end">
@@ -27,9 +28,7 @@ const Sidebar = ({original_price, discounted_price, id, course_highlights, handl
                                                "autoplay": 1
                                              }
                                            }'>
-                                <img className="card-img-top"
-                                     src="../../assets/components/graphics-1.svg"
-                                     alt="Image Description"/>
+                                <img className="card-img-top" src={GraphicsImage} alt={title}/>
 
                                 <span
                                     className="video-player-btn video-player-centered text-center">
@@ -66,7 +65,7 @@ const Sidebar = ({original_price, discounted_price, id, course_highlights, handl
 
                             <div className="media text-body font-size-1 mb-2">
                                 <div className="media-body">
-                                    {course_highlights}
+                                    {course_highlights_html}
                                 </div>
                             </div>
                         </div>
@@ -85,9 +84,10 @@ const Sidebar = ({original_price, discounted_price, id, course_highlights, handl
 };
 
 Sidebar.propTypes = {
+    title: PropTypes.string.isRequired,
     discounted_price: PropTypes.number.isRequired,
     original_price: PropTypes.number.isRequired,
-    course_highlights: PropTypes.string.isRequired,
+    course_highlights_html: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
     handleEnroll: PropTypes.func.isRequired,
 }

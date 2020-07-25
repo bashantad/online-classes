@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CourseLandingBody = ({body}) => {
+const CourseLandingBody = ({body_html}) => {
     return (
         <div className='assignment-body'>
             <div>
-                {body}
+                {body_html}
             </div>
         </div>
     )
 }
 
 CourseLandingBody.propTypes = {
-    body: PropTypes.string.isRequired,
+    body_html: PropTypes.string.isRequired,
 }
 
 export default CourseLandingBody;

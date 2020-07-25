@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CourseContentBody = ({chapterTitle, title, description, duration}) => {
+const CourseContentBody = ({chapterTitle, title, description_html, duration}) => {
     return (
         <div>
             <h3>
@@ -11,7 +11,7 @@ const CourseContentBody = ({chapterTitle, title, description, duration}) => {
                 {title}
             </h4>
             <div>
-                {description}
+                {description_html}
             </div>
             <div>
                 {duration}
@@ -22,7 +22,7 @@ const CourseContentBody = ({chapterTitle, title, description, duration}) => {
 
 CourseContentBody.propTypes = {
     title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+    description_html: PropTypes.string.isRequired,
     duration: PropTypes.string.isRequired,
     chapterTitle: PropTypes.string.isRequired,
 }

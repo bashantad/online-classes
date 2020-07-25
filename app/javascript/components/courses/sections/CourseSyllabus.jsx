@@ -26,16 +26,6 @@ const CourseSyllabus = ({chapters, lecture_count, duration}) => {
                     return <ChapterPreview chapterTitle={title} chapterId={id} course_contents={course_contents} key={`chapter-${index}-content`}/>
                 })
             }
-
-            <div className="card border">
-                <a className="link link-collapse btn btn-link btn-sm btn-block card-btn text-center p-3"
-                   data-toggle="collapse" href="#collapseCoursesContentSection"
-                   role="button"
-                   aria-expanded="false" aria-controls="collapseCoursesContentSection">
-                    <span className="link-collapse-default">2 more sections</span>
-                    <span className="link-collapse-active">View less</span>
-                </a>
-            </div>
         </div>
     );
 };

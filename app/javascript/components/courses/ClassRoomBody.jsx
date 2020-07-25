@@ -6,7 +6,7 @@ import CourseLandingBody from "./classroom/body/CourseLandingBody";
 
 const ClassRoomBody = ({course, params}) => {
     const {assignmentId, courseContentId, chapterId} = params;
-    const {chapters, body} = course;
+    const {chapters, body_html} = course;
     if(!!chapterId) {
         const activeChapter = chapters.find(chapter => chapter.id === parseInt(chapterId));
         const chapterTitle = activeChapter.title;
@@ -20,7 +20,7 @@ const ClassRoomBody = ({course, params}) => {
             return null;
         }
     } else {
-        return <CourseLandingBody body={body} />
+        return <CourseLandingBody body_html={body_html} />
     }
 }
 
