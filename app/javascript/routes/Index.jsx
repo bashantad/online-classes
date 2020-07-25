@@ -18,7 +18,7 @@ export default (
       <Route path="/users/qualifications" exact component={Qualification} />
       <Route path="/enrolled_courses" exact component={EnrolledCourses} />
       <Route path="/classrooms/courses/:courseId" exact component={ClassRoom} />
-      <Route path="/classrooms/courses/:courseId/chapters/:chapterId/contents/:courseContentId" exact component={ClassRoomContent} />
+      <Route path="/classrooms/courses/:courseId/chapters/:chapterId/course_contents/:courseContentId" exact component={ClassRoomContent} />
       <Route path="/courses/:courseId" exact component={CourseDetail} />
       <Route path="/classroom/:id" exact component={Call} />
       <Route path="/call_history" exact component={CallHistory} />

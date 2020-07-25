@@ -28,7 +28,7 @@ export class ClassRoomContent extends React.Component {
 
     navigateToCourseContent = (chapterId, courseContentId) => {
         const params = this.props.match.params;
-        this.props.history.push(`/classrooms/courses/${params.courseId}/chapters/${chapterId}/contents/${courseContentId}`);
+        this.props.history.push(`/classrooms/courses/${params.courseId}/chapters/${chapterId}/course_contents/${courseContentId}`);
     }
 
     renderClassRoom = (course) => {

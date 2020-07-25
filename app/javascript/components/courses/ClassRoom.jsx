@@ -2,13 +2,13 @@ import React from "react";
 import {withRouter} from "react-router";
 import PropTypes from "prop-types";
 import courseApi from "../../apis/courseApi";
-import ChapterList from "./classroom/ChapterList";
+import ClassRoomBodyWithLoading from "./ClassRoomBody";
 
 export class ClassRoom extends React.Component {
     state = {
-        course: null,
+        course: {},
         loading: true,
-        errNotification: false,
+        errorMessage: '',
     }
 
     _getCourseId = () => {
@@ -21,7 +21,9 @@ export class ClassRoom extends React.Component {
             .then(response => {
                 this.setState({course: response, loading: false});
             }).catch(err => {
-            this.setState({loading: false, error: 'Something went wrong'});
+            this.setState({loading: false, errorMessage: 'Something went wrong'});
+        }).catch(err => {
+            this.setState({loading: false, errorMessage: 'Internal server error'});
         });
     }
 
@@ -40,61 +42,20 @@ export class ClassRoom extends React.Component {
     }
 
     navigateToCourseContent = (chapterId, courseContentId) => {
-        return this.props.history.push(`/classrooms/courses/${this._getCourseId()}/chapters/${chapterId}/assignments/${courseContentId}`);
+        return this.props.history.push(`/classrooms/courses/${this._getCourseId()}/chapters/${chapterId}/course_contents/${courseContentId}`);
     }
 
     navigateToAssignmentContent = (chapterId, assignmentId) => {
         return this.props.history.push(`./${this._getCourseId()}/chapters/${chapterId}/assignments/${assignmentId}`);
     }
 
-    renderClassRoom = (course) => {
-        const {chapters, reviews, body} = course;
-        return (
-            <div className='enrolled-classroom'>
-                <div className="row">
-                    <div className="col-md-5 col-lg-4">
-                        <ChapterList chapters={chapters}
-                                     navigateToCourseContent={this.navigateToCourseContent}
-                                     navigateToAssignmentContent={this.navigateToAssignmentContent}
-                        />
-                    </div>
-                    <div className="col-md-7 col-lg-8">
-                        {body}
-                    </div>
-                </div>
-                <div>
-                    {JSON.stringify(reviews)}
-                </div>
-            </div>
-        )
-    }
-
     render() {
-        const {course, errNotification, loading} = this.state;
-
-        return (
-            loading ?
-                <div className="course-cards mt-md-11">
-                    <div className="d-flex justify-content-center text-primary">
-                        <div className="spinner-border" role="status">
-                            <span className="sr-only">Loading...</span>
-                        </div>
-                    </div>
-                </div>
-                : <main id="content" role="main">
-                    {
-                        course && this.renderClassRoom(course)
-                    }
-                    <div id="stickyBlockEndPoint"></div>
-                    {
-                        errNotification ?
-                            <div className="alert alert-soft-danger custom-align-center" role="alert">
-                                {error}
-                            </div>
-                            : ''
-                    }
-                </main>
-        );
+        const {course, errorMessage, loading} = this.state;
+        return <ClassRoomBodyWithLoading isLoading={loading}
+                                         errorMessage={errorMessage}
+                                         {...course}
+                                         navigateToCourseContent={this.navigateToCourseContent}
+                                         navigateToAssignmentContent={this.navigateToAssignmentContent} />;
     }
 }
 
