@@ -16,6 +16,21 @@
   </div>
   <!-- End Breadcrumb Section -->
   <div class="container space-2 space-top-lg-0 mt-lg-n10">
+    <!-- Responsive Toggle Button -->
+    <button type="button" class="navbar-toggler btn btn-icon btn-sm rounde-circle d-lg-none"
+            aria-label="Toggle navigation"
+            aria-expanded="false"
+            aria-controls="sidebarNav"
+            data-toggle="collapse"
+            data-target="#sidebarNav">
+              <span class="navbar-toggler-default">
+                <i class="fas fa-bars"></i>
+              </span>
+      <span class="navbar-toggler-toggled">
+                 <i class="fas fa-times"></i>
+              </span>
+    </button>
+    <!-- End Responsive Toggle Button -->
     <div class="row">
       <div class="col-lg-4">
         <%= render "notes/note_sidebar" %>
