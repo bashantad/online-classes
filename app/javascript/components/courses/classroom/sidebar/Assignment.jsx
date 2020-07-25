@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const AssignmentContent = ({question, assignmentId, points, dueDate, chapterId, navigateToAssignmentContent}) => {
+const Assignment = ({question, assignmentId, points, dueDate, chapterId, navigateToAssignmentContent}) => {
     return (
         <div onClick={() => navigateToAssignmentContent(chapterId, assignmentId)}>
             {question} - {points} - {dueDate}
@@ -9,7 +9,7 @@ const AssignmentContent = ({question, assignmentId, points, dueDate, chapterId, 
     );
 }
 
-AssignmentContent.propTypes = {
+Assignment.propTypes = {
     question: PropTypes.string.isRequired,
     assignmentId: PropTypes.number.isRequired,
     points: PropTypes.number.isRequired,
@@ -18,4 +18,4 @@ AssignmentContent.propTypes = {
     navigateToAssignmentContent: PropTypes.func.isRequired,
 }
 
-export default AssignmentContent;
+export default Assignment;

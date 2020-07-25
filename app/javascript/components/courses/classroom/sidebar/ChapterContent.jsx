@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const ChapterContent = ({courseContentTitle, courseContentId, duration, chapterId, navigateToCourseContent}) => {
     return (
         <div onClick={() => navigateToCourseContent(chapterId, courseContentId)}>
-            {courseContentTitle} - {duration} - {chapterId}-{courseContentId}
+            {courseContentTitle} - {duration}
         </div>
     );
 }

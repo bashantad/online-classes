@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import WithLoading from "../common/WithLoading";
-import ChapterList from "./classroom/ChapterList";
+import ChapterList from "./classroom/sidebar/ChapterList";
 import ClassRoomBody from "./ClassRoomBody";
 
 export const ClassRoomContent = ({navigateToCourseContent, navigateToAssignmentContent, course, params}) => {

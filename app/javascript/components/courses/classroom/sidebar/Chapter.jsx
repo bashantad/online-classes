@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ChapterContent from "./ChapterContent";
-import AssignmentContent from "./AssignmentContent";
+import Assignment from "./Assignment";
 
 const Chapter = ({chapterTitle, chapterId, courseContents, assignments, navigateToCourseContent, navigateToAssignmentContent}) => {
     return (
@@ -31,13 +31,13 @@ const Chapter = ({chapterTitle, chapterId, courseContents, assignments, navigate
             {
                 assignments.map((assignment) => {
                     const {question, points, id, due_date} = assignment;
-                    return <AssignmentContent key={`content-${chapterId}-${id}`}
-                                              question={question}
-                                              points={points}
-                                              dueDate={due_date}
-                                              navigateToAssignmentContent={navigateToAssignmentContent}
-                                              chapterId={chapterId}
-                                              assignmentId={id} />
+                    return <Assignment key={`content-${chapterId}-${id}`}
+                                       question={question}
+                                       points={points}
+                                       dueDate={due_date}
+                                       navigateToAssignmentContent={navigateToAssignmentContent}
+                                       chapterId={chapterId}
+                                       assignmentId={id} />
                 })
             }
         </div>
