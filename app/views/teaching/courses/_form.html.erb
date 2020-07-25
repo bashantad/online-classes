@@ -125,6 +125,11 @@
       <div class="col-md-6 col-sm-12 form-group">
         <label class="input-label" for="full_name"> <%= form.label :cover_image %></label>
         <%= form.file_field :cover_image %>
+        <% if error_messages[:cover_image] %>
+          <div class="field-error">
+            <%= error_messages[:cover_image][0] %>
+          </div>
+        <% end %>
       </div>
 
       <div class="col-12 row align-items-center mb-5 mt-4">

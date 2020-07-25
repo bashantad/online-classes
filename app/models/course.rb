@@ -12,7 +12,7 @@ class Course < ApplicationRecord
 	scope :approved, -> { where(approved: true) }
 	has_rich_text :course_highlights
 	has_rich_text :body
-	validates :title, :body, :short_description, :course_highlights, :course_for, :price, :category, :duration, :no_of_lessons, :level, presence: true
+	validates :title, :body, :short_description, :course_highlights, :course_for, :price, :category, :duration, :no_of_lessons, :level, :cover_image, presence: true
 	validates_inclusion_of :discount_percentage, in: 0..100, allow_blank: true, message: 'should be between 0 and 100'
 
 	def image_urls
