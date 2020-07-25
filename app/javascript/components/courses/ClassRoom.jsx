@@ -2,7 +2,7 @@ import React from "react";
 import {withRouter} from "react-router";
 import PropTypes from "prop-types";
 import courseApi from "../../apis/courseApi";
-import ClassRoomBodyWithLoading from "./ClassRoomBody";
+import ClassRoomContentWithLoading from "./ClassRoomContent";
 
 export class ClassRoom extends React.Component {
     state = {
@@ -46,14 +46,15 @@ export class ClassRoom extends React.Component {
     }
 
     navigateToAssignmentContent = (chapterId, assignmentId) => {
-        return this.props.history.push(`./${this._getCourseId()}/chapters/${chapterId}/assignments/${assignmentId}`);
+        return this.props.history.push(`/classrooms/courses/${this._getCourseId()}/chapters/${chapterId}/assignments/${assignmentId}`);
     }
 
     render() {
         const {course, errorMessage, loading} = this.state;
-        return <ClassRoomBodyWithLoading isLoading={loading}
+        return <ClassRoomContentWithLoading isLoading={loading}
                                          errorMessage={errorMessage}
-                                         {...course}
+                                         course={course}
+                                         params={this.props.match.params}
                                          navigateToCourseContent={this.navigateToCourseContent}
                                          navigateToAssignmentContent={this.navigateToAssignmentContent} />;
     }
@@ -61,7 +62,7 @@ export class ClassRoom extends React.Component {
 
 ClassRoom.propTypes = {
     history: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired,
 };
 
 export default withRouter(ClassRoom);
-

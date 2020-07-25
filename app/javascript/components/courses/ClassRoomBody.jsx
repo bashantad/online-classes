@@ -1,37 +1,38 @@
 import React from "react";
 import PropTypes from "prop-types";
-import WithLoading from "../common/WithLoading";
-import ChapterList from "./classroom/ChapterList";
 
-export const ClassRoomBody = ({chapters, navigateToCourseContent, navigateToAssignmentContent, body, reviews}) => {
-    return (
-        <main id="content" role="main">
-            <div className='enrolled-classroom'>
-                <div className="row">
-                    <div className="col-md-5 col-lg-4">
-                        <ChapterList chapters={chapters}
-                                     navigateToCourseContent={navigateToCourseContent}
-                                     navigateToAssignmentContent={navigateToAssignmentContent}
-                        />
-                    </div>
-                    <div className="col-md-7 col-lg-8">
-                        {body}
-                    </div>
+const ClassRoomBody = ({course, params}) => {
+    const {assignmentId, courseContentId, chapterId} = params;
+    const {chapters, body} = course;
+    if(!!chapterId) {
+        const activeChapter = chapters.find(chapter => chapter.id === parseInt(chapterId));
+        if(!!assignmentId) {
+            const activeAssignment = activeChapter.assignments.find(assignment => assignment.id === parseInt(assignmentId));
+            return (
+                <div className="col-md-7 col-lg-8">
+                    <h3>{activeChapter.title}</h3>
+                    {JSON.stringify(activeAssignment)}
                 </div>
-                <div>
-                    {JSON.stringify(reviews)}
+            );
+        } else if(!!courseContentId) {
+            const activeCourseContent = activeChapter.course_contents.find(content => content.id === parseInt(courseContentId));
+            return (
+                <div className="col-md-7 col-lg-8">
+                    <h3>{activeChapter.title}</h3>
+                    {JSON.stringify(activeCourseContent)}
                 </div>
-            </div>
-        </main>
-    );
-};
+            );
+        } else {
+            return null;
+        }
+    } else {
+        return <div>{body}</div>
+    }
+}
 
 ClassRoomBody.propTypes = {
-    navigateToCourseContent: PropTypes.func.isRequired,
-    navigateToAssignmentContent: PropTypes.func.isRequired,
-    body: PropTypes.string,
-    reviews: PropTypes.array,
-    chapters: PropTypes.array,
-};
+    course: PropTypes.object.isRequired,
+    params: PropTypes.object.isRequired,
+}
 
-export default WithLoading(ClassRoomBody);
+export default ClassRoomBody;
