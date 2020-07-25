@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-	layout "theme"
 	before_action :authenticate_user!
 	before_action :_set_user
 

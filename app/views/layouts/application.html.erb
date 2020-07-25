@@ -4,22 +4,23 @@
   <title>
     VC Room
   </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <%= yield :stylesheet_includes %>
 </head>
-
 <body>
-
-<%= render "layouts/application_header" if user_signed_in? %>
-<%= render "layouts/flash_messages" %>
-<div class="mdc-drawer-app-content">
-  <main class="main-content" id="main-content">
+  <div id='main-container'>
+    <%= render "layouts/header" %>
+    <%= render "layouts/flash_messages" %>
     <%= yield %>
-  </main>
-</div>
-<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= render "layouts/footer" %>
+  </div>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= yield :javascript_includes %>
 </body>
 </html>

@@ -1,5 +1,4 @@
 /*
- *= require course.js
- *= require material.min.js
+ *= require theme.js
  *= require_self
  */

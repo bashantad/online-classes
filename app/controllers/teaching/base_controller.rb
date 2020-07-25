@@ -1,5 +1,4 @@
 class Teaching::BaseController < ApplicationController
-	layout "theme"
 	before_action :authenticate_user!
 
 	protected
