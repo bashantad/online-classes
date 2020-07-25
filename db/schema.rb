@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_25_191355) do
+ActiveRecord::Schema.define(version: 2020_07_25_195515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(version: 2020_07_25_191355) do
 
   create_table "assignments", force: :cascade do |t|
     t.string "question"
-    t.text "instructions"
     t.integer "points"
     t.datetime "due_date"
     t.bigint "chapter_id", null: false
@@ -104,7 +103,6 @@ ActiveRecord::Schema.define(version: 2020_07_25_191355) do
 
   create_table "course_contents", force: :cascade do |t|
     t.string "title"
-    t.text "description"
     t.string "duration"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -115,7 +113,6 @@ ActiveRecord::Schema.define(version: 2020_07_25_191355) do
 
   create_table "courses", force: :cascade do |t|
     t.string "title"
-    t.text "body"
     t.bigint "user_id", null: false
     t.string "website"
     t.text "course_for"
@@ -125,7 +122,6 @@ ActiveRecord::Schema.define(version: 2020_07_25_191355) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "approved", default: false
     t.text "short_description"
-    t.text "course_highlights"
     t.string "duration"
     t.integer "no_of_lessons"
     t.string "level"

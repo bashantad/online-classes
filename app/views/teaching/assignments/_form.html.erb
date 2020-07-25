@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-sm-12 form-group">
         <label class="input-label" for="full_name"><%= form.label :question %></label>
-        <%= form.text_field :question,autofocus: true, autocomplete: "question", class: 'form-control', type: 'text', id: 'question', placeholder: 'Question'  %>
+        <%= form.text_field :question, autofocus: true, autocomplete: "question", class: 'form-control', id: 'question', placeholder: 'Title of the Question'  %>
         <% if error_messages[:question] %>
           <div class="field-error">
             <%= error_messages[:question][0] %>
@@ -14,7 +14,7 @@
 
       <div class="col-sm-12 form-group">
         <label class="input-label" for="full_name"><%= form.label :instructions %></label>
-        <%= form.text_area :instructions,autofocus: true, autocomplete: "instructions", class: 'form-control', type: 'text', id: 'instructions', placeholder: 'Instructions'  %>
+        <%= form.rich_text_area :instructions, autofocus: true, autocomplete: "instructions", class: 'form-control', id: 'instructions', placeholder: 'Detailed instructions about the assignment'  %>
         <% if error_messages[:instructions] %>
           <div class="field-error">
             <%= error_messages[:instructions][0] %>
@@ -24,7 +24,7 @@
 
       <div class="col-sm-12 form-group">
         <label class="input-label" for="full_name"><%= form.label :points %></label>
-        <%= form.number_field :points,autofocus: true, autocomplete: "points", class: 'form-control', type: 'text', id: 'points', placeholder: 'Points'  %>
+        <%= form.number_field :points, autofocus: true, autocomplete: "points", class: 'form-control', id: 'points', placeholder: 'Total marks on this assessment'  %>
         <% if error_messages[:points] %>
           <div class="field-error">
             <%= error_messages[:points][0] %>
@@ -34,7 +34,7 @@
 
       <div class="col-sm-12 form-group">
         <label class="input-label" for="full_name"><%= form.label :due_date %></label>
-        <%= form.date_select :due_date,autofocus: true, autocomplete: "due_date", class: 'form-control', type: 'text', id: 'due_date' %>
+        <%= form.date_select :due_date, autofocus: true, autocomplete: "due_date", class: 'form-control', id: 'due_date' %>
         <% if error_messages[:due_date] %>
           <div class="field-error">
             <%= error_messages[:due_date][0] %>

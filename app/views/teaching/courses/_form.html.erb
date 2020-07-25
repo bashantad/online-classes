@@ -33,8 +33,18 @@
       </div>
 
       <div class="col-md-6 col-sm-12 form-group">
+        <label class="input-label" for="full_name"> <%= form.label :course_targeted_for %></label>
+        <%= form.text_area :course_for, autofocus: true, autocomplete: "course_for", class: 'form-control', type: 'text', id: 'course_for', placeholder: 'Your audience of the course' %>
+        <% if error_messages[:course_for] %>
+          <div class="field-error">
+            <%= error_messages[:course_for][0] %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="col-md-12 col-sm-12 form-group">
         <label class="input-label" for="full_name"> <%= form.label :course_highlights %></label>
-        <%= form.text_area :course_highlights, autofocus: true, autocomplete: "course_highlights", class: 'form-control', type: 'text', id: 'course_highlights', placeholder: 'Course Highlights' %>
+        <%= form.rich_text_area :course_highlights, autofocus: true, autocomplete: "course_highlights", class: 'form-control', id: 'course_highlights', placeholder: 'Highlight the main feature of this course' %>
         <% if error_messages[:course_highlights] %>
           <div class="field-error">
             <%= error_messages[:course_highlights][0] %>
@@ -42,9 +52,9 @@
         <% end %>
       </div>
 
-      <div class="col-md-6 col-sm-12 form-group">
-        <label class="input-label" for="full_name"> <%= form.label :body %></label>
-        <%= form.text_area :body, autofocus: true, autocomplete: "body", class: 'form-control', type: 'text', id: 'body', placeholder: 'Body' %>
+      <div class="col-md-12 col-sm-12 form-group">
+        <label class="input-label" for="full_name"> <%= form.label :course_description %></label>
+        <%= form.rich_text_area :body, autofocus: true, autocomplete: "body", class: 'form-control', type: 'text', id: 'body', placeholder: 'This is the landing page description of the course.' %>
         <% if error_messages[:body] %>
           <div class="field-error">
             <%= error_messages[:body][0] %>
@@ -53,18 +63,8 @@
       </div>
 
       <div class="col-md-6 col-sm-12 form-group">
-        <label class="input-label" for="full_name"> <%= form.label :course_for %></label>
-        <%= form.text_area :course_for, autofocus: true, autocomplete: "course_for", class: 'form-control', type: 'text', id: 'course_for', placeholder: 'Course For' %>
-        <% if error_messages[:course_for] %>
-          <div class="field-error">
-            <%= error_messages[:course_for][0] %>
-          </div>
-        <% end %>
-      </div>
-
-      <div class="col-md-6 col-sm-12 form-group">
         <label class="input-label" for="full_name"> <%= form.label :original_price %></label>
-        <%= form.text_field :price, autofocus: true, class: 'form-control', type: 'text', placeholder: 'Fees for the course' %>
+        <%= form.text_field :price, autofocus: true, class: 'form-control', type: 'text', placeholder: 'Fees for the course without discount' %>
         <% if error_messages[:price] %>
           <div class="field-error">
             <%= error_messages[:price][0] %>

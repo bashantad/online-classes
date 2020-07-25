@@ -18,7 +18,7 @@
 <!-- End Hero Section -->
 <div class="container space-1">
   <!-- Card -->
-  <div class="card mx-auto w-lg-60">
+  <div class="card mx-auto">
     <div class="card-header">
       <h5><%= @course_content.title %></h5>
       <span>
@@ -34,7 +34,7 @@
           <label for="description" class="col-sm-3 col-form-label input-label">Description</label>
 
           <div class="col-sm-9">
-            <input type="text" class="form-control-plaintext" name="description" id="description" value="<%= @course_content.description %>" readonly>
+            <%= @course_content.description %>
           </div>
         </div>
         <!-- End Form Group -->
