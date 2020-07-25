@@ -19,7 +19,7 @@
         <%= form.label :description %>
       </label>
       <div class="col-sm-9">
-        <%= form.text_area :description, autofocus: true, autocomplete: "new-description", class: 'form-control', type: 'description' %>
+        <%= form.rich_text_area :description %>
         <% if error_messages[:description] %>
           <div class="field-error">
             <%= error_messages[:description][0] %>
