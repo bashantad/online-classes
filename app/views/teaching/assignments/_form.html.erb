@@ -14,7 +14,7 @@
 
       <div class="col-sm-12 form-group">
         <label class="input-label" for="full_name"><%= form.label :instructions %></label>
-        <%= form.rich_text_area :instructions, autofocus: true, autocomplete: "instructions", class: 'form-control', id: 'instructions', placeholder: 'Detailed instructions about the assignment'  %>
+        <%= form.rich_text_area :instructions, autofocus: true, autocomplete: "instructions", id: 'instructions', placeholder: 'Detailed instructions about the assignment'  %>
         <% if error_messages[:instructions] %>
           <div class="field-error">
             <%= error_messages[:instructions][0] %>
