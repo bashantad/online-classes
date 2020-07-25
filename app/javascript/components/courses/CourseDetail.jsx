@@ -2,19 +2,13 @@ import React from "react";
 import {withRouter} from 'react-router';
 import PropTypes from "prop-types";
 import courseApi from "../../apis/courseApi";
-import CourseHeader from "./sections/CourseHeader";
-import Sidebar from "./sections/Sidebar";
-import Learn from "./sections/Learn";
-import Description from "./sections/Description";
-import CourseSyllabus from "./sections/CourseSyllabus";
-import AboutInstructor from "./sections/AboutInstructor";
-import Review from "./sections/Review";
+import CourseDetailBodyWithLoading from "./CourseDetailBody";
 
 export class CourseDetail extends React.Component {
     state = {
-        course: null,
+        course: {},
         loading: true,
-        errNotification: false,
+        errorMessage: '',
     }
 
     _getCourseId = () => {
@@ -27,7 +21,9 @@ export class CourseDetail extends React.Component {
             .then(response => {
                 this.setState({course: response, loading: false});
             }).catch(err => {
-            this.setState({loading: false, error: 'Something went wrong'});
+            this.setState({loading: false, errorMessage: 'Something went wrong'});
+        }).catch(err => {
+            this.setState({loading: false, errorMessage: 'Internal server error'});
         });
     }
 
@@ -35,55 +31,12 @@ export class CourseDetail extends React.Component {
 
     }
 
-    renderCourse = (course) => {
-        const {reviews, teacher, chapters, body, lecture_count, duration, reviews_count} = course;
-        return (
-            <>
-                <div className="position-relative">
-                    <CourseHeader {...course} reviewCount={reviews_count}/>
-                    <Sidebar {...course} handleEnroll={this.handleEnroll}/>
-                </div>
-                <div className="container space-top-2 space-top-md-1">
-                    <div className="row">
-                        <div className="col-md-7 col-lg-8">
-                            <Learn/>
-                            <Description body={body}/>
-                            <CourseSyllabus chapters={chapters} duration={duration} lecture_count={lecture_count}/>
-                            <AboutInstructor {...teacher}/>
-                            <Review reviews={reviews}/>
-                        </div>
-                    </div>
-                </div>
-            </>
-        )
-    }
-
     render() {
-        const {course, errNotification, loading} = this.state;
-
-        return (
-            loading ?
-                <div className="course-cards mt-md-11">
-                    <div className="d-flex justify-content-center text-primary">
-                        <div className="spinner-border" role="status">
-                            <span className="sr-only">Loading...</span>
-                        </div>
-                    </div>
-                </div>
-                : <main id="content" role="main">
-                    {
-                        course && this.renderCourse(course)
-                    }
-                    <div id="stickyBlockEndPoint"></div>
-                    {
-                        errNotification ?
-                            <div className="alert alert-soft-danger custom-align-center" role="alert">
-                                {error}
-                            </div>
-                            : ''
-                    }
-                </main>
-        );
+        const {course, errorMessage, loading} = this.state;
+        return <CourseDetailBodyWithLoading isLoading={loading}
+                                            errorMessage={errorMessage}
+                                            handleEnroll={this.handleEnroll}
+                                            course={course}/>
     }
 }
 
