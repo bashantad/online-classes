@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import WithLoading from "../common/WithLoading";
 import ChapterList from "./classroom/sidebar/ChapterList";
 import ClassRoomBody from "./ClassRoomBody";
+import ReviewList from "./sections/ReviewList";
 
 export const ClassRoomContent = ({navigateToCourseContent, navigateToAssignmentContent, course, params}) => {
     const {reviews, chapters} = course;
@@ -20,9 +21,7 @@ export const ClassRoomContent = ({navigateToCourseContent, navigateToAssignmentC
                         <ClassRoomBody params={params} course={course} />
                     </div>
                 </div>
-                <div>
-                    Reviews: {JSON.stringify(reviews)}
-                </div>
+                <ReviewList reviews={reviews} />
             </div>
         </main>
     );

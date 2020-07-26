@@ -29,6 +29,7 @@ categories = [
 category = categories.first
 user = User.find(1)
 user2 = User.find(2)
+file_path = Rails.root + "app/assets/images/default-course-image.jpeg"
 courses = [
     category.courses.create!(
       title: 'Python Programming',
@@ -41,7 +42,7 @@ courses = [
       website: 'https://google.com',
       price: 2000,
       course_for: 'Recent Graduates',
-      user_id: user2.id
+      user_id: user2.id,
     ),
     category.courses.create!(
       title: 'java Fundamentals',
@@ -54,7 +55,7 @@ courses = [
       website: 'https://google.com',
       price: 1200,
       course_for: 'Recent Graduates',
-      user_id: user.id
+      user_id: user.id,
     ),
     category.courses.create!(
       title: 'Machine Learning',
@@ -67,11 +68,27 @@ courses = [
       website: 'https://google.com',
       price: 2500,
       course_for: 'Recent Graduates',
-      user_id: user.id
+      user_id: user.id,
     )
 ]
 
+courses.each do |course|
+  course.cover_image.attach(io: File.open(file_path), filename: "default-course-file.jpeg")
+end
+
 course = courses.first
+course.reviews.create(
+    rating: 5,
+    user_id: users[3].id,
+    comment: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,'
+)
+
+course.reviews.create(
+    rating: 4,
+    user_id: users[4].id,
+    comment: 'quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non'
+)
+
 chapter1 = course.chapters.create(title: 'Chapter 1')
 chapter2 = course.chapters.create(title: 'Chapter 2')
 

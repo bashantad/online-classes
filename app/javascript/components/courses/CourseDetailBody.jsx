@@ -7,7 +7,7 @@ import Learn from "./sections/Learn";
 import Description from "./sections/Description";
 import CourseSyllabus from "./sections/CourseSyllabus";
 import AboutInstructor from "./sections/AboutInstructor";
-import Review from "./sections/Review";
+import ReviewList from "./sections/ReviewList";
 import WithLoading from "../common/WithLoading";
 
 export const CourseDetailBody = ({course, handleEnroll}) => {
@@ -25,7 +25,7 @@ export const CourseDetailBody = ({course, handleEnroll}) => {
                     <CourseSyllabus chapters={chapters} duration={duration}
                                     lecture_count={lecture_count}/>
                     <AboutInstructor {...teacher}/>
-                    <Review reviews={reviews}/>
+                    <ReviewList reviews={reviews}/>
                 </div>
             </div>
         </div>

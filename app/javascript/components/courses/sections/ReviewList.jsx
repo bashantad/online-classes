@@ -1,8 +1,7 @@
 import React from 'react';
 import {isEmpty} from '../../../utils/utils'
 
-const Review = (props) => {
-    const {reviews} = props
+const ReviewList = ({reviews}) => {
     return (
         <div className="border-top pt-7 mt-7">
             <div className="row justify-content-md-between align-items-md-center">
@@ -94,12 +93,10 @@ const Review = (props) => {
             }
 
             <div className="border-top text-center pt-5 mt-5">
-                <a className="btn btn-sm btn-outline-primary transition-3d-hover" href="#">See
-                    all
-                    Reviews</a>
+                <a className="btn btn-sm btn-outline-primary transition-3d-hover" href="#">See all Reviews</a>
             </div>
         </div>
     );
 };
 
-export default Review;
+export default ReviewList;
