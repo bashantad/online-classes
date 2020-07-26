@@ -1,11 +1,19 @@
 <div class="card mb-3 mb-lg-5">
- 	<div class="card-header">
-    	<h5 class="card-title">Education</h5>
-  	</div>
-  	<div class="card-body">
-		<% current_user.educations.each do |education| %>
-			<%= education.inspect %>
-			<br /> <br />===========
-		<% end %>
-  	</div>
+  <div class="card-header">
+    <h5 class="card-title">Education</h5>
+  </div>
+  <div class="card-body">
+    <ul class='timeline'>
+    <% current_user.educations.each do |education| %>
+      <li class='education-item'>
+        <span class="media-body mb-2">
+            <h3 class="mt-1 mb-1">
+              <%= education.name_of_institution %>, <span class='text-body h4'><%= education.year_start %> - <%= education.year_end.present? ? education.year_end : 'Present' %></span>
+            </h3>
+            <p class="mb-1"><%= education.title %>, <%= education.location %>, <%= education.country %> </p>
+        </span>
+      </li>
+    <% end %>
+    </ul>
+  </div>
 </div>

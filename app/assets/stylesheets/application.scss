@@ -3,3 +3,43 @@
  *= require actiontext
  *= require_self
  */
+
+ul.timeline {
+  list-style-type: none;
+  position: relative;
+
+  &:before {
+    content: ' ';
+    background: #d4d9df;
+    display: inline-block;
+    position: absolute;
+    left: 29px;
+    width: 1px;
+    height: 98%;
+    margin-top: 15px;
+    z-index: 400;
+  }
+
+  li {
+    margin: 20px 0;
+    padding-left: 20px;
+
+    &:before {
+      content: ' ';
+      background: white;
+      display: inline-block;
+      position: absolute;
+      border-radius: 50%;
+      border: 3px solid #377DFF;
+      left: 22px;
+      width: 15px;
+      height: 15px;
+      margin-top: 8px;
+      z-index: 400;
+    }
+  }
+}
+
+.course-create-bg {
+  background: asset_url('components/abstract-shapes-19.svg') center no-repeat;
+}
