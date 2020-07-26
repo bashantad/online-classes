@@ -9,12 +9,15 @@ const baseApi = {
             headers: HEADERS,
         });
     },
-    post: (url, data = {}) => {
+    post: (url, data = {}, method = 'POST') => {
         return fetch(fullUrl(url), {
-            method: "POST",
+            method: method,
             headers: HEADERS,
             body: JSON.stringify(data),
         });
+    },
+    put: (url, data = {}) => {
+        return baseApi.post(url, data, 'PUT');
     },
     delete: (url) => {
     	return fetch(fullUrl(url), {

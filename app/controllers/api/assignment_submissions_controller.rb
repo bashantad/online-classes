@@ -8,15 +8,17 @@ class Api::AssignmentSubmissionsController < Api::BaseController
   end
 
   def update
-    @assignment.assignment_submissions.find_by(user_id: current_user.id, id: submission_params[:id])
+    @submission = @assignment.assignment_submissions.find_by(user_id: current_user.id, id: params[:id])
     if @submission.submitted?
       render_error_message("Assignment was already submitted.")
     else
       @submission.description = submission_params[:description]
       if submission_params[:submit].present?
         @submission.submission_date = Time.now
+        @submission.save
         render_success_message("Assignment was successfully submitted.")
       else
+        @submission.save
         render_success_message("Assignment was successfully saved.")
       end
     end

@@ -14,6 +14,6 @@ class Api::BaseController < ApplicationController
 	private
 
 	def _course_id
-		params[:id] || params[:course_id]
+		params[:course_id] || params[:id]
 	end
 end

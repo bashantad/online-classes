@@ -5,7 +5,8 @@ const assignmentApi = {
         return baseApi.get(`/courses/${courseId}/chapters/${chapterId}/assignment_submissions/find_or_create?assignment_id=${assignmentId}`);
     },
     updateSubmission: (courseId, chapterId, assignmentId, submissionId, body) => {
-        return baseApi.post(`/courses/${courseId}/chapters/${chapterId}/assignment_submissions/${submissionId}?assignment_id=${assignmentId}`, body);
+        const data = {assignment_submission: body};
+        return baseApi.put(`/courses/${courseId}/chapters/${chapterId}/assignment_submissions/${submissionId}?assignment_id=${assignmentId}`, data);
     }
 }
 

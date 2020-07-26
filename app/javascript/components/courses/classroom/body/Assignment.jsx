@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import assignmentApi from "../../../../apis/assignmentApi";
 import AssignmentBodyWithLoading from "./AssignmentBody";
+import AssignmentSubmission from "./AssignmentSubmission";
 
-class Assignment extends React.Component {
+export default class Assignment extends React.Component {
     state = {
         assignmentSubmission: {},
         loading: false,
@@ -32,8 +33,8 @@ class Assignment extends React.Component {
     }
 
     render() {
-        const {chapterTitle, question, instructions_html, points, due_date} = this.props;
-        const {loading, errorMessage} = this.state;
+        const {chapterTitle, question, instructions_html, points, due_date, courseId, chapterId, id} = this.props;
+        const {loading, errorMessage, assignmentSubmission} = this.state;
         return (
             <>
                 <AssignmentBodyWithLoading isLoading={loading}
@@ -43,6 +44,14 @@ class Assignment extends React.Component {
                                 points={points}
                                 dueDate={due_date}
                                 instructionsHtml={instructions_html}/>
+
+                {
+                    Object.keys(assignmentSubmission).length > 0 && <AssignmentSubmission courseId={courseId}
+                                          chapterId={chapterId}
+                                          assignmentId={id}
+                                          description={assignmentSubmission.description_html}
+                                          submissionId={assignmentSubmission.id} />
+                }
             </>
 
         )
@@ -59,5 +68,3 @@ Assignment.propTypes = {
     due_date: PropTypes.string.isRequired,
     chapterTitle: PropTypes.string.isRequired,
 }
-
-export default Assignment;

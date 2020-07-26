@@ -15,11 +15,11 @@ const AssignmentBody = ({chapterTitle, question, points, dueDate, instructionsHt
 }
 
 AssignmentBody.propTypes = {
-    chapterTitle: PropTypes.any,
-    question: PropTypes.any,
-    points: PropTypes.any,
-    dueDate: PropTypes.any,
-    instructionsHtml: PropTypes.any
+    chapterTitle: PropTypes.string.isRequired,
+    question: PropTypes.string.isRequired,
+    points: PropTypes.number.isRequired,
+    dueDate: PropTypes.string.isRequired,
+    instructionsHtml: PropTypes.string.isRequired,
 };
 
 export default WithLoading(AssignmentBody);
