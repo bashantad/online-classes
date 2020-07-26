@@ -21,6 +21,7 @@ class User < ApplicationRecord
     has_many :reviews, -> { order(created_at: :desc) }
     has_many :notebooks
     has_many :notes
+    has_many :assignment_submissions
     has_one_attached :avatar_image, dependent: :destroy
 
     validate :acceptable_image

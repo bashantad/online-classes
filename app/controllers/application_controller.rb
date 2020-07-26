@@ -34,4 +34,12 @@ class ApplicationController < ActionController::Base
 	def is_call_join_url?
 		params[:path]&.match(CALL_JOIN_URL_PATTERN).present?
 	end
+
+	def render_success_message(message)
+		render json: {success: message}
+	end
+
+	def render_error_message(message)
+		render json: {error: message}
+	end
 end

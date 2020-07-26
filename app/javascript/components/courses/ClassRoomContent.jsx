@@ -21,7 +21,7 @@ export const ClassRoomContent = ({navigateToCourseContent, navigateToAssignmentC
                     </div>
                 </div>
                 <div>
-                    {JSON.stringify(reviews)}
+                    Reviews: {JSON.stringify(reviews)}
                 </div>
             </div>
         </main>

@@ -58,7 +58,12 @@ Rails.application.routes.draw do
 			get :conversation_details
 			collection do
 				get :enrolled
-			end
+      end
+      resources :chapters, only: [] do
+				resources :assignment_submissions, only: [:update] do
+					get :find_or_create, on: :collection
+				end
+      end
     end
 		resources :qualifications, only: [:index, :create, :update, :destroy]
 		resources :reviews
