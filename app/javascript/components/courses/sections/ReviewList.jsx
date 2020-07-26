@@ -8,18 +8,6 @@ const ReviewList = ({reviews}) => {
                 <div className="col-md-6">
                     <h3 className="mb-0">Reviews</h3>
                 </div>
-                <div className="col-md-6">
-                    <form className="input-group input-group-sm">
-                        <input type="search" className="form-control"
-                               placeholder="Search reviews"
-                               aria-label="Search reviews"/>
-                        <div className="input-group-append">
-                            <button type="button" className="btn btn-primary">
-                                <i className="fa fa-search"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
             </div>
             {isEmpty(reviews) ?
                 <div>

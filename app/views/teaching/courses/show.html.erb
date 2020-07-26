@@ -20,13 +20,19 @@
     <div class="card-header">
       <h5 class="card-title">Course Details</h5>
       <span>
-              <a href="<%= edit_teaching_course_path(@course) %>" class="btn btn-xs btn-no-focus btn-primary">
-            <i class="fas fa-pen mr-1"></i>
+        <a href="<%= @course.show_url %>" target="_blank">
+          Preview landing page
+        </a>&nbsp;&nbsp;
+        <a href="<%= @course.enrolled_page_url %>" target="_blank">
+          Preview course
+        </a>&nbsp;&nbsp;
+        <a href="<%= edit_teaching_course_path(@course) %>">
+          <i class="fas fa-pen mr-1"></i>
            Edit Course
-          </a>
-         <a href="<%= teaching_courses_path %>" class="btn btn-xs btn-no-focus btn-ghost-primary">
-           Back
-          </a>
+        </a>&nbsp;&nbsp;
+        <a href="<%= teaching_courses_path %>">
+          Back
+        </a>
       </span>
     </div>
 

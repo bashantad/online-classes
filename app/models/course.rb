@@ -38,6 +38,10 @@ class Course < ApplicationRecord
 		"/courses/#{self.id}"
 	end
 
+	def enrolled_page_url
+		"/classrooms/courses/#{self.id}"
+	end
+
 	def lecture_count
 		chapter_ids = self.chapters.collect(&:id)
 		CourseContent.where(chapter_id: chapter_ids).count

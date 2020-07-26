@@ -4,11 +4,19 @@ class Api::BaseController < ApplicationController
 	protected
 
 	def set_enrolled_course
-		@course = current_user.enrolled_courses.find(_course_id)
+		@course = current_user.enrolled_courses.find_by_id(_course_id)
+		return if @course.present?
+		set_owned_course
 	end
 
 	def set_approved_course
-		@course = Course.approved.find(_course_id)
+		@course = Course.approved.find_by_id(_course_id)
+		return if @course.present? || !user_signed_in?
+		set_owned_course
+	end
+
+	def set_owned_course
+		@course = current_user.courses.find(_course_id)
 	end
 
 	private
