@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import GraphicsImage from '../../../../assets/images/components/graphics-1.svg';
+import RenderHtml from "../../common/RenderHtml";
 
 const Sidebar = ({original_price, title, discounted_price, id, course_highlights_html, handleEnroll}) => {
     return (
@@ -65,7 +66,7 @@ const Sidebar = ({original_price, title, discounted_price, id, course_highlights
 
                             <div className="media text-body font-size-1 mb-2">
                                 <div className="media-body">
-                                    {course_highlights_html}
+                                    <RenderHtml body={course_highlights_html} />
                                 </div>
                             </div>
                         </div>

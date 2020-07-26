@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import RenderHtml from "../../../common/RenderHtml";
 
 const CourseContentBody = ({chapterTitle, title, description_html, duration}) => {
     return (
@@ -11,7 +12,7 @@ const CourseContentBody = ({chapterTitle, title, description_html, duration}) =>
                 {title}
             </h4>
             <div>
-                {description_html}
+                <RenderHtml body={description_html} />
             </div>
             <div>
                 {duration}

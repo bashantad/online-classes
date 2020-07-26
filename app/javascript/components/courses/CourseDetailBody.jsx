@@ -21,7 +21,7 @@ export const CourseDetailBody = ({course, handleEnroll}) => {
             <div className="row">
                 <div className="col-md-7 col-lg-8">
                     <Learn/>
-                    <Description body={body_html}/>
+                    <Description bodyHtml={body_html}/>
                     <CourseSyllabus chapters={chapters} duration={duration}
                                     lecture_count={lecture_count}/>
                     <AboutInstructor {...teacher}/>

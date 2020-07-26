@@ -40,7 +40,9 @@ export default class AssignmentSubmission extends React.Component {
         const {description} = this.state;
         return (
             <div className='assignment-submission'>
-                <textarea onChange={this.handleChange} value={description}></textarea>
+                <div>
+                    <textarea onChange={this.handleChange} value={description}></textarea>
+                </div>
                 <button onClick={this.saveAsDraft}>
                     Save as a draft
                 </button>

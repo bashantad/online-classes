@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import WithLoading from "../../../common/WithLoading";
+import RenderHtml from "../../../common/RenderHtml";
 
 const AssignmentBody = ({chapterTitle, question, points, dueDate, instructionsHtml}) => {
     return <div className='assignment-body'>
@@ -9,7 +10,7 @@ const AssignmentBody = ({chapterTitle, question, points, dueDate, instructionsHt
         <div>Total points: <span>{points}</span></div>
         <div>Due date: <span>{dueDate}</span></div>
         <div>
-            {instructionsHtml}
+            <RenderHtml body={instructionsHtml} />
         </div>
     </div>;
 }
