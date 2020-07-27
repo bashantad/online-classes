@@ -9,6 +9,7 @@ import CourseDetail from "../components/courses/CourseDetail";
 import EnrolledCourses from "../components/courses/EnrolledCourses";
 import ClassRoom from "../components/courses/ClassRoom";
 import Qualification from "../components/users/Qualification";
+import NotFoundPage from "../components/NotFoundPage";
 
 export default (
   <Router>
@@ -24,6 +25,7 @@ export default (
       <Route path="/call_history" exact component={CallHistory} />
       <Route path="/calls/:userId/join/:callingCode" exact component={VideoCallWrapper} />
       <Route path="/courses/:course_id/messages" exact component={MessageWrapper} />
+      <Route path="/*" exact component={NotFoundPage} />
     </Switch>
   </Router>
 );
