@@ -1,1 +1,9 @@
-Student submission here.
+Assignment submission
+
+<% @submissions.each do |submission|  %>
+  <div>
+    <%= submission.submission_date %>
+    <%= submission.user.full_name %>
+    <%= submission.description %>
+  </div>
+<% end %>

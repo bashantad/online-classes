@@ -29,6 +29,7 @@
               <td><%= assignment.due_date %></td>
               <td>
                 <%= link_to 'View', teaching_course_chapter_assignment_path(@course, chapter, assignment), class: 'btn btn-xs btn-soft-success' %>
+                <%= link_to "Submissions", teaching_course_chapter_assignment_answers_path(@course, chapter, assignment), class: 'btn btn-xs btn-soft-success' %>
                 <%= link_to 'Edit', edit_teaching_course_chapter_assignment_path(@course, chapter, assignment), class: 'btn btn-xs btn-soft-success' %>
                 <%= link_to 'Delete', teaching_course_chapter_assignment_path(@course, chapter, assignment), method: :delete, data: {confirm: 'Are you sure you want to delete?'}, class: 'btn btn-xs btn-soft-danger' %></td>
             </tr>

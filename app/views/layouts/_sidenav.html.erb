@@ -6,7 +6,8 @@
         <!-- Avatar -->
         <div class="d-none d-lg-block text-center mb-5">
           <div class="avatar avatar-xxl avatar-circle mb-3">
-            <img class="avatar-img" src="<%= asset_path("components/160x160/img22.jpg") %>" alt="Image Description">
+            <% profile_picture = current_user.avatar_image_urls['220x148'] ||  asset_path("components/160x160/img22.jpg") %>
+            <img class="avatar-img" src="<%= profile_picture %>" alt="Image Description">
             <span class="avatar-status avatar-lg-status">
                       <a type="button" class="avatar-status avatar-lg-status btn btn-xs btn-primary btn-icon" data-toggle="tooltip" data-placement="bottom" title="Change Profile Picture" href="<%= upload_users_path %>">
                       <i class="fas fa-camera"></i>

@@ -39,7 +39,7 @@ class Teaching::AssignmentsController < Teaching::BaseController
   end
 
   def answers
-
+    @submissions = @assignment.assignment_submissions
   end
 
   private
