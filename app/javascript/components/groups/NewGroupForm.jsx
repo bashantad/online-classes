@@ -59,17 +59,13 @@ export default class NewGroupForm extends React.Component {
         const hasError = !!errors;
         return (
             <div className='card card-bordered create-group-form'>
-            <form>
                 <div className="form-group">
                     <label className="input-label" htmlFor="groupName">Enter a group name</label>
-                    <input type="text" id="groupName" className="form-control" placeholder="John Doe" onChange={this.handleTitleChange} fullWidth={true}
-                           error={hasError}
-                           value={title}/>
+                    <input type="text" id="groupName" className="form-control" placeholder="Homework group" onChange={this.handleTitleChange} value={title} />
                     {
                         hasError && this.renderError()
                     }
                 </div>
-            </form>
                 <div className="flex-row">
                     <button className='btn btn-primary btn-sm'
                             color="primary"

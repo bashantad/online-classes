@@ -2,20 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import CourseHeader from "./sections/CourseHeader";
-import Sidebar from "./sections/Sidebar";
 import Learn from "./sections/Learn";
 import Description from "./sections/Description";
 import CourseSyllabus from "./sections/CourseSyllabus";
 import AboutInstructor from "./sections/AboutInstructor";
 import ReviewList from "./sections/ReviewList";
 import WithLoading from "../common/WithLoading";
+import Sidebar from "./sections/Sidebar";
 
-export const CourseDetailBody = ({course, handleEnroll}) => {
+export const CourseDetailBody = ({course, showEnrollmentForm, handleEnroll}) => {
     const {reviews, teacher, chapters, body_html, lecture_count, duration, reviews_count} = course;
     return <>
         <div className="position-relative">
             <CourseHeader {...course} reviewCount={reviews_count}/>
-            <Sidebar {...course} handleEnroll={handleEnroll}/>
+            <Sidebar course={course} handleEnroll={handleEnroll} showEnrollmentForm={showEnrollmentForm} />
         </div>
         <div className="container space-top-2 space-top-md-1">
             <div className="row">
@@ -34,6 +34,7 @@ export const CourseDetailBody = ({course, handleEnroll}) => {
 
 CourseDetailBody.propTypes = {
     course: PropTypes.object.isRequired,
+    showEnrollmentForm: PropTypes.bool.isRequired,
     handleEnroll: PropTypes.func.isRequired,
 };
 

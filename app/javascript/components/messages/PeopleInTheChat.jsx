@@ -46,18 +46,16 @@ export default class PeopleInTheChat extends React.Component {
         const {avatar_image_urls, full_name} = user;
         const imageUrl = avatar_image_urls["60x40"];
         return (
-            <div
-                className={this.getActiveClass((conversationId)) ? "list-group people aside-active" : "list-group people"}>
+            <div className={this.getActiveClass((conversationId)) ? "list-group people aside-active" : "list-group people"}
+                 key={`person-${user.id}-conversation-${conversationId}`}>
                 <a type='button' className="ml-2 mr-2 p-2"
-                   key={`person-${user.id}-conversation-${conversationId}`}
-                   onClick={() => this.handleUserClick(mappingPersonToConversation, user.id)}
-                >
+                   onClick={() => this.handleUserClick(mappingPersonToConversation, user.id)} >
                     <div className="p-2 row align-items-center">
                         <div className="col-2">
                             <span>
                             {
                                 imageUrl ?
-                                    <img className="avatar-img" src={imageUrl} alt="Image Description"/>
+                                    <img className="avatar-img" src={imageUrl} alt="Profile picture"/>
                                     : <i className="fas fa-user-circle fa-2x list-group-icon mr-4"></i>
                             }
                         </span>
@@ -85,9 +83,8 @@ export default class PeopleInTheChat extends React.Component {
         const {title, id} = conversation;
         return (
             <div
-                className={this.getActiveClass((id)) ? "list-group border-bottom people aside-active" : "list-group border-bottom people"}>
+                className={this.getActiveClass((id)) ? "list-group border-bottom people aside-active" : "list-group border-bottom people"} key={`group-conversation-${id}`}>
                 <a type='button' className="ml-2 mr-2 p-2"
-                   key={id}
                    onClick={() => this.handleConversationClick(id)}>
                     <div className="p-2 row align-items-center">
                         <div className="col-2">

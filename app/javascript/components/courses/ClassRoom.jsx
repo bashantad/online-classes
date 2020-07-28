@@ -21,10 +21,8 @@ export class ClassRoom extends React.Component {
             .then(response => {
                 this.setState({course: response, loading: false});
             }).catch(err => {
-            this.setState({loading: false, errorMessage: 'Something went wrong'});
-        }).catch(err => {
-            this.setState({loading: false, errorMessage: 'Internal server error'});
-        });
+                this.setState({loading: false, errorMessage: 'Internal server error'});
+            });
     }
 
     submitReview = (rating, comment) => {

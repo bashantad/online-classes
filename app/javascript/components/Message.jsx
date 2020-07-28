@@ -220,7 +220,7 @@ export class Message extends React.Component {
         return (
             <>
                 <div className="main-layout">
-                    <aside class='col-lg-3 col-xl-3 border-right border-top p-0 bg-white'>
+                    <aside className='col-lg-3 col-xl-3 border-right border-top p-0 bg-white'>
                         <PeopleInTheChat {...peopleInTheChatProps}/>
                     </aside>
                     <main className='col-lg-9 col-xl-9 main-content border-top p-0'>

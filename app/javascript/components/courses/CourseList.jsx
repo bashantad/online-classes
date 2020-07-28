@@ -14,7 +14,7 @@ export class CourseList extends React.Component {
     }
 
     handleEnroll = (courseId) => {
-
+        this.props.history.push(`/courses/${courseId}?enroll=from_courses`);
     };
 
     handleDetails = (courseId) => {

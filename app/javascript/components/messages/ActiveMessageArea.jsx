@@ -120,7 +120,6 @@ export default class ActiveMessageArea extends React.Component {
                             }
                         </div>
                     }
-
                 </div>
                     <div>
                         {
@@ -144,7 +143,7 @@ export default class ActiveMessageArea extends React.Component {
                                                     <img className="img-fluid" src="../../assets/icons/icon-4.svg"
                                                          alt="SVG"/>
                                                 </figure>
-                                                <div class='text-body'>No Messages</div>
+                                                <div className='text-body'>No Messages</div>
                                             </div>
                                         </div>
                                 }

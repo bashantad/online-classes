@@ -25,7 +25,7 @@ export default class UpdateMembers extends React.Component {
             <div className="form-group" key={`add-members-${user.id}`}>
                 <div className="custom-control custom-checkbox">
                     <input type="checkbox" id={user.id} value={user.id} className="custom-control-input"
-                           onClick={() => this.updateMembers(user.id)} checked={enrolledUsersMap[user.id] === true}/>
+                           onChange={() => this.updateMembers(user.id)} checked={enrolledUsersMap[user.id] === true}/>
                     <label className="custom-control-label" htmlFor={user.id}>{user.full_name}</label>
                 </div>
             </div>

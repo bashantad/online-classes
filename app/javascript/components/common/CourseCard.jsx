@@ -56,7 +56,10 @@ const CourseCard = ({course, handleButtonClick, handleDetails, isEnrolled}) => {
                             <span className="d-block h5 text-lh-sm mb-0">${discounted_price}</span>
                         </div>
                         <a className="btn btn-sm btn-primary transition-3d-hover text-white"
-                           onClick={() => handleButtonClick(id)}>
+                           onClick={(e) => {
+                               e.stopPropagation();
+                               handleButtonClick(id);
+                           }}>
                             {
                                 isEnrolled ? 'Goto Classroom' : 'Enroll Now'
                             }
