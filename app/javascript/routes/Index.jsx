@@ -10,6 +10,7 @@ import EnrolledCourses from "../components/courses/EnrolledCourses";
 import ClassRoom from "../components/courses/ClassRoom";
 import Qualification from "../components/users/Qualification";
 import NotFoundPage from "../components/NotFoundPage";
+import Courses from "../components/Courses";
 
 export default (
   <Router>
@@ -17,6 +18,7 @@ export default (
       <Route path="/" exact component={Home} />
       <Route path="/users/qualifications" exact component={Qualification} />
       <Route path="/enrolled_courses" exact component={EnrolledCourses} />
+      <Route path="/courses" exact component={Courses} />
       <Route path="/classrooms/courses/:courseId" exact component={ClassRoom} />
       <Route path="/classrooms/courses/:courseId/chapters/:chapterId/assignments/:assignmentId" exact component={ClassRoom} />
       <Route path="/classrooms/courses/:courseId/chapters/:chapterId/course_contents/:courseContentId" exact component={ClassRoom} />
