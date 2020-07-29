@@ -2,12 +2,18 @@ class Api::CallsController < Api::BaseController
   skip_before_action :authenticate_user!, only: [:join]
 
   def create
-    if current_user.is_within_call_limit?
+    set_enrolled_course if params[:course_id].present?
+
+    if @course && @course.calls.present?
+      call = @course.calls.first
+      render json: {calling_url: call.calling_url}
+    elsif current_user.is_within_call_limit?
       @retry_limit = 0
       call = _new_call_with_retry
+      call.course_id = params[:course_id]
       if call
         call.save
-        render json: call
+        render json: {calling_url: call.calling_url}
       else
         render json: {error: 'Call can not be initiated.'}
       end

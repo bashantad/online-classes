@@ -1,13 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
-import FormControl from '@material-ui/core/FormControl';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import SendIcon from '@material-ui/icons/Send';
-import Rating from '@material-ui/lab/Rating';
 import {isEmpty} from "../../utils/utils";
 
 import avatar from '../../../assets/images/components/160x160/img2.jpg'

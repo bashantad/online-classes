@@ -27,19 +27,26 @@ export class ClassRoom extends React.Component {
     }
 
     joinCall = () => {
-        callApi.create()
+        const {calling_url} = this.state.course;
+        if(!!calling_url) {
+            this.props.history.push(calling_url);
+        } else {
+            this.createAndJoinCall();
+        }
+
+    }
+
+    createAndJoinCall = () => {
+        callApi.create({course_id: this._getCourseId()})
             .then(res => res.json())
             .then(response => {
                 if(response.error) {
                     this.setState({error: response.error});
                 } else {
-                    const {user_id, calling_code} = response;
-                    const callUrl = `/calls/${user_id}/join/${calling_code}`
-                    this.props.history.push(callUrl);
+                    this.props.history.push(response.calling_url);
                 }
             });
     }
-
 
     joinMessages = () => {
         this.props.history.push(`/courses/${this._getCourseId()}/messages`);

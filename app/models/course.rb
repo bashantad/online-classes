@@ -8,6 +8,7 @@ class Course < ApplicationRecord
 	has_many :enrolled_users, through: :enrolled_course_users, source: :user
 	has_many :reviews, -> { order "created_at desc" }, as: :reviewable
 	has_many :chapters
+	has_many :calls
 	has_one_attached :cover_image, dependent: :destroy
 	scope :approved, -> { where(approved: true) }
 	has_rich_text :course_highlights

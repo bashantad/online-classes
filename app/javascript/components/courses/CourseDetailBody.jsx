@@ -6,7 +6,7 @@ import Learn from "./sections/Learn";
 import Description from "./sections/Description";
 import CourseSyllabus from "./sections/CourseSyllabus";
 import AboutInstructor from "./sections/AboutInstructor";
-import ReviewList from "./sections/ReviewList";
+import ReviewList from "../reviews/ReviewList";
 import WithLoading from "../common/WithLoading";
 import Sidebar from "./sections/Sidebar";
 

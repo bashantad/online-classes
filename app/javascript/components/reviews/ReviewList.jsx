@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import {isEmpty} from '../../../utils/utils'
+import {isEmpty} from '../../utils/utils'
 
-import noReview from '../../../../assets/images/icons/icon-4.svg'
-import avatar from '../../../../assets/images/components/160x160/img1.jpg'
-import NewReview from "../../reviews/NewReview";
+import noReview from '../../../assets/images/icons/icon-4.svg'
+import avatar from '../../../assets/images/components/160x160/img1.jpg'
+import NewReview from "./NewReview";
 
 const ReviewList = ({reviews, submitReview}) => {
     const [reviewShow, setReviewShow] = useState(false)

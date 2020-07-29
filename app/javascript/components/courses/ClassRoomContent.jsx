@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import WithLoading from "../common/WithLoading";
 import ChapterList from "./classroom/sidebar/ChapterList";
 import ClassRoomBody from "./ClassRoomBody";
-import ReviewList from "./sections/ReviewList";
+import ReviewList from "../reviews/ReviewList";
 
 export const ClassRoomContent = ({course, params, navigateToCourseContent, navigateToAssignmentContent, submitReview, joinCall, joinMessages}) => {
     const {reviews, chapters} = course;

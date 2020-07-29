@@ -1,8 +1,8 @@
 import baseApi from "./baseApi";
 
 const callApi = {
-    create: () => {
-        return baseApi.post('/calls', {});
+    create: (body) => {
+        return baseApi.post('/calls', body);
     },
     broadcast: (creatorId, callingCode, data) => {
         baseApi.post(`/calls/${creatorId}/join/${callingCode}`, data);

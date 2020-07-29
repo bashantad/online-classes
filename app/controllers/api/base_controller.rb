@@ -16,7 +16,7 @@ class Api::BaseController < ApplicationController
 	end
 
 	def set_owned_course
-		@course = current_user.courses.find(_course_id)
+		@course = current_user.courses.find_by_id(_course_id)
 	end
 
 	private
