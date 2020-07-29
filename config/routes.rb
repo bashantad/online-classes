@@ -56,6 +56,7 @@ Rails.application.routes.draw do
 				post :update_members
 			end
 			get :conversation_details
+			post :enrollment_request
 			collection do
 				get :enrolled
       end

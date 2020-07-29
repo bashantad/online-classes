@@ -1,30 +1,21 @@
-import {HEADERS, API_ROOT} from '../constants';
+import baseApi from "./baseApi";
 import reviewApi from './reviewApi';
 
 const courseApi = {
 	getById: (id) => {
-		return fetch(`${API_ROOT}/courses/${id}`, {
-			method: 'GET',
-			headers: HEADERS
-		});
+		return baseApi.get(`/courses/${id}`);
 	},
 	getApprovedCourses: () => {
-		return fetch(`${API_ROOT}/courses`, {
-			method: 'GET',
-			headers: HEADERS
-		});
+		return baseApi.get('/courses');
 	},
 	getEnrolledCourses: () => {
-		return fetch(`${API_ROOT}/courses/enrolled`, {
-			method: 'GET',
-			headers: HEADERS
-		});
+		return baseApi.get('/courses/enrolled');
 	},
 	getConversationDetails: (id) => {
-		return fetch(`${API_ROOT}/courses/${id}/conversation_details`, {
-			method: 'GET',
-			headers: HEADERS
-		});
+		return baseApi.get(`/courses/${id}/conversation_details`);
+	},
+	sendEnrollmentRequest: (id, body) => {
+		return baseApi.post(`/courses/${id}/enrollment_request`, body);
 	},
 	reviews: (id) => {
 		return reviewApi({reviewable_type: 'course',  reviewable_id: id});

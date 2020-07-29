@@ -14,18 +14,22 @@ export const CourseDetailBody = ({course, showEnrollmentForm, handleEnroll}) => 
     const {reviews, teacher, chapters, body_html, lecture_count, duration, reviews_count} = course;
     return <>
         <div className="position-relative">
-            <CourseHeader {...course} reviewCount={reviews_count}/>
-            <Sidebar course={course} handleEnroll={handleEnroll} showEnrollmentForm={showEnrollmentForm} />
+            <CourseHeader {...course}
+                          reviewCount={reviews_count} />
+            <Sidebar course={course}
+                     showEnrollmentForm={showEnrollmentForm}
+                     handleEnroll={handleEnroll} />
         </div>
         <div className="container space-top-2 space-top-md-1">
             <div className="row">
                 <div className="col-md-7 col-lg-8">
                     <Learn/>
-                    <Description bodyHtml={body_html}/>
-                    <CourseSyllabus chapters={chapters} duration={duration}
-                                    lecture_count={lecture_count}/>
-                    <AboutInstructor {...teacher}/>
-                    <ReviewList reviews={reviews}/>
+                    <Description bodyHtml={body_html} />
+                    <CourseSyllabus chapters={chapters}
+                                    duration={duration}
+                                    lecture_count={lecture_count} />
+                    <AboutInstructor {...teacher} />
+                    <ReviewList reviews={reviews} />
                 </div>
             </div>
         </div>

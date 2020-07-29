@@ -20,7 +20,7 @@ const Sidebar = ({course, handleEnroll, showEnrollmentForm}) => {
                                      }'>
                         {
                             showEnrollmentForm ?
-                                <EnrollmentConfirmation />
+                                <EnrollmentConfirmation courseId={course.id}/>
                                 : <CourseSidebar {...course} handleEnroll={handleEnroll}/>
                         }
                     </div>
