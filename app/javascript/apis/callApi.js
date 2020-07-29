@@ -1,24 +1,14 @@
-import {HEADERS, API_ROOT} from '../constants';
+import baseApi from "./baseApi";
 
 const callApi = {
     create: () => {
-        return fetch(`${API_ROOT}/calls`, {
-            method: "POST",
-            headers: HEADERS,
-        });
+        return baseApi.post('/calls', {});
     },
     broadcast: (creatorId, callingCode, data) => {
-        fetch(`${API_ROOT}/calls/${creatorId}/join/${callingCode}`, {
-            method: "POST",
-            headers: HEADERS,
-            body: JSON.stringify(data)
-        });
+        baseApi.post(`/calls/${creatorId}/join/${callingCode}`, data);
     },
     checkCallingUrl: (creatorId, callingCode) => {
-        return fetch(`${API_ROOT}/calls/${creatorId}/join/${callingCode}`, {
-            method: "GET",
-            headers: HEADERS,
-        });
+        return baseApi.get(`/calls/${creatorId}/join/${callingCode}`)
     }
 }
 

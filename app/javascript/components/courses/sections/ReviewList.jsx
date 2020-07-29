@@ -52,54 +52,52 @@ const ReviewList = ({reviews, submitReview}) => {
                     <div className="mx-auto custom-align-center">No Reviews</div>
                 </div> :
                 reviews && reviews.map(review => (
-                    <>
-                        <div className="pt-5 mt-5" key={review.id}>
-                            <div className="row mb-2">
-                                <div className="col-lg-4 mb-3 mb-lg-0">
+                    <div className="pt-5 mt-5" key={`review-item-${review.id}`}>
+                        <div className="row mb-2">
+                            <div className="col-lg-4 mb-3 mb-lg-0">
 
-                                    <div className="media align-items-center">
-                                        <div className="avatar avatar-circle mr-3">
-                                            <img className="avatar-img"
-                                                 src={isEmpty(review.user.avatar_image_urls) ? avatar : review.user.avatar_image_urls['60x40']}
-                                                 alt={review.user.full_name}/>
-                                        </div>
-                                        <div className="media-body">
-                                            <span className="d-block text-body font-size-1">April 3, 2019</span>
-                                            <h4 className="mb-0">{review.user.full_name}</h4>
-                                        </div>
+                                <div className="media align-items-center">
+                                    <div className="avatar avatar-circle mr-3">
+                                        <img className="avatar-img"
+                                             src={isEmpty(review.user.avatar_image_urls) ? avatar : review.user.avatar_image_urls['60x40']}
+                                             alt={review.user.full_name}/>
                                     </div>
-
+                                    <div className="media-body">
+                                        <span className="d-block text-body font-size-1">April 3, 2019</span>
+                                        <h4 className="mb-0">{review.user.full_name}</h4>
+                                    </div>
                                 </div>
 
-                                <div className="col-lg-8">
-                                    <ul className="list-inline mb-2 text-warning">
-                                        <li className="list-inline-item mx-0">
-                                            <i className='fa fa-star'></i>
-                                        </li>
-                                        <li className="list-inline-item mx-0">
-                                            <i className='fa fa-star'></i>
-                                        </li>
-                                    </ul>
-
-                                    <p>{review.comment}</p>
-                                </div>
                             </div>
 
-                            <div className="font-size-1">
-                                <span>Was this helpful?</span>
-                                <span className="ml-2">
-                                      <a className="btn btn-xs btn-outline-secondary" href="#">Yes</a>
-                                    </span>
-                                <span className="ml-2">
-                                      <a className="btn btn-xs btn-outline-secondary" href="#">No</a>
-                                    </span>
-                                <span className="ml-3">
-                                      <i className="far fa-flag text-body mr-1"></i>
-                                      <a className="text-muted" href="#">Report</a>
-                                    </span>
+                            <div className="col-lg-8">
+                                <ul className="list-inline mb-2 text-warning">
+                                    <li className="list-inline-item mx-0">
+                                        <i className='fa fa-star'></i>
+                                    </li>
+                                    <li className="list-inline-item mx-0">
+                                        <i className='fa fa-star'></i>
+                                    </li>
+                                </ul>
+
+                                <p>{review.comment}</p>
                             </div>
                         </div>
-                    </>
+
+                        <div className="font-size-1">
+                            <span>Was this helpful?</span>
+                            <span className="ml-2">
+                                  <a className="btn btn-xs btn-outline-secondary" href="#">Yes</a>
+                                </span>
+                            <span className="ml-2">
+                                  <a className="btn btn-xs btn-outline-secondary" href="#">No</a>
+                                </span>
+                            <span className="ml-3">
+                                  <i className="far fa-flag text-body mr-1"></i>
+                                  <a className="text-muted" href="#">Report</a>
+                                </span>
+                        </div>
+                    </div>
                 ))
             }
         </div>

@@ -5,7 +5,7 @@ import ChapterList from "./classroom/sidebar/ChapterList";
 import ClassRoomBody from "./ClassRoomBody";
 import ReviewList from "./sections/ReviewList";
 
-export const ClassRoomContent = ({navigateToCourseContent, navigateToAssignmentContent, course, params, submitReview}) => {
+export const ClassRoomContent = ({course, params, navigateToCourseContent, navigateToAssignmentContent, submitReview, joinCall, joinMessages}) => {
     const {reviews, chapters} = course;
     return (
         <main id="content" role="main" className='container'>
@@ -15,12 +15,12 @@ export const ClassRoomContent = ({navigateToCourseContent, navigateToAssignmentC
                     aria-controls="sidebarNav"
                     data-toggle="collapse"
                     data-target="#sidebarNav">
-                      <span className="navbar-toggler-default">
-                        <i className="fas fa-bars"></i>
-                      </span>
-                <span className="navbar-toggler-toggled">
-                         <i className="fas fa-times"></i>
-              </span>
+                        <span className="navbar-toggler-default">
+                            <i className="fas fa-bars"></i>
+                        </span>
+                        <span className="navbar-toggler-toggled">
+                            <i className="fas fa-times"></i>
+                        </span>
             </button>
 
             <div className='enrolled-classroom space-top-lg-2'>
@@ -30,6 +30,14 @@ export const ClassRoomContent = ({navigateToCourseContent, navigateToAssignmentC
                             <div id="sidebarNav" className="collapse navbar-collapse navbar-vertical">
                                 <div className="card">
                                     <div className="card-body">
+                                        <div>
+                                            <span onClick={joinMessages}>
+                                                Live chat
+                                            </span> &nbsp; &nbsp;
+                                            <span onClick={joinCall}>
+                                                Live call
+                                            </span>
+                                        </div>
                                         <ChapterList chapters={chapters}
                                                      navigateToCourseContent={navigateToCourseContent}
                                                      navigateToAssignmentContent={navigateToAssignmentContent}
@@ -53,11 +61,13 @@ export const ClassRoomContent = ({navigateToCourseContent, navigateToAssignmentC
 };
 
 ClassRoomContent.propTypes = {
+    course: PropTypes.object.isRequired,
+    params: PropTypes.object.isRequired,
     navigateToCourseContent: PropTypes.func.isRequired,
     navigateToAssignmentContent: PropTypes.func.isRequired,
     submitReview: PropTypes.func.isRequired,
-    course: PropTypes.object.isRequired,
-    params: PropTypes.object.isRequired,
+    joinCall: PropTypes.func.isRequired,
+    joinMessages: PropTypes.func.isRequired,
 };
 
 export default WithLoading(ClassRoomContent);

@@ -2,6 +2,7 @@ import React from "react";
 import {withRouter} from "react-router";
 import PropTypes from "prop-types";
 import courseApi from "../../apis/courseApi";
+import callApi from "../../apis/callApi";
 import ClassRoomContentWithLoading from "./ClassRoomContent";
 
 export class ClassRoom extends React.Component {
@@ -23,6 +24,25 @@ export class ClassRoom extends React.Component {
             }).catch(err => {
             this.setState({loading: false, errorMessage: 'Internal server error'});
         });
+    }
+
+    joinCall = () => {
+        callApi.create()
+            .then(res => res.json())
+            .then(response => {
+                if(response.error) {
+                    this.setState({error: response.error});
+                } else {
+                    const {user_id, calling_code} = response;
+                    const callUrl = `/calls/${user_id}/join/${calling_code}`
+                    this.props.history.push(callUrl);
+                }
+            });
+    }
+
+
+    joinMessages = () => {
+        this.props.history.push(`/courses/${this._getCourseId()}/messages`);
     }
 
     submitReview = (rating, comment) => {
@@ -54,6 +74,8 @@ export class ClassRoom extends React.Component {
                                             course={course}
                                             params={this.props.match.params}
                                             submitReview={this.submitReview}
+                                            joinCall={this.joinCall}
+                                            joinMessages={this.joinMessages}
                                             navigateToCourseContent={this.navigateToCourseContent}
                                             navigateToAssignmentContent={this.navigateToAssignmentContent}/>;
     }
