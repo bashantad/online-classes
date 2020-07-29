@@ -11,6 +11,9 @@ import ClassRoom from "../components/courses/ClassRoom";
 import Qualification from "../components/users/Qualification";
 import NotFoundPage from "../components/NotFoundPage";
 import Courses from "../components/Courses";
+import EngineeringManagerLandingPage from "../components/landing/EngineeringManager";
+import SeniorSoftwareEngineerLandingPage from "../components/landing/SeniorSoftwareEngineer";
+import SoftwareEngineerLandingPage from "../components/landing/SoftwareEngineer";
 
 export default (
   <Router>
@@ -19,6 +22,9 @@ export default (
       <Route path="/users/qualifications" exact component={Qualification} />
       <Route path="/enrolled_courses" exact component={EnrolledCourses} />
       <Route path="/courses" exact component={Courses} />
+      <Route path="/become-software-engineer" exact component={SoftwareEngineerLandingPage} />
+      <Route path="/become-senior-software-engineer" exact component={SeniorSoftwareEngineerLandingPage} />
+      <Route path="/become-software-engineering-manager" exact component={EngineeringManagerLandingPage} />
       <Route path="/classrooms/courses/:courseId" exact component={ClassRoom} />
       <Route path="/classrooms/courses/:courseId/chapters/:chapterId/assignments/:assignmentId" exact component={ClassRoom} />
       <Route path="/classrooms/courses/:courseId/chapters/:chapterId/course_contents/:courseContentId" exact component={ClassRoom} />
