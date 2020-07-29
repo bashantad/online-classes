@@ -132,10 +132,9 @@ export default class Qualification extends React.Component {
                 <div className="container space-1">
                     <div className="row justify-content-lg-between align-items-lg-center">
                         <div className="col-sm-12 col-lg-12 mb-2 mb-lg-0">
-                            <div className="card space-1">
+                            <div className="card space-1" id="education">
                                 <div className=" w-lg-85 mx-auto">
-                                    <div id="qualifications"
-                                         aria-labelledby="qualifications-tab">
+                                    <div aria-labelledby="qualifications-tab">
                                         <div className="card-header">
                                             <h5 className="card-title">Education</h5>
                                             <span>
@@ -178,10 +177,9 @@ export default class Qualification extends React.Component {
                                 </div>
                             </div>
 
-                            <div className="card space-1 mt-3">
+                            <div className="card space-1 mt-3" id="experience">
                                 <div className=" w-lg-85 mx-auto">
-                                    <div id="experience"
-                                         aria-labelledby="experience-tab">
+                                    <div aria-labelledby="experience-tab">
                                         <div className="card-header">
                                             <h5 className="card-title">Experience</h5>
                                             <span>

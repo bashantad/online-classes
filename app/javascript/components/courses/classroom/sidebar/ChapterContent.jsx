@@ -3,9 +3,12 @@ import PropTypes from "prop-types";
 
 const ChapterContent = ({courseContentTitle, courseContentId, duration, chapterId, navigateToCourseContent}) => {
     return (
-        <div onClick={() => navigateToCourseContent(chapterId, courseContentId)}>
-            {courseContentTitle} - {duration}
-        </div>
+        <li className="nav-item">
+            <a type='button' className="nav-link" onClick={() => navigateToCourseContent(chapterId, courseContentId)}>
+                <i className="fas fa-book nav-icon"></i>
+                {courseContentTitle} - {duration}
+            </a>
+        </li>
     );
 }
 

@@ -21,8 +21,8 @@ export class ClassRoom extends React.Component {
             .then(response => {
                 this.setState({course: response, loading: false});
             }).catch(err => {
-                this.setState({loading: false, errorMessage: 'Internal server error'});
-            });
+            this.setState({loading: false, errorMessage: 'Internal server error'});
+        });
     }
 
     submitReview = (rating, comment) => {
@@ -50,11 +50,12 @@ export class ClassRoom extends React.Component {
     render() {
         const {course, errorMessage, loading} = this.state;
         return <ClassRoomContentWithLoading isLoading={loading}
-                                         errorMessage={errorMessage}
-                                         course={course}
-                                         params={this.props.match.params}
-                                         navigateToCourseContent={this.navigateToCourseContent}
-                                         navigateToAssignmentContent={this.navigateToAssignmentContent} />;
+                                            errorMessage={errorMessage}
+                                            course={course}
+                                            params={this.props.match.params}
+                                            submitReview={this.submitReview}
+                                            navigateToCourseContent={this.navigateToCourseContent}
+                                            navigateToAssignmentContent={this.navigateToAssignmentContent}/>;
     }
 }
 
