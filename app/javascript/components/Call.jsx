@@ -1,5 +1,4 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
 
 import CallControl from './calls/CallControl';
 import LocalVideo from './calls/LocalVideo';
@@ -40,13 +39,11 @@ export class Call extends React.Component {
             onSharingClick: this.toggleSharing,
         }
 
-        return <div className = 'call-page'>
-            <Grid container spacing={0}>
+        return <div className = 'call-page container'>
                 <CallControl {...panelProps}/>
                 {
                     <LocalVideo audio={audio} video={video}/>
                 }
-            </Grid>
         </div>
     }
 }

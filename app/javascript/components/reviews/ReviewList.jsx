@@ -72,12 +72,13 @@ const ReviewList = ({reviews, submitReview}) => {
 
                             <div className="col-lg-8">
                                 <ul className="list-inline mb-2 text-warning">
-                                    <li className="list-inline-item mx-0">
-                                        <i className='fa fa-star'></i>
-                                    </li>
-                                    <li className="list-inline-item mx-0">
-                                        <i className='fa fa-star'></i>
-                                    </li>
+                                    {[...Array(review.rating).keys()].map(item => {
+                                        return (
+                                            <li className="list-inline-item mx-0">
+                                                <i className='fa fa-star'></i>
+                                            </li>)
+                                    })}
+
                                 </ul>
 
                                 <p>{review.comment}</p>

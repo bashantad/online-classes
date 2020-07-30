@@ -84,9 +84,6 @@ export default class NewQualification extends React.Component {
         const labels = mappingLabels[qualificationType];
         return (
             <div className='new-qualification border p-3 rounded'>
-                <div id="notification" className="alert alert-soft-danger hide" role="alert">
-                    Please fill out the required fields.
-                </div>
                 <div className='row'>
                     <div className="form-group qualification-input col-md-6 col-sm-12">
                         <input type="text" name="name_of_institution" value={name_of_institution}

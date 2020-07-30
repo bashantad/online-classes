@@ -4,10 +4,8 @@ import { withRouter } from 'react-router';
 import VideoCall from "./calls/VideoCall";
 import userApi from "../apis/userApi";
 import callApi from "../apis/callApi";
-import Typography from '@material-ui/core/Typography';
-import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Toolbar from '@material-ui/core/Toolbar';
+
+import videoErr from  '../../assets/images/icons/icon-61.svg'
 
 class VideoCallWrapper extends React.Component{
     constructor(props){
@@ -97,26 +95,25 @@ class VideoCallWrapper extends React.Component{
         return (
             <div className='root'>
                 <div  className='video-layout-main'>
-                   <Toolbar></Toolbar>
                         {
                             this._hasFetchingFinished() ?
                             <>
                                 {
                                     error ?
                                         <div className='video-wrapper'>
-                                            <ErrorOutlineIcon fontSize="large"/>
-                                            <Typography variant="caption" display="block" gutterBottom className='loading-caption'>
-                                                {error}
-                                            </Typography>
+                                            <figure className="max-w-8rem mx-auto">
+                                                <img className="img-fluid" src={videoErr}
+                                                     alt="Video Error"/>
+                                            </figure>
+                                            <small class="text-muted">s{error}</small>
                                         </div>
                                         : <VideoCall {...videoCallParams } />
                                 }
                             </>
                             : <div className='video-wrapper loading'>
-                                <CircularProgress/>
-                                <Typography variant="caption" display="block" gutterBottom className='loading-caption'>
-                                   Loading...
-                                </Typography>
+                                    <div className="spinner-grow text-primary" role="status">
+                                        <span className="sr-only">Loading...</span>
+                                    </div>
                             </div>
                         }
                 </div>

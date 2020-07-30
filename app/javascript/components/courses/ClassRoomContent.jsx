@@ -4,12 +4,16 @@ import WithLoading from "../common/WithLoading";
 import ChapterList from "./classroom/sidebar/ChapterList";
 import ClassRoomBody from "./ClassRoomBody";
 import ReviewList from "../reviews/ReviewList";
+import {isEmpty} from "../../utils/utils";
+import book from '../../../assets/images/icons/icon-2.svg'
+import noCourse from '../../../assets/images/illustrations/reading.svg'
 
 export const ClassRoomContent = ({course, params, navigateToCourseContent, navigateToAssignmentContent, submitReview, joinCall, joinMessages}) => {
     const {reviews, chapters} = course;
     return (
         <main id="content" role="main" className='container'>
-            <button type="button" className="navbar-toggler btn btn-icon btn-soft-primary btn-xs rounded-circle d-md-none mt-2"
+            <button type="button"
+                    className="navbar-toggler btn btn-icon btn-soft-primary btn-xs rounded-circle d-md-none mt-2"
                     aria-label="Toggle navigation"
                     aria-expanded="false"
                     aria-controls="sidebarNav"
@@ -18,7 +22,7 @@ export const ClassRoomContent = ({course, params, navigateToCourseContent, navig
                         <span className="navbar-toggler-default">
                             <i className="fas fa-bars"></i>
                         </span>
-                        <span className="navbar-toggler-toggled">
+                <span className="navbar-toggler-toggled">
                             <i className="fas fa-times"></i>
                         </span>
             </button>
@@ -30,18 +34,34 @@ export const ClassRoomContent = ({course, params, navigateToCourseContent, navig
                             <div id="sidebarNav" className="collapse navbar-collapse navbar-vertical">
                                 <div className="card">
                                     <div className="card-body">
-                                        <div>
-                                            <span onClick={joinMessages}>
-                                                Live chat
-                                            </span> &nbsp; &nbsp;
-                                            <span onClick={joinCall}>
-                                                Live call
-                                            </span>
+                                        <div className='border-bottom pb-2 mb-3'>
+                                            <button type="button" className="btn btn-primary btn-pill btn-xs mr-3"
+                                                    onClick={joinMessages}>
+                                                Live Chat
+                                                <i className="fas fa-comment-dots ml-2"></i>
+                                            </button>
+                                            <button type="button" className="btn btn-primary btn-pill btn-xs"
+                                                    onClick={joinCall}>
+                                                Live Call
+                                                <i className="fas fa-video ml-2"></i>
+                                            </button>
                                         </div>
-                                        <ChapterList chapters={chapters}
-                                                     navigateToCourseContent={navigateToCourseContent}
-                                                     navigateToAssignmentContent={navigateToAssignmentContent}
-                                        />
+                                        {
+                                            isEmpty(chapters) ? <div>
+                                                    <figure className="max-w-8rem mx-auto mb-3">
+                                                        <img className="img-fluid" src={book}
+                                                             alt="SVG"/>
+                                                    </figure>
+                                                    <div className='custom-align-center'>
+                                                        No Courses.
+                                                    </div>
+                                                </div> :
+                                                <ChapterList chapters={chapters}
+                                                             navigateToCourseContent={navigateToCourseContent}
+                                                             navigateToAssignmentContent={navigateToAssignmentContent}
+                                                />
+                                        }
+
                                     </div>
                                 </div>
                             </div>
@@ -54,7 +74,7 @@ export const ClassRoomContent = ({course, params, navigateToCourseContent, navig
                         </div>
                     </div>
                 </div>
-                <ReviewList reviews={reviews} submitReview={submitReview} />
+                <ReviewList reviews={reviews} submitReview={submitReview}/>
             </div>
         </main>
     );

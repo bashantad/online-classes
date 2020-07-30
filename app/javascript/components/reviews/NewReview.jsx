@@ -5,32 +5,36 @@ import {isEmpty} from "../../utils/utils";
 
 import avatar from '../../../assets/images/components/160x160/img2.jpg'
 
+import Rating from './Rating'
+
 export default class NewReview extends React.Component {
     state = {
         rating: 0,
         comment: '',
-        err: false
+        err: false,
+        posted: false,
     };
 
     handleCommentChange = (event) => {
         this.setState({comment: event.target.value})
     }
 
-    handleRatingChange = (event) => {
-        this.setState({rating: event.target.value})
-    }
-
     handleAlertClose = () => {
         this.setState({err: false})
     }
+
+    setRating = rating => {
+        this.setState({rating: rating});
+    };
+
     submitReview = () => {
         const {rating, comment, err} = this.state;
-        !isEmpty(comment) ? this.props.submitReview(rating, comment) : this.setState({err: true});
-        this.setState({rating: 0, comment: ''});
+        !isEmpty(comment) && !isEmpty(rating) ? this.props.submitReview(rating, comment) : this.setState({err: true});
+        this.setState({rating: 0, comment: '', posted: true});
     }
 
     render() {
-        const {comment, err} = this.state;
+        const {comment, err, posted} = this.state;
         const {setReviewShow} = this.props;
         return (
             <div className="card mt-3">
@@ -39,7 +43,8 @@ export default class NewReview extends React.Component {
                         {err &&
                         <div className="alert alert-soft-danger alert-dismissible fade show mb-4" role="alert">
                             <strong>Review Empty!</strong> Please enter a review to post.
-                            <button type="button" className="close btn-sm btn-pill" data-dismiss="alert" aria-label="Close"
+                            <button type="button" className="close btn-sm btn-pill" data-dismiss="alert"
+                                    aria-label="Close"
                                     onClick={this.handleAlertClose}>
                                 <i className='fa fa-times-circle mt-1'></i>
                             </button>
@@ -54,58 +59,14 @@ export default class NewReview extends React.Component {
                         </div>
 
                         <div className="form-group d-flex">
-                            <label className="input-label d-flex align-items-center pt-2"
+                            <label className="d-flex align-items-center pt-1 h6"
                                    htmlFor="review">Rating</label>
-
-                            <div className="form-check form-check-inline ml-4">
-                                <div className="custom-control custom-radio">
-                                    <input type="radio" id="1" className="custom-control-input" value={1}
-                                           onClick={this.handleRatingChange}
-                                           name="customInlineRadio"/>
-                                    <label className="custom-control-label"
-                                           htmlFor="1">Poor</label>
-                                </div>
-                            </div>
-                            <div className="form-check form-check-inline">
-                                <div className="custom-control custom-radio">
-                                    <input type="radio" id="2" onClick={this.handleRatingChange}
-                                           value={2}
-                                           className="custom-control-input indeterminate-checkbox"
-                                           name="customInlineRadio"/>
-                                    <label className="custom-control-label"
-                                           htmlFor="2">Satisfactory</label>
-                                </div>
-                            </div>
-                            <div className="form-check form-check-inline">
-                                <div className="custom-control custom-radio">
-                                    <input type="radio" id="3" onClick={this.handleRatingChange}
-                                           value={3}
-                                           className="custom-control-input indeterminate-checkbox"
-                                           name="customInlineRadio"/>
-                                    <label className="custom-control-label"
-                                           htmlFor="3">Average</label>
-                                </div>
-                            </div>
-                            <div className="form-check form-check-inline">
-                                <div className="custom-control custom-radio">
-                                    <input type="radio" id="4" onClick={this.handleRatingChange}
-                                           value={4}
-                                           className="custom-control-input indeterminate-checkbox"
-                                           name="customInlineRadio"/>
-                                    <label className="custom-control-label"
-                                           htmlFor="4">Good</label>
-                                </div>
-                            </div>
-                            <div className="form-check form-check-inline">
-                                <div className="custom-control custom-radio">
-                                    <input type="radio" id="5" onClick={this.handleRatingChange}
-                                           value={5}
-                                           className="custom-control-input indeterminate-checkbox"
-                                           name="customInlineRadio"/>
-                                    <label className="custom-control-label"
-                                           htmlFor="5">Excellent</label>
-                                </div>
-                            </div>
+                            <Rating
+                                numberOfStars="5"
+                                currentRating="0"
+                                onClick={this.setRating}
+                                posted={posted}
+                            />
                         </div>
                         <div className='float-right'>
                             <button

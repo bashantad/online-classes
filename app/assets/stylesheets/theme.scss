@@ -48,6 +48,25 @@
   }
 }
 
+@media only screen and (max-width: 375px) {
+  .sidebar {
+    //position: relative;
+    top: 0;
+    right: 0;
+    z-index: 1003;
+    width: 18.4375rem;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -5px 0px 12px rgba(103, 119, 136, 0.1);
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .sign-in-order{
+    order:2;
+  }
+}
+
 .note-nav-item {
   border-bottom: 1px dotted #ddd;
 }

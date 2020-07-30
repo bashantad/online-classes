@@ -6,123 +6,6 @@ body {
   background-color: #ffffff;
 }
 
-.welcome {
-  text-align: center;
-}
-
-.welcome-main {
-  margin-top: 6rem;
-  padding: 1rem;
-}
-
-.welcome-title {
-  margin: 1rem !important;
-}
-
-.lead {
-  margin: 1rem !important;
-}
-
-.search {
-  position: relative;
-  margin: auto;
-  width: 18rem;
-  color: white;
-  background-color: $primary-color;
-  border-radius: 20px;
-
-  input {
-    color: white;
-  }
-}
-
-.searchIcon {
-  padding-left: 8px;
-  height: 100%;
-  position: absolute;
-  pointer-events: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.welcome-paper {
-  margin-top: 2rem;
-  padding: 1rem;
-  text-align: center;
-}
-
-.hide{
-  display: none;
-}
-
-.welcome-buttons {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  margin-top: 2rem;
-}
-
-.welcome-btn {
-  a {
-    color: white;
-    text-decoration: none;
-  }
-}
-
-.notification {
-  width: 100% !important;
-  position: absolute !important;
-  text-align: center !important;
-  background-color: #26a69a !important;
-  margin-top: 4rem !important;
-  color: white;
-  padding: 15px 0;
-  z-index: 10000;
-  bottom: 0;
-  font-family: $font-family;
-}
-
-.menu-link {
-  padding-top: 7px !important;
-  padding-bottom: 8px;
-
-  a {
-    text-decoration: none;
-    color: #4A4A4A !important;
-  }
-}
-
-.video-skeleton {
-  height: 20rem !important;
-  width: 30rem;
-  margin: auto;
-  margin-top: 11rem;
-}
-
-.skeleton-caption {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.custom-listItem-text span {
-  font-size: .875rem;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-  font-weight: 400;
-  line-height: 1.375rem;
-  letter-spacing: 0.00938em;
-}
-
-.custom-link-btn {
-  margin: 8px !important;
-  height: calc(48px - 2 * 4px);
-  padding: 0 8px !important;
-  justify-content: flex-start;
-  text-decoration: none;
-  width: auto !important;
-  border-radius: 4px !important;
-}
-
 .main-root {
   display: flex;
   height: 100%;
@@ -136,86 +19,11 @@ body {
   background-color: $bg-color;
 }
 
-.people-in-chat .MuiDrawer-paperAnchorLeft {
-  left: auto;
-}
-
-.search-root {
-  padding: 2px 4px;
-  display: flex;
-  align-items: center;
-  width: 400px;
-}
-
-.search-input {
-  margin-left: 10px;
-  flex: 1;
-}
-
-.search-button {
-  padding: 10px;
-}
-
-.home-search {
-  display: flex;
-  justify-content: center;
-  margin-top: 6rem;
-  margin-bottom: 4rem;
-}
-
 .svg-bottom {
   position: fixed;
   bottom: 0;
   opacity: 0.1;
   z-index: -1;
-}
-
-.course-card-item {
-  width: 300px;
-  margin: 10px 20px;
-  text-align: center;
-
-  .MuiButton-label {
-    color: $accent-color;
-  }
-
-  a {
-    text-decoration: none;
-    color: black;
-  }
-}
-
-.card-actions {
-  justify-content: center;
-}
-
-.course-card-item:hover {
-  box-shadow: 0px 2px 10px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
-}
-
-.course-card-item button:hover {
-  .course-media {
-    transform: scale(1.1);
-    transition: ease 300ms;
-  }
-}
-
-.course-media {
-  height: 160px;
-  transition: ease 300ms;
-}
-
-.course-card-info {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  background-color: $accent-color;
-  color: white;
-  padding: 4px 8px;
-  border-radius: 9px;
-  font-size: 12px;
-  font-weight: 600;
-  z-index: 1;
 }
 
 .course-cards {
@@ -225,135 +33,21 @@ body {
   justify-content: center;
 }
 
-.rating {
-  margin-left: 16px;
-  margin-bottom: 5px;
-}
 
-.course-detail-paper {
-  width: 40rem;
-  padding: 16px;
-  margin: auto;
-  margin-top: 1rem;
-
-  .MuiGrid-item {
-    padding: 6px;
-  }
-
-  img {
-    width: 100%; /* or any custom size */
-    height: 100%;
-    object-fit: contain;
-  }
-
-  span {
-    font-weight: bold;
-  }
-
-  a {
-    margin-left: 8px;
-    margin-top: 4px;
-  }
-}
-
-.course-cover {
-  position: relative;
-  margin-bottom: 8px;
-
-  h3 {
-    position: absolute;
-    margin-top: -5rem;
-    margin-left: 16px;
-    color: white;
-  }
-}
-
-.course-details h5{
-  text-transform: capitalize;
-}
-
-.avatar-name{
-  text-align: center;
-  margin-top: 2px;
-}
-
-.first-grid {
-  text-align: center;
-
-  h5{
-    text-align: center;
-  }
-}
-
-.comment-avatar{
-  padding-top: 35px !important;
-}
-
-.comment-send-btn{
-  margin-top: 4.5rem !important;
-}
-
-.comment-snackbar div{
-  background-color: white !important;
-  color:$error-color !important;
-}
-
-.price-box {
-  background-color: #ffd90b;
-  border-radius: 8px;
-  margin-top: 4px !important;
-}
-
-.comments{
-  .MuiAvatar-root{
-    margin: auto;
-    margin-bottom: 9px !important;
-  }
-}
-
-.comment-time{
-  float: right;
-  color: #0000008a;
-  span{
-    padding-top: 4px;
-  }
-}
-
-.rate-course{
-  line-height: 26px !important;
-}
-
-.comment-loading{
-  text-align: center;
-  margin-top: 2rem;
-}
-
-.course-margin-top {
-  margin-top: 10px !important;
-}
-
-.course-owner-details {
-  background-color: rgba(0, 0, 0, 0.08);
-  border-radius: 8px;
-
-  p{
-    font-weight: 600;
-  }
-}
-
-.course-detail-bg-img{
+.course-detail-bg-img {
   background-image: url('../../assets/images/components/img10.jpg');
 }
 
-.rating
-{
+.rating {
   display: inherit;
+  margin-top: 5px;
 }
 
 ul.timeline {
   list-style-type: none;
   position: relative;
 }
+
 ul.timeline:before {
   content: ' ';
   background: #d4d9df;
@@ -365,10 +59,12 @@ ul.timeline:before {
   margin-top: 15px;
   z-index: 400;
 }
+
 ul.timeline > li {
   margin: 20px 0;
   padding-left: 20px;
 }
+
 ul.timeline > li:before {
   content: ' ';
   background: white;
@@ -383,26 +79,26 @@ ul.timeline > li:before {
   z-index: 400;
 }
 
-.alert{
+.alert {
   margin-bottom: 0;
 }
 
-.main-layout{
+.main-layout {
   height: 100%;
   display: flex;
 }
 
-.chat-side-nav{
+.chat-side-nav {
   max-width: inherit;
 }
 
-.side-nav-flex{
+.side-nav-flex {
   height: 100%;
   justify-content: flex-start;
   align-items: center;
 }
 
-.messages-main{
+.messages-main {
   flex-grow: 1;
 }
 
@@ -416,7 +112,7 @@ ul.timeline > li:before {
   background: #fff;
 }
 
-.qualification-input span{
+.qualification-input span {
   text-transform: capitalize;
   color: red;
   margin-top: 4px;
@@ -424,7 +120,7 @@ ul.timeline > li:before {
   margin-left: 4px;
 }
 
-.message-main nav{
+.message-main nav {
   display: flex;
 }
 
@@ -469,6 +165,11 @@ ul.timeline > li:before {
   }
 }
 
+.course-cards{
+  display: flex;
+  flex-flow: row wrap;
+}
+
 .sidebar {
   position: relative;
   top: 0;
@@ -480,11 +181,11 @@ ul.timeline > li:before {
   box-shadow: -5px 0px 12px rgba(103, 119, 136, 0.1);
 }
 
-#core-root{
+#core-root {
   height: 100%;
 }
 
-#main-container{
+#main-container {
   height: 100%;
   display: flex;
   flex-flow: column;
@@ -507,84 +208,6 @@ ul.timeline > li:before {
 @media (max-width: 990px) {
   .main-layout {
     flex-direction: column;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .notification {
-    margin-top: 3.5rem !important;
-  }
-  #card-home {
-    width: 350px;
-  }
-  .home-search {
-    margin-top: 3rem;
-    margin-right: 20px;
-    margin-left: 20px;
-  }
-  .price-box{
-    margin-top: 8px !important;
-  }
-  .comment-send-btn{
-    margin-top: -4px !important;
-    margin-bottom: 4px !important;
-  }
-}
-
-@media only screen and (max-width: 700px) {
-  .course-detail-paper {
-    width: auto;
-    margin-top: 1rem;
-    background-color: inherit !important;
-    box-shadow: none !important;
-
-    h3 {
-      font-size: 2rem;
-    }
-  }
-}
-
-@media only screen and (max-width: 960px) {
-  .main-root {
-    display: block;
-  }
-  .drawer {
-    width: 0 !important;
-  }
-  .people-in-chat .MuiDrawer-paperAnchorLeft {
-    left: 0;
-    width: 256px;
-  }
-}
-
-
-@media only screen and (max-width: 540px) {
-  .search {
-    width: inherit;
-
-    .MuiInputBase-root {
-      width: 65%;
-    }
-  }
-  .welcome-btn {
-    margin: 1rem !important;
-  }
-  .course-card-item {
-    width: 400px;
-  }
-  .comments .MuiAvatar-root {
-     margin: inherit !important;
-    margin-bottom: 9px !important;
-  }
-  .avatar-name {
-     text-align: inherit !important;
-    margin-top: 2px;
-  }
-}
-
-@media only screen and (max-width: 578px) {
-  .course-card-item {
-    width: 400px;
   }
 }
 

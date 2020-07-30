@@ -7,10 +7,6 @@ import BroadCast from './BroadCast';
 import './VideoCall.scss';
 import './webrtc-old-browsers';
 import VideoControl from "./VideoControl";
-import Snackbar from '@material-ui/core/Snackbar';
-import Typography from "@material-ui/core/Typography";
-import Toolbar from "@material-ui/core/Toolbar";
-import CircularProgress from "@material-ui/core/CircularProgress";
 
 export default class VideoCall extends React.Component {
     constructor(props) {
@@ -218,28 +214,20 @@ export default class VideoCall extends React.Component {
             onJoinClick: this.joinCall,
         };
         const connectedClass = hasJoinedRemotely ? 'connected' : 'not-connected';
-        const snackMsg = (
-            <div className="snack-msg">
-                <CircularProgress/>
-                <Typography variant="caption" display="block" className='snack-caption'>
-                    Waiting for the other person to join.
-                </Typography>
-            </div>
-        )
+
         return (
             <Fragment>
                 <div className="video-call-container">
 
                     {
                         hasJoinedLocally && !hasJoinedRemotely &&
-                        <Snackbar
-                            anchorOrigin={{vertical, horizontal}}
-                            open={hasJoinedLocally}
-                            // onClose={handleClose}
-                            message={snackMsg}
-                            key={vertical + horizontal}
-                            className='snackbar'
-                        />
+                        <div className="alert alert-info media position-absolute mt-3 align-items-center" role="alert">
+                            <div className="spinner-border text-white mr-2" role="status">
+                            </div>
+                            <div className="media-body" role="alert">
+                                Waiting for the other person to join.
+                            </div>
+                        </div>
                     }
                     <div className={`local-video-container ${connectedClass}`}>
                         <video id="local-video-box" autoPlay playsInline

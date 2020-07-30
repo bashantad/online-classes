@@ -1,48 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Mic from '@material-ui/icons/Mic';
-import MicOff from '@material-ui/icons/MicOff';
-import VideocamIcon from '@material-ui/icons/Videocam';
-import VideocamOff from '@material-ui/icons/VideocamOff';
-import CallEnd from '@material-ui/icons/CallEnd';
-import Call from '@material-ui/icons/Call';
-import Fab from '@material-ui/core/Fab';
 
 const VideoControl = ({isAudioOn, isVideoOn, hasJoinedLocally, onAudioClick, onVideoClick, onCallEndClick, onJoinClick}) => {
     return (
         <div className='video-call-control-bar'>
             <div className='video-call-control-icon' onClick={onVideoClick}>
-                {
-                    isVideoOn ?
-                        <Fab color="primary" aria-label="video">
-                            <VideocamIcon/>
-                        </Fab>
-                        : <Fab color="primary" aria-label="videoOff">
-                            <VideocamOff/>
-                        </Fab>
-                }
+                <button className='btn btn-pill btn-primary'>
+                    {isVideoOn ? <i className='fa fa-video' aria-label="video"></i> :
+                        <i className='fa fa-video-slash' aria-label="videoOff"></i>}
+                </button>
             </div>
             <div className='video-call-control-icon'>
                 {
                     hasJoinedLocally ?
-                        <Fab color="secondary" aria-label="end">
-                            <CallEnd onClick={onCallEndClick}/>
-                        </Fab>
-                        : <Fab color="primary" aria-label="call" className='call-green'>
-                            <Call onClick={onJoinClick}/>
-                        </Fab>
+                        <button className='btn btn-pill btn-danger' onClick={onCallEndClick} aria-label="end"><i className='fa fa-phone-slash'></i></button>
+                        :
+                        <button className='btn btn-pill btn-info' onClick={onJoinClick} aria-label="call"><i className='fa fa-phone'></i></button>
                 }
             </div>
             <div className='video-call-control-icon' onClick={onAudioClick}>
-                {
-                    isAudioOn ?
-                        <Fab color="primary" aria-label="audio">
-                            <Mic/>
-                        </Fab>
-                        : <Fab color="primary" aria-label="audioOff">
-                            <MicOff/>
-                        </Fab>
-                }
+                <button className='btn btn-pill btn-primary'>
+                    {isAudioOn ? <i className='fa fa-microphone p-1' aria-label="video" aria-label="audio"></i> :
+                        <i className='fa fa-microphone-slash' aria-label="videoOff" aria-label="audioOff"></i>}
+                </button>
             </div>
 
         </div>
