@@ -2,10 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import Avatar from '@material-ui/core/Avatar';
 import {isEmpty} from "../../utils/utils";
-
+import StarRating from './StarRating'
 import avatar from '../../../assets/images/components/160x160/img2.jpg'
-
-import Rating from './Rating'
 
 export default class NewReview extends React.Component {
     state = {
@@ -53,27 +51,26 @@ export default class NewReview extends React.Component {
                         <div className="form-group">
                             <label className="input-label d-flex align-items-center" htmlFor="review"> <Avatar
                                 alt="Remy Sharp" src={avatar}/> <span className='text-body font-weight-bold ml-3'>User Name</span></label>
-                            <input type="textarea" id="review" className="form-control" value={comment}
-                                   onChange={this.handleCommentChange}
-                                   placeholder="Enter Review"/>
+                            <div className="form-group d-flex">
+                                <StarRating
+                                    numberOfStars="5"
+                                    currentRating="0"
+                                    onClick={this.setRating}
+                                    posted={posted}
+                                />
+                            </div>
+                            <textarea type="textarea" id="review" className="form-control" value={comment}
+                                      onChange={this.handleCommentChange}
+                                      rows={4}
+                                      placeholder="Write your review..."/>
                         </div>
 
-                        <div className="form-group d-flex">
-                            <label className="d-flex align-items-center pt-1 h6"
-                                   htmlFor="review">Rating</label>
-                            <Rating
-                                numberOfStars="5"
-                                currentRating="0"
-                                onClick={this.setRating}
-                                posted={posted}
-                            />
-                        </div>
                         <div className='float-right'>
                             <button
                                 type="submit"
                                 className='btn btn-primary justify-content-end'
                                 onClick={this.submitReview}>
-                                Post
+                                Submit
                             </button>
                             <button
                                 className='btn btn-ghost-secondary justify-content-end ml-2'
@@ -84,27 +81,6 @@ export default class NewReview extends React.Component {
                     </div>
                 </div>
             </div>
-            // <FormControl>
-            //     <Grid container>
-            //         <Grid item xs={12}>
-            //             <TextField id="standard-basic" label="Add Comment..." name='comment' multiline
-            //                        rows={4}
-            //                        onChange={this.handleCommentChange} value={comment}/>
-            //         </Grid>
-            //         <Grid item xs={12} className='rating'>
-            //             <Typography variant="caption" gutterBottom className='rate-course'>
-            //                 Rate Course:
-            //             </Typography>
-            //
-            //             <Rating
-            //                 name="simple-controlled"
-            //                 value={rating}
-            //                 onChange={this.handleRatingChange}
-            //             />
-            //         </Grid>
-            //     </Grid>
-            // </FormControl>
-
         );
     }
 }

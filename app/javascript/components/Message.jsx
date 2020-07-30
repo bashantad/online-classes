@@ -148,15 +148,15 @@ export class Message extends React.Component {
                     showNewGroupForm: false,
                     showUpdateMembers: false
                 };
-                this._assignConversation(updateAttributes, messages, conversation_enrolled_users, activeConversation);
+                activeConversation.messages = messages;
+                activeConversation.conversation_enrolled_uers = conversation_enrolled_users;
+                this._assignConversation(updateAttributes, activeConversation);
                 this._assignMessageNotificationMap(updateAttributes, conversationId);
                 this.setState(updateAttributes);
             });
     }
 
-    _assignConversation = (updateAttributes, messages, conversation_enrolled_users, activeConversation) => {
-        activeConversation.messages = messages;
-        activeConversation.conversation_enrolled_uers = conversation_enrolled_users;
+    _assignConversation = (updateAttributes, activeConversation) => {
         const doesConversationExist = this.state.conversations.some(item => item.id === activeConversation.id);
         if (!doesConversationExist) {
             const conversations = [...this.state.conversations, activeConversation];
@@ -183,15 +183,9 @@ export class Message extends React.Component {
         conversationApi.create(this._getCourseId(), userId)
             .then(res => res.json())
             .then(conversation => {
-                const updateAttributes = {
-                    activeConversationId: conversation.id
-                };
-                const doesConversationExist = this.state.conversations.some(item => item.id === conversation.id);
-                if (!doesConversationExist) {
-                    const conversations = [...this.state.conversations, conversation];
-                    updateAttributes.conversations = conversations;
-                }
+                const updateAttributes = this._assignConversation({}, conversation);
                 this.setState(updateAttributes);
+                this.props.history.push(conversation.message_url);
             });
     }
 

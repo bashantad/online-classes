@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 
-
 class StarRating extends Component {
     constructor(props) {
         super(props);
@@ -48,7 +47,7 @@ class StarRating extends Component {
                 {[...Array(+this.props.numberOfStars).keys()].map(n => {
                     return (
                     <i type='button'
-                       className='star fa fa-star' key={n + 1}
+                       className='star fa fa-star fa-2x' key={n + 1}
                        data-value={n + 1}
                        onMouseOver={this.hoverHandler}
                        onClick={this.starClickHandler}></i>

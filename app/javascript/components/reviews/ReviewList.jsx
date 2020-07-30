@@ -4,9 +4,10 @@ import {isEmpty} from '../../utils/utils'
 import noReview from '../../../assets/images/icons/icon-4.svg'
 import avatar from '../../../assets/images/components/160x160/img1.jpg'
 import NewReview from "./NewReview";
+import StarView from "./StarView";
 
 const ReviewList = ({reviews, submitReview}) => {
-    const [reviewShow, setReviewShow] = useState(false)
+    const [showReviewForm, setShowReviewForm] = useState(false)
 
     return (
         <div className="border-top pt-4 mt-7 mb-4">
@@ -14,13 +15,15 @@ const ReviewList = ({reviews, submitReview}) => {
                 <div className="col-md-6 d-flex">
                     <h3 className="mb-0">Reviews</h3>
                     {
-                        submitReview ? <button type="button" data-toggle="collapse"
-                                               data-target="#reviewForm" aria-expanded="false"
-                                               aria-controls="reviewForm"
-                                               onClick={() => setReviewShow(!reviewShow)}
-                                               className="btn btn-xs btn-outline-primary font-weight-bold text-nowrap ml-3">
-                            <i className='fas fa-plus mr-1'></i> Add Review
-                        </button> : ''
+                        submitReview ?
+                            <button type="button" data-toggle="collapse"
+                                    data-target="#reviewForm" aria-expanded="false"
+                                    aria-controls="reviewForm"
+                                    onClick={() => setShowReviewForm(!showReviewForm)}
+                                    className="btn btn-xs btn-outline-primary font-weight-bold text-nowrap ml-3">
+                                <i className='fas fa-plus mr-1'></i>
+                                Write a review
+                            </button> : ''
                     }
                 </div>
 
@@ -36,15 +39,16 @@ const ReviewList = ({reviews, submitReview}) => {
                     </form>
                 </div>
             </div>
-            {submitReview && reviewShow ?
-                <div className="review-form">
-                    <NewReview submitReview={submitReview} setReviewShow={setReviewShow}/>
-                </div>
-                :
-                ''
+            {
+                showReviewForm ?
+                    <div className="review-form">
+                        <NewReview submitReview={submitReview} setReviewShow={setShowReviewForm}/>
+                    </div>
+                : ''
             }
 
-            {isEmpty(reviews) ?
+            {
+                isEmpty(reviews) ?
                 <div>
                     <figure className="max-w-8rem mx-auto mt-8">
                         <img className="img-fluid" src={noReview} alt="SVG"/>
@@ -63,7 +67,7 @@ const ReviewList = ({reviews, submitReview}) => {
                                              alt={review.user.full_name}/>
                                     </div>
                                     <div className="media-body">
-                                        <span className="d-block text-body font-size-1">April 3, 2019</span>
+                                        <span className="d-block text-body font-size-1">{review.created_at}</span>
                                         <h4 className="mb-0">{review.user.full_name}</h4>
                                     </div>
                                 </div>
@@ -71,16 +75,7 @@ const ReviewList = ({reviews, submitReview}) => {
                             </div>
 
                             <div className="col-lg-8">
-                                <ul className="list-inline mb-2 text-warning">
-                                    {[...Array(review.rating).keys()].map(item => {
-                                        return (
-                                            <li className="list-inline-item mx-0">
-                                                <i className='fa fa-star'></i>
-                                            </li>)
-                                    })}
-
-                                </ul>
-
+                                <StarView noOfStars={review.rating} />
                                 <p>{review.comment}</p>
                             </div>
                         </div>
@@ -89,14 +84,14 @@ const ReviewList = ({reviews, submitReview}) => {
                             <span>Was this helpful?</span>
                             <span className="ml-2">
                                   <a className="btn btn-xs btn-outline-secondary" href="#">Yes</a>
-                                </span>
+                            </span>
                             <span className="ml-2">
                                   <a className="btn btn-xs btn-outline-secondary" href="#">No</a>
-                                </span>
+                            </span>
                             <span className="ml-3">
                                   <i className="far fa-flag text-body mr-1"></i>
                                   <a className="text-muted" href="#">Report</a>
-                                </span>
+                            </span>
                         </div>
                     </div>
                 ))
