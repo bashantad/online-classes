@@ -1,9 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { ActionCableConsumer } from 'react-actioncable-provider';
 
 const Cable = ({ conversations, handleReceivedMessage }) => {
 	return (
-    	<Fragment>
+    	<>
       		{
       			conversations.map(conversation => (
           			<ActionCableConsumer
@@ -13,7 +13,7 @@ const Cable = ({ conversations, handleReceivedMessage }) => {
           			/>
           		))
       		}
-    </Fragment>
+        </>
   );
 };
 

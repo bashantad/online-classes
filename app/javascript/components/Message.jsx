@@ -72,7 +72,6 @@ export class Message extends React.Component {
         const conversation = conversations.find(
             item => item.id === message.conversation_id
         );
-
         if (activeConversationId === conversation.id) {
             userApi.markMessagesRead(conversation.id);
         } else {
@@ -115,8 +114,8 @@ export class Message extends React.Component {
     handleUpdateMembersSuccess = (conversation) => {
         this.setState({
             showUpdateMembers: false,
-            activeConversationId: conversation.id
         });
+        this.navigateToConversation(conversation.id);
     }
 
     findActiveConversation = () => {
@@ -126,7 +125,8 @@ export class Message extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        const {activeConversationId} = this.state;
+        const {activeConversationId, showUpdateMembers} = this.state;
+        if(activeConversationId === null || showUpdateMembers === true) return;
         if(activeConversationId !== this._getConversationId()) {
             this.fetchActiveConversation();
         }
@@ -212,7 +212,6 @@ export class Message extends React.Component {
             handleCreateCourseGroup: this.handleCreateCourseGroup,
         };
         const activeConversation = this.findActiveConversation();
-
         return (
             <>
                 <div className="main-layout">
@@ -241,6 +240,7 @@ export class Message extends React.Component {
                                                             handleCancelGroupCreate={this.handleCancelGroupCreate}/>
                                                         : <UpdateMembers
                                                             courseId={this._getCourseId()}
+                                                            currentUserId={currentUserId}
                                                             allUsers={enrolledUsers}
                                                             conversation={activeConversation}
                                                             handleUpdateMembersSuccess={this.handleUpdateMembersSuccess}/>

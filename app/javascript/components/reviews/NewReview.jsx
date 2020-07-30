@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Avatar from '@material-ui/core/Avatar';
 import {isEmpty} from "../../utils/utils";
 import StarRating from './StarRating'
-import avatar from '../../../assets/images/components/160x160/img2.jpg'
+import Avatar from "../common/Avatar";
 
 export default class NewReview extends React.Component {
     state = {
@@ -49,8 +48,10 @@ export default class NewReview extends React.Component {
                         </div>
                         }
                         <div className="form-group">
-                            <label className="input-label d-flex align-items-center" htmlFor="review"> <Avatar
-                                alt="Remy Sharp" src={avatar}/> <span className='text-body font-weight-bold ml-3'>User Name</span></label>
+                            <label className="input-label d-flex align-items-center" htmlFor="review">
+                                <Avatar />
+                                <span className='text-body font-weight-bold ml-3'>User Name</span>
+                            </label>
                             <div className="form-group d-flex">
                                 <StarRating
                                     numberOfStars="5"

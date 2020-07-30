@@ -60,7 +60,7 @@ export default class UpdateMembers extends React.Component {
     }
 
     render() {
-        const {allUsers} = this.props;
+        const {allUsers, currentUserId} = this.props;
         const {enrolledUsersMap} = this.state;
         return (
             <div className="card card-bordered create-group-form" style={{width: '300px'}}>
@@ -70,7 +70,7 @@ export default class UpdateMembers extends React.Component {
                 <div className="card-body">
                     <ul>
                         {
-                            allUsers.map(user => this.renderUser(user, enrolledUsersMap))
+                            allUsers.filter(user => user.id !== currentUserId).map(user => this.renderUser(user, enrolledUsersMap))
                         }
                     </ul>
                     <button type="button" className="btn btn-primary" onClick={this.handleSave}>Save</button>
@@ -83,6 +83,7 @@ export default class UpdateMembers extends React.Component {
 UpdateMembers.propTypes = {
     conversation: PropTypes.object.isRequired,
     courseId: PropTypes.string.isRequired,
+    currentUserId: PropTypes.number.isRequired,
     allUsers: PropTypes.array.isRequired,
     handleUpdateMembersSuccess: PropTypes.func.isRequired,
 };

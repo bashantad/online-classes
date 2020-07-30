@@ -5,6 +5,7 @@ import noReview from '../../../assets/images/icons/icon-4.svg'
 import avatar from '../../../assets/images/components/160x160/img1.jpg'
 import NewReview from "./NewReview";
 import StarView from "./StarView";
+import Avatar from "../common/Avatar";
 
 const ReviewList = ({reviews, submitReview}) => {
     const [showReviewForm, setShowReviewForm] = useState(false)
@@ -61,11 +62,7 @@ const ReviewList = ({reviews, submitReview}) => {
                             <div className="col-lg-4 mb-3 mb-lg-0">
 
                                 <div className="media align-items-center">
-                                    <div className="avatar avatar-circle mr-3">
-                                        <img className="avatar-img"
-                                             src={isEmpty(review.user.avatar_image_urls) ? avatar : review.user.avatar_image_urls['60x40']}
-                                             alt={review.user.full_name}/>
-                                    </div>
+                                    <Avatar imageUrl={review.user.avatar_image_urls['60x40']} />
                                     <div className="media-body">
                                         <span className="d-block text-body font-size-1">{review.created_at}</span>
                                         <h4 className="mb-0">{review.user.full_name}</h4>

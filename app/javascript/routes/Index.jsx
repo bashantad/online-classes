@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "../components/Home";
-import Call from "../components/Call";
 import VideoCallWrapper from "../components/VideoCallWrapper";
 import MessageWrapper from "../components/MessageWrapper";
 import CallHistory from "../components/CallHistory";
@@ -29,10 +28,8 @@ export default (
       <Route path="/classrooms/courses/:courseId/chapters/:chapterId/assignments/:assignmentId" exact component={ClassRoom} />
       <Route path="/classrooms/courses/:courseId/chapters/:chapterId/course_contents/:courseContentId" exact component={ClassRoom} />
       <Route path="/courses/:courseId" exact component={CourseDetail} />
-      <Route path="/classroom/:id" exact component={Call} />
       <Route path="/call_history" exact component={CallHistory} />
       <Route path="/calls/:userId/join/:callingCode" exact component={VideoCallWrapper} />
-      <Route path="/conversations/:conversation_id/messages" exact component={MessageWrapper} />
       <Route path="/courses/:course_id/conversations/:conversation_id/messages" exact component={MessageWrapper} />
       <Route path="/*" exact component={NotFoundPage} />
     </Switch>
