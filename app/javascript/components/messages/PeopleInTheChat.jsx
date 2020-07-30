@@ -18,28 +18,6 @@ export default class PeopleInTheChat extends React.Component {
         }
     }
 
-    _getMappingPersonToConversation = (individualConversations) => {
-        const currentUserMapping = {};
-        const mapping = individualConversations.reduce((accumulator, conversation) => {
-            const conversationEnrolledUsers = conversation.conversation_enrolled_users;
-            if (conversationEnrolledUsers.length === 1) {
-                const conversationEnrolledUser = conversationEnrolledUsers[0];
-                currentUserMapping[conversationEnrolledUser.user_id] = conversationEnrolledUser.conversation_id;
-            }
-            conversationEnrolledUsers.forEach((convUser) => {
-                if (convUser.user_id !== this.props.currentUserId) {
-                    accumulator[convUser.user_id] = convUser.conversation_id
-                }
-            })
-            return accumulator;
-        }, {});
-        const currentUserKey = Object.keys(currentUserMapping)[0];
-        if (currentUserKey) {
-            mapping[currentUserKey] = currentUserMapping[currentUserKey];
-        }
-        return mapping;
-    }
-
     getActiveClass = (conversationId) => {
         return conversationId === this.props.activeConversationId;
     }
@@ -83,7 +61,7 @@ export default class PeopleInTheChat extends React.Component {
     render() {
         const {conversations, enrolledUsers, individualConversations} = this.props;
         const groupConversations = conversations.filter(conv => conv.is_group);
-        const mappingPersonToConversation = this._getMappingPersonToConversation(individualConversations);
+        const mappingPersonToConversation = getMappingPersonToConversation(individualConversations);
 
         return (
             <>
@@ -143,3 +121,25 @@ PeopleInTheChat.propTypes = {
     currentUserId: PropTypes.number,
     messageNotificationMap: PropTypes.object.isRequired,
 };
+
+function getMappingPersonToConversation(individualConversations, currentUserId) {
+    const currentUserMapping = {};
+    const mapping = individualConversations.reduce((accumulator, conversation) => {
+        const conversationEnrolledUsers = conversation.conversation_enrolled_users;
+        if (conversationEnrolledUsers.length === 1) {
+            const conversationEnrolledUser = conversationEnrolledUsers[0];
+            currentUserMapping[conversationEnrolledUser.user_id] = conversationEnrolledUser.conversation_id;
+        }
+        conversationEnrolledUsers.forEach((convUser) => {
+            if (convUser.user_id !== currentUserId) {
+                accumulator[convUser.user_id] = convUser.conversation_id
+            }
+        })
+        return accumulator;
+    }, {});
+    const currentUserKey = Object.keys(currentUserMapping)[0];
+    if (currentUserKey) {
+        mapping[currentUserKey] = currentUserMapping[currentUserKey];
+    }
+    return mapping;
+}

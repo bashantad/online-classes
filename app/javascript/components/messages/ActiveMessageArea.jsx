@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import './ActiveMessageArea.scss';
+import MessageItem from "./MessageItem";
 import NoMsgImage from "../../../assets/images/icons/icon-4.svg";
 
 export default class ActiveMessageArea extends React.Component {
@@ -22,39 +23,6 @@ export default class ActiveMessageArea extends React.Component {
         currentMessageEnd && currentMessageEnd.scrollIntoView({behavior: 'smooth'})
     }
 
-    renderMessage = (message, lastSenderId) => {
-        const {currentUserId, activeConversation} = this.props;
-        const {sender_id, created_time, content, sender} = message;
-        const messageOwnerClass = currentUserId === sender_id ? 'message-owner' : 'sender-owner';
-        const messageKey = `conversation-${activeConversation.id}-message-${message.id}`;
-        const isSenderChanged = lastSenderId !== sender_id;
-        const senderChangedClass = isSenderChanged ? 'sender-changed' : '';
-        return (
-            <Fragment key={messageKey}>
-                <div className={`conversation-item ${messageOwnerClass} ${senderChangedClass}`}>
-                    <div className='person-wrapper'>
-                        {
-                            isSenderChanged &&
-                            <div className='person-name'>
-                                <i className="fas fa-user mr-2 mt-1 person-icon"></i>
-                               <span className='person-name-item'>{sender.full_name}</span>
-                            </div>
-                        }
-                    </div>
-                    <div className='message-item-wrapper'>
-                        <div className='border message-content'>
-                            {content}
-                        </div>
-                        <div className='message-created-time'>
-                            {created_time}
-                        </div>
-                    </div>
-
-                </div>
-            </Fragment>
-        );
-    };
-
     displayTitle = () => {
         const {activeConversation, currentUserId, userIdToNameMapping} = this.props;
         if (!!activeConversation.title) {
@@ -70,7 +38,7 @@ export default class ActiveMessageArea extends React.Component {
         }
     }
 
-    handleUpdate = () =>{
+    handleUpdate = () => {
         this.props.handleGroupUpdate();
     }
 
@@ -81,12 +49,12 @@ export default class ActiveMessageArea extends React.Component {
                 <div className="chat-header">
                     {
                         activeConversation && <div>
-                         <span className='message-header-icon'>
-                             {
-                                 !activeConversation.title ?  <i className="fas fa-user-circle mr-2 fa-lg"></i> :  <i className="fas fa-users mr-2 fa-lg"></i>
-                             }
-                        </span>
-                                {this.displayTitle()}
+                             <span className='message-header-icon'>
+                                 {
+                                     !activeConversation.title ?  <i className="fas fa-user-circle mr-2 fa-lg"></i> :  <i className="fas fa-users mr-2 fa-lg"></i>
+                                 }
+                            </span>
+                            {this.displayTitle()}
                             {
                                 activeConversation.title &&
                                 <span className='group-option'>
@@ -121,7 +89,11 @@ export default class ActiveMessageArea extends React.Component {
                                                 if (index > 0) {
                                                     lastSenderId = activeConversation.messages[index - 1].sender_id;
                                                 }
-                                                return this.renderMessage(message, lastSenderId)
+                                                const messageKey = `conversation-${message.conversation_id}-message-${message.id}`;
+                                                return <MessageItem message={message}
+                                                                    key={messageKey}
+                                                                    lastSenderId={lastSenderId}
+                                                                    currentUserId={this.props.currentUserId} />
                                             })
                                         }
                                     </div>
