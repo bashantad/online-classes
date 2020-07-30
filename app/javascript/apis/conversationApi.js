@@ -1,37 +1,31 @@
-import {HEADERS, API_ROOT} from '../constants';
+import baseApi from "./baseApi";
 
 const conversationApi = {
+	getAllByCourseId: (courseId) => {
+		return baseApi.get(`/courses/${courseId}/conversations`);
+	},
+	getMessages: (courseId, conversationId) => {
+		return baseApi.get(`/courses/${courseId}/conversations/${conversationId}/messages`);
+	},
 	create: (courseId, otherUserId) => {
 		const body = {
 			other_user_id: otherUserId
 		};
-		return fetch(`${API_ROOT}/courses/${courseId}/conversations`, {
-			method: "POST",
-			headers: HEADERS,
-			body: JSON.stringify(body)
-		});
+		return baseApi.post(`/courses/${courseId}/conversations`, body);
 	},
 
 	createGroup: (courseId, title) => {
 		const body = {
 			title: title
 		};
-		return fetch(`${API_ROOT}/courses/${courseId}/conversations/create_group`, {
-			method: "POST",
-			headers: HEADERS,
-			body: JSON.stringify(body)
-		});
+		return baseApi.post(`/courses/${courseId}/conversations/create_group`, body);
 	},
 
 	updateMembers: (courseId, conversationId, userIds) => {
 		const body = {
 			user_ids: userIds
 		};
-		return fetch(`${API_ROOT}/courses/${courseId}/conversations/${conversationId}/update_members`, {
-			method: "POST",
-			headers: HEADERS,
-			body: JSON.stringify(body)
-		});
+		return baseApi.post(`/courses/${courseId}/conversations/${conversationId}/update_members`, body);
 	}
 }
 

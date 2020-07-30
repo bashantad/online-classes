@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './CallHistory.scss';
+import './calls/CallHistory.scss';
 
 export default class CallHistory extends React.Component {
     render() {

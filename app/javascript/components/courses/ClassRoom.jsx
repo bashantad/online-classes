@@ -49,8 +49,8 @@ export class ClassRoom extends React.Component {
     }
 
     joinMessages = () => {
-        const {message_url} = this.state.course;
-        this.props.history.push(message_url);
+        const {message_link} = this.state.course;
+        this.props.history.push(message_link.url);
     }
 
     submitReview = (rating, comment) => {

@@ -53,6 +53,7 @@ Rails.application.routes.draw do
 				collection do
 					post :create_group
 				end
+				get :messages
 				post :update_members
 			end
 			get :conversation_details

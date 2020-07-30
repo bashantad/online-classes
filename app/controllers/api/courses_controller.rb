@@ -8,10 +8,6 @@ class Api::CoursesController < Api::BaseController
 		render json: @courses, include: ['teacher']
 	end
 
-	def conversation_details
-		render json: @course, include: %w[enrolled_users conversations.conversation_enrolled_users conversations conversations.messages conversations.messages.sender]
-	end
-
 	def enrollment_request
 		@enrollment_request = @course.enroll_requests.new(user_id: current_user.id, email: current_user.email)
 		if @enrollment_request.save

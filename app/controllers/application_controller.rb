@@ -23,6 +23,11 @@ class ApplicationController < ActionController::Base
 
 	protected
 
+	def serialize(model, options)
+		serializable_resource = ActiveModelSerializers::SerializableResource.new(model, options)
+		serializable_resource.as_json
+	end
+
 	def configure_permitted_parameters
 		devise_parameter_sanitizer.permit(:sign_up, keys: [:full_name])
 		devise_parameter_sanitizer.permit(:account_update, keys: [:full_name, :phone, :state, :street_address, :city, :zip_code, :country, :short_bio, :linkedin_url, :twitter_url])

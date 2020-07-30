@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 
-import CallControl from '../components/CallControl';
+import CallControl from './calls/CallControl';
 import LocalVideo from './calls/LocalVideo';
 
 export class Call extends React.Component {

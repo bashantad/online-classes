@@ -11,9 +11,6 @@ const courseApi = {
 	getEnrolledCourses: () => {
 		return baseApi.get('/courses/enrolled');
 	},
-	getConversationDetails: (id) => {
-		return baseApi.get(`/courses/${id}/conversation_details`);
-	},
 	sendEnrollmentRequest: (id, body) => {
 		return baseApi.post(`/courses/${id}/enrollment_request`, body);
 	},

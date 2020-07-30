@@ -24,10 +24,10 @@ export default class ActiveMessageArea extends React.Component {
 
     renderMessage = (message, lastSenderId) => {
         const {currentUserId, activeConversation} = this.props;
-        const {sender, created_time, content} = message;
-        const messageOwnerClass = currentUserId === sender.id ? 'message-owner' : 'sender-owner';
+        const {sender_id, created_time, content, sender} = message;
+        const messageOwnerClass = currentUserId === sender_id ? 'message-owner' : 'sender-owner';
         const messageKey = `conversation-${activeConversation.id}-message-${message.id}`;
-        const isSenderChanged = lastSenderId !== sender.id;
+        const isSenderChanged = lastSenderId !== sender_id;
         const senderChangedClass = isSenderChanged ? 'sender-changed' : '';
         return (
             <Fragment key={messageKey}>
@@ -119,7 +119,7 @@ export default class ActiveMessageArea extends React.Component {
                                             activeConversation.messages.map((message, index) => {
                                                 let lastSenderId = null;
                                                 if (index > 0) {
-                                                    lastSenderId = activeConversation.messages[index - 1].sender.id;
+                                                    lastSenderId = activeConversation.messages[index - 1].sender_id;
                                                 }
                                                 return this.renderMessage(message, lastSenderId)
                                             })

@@ -1,6 +1,6 @@
 import React from 'react';
 import {withRouter} from 'react-router';
-import './message.scss';
+import './messages/message.scss';
 import PeopleInTheChat from '../components/messages/PeopleInTheChat';
 import ActiveMessageArea from '../components/messages/ActiveMessageArea';
 import NewMessage from '../components/messages/NewMessage';
@@ -8,7 +8,6 @@ import Cable from './messages/Cable';
 import NewGroupForm from "./groups/NewGroupForm";
 import UpdateMembers from "./groups/UpdateMembers";
 
-import courseApi from '../apis/courseApi';
 import conversationApi from '../apis/conversationApi';
 import userApi from '../apis/userApi';
 
@@ -33,38 +32,36 @@ export class Message extends React.Component {
         messageNotificationMap: {},
         showNewGroupForm: false,
         showUpdateMembers: false,
-        mobileOpen: false,
     };
 
     _getCourseId = () => {
         return this.props.match.params.course_id;
     }
 
+    _getConversationId = () => {
+        return Number(this.props.match.params.conversation_id);
+    }
+
     componentDidMount = () => {
-        userApi.getCurrentUserInfo()
+        conversationApi.getAllByCourseId(this._getCourseId())
             .then(res => res.json())
-            .then(user => {
-                const {id, full_name, enrolled_courses, user_message_notifications, conversations} = user;
+            .then(response => {
+                const {course_details, group_conversations, individual_conversations, user_details} = response;
+                const {id, full_name, enrolled_courses, user_message_notifications} = user_details;
+                const {title, enrolled_users} = course_details;
+                const conversations = [...individual_conversations, ...group_conversations];
                 this.setState({
                     fullName: full_name,
                     currentUserId: id,
                     enrolledCourses: enrolled_courses,
-                    individualConversations: conversations,
-                    conversations: [...this.state.conversations, ...conversations],
-                    messageNotificationMap: user_message_notifications
-                })
-            });
-        courseApi.getConversationDetails(this._getCourseId())
-            .then(res => res.json())
-            .then(courseDetails => {
-                const {conversations, enrolled_users, title} = courseDetails;
-                this.setState({
-                    groupConversations: conversations,
-                    conversations: [...this.state.conversations, ...conversations],
+                    individualConversations: individual_conversations,
+                    groupConversations: group_conversations,
+                    conversations: conversations,
+                    messageNotificationMap: user_message_notifications,
                     enrolledUsers: enrolled_users,
-                    activeConversationId: conversations[0].id,
                     courseName: title,
-                });
+                })
+                this.fetchActiveConversation();
             });
     }
 
@@ -128,16 +125,51 @@ export class Message extends React.Component {
         );
     }
 
-    handleConversationClick = (conversationId) => {
+    componentDidUpdate(prevProps) {
+        const {activeConversationId} = this.state;
+        if(activeConversationId !== this._getConversationId()) {
+            this.fetchActiveConversation();
+        }
+    }
+
+    navigateToConversation = (conversationId) => {
+        this.props.history.push(`/courses/${this._getCourseId()}/conversations/${conversationId}/messages`);
+    }
+
+    fetchActiveConversation = () => {
+        const conversationId = this._getConversationId();
+        conversationApi.getMessages(this._getCourseId(), conversationId)
+            .then(res => res.json())
+            .then(response => {
+                const {conversation_enrolled_users, messages} = response;
+                const activeConversation = this.state.conversations.find(conversation => conversation.id === this._getConversationId());
+                const updateAttributes = {
+                    activeConversationId: activeConversation.id,
+                    showNewGroupForm: false,
+                    showUpdateMembers: false
+                };
+                this._assignConversation(updateAttributes, messages, conversation_enrolled_users, activeConversation);
+                this._assignMessageNotificationMap(updateAttributes, conversationId);
+                this.setState(updateAttributes);
+            });
+    }
+
+    _assignConversation = (updateAttributes, messages, conversation_enrolled_users, activeConversation) => {
+        activeConversation.messages = messages;
+        activeConversation.conversation_enrolled_uers = conversation_enrolled_users;
+        const doesConversationExist = this.state.conversations.some(item => item.id === activeConversation.id);
+        if (!doesConversationExist) {
+            const conversations = [...this.state.conversations, activeConversation];
+            updateAttributes.conversations = conversations;
+        }
+        return updateAttributes;
+    }
+
+    _assignMessageNotificationMap = (updateAttributes, conversationId) => {
         const {messageNotificationMap} = this.state;
         const hasUnreadMessages = !!messageNotificationMap[conversationId];
         delete messageNotificationMap[conversationId];
-        this.setState({
-            activeConversationId: conversationId,
-            messageNotificationMap,
-            showNewGroupForm: false,
-            showUpdateMembers: false
-        });
+        updateAttributes.messageNotificationMap = messageNotificationMap;
         hasUnreadMessages && userApi.markMessagesRead(conversationId);
     }
 
@@ -163,12 +195,6 @@ export class Message extends React.Component {
             });
     }
 
-    handleDrawerToggle = () => {
-        this.setState({
-            mobileOpen: !this.state.mobileOpen
-        })
-    };
-
     render() {
         const {
             conversations,
@@ -180,15 +206,14 @@ export class Message extends React.Component {
             showNewGroupForm,
             showUpdateMembers
         } = this.state;
-
-        const peopleInTheChatProps = {
+        const sidebarProps = {
             conversations: conversations,
             individualConversations: individualConversations,
             enrolledUsers: enrolledUsers,
             activeConversationId: activeConversationId,
             currentUserId: currentUserId,
             messageNotificationMap: messageNotificationMap,
-            handleConversationClick: this.handleConversationClick,
+            handleConversationClick: this.navigateToConversation,
             handleUserClick: this.handleUserClick,
             handleCreateCourseGroup: this.handleCreateCourseGroup,
         };
@@ -198,7 +223,7 @@ export class Message extends React.Component {
             <>
                 <div className="main-layout">
                     <aside className='col-lg-3 col-xl-3 border-right border-top p-0 bg-white'>
-                        <PeopleInTheChat {...peopleInTheChatProps}/>
+                        <PeopleInTheChat {...sidebarProps}/>
                     </aside>
                     <main className='col-lg-9 col-xl-9 main-content border-top p-0'>
                         <div className="chats">
@@ -232,7 +257,6 @@ export class Message extends React.Component {
                                                     <ActiveMessageArea
                                                         activeConversation={activeConversation}
                                                         currentUserId={currentUserId}
-                                                        handleDrawerToggle={this.handleDrawerToggle}
                                                         userIdToNameMapping={userIdToNameMapping(enrolledUsers)}
                                                         handleGroupUpdate={this.handleGroupUpdate}
                                                     />
