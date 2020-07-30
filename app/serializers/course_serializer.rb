@@ -1,7 +1,7 @@
 class CourseSerializer < ApplicationSerializer
   attributes :id, :title, :website, :course_for, :show_url, :image_urls, :short_description, :duration, :no_of_lessons,
              :level, :lecture_count, :original_price, :discounted_price, :reviews_count, :body_html, :course_highlights_html,
-             :calling_url
+             :calling_url, :message_url
   has_many :chapters
   has_one :teacher
   has_one :category
@@ -18,6 +18,10 @@ class CourseSerializer < ApplicationSerializer
   def calling_url
     return if object.calls.empty?
     object.calls.first.calling_url
+  end
+
+  def message_url
+     object.general_conversation.message_url
   end
 
   def course_highlights_html

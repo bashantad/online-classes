@@ -13,7 +13,8 @@ export default class NewMessage extends React.Component {
         this.setState({content: event.target.value});
     }
 
-    handleMessageSendClick = () => {
+    handleMessageSendClick = (e) => {
+        e.preventDefault();
         const {content} = this.state;
         if (!!content) {
             chatApi.create(this.props.conversationId, content);
@@ -28,7 +29,7 @@ export default class NewMessage extends React.Component {
         return (
             <div className='new-message-box-container row'>
                 <div className="col-md-10 col-12">
-                    <form action="">
+                    <form onSubmit={this.handleMessageSendClick}>
                         <div className="input-group-borderless position-relative">
                             <input onChange={this.handleMessageChange} value={content} type="textarea"
                                    id="exampleFormControlInput1" className="form-control  content-centered"
@@ -55,7 +56,6 @@ export default class NewMessage extends React.Component {
                         </button>
                     </div>
                 </div>
-
             </div>
         );
     }

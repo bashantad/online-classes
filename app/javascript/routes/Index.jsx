@@ -32,7 +32,8 @@ export default (
       <Route path="/classroom/:id" exact component={Call} />
       <Route path="/call_history" exact component={CallHistory} />
       <Route path="/calls/:userId/join/:callingCode" exact component={VideoCallWrapper} />
-      <Route path="/courses/:course_id/messages" exact component={MessageWrapper} />
+      <Route path="/conversations/:conversation_id/messages" exact component={MessageWrapper} />
+      <Route path="/courses/:course_id/conversations/:conversation_id/messages" exact component={MessageWrapper} />
       <Route path="/*" exact component={NotFoundPage} />
     </Switch>
   </Router>

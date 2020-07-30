@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './PeopleInTheChat.scss';
+import Group from "./Group";
+import Person from "./Person";
 
 export default class PeopleInTheChat extends React.Component {
     handleConversationClick = (conversationId) => {
         this.props.handleConversationClick(conversationId);
     }
+
     handleUserClick = (mappingPersonToConversation, userId) => {
         const conversationId = mappingPersonToConversation[userId];
         if (conversationId) {
@@ -41,69 +44,44 @@ export default class PeopleInTheChat extends React.Component {
         return conversationId === this.props.activeConversationId;
     }
 
-    renderIndividualPerson = (user, mappingPersonToConversation) => {
-        const conversationId = mappingPersonToConversation[user.id];
-        const {avatar_image_urls, full_name} = user;
-        const imageUrl = avatar_image_urls["60x40"];
-        return (
-            <div className={this.getActiveClass((conversationId)) ? "list-group people aside-active" : "list-group people"}
-                 key={`person-${user.id}-conversation-${conversationId}`}>
-                <a type='button' className="ml-2 mr-2 p-2"
-                   onClick={() => this.handleUserClick(mappingPersonToConversation, user.id)} >
-                    <div className="p-2 row align-items-center">
-                        <div className="col-2">
-                            <span>
-                            {
-                                imageUrl ?
-                                    <img className="avatar-img" src={imageUrl} alt="Profile picture"/>
-                                    : <i className="fas fa-user-circle fa-2x list-group-icon mr-4"></i>
-                            }
-                        </span>
-                        </div>
-                        <div className="col-10">
-                            <span className='mt-2 text-dark'>{full_name}</span>
-                            {this.renderNotification(conversationId)}
-                        </div>
-                    </div>
-                </a>
-            </div>
-        );
+    renderIndividualConversation = (enrolledUsers, mappingPersonToConversation) => {
+        return enrolledUsers.map((enrolledUser) => {
+            const conversationId = mappingPersonToConversation[enrolledUser.id];
+            const {avatar_image_urls, full_name} = enrolledUser;
+            const imageUrl = avatar_image_urls["60x40"];
+            return (
+                <Person key={`person-${enrolledUser.id}-conversation-${conversationId}`}
+                        activeClass={this.getActiveClass((conversationId))}
+                        imageUrl={imageUrl}
+                        fullName={full_name}
+                        noOfMessages={this._getNumberOfMessages(conversationId)}
+                        handleUserClick={() => this.handleUserClick(mappingPersonToConversation, enrolledUser.id)}/>
+            );
+        })
     }
 
-    renderNotification = (conversationId) => {
-        const {messageNotificationMap} = this.props;
-        return (
-            messageNotificationMap[conversationId] &&
-            <span
-                className="badge badge-pill badge-primary no-of-messages"> {messageNotificationMap[conversationId].length}</span>
-        );
+    _getNumberOfMessages = (conversationId) => {
+        const num = this.props.messageNotificationMap[conversationId];
+        if(!!num) {
+            return num.length;
+        } else {
+            return 0;
+        }
     }
 
-    renderGroupConversation = (conversation) => {
-        const {title, id} = conversation;
-        return (
-            <div
-                className={this.getActiveClass((id)) ? "list-group border-bottom people aside-active" : "list-group border-bottom people"} key={`group-conversation-${id}`}>
-                <a type='button' className="ml-2 mr-2 p-2"
-                   onClick={() => this.handleConversationClick(id)}>
-                    <div className="p-2 row align-items-center">
-                        <div className="col-2">
-                            <span>
-                            <i className="fas fa-users fa-2x mr-2"></i>
-                        </span>
-                        </div>
-                        <div className="col-10">
-                            <span className='mt-2 text-dark'>{title}</span>
-                            {this.renderNotification(id)}
-                        </div>
-                    </div>
-                </a>
-            </div>
-        )
+    renderGroupConversation = (groupConversations) => {
+        return groupConversations.map(conversation => {
+            const {title, id} = conversation;
+            return <Group key={`group-conversation-${id}`}
+                          activeClass={this.getActiveClass((id))}
+                          noOfMessages={this._getNumberOfMessages(id)}
+                          title={title}
+                          handleConversationClick={() => this.handleConversationClick(id)} />
+        });
     }
 
     render() {
-        const {conversations, enrolledUsers, messageNotificationMap, individualConversations, handleClick} = this.props;
+        const {conversations, enrolledUsers, individualConversations} = this.props;
         const groupConversations = conversations.filter(conv => conv.is_group);
         const mappingPersonToConversation = this._getMappingPersonToConversation(individualConversations);
 
@@ -117,13 +95,15 @@ export default class PeopleInTheChat extends React.Component {
                             data-toggle="collapse"
                             data-target="#peopleInChat">
                             <span className="d-flex justify-content-between align-items-center">
-                              <span className="h5 mb-0">Chat</span>
-                               <span className="navbar-toggler-default mr-3">
-                                <i className="fas fa-xs fa-bars"></i>
-                              </span>
-                          <span className="navbar-toggler-toggled mr-3">
-                                 <i className="fas fa-xs fa-times"></i>
-                              </span>
+                                <span className="h5 mb-0">
+                                    Chat
+                                </span>
+                                <span className="navbar-toggler-default mr-3">
+                                    <i className="fas fa-xs fa-bars"></i>
+                                </span>
+                                <span className="navbar-toggler-toggled mr-3">
+                                    <i className="fas fa-xs fa-times"></i>
+                                </span>
                             </span>
                     </button>
 
@@ -140,10 +120,10 @@ export default class PeopleInTheChat extends React.Component {
                                 </div>
                             </div>
                             {
-                                groupConversations.map(conversation => this.renderGroupConversation(conversation, messageNotificationMap))
+                                this.renderGroupConversation(groupConversations)
                             }
                             {
-                                enrolledUsers.map(user => this.renderIndividualPerson(user, mappingPersonToConversation))
+                                this.renderIndividualConversation(enrolledUsers, mappingPersonToConversation)
                             }
                         </div>
                     </div>

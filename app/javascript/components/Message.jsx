@@ -1,10 +1,6 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {withRouter} from 'react-router';
-import {Link} from "react-router-dom";
-
 import './message.scss';
-
-
 import PeopleInTheChat from '../components/messages/PeopleInTheChat';
 import ActiveMessageArea from '../components/messages/ActiveMessageArea';
 import NewMessage from '../components/messages/NewMessage';
@@ -167,23 +163,6 @@ export class Message extends React.Component {
             });
     }
 
-    displayTitle = () => {
-        const {currentUserId, userIdToNameMapping} = this.props;
-        const activeConversation = this.findActiveConversation();
-        if (!!activeConversation.title) {
-            return activeConversation.title;
-        } else {
-            const conversation_users = activeConversation.conversation_enrolled_users;
-            let userId = currentUserId;
-            if (conversation_users.length > 1) {
-                const conversation_user = conversation_users.find(conversation_user => conversation_user.user_id !== currentUserId);
-                userId = conversation_user.user_id;
-            }
-            return userIdToNameMapping[userId];
-        }
-    }
-
-
     handleDrawerToggle = () => {
         this.setState({
             mobileOpen: !this.state.mobileOpen
@@ -195,11 +174,9 @@ export class Message extends React.Component {
             conversations,
             enrolledUsers,
             activeConversationId,
-            courseName,
             messageNotificationMap,
             currentUserId,
             individualConversations,
-            fullName,
             showNewGroupForm,
             showUpdateMembers
         } = this.state;

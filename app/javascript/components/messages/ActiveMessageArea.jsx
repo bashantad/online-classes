@@ -1,11 +1,11 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import './ActiveMessageArea.scss';
+import NoMsgImage from "../../../assets/images/icons/icon-4.svg";
 
 export default class ActiveMessageArea extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {anchorEl: null};
         this.messagesEndRef = React.createRef();
     }
 
@@ -21,14 +21,6 @@ export default class ActiveMessageArea extends React.Component {
         const currentMessageEnd = this.messagesEndRef.current;
         currentMessageEnd && currentMessageEnd.scrollIntoView({behavior: 'smooth'})
     }
-
-    handlePopover = (event) => {
-        this.setState({anchorEl: event.currentTarget});
-    };
-
-    handleClose = () => {
-        this.setState({anchorEl: null});
-    };
 
     renderMessage = (message, lastSenderId) => {
         const {currentUserId, activeConversation} = this.props;
@@ -83,11 +75,7 @@ export default class ActiveMessageArea extends React.Component {
     }
 
     render() {
-        const {activeConversation, handleDrawerToggle} = this.props;
-
-        const open = Boolean(this.state.anchorEl);
-        const id = open ? 'simple-popover' : undefined;
-
+        const {activeConversation} = this.props;
         return (
             <Fragment>
                 <div className="chat-header">
@@ -121,38 +109,36 @@ export default class ActiveMessageArea extends React.Component {
                         </div>
                     }
                 </div>
-                    <div>
-                        {
-                            activeConversation && <div className='active-conversation bg-soft-primary'>
-                                {
-                                    Array.isArray(activeConversation.messages) && activeConversation.messages.length ?
-                                        <div className='message-card'>
-                                            {
-                                                activeConversation.messages.map((message, index) => {
-                                                    let lastSenderId = null;
-                                                    if (index > 0) {
-                                                        lastSenderId = activeConversation.messages[index - 1].sender.id;
-                                                    }
-                                                    return this.renderMessage(message, lastSenderId)
-                                                })
-                                            }
+                <div>
+                    {
+                        activeConversation && <div className='active-conversation bg-soft-primary'>
+                            {
+                                Array.isArray(activeConversation.messages) && activeConversation.messages.length ?
+                                    <div className='message-card'>
+                                        {
+                                            activeConversation.messages.map((message, index) => {
+                                                let lastSenderId = null;
+                                                if (index > 0) {
+                                                    lastSenderId = activeConversation.messages[index - 1].sender.id;
+                                                }
+                                                return this.renderMessage(message, lastSenderId)
+                                            })
+                                        }
+                                    </div>
+                                    : <div className='message-card no-message'>
+                                        <div className='no-message-card'>
+                                            <figure className="max-w-8rem mx-auto mb-2">
+                                                <img className="img-fluid" src={NoMsgImage} alt="No message"/>
+                                            </figure>
+                                            <div className='text-body'>No Messages</div>
                                         </div>
-                                        : <div className='message-card no-message'>
-                                            <div className='no-message-card'>
-                                                <figure className="max-w-8rem mx-auto mb-2">
-                                                    <img className="img-fluid" src="../../assets/icons/icon-4.svg"
-                                                         alt="SVG"/>
-                                                </figure>
-                                                <div className='text-body'>No Messages</div>
-                                            </div>
-                                        </div>
-                                }
-                                <div ref={this.messagesEndRef}/>
-                            </div>
-                        }
+                                    </div>
+                            }
+                            <div ref={this.messagesEndRef}/>
+                        </div>
+                    }
                 </div>
             </Fragment>
-
         );
     };
 }

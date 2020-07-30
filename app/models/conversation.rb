@@ -9,6 +9,14 @@ class Conversation < ApplicationRecord
 
 	validates_uniqueness_of :title, scope: %i[course_id], if: -> {  title.present? }
 
+	def message_url
+		if course.present?
+			"/courses/#{self.course_id}/conversations/#{self.id}/messages"
+		else
+			"/conversations/#{self.id}/messages"
+		end
+	end
+
 	#TODO: remove For testing purpose only
 	def self.wipe_out_the_data
 		return unless Rails.env.development?
