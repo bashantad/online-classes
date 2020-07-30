@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import EnrollmentConfirmation from "./EnrollmentConfirmation";
 import CourseSidebar from "./CourseSidebar";
+import EnrollmentSummary from "./EnrollmentSummary";
 
 const Sidebar = ({course, handleEnroll, showEnrollmentForm}) => {
     return (
@@ -20,7 +21,10 @@ const Sidebar = ({course, handleEnroll, showEnrollmentForm}) => {
                                      }'>
                         {
                             showEnrollmentForm ?
-                                <EnrollmentConfirmation courseId={course.id}/>
+                                <>
+                                    <EnrollmentSummary {...course} />
+                                    <EnrollmentConfirmation courseId={course.id}/>
+                                </>
                                 : <CourseSidebar {...course} handleEnroll={handleEnroll}/>
                         }
                     </div>

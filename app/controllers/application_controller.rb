@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
 	CALL_JOIN_URL_PATTERN = /^calls\/\d+\/join\/\w+$/
+	MESSAGE_URL_PATTERN = /^courses\/\d+\/conversations\/\d+\/messages$/
 	COURSE_DETAIL_URL_PATTERN = /^courses\/\d+$/
 	REACT_ROUTES = {
 		qualifications: '/users/qualifications',
@@ -39,6 +40,10 @@ class ApplicationController < ActionController::Base
 
 	def is_call_join_url?
 		params[:path]&.match(CALL_JOIN_URL_PATTERN).present?
+	end
+
+	def is_message_url?
+		params[:path]&.match(MESSAGE_URL_PATTERN).present?
 	end
 
 	def course_detail_page?

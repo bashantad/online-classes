@@ -16,7 +16,7 @@ class EnrollmentConfirmation extends React.Component {
         courseApi.sendEnrollmentRequest(courseId, body)
             .then(res => res.json())
             .then(response => {
-                if (response.status === 200){
+                if (!!response.success){
                     this.setState({loading: false, successMessage: response.success});
                 } else {
                     this.setState({loading: false, errorMessage: response.error});

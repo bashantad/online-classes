@@ -11,14 +11,9 @@ const EnrollmentConfirmationView = ({successMessage, sendEnrollmentRequest, cour
                         {successMessage}
                     </div>
                     :
-                    <div>
-                        <div>
-                            Enrollment confirmation.
-                        </div>
-                        <button onClick={() => sendEnrollmentRequest(courseId)}>
-                            Confirm
-                        </button>
-                    </div>
+                    <button onClick={() => sendEnrollmentRequest(courseId)}>
+                        Confirm
+                    </button>
             }
         </div>
     )
