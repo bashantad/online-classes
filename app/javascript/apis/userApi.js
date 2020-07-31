@@ -1,17 +1,11 @@
-import {HEADERS, API_ROOT} from '../constants';
+import baseApi from "./baseApi";
 
 const userApi = {
 	getCurrentUserInfo: () => {
-		return fetch(`${API_ROOT}/users/current_user_info`, {
-			method: 'GET',
-			headers: HEADERS
-		});
+		return baseApi.get('/users/current_user_info');
 	},
 	markMessagesRead: (conversationId) => {
-		fetch(`${API_ROOT}/users/${conversationId}/mark_messages_read`, {
-			method: 'GET',
-			headers: HEADERS
-		});
+		return baseApi.get(`/users/${conversationId}/mark_messages_read`);
 	}
 }
 

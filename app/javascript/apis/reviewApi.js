@@ -1,4 +1,4 @@
-import {HEADERS, API_ROOT} from '../constants';
+import baseApi from "./baseApi";
 
 const reviewApi = (params) => {
 	const _mergedUrl = (url) => {
@@ -6,34 +6,20 @@ const reviewApi = (params) => {
 	}
 	return {
 		create: (body) => {
-			const createUrl = _mergedUrl(`${API_ROOT}/reviews`);
-			return fetch(createUrl, {
-				method: "POST",
-				headers: HEADERS,
-				body: JSON.stringify({review: body})
-			});
+			const createUrl = _mergedUrl(`/reviews`);
+			return baseApi.post(createUrl, {review: body});
 		},
 		getById: (id) => {
-			const getUrl = _mergedUrl(`${API_ROOT}/reviews/${id}`);
-			return fetch(getUrl, {
-				method: "GET",
-				headers: HEADERS,
-			});
+			const getUrl = _mergedUrl(`/reviews/${id}`);
+			return baseApi.get(getUrl);
 		},
 		update: (id, body) => {
-			const updateUrl = _mergedUrl(`${API_ROOT}/reviews/${id}`);
-			return fetch(updateUrl, {
-				method: "POST",
-				headers: HEADERS,
-				body: JSON.stringify({review: body})
-			});
+			const updateUrl = _mergedUrl(`/reviews/${id}`);
+			return baseApi.post(updateUrl, {review: body});
 		},
 		destroy: (id) => {
-			const deleteUrl = _mergedUrl(`${API_ROOT}/reviews/${id}`);
-			return fetch(deleteUrl, {
-				method: "DELETE",
-				headers: HEADERS,
-			});
+			const deleteUrl = _mergedUrl(`/reviews/${id}`);
+			return baseApi.delete(deleteUrl);
 		},
 	}
 }
