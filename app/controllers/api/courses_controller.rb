@@ -13,7 +13,9 @@ class Api::CoursesController < Api::BaseController
 		if @enrollment_request.save
 			render_success_message("Successfully sent the enrollment request. You will be notified once you are accepted to the course")
 		else
-			render_error_message("Error saving the enrollment request")
+			error_messages = @enrollment_request.errors.messages
+			field_name = error_messages.keys.first
+			render_error_message(error_messages[field_name][0])
 		end
 	end
 

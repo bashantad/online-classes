@@ -1,5 +1,5 @@
 class Teaching::ChaptersController < Teaching::BaseController
-  before_action :set_course
+  before_action :set_owned_course
   before_action :set_chapter, only: [:show, :edit, :update, :destroy]
 
   def new

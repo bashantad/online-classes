@@ -21,7 +21,7 @@
   <div class="card">
     <!-- Table -->
     <div class="table-responsive">
-      <%= form_with(url: teaching_course_enroll_users_path(@course), local: true) do |form| %>
+      <%= form_with(url: enroll_users_teaching_course_enrollments_path(@course), local: true) do |form| %>
         <table class="table table-thead-bordered table-nowrap table-align-middle">
           <thead class="thead-light">
           <tr>
@@ -34,11 +34,18 @@
           <tbody>
           <% (0..4).to_a.each do |row| %>
             <tr>
-              <td><%= row + 1 %></td>
-              <td><input type="text" name="enroll_request[<%= row %>][full_name]" class="form-control"></td>
-              <td><input type="text" name="enroll_request[<%= row %>][email]" class="form-control"></td>
+              <td>
+                <%= row + 1 %>
+              </td>
+              <td>
+                <input type="text" name="enroll_request[<%= row %>][full_name]" class="form-control">
+              </td>
+              <td>
+                <input type="text" name="enroll_request[<%= row %>][email]" class="form-control">
+              </td>
               <td class="mdc-data-table__cell mdc-data-table__cell--numeric">
-                <input type="text" name="enroll_request[<%= row %>][phone]" placeholder="Optional" class="form-control"></td>
+                <input type="text" name="enroll_request[<%= row %>][phone]" placeholder="Optional" class="form-control">
+              </td>
             </tr>
           <% end %>
           </tbody>

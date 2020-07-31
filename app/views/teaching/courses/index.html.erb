@@ -54,7 +54,7 @@
               </td>
               <td>
                 <% if course.approved? %>
-                  <%= link_to 'Enrollment requests', teaching_course_enrollment_requests_path(course), class: 'btn btn-xs btn-outline-navy' %>
+                  <%= link_to 'Enrollment requests', requests_teaching_course_enrollments_path(course), class: 'btn btn-xs btn-outline-navy' %>
                 <% else %>
                   Pending approval
                 <% end %>

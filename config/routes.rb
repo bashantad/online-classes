@@ -13,10 +13,16 @@ Rails.application.routes.draw do
   		resources :courses do
   			collection do
   				get :start_teaching
-  			end
-  			get :enrollment
-				post :enroll_users
-				get :enrollment_requests
+        end
+				resources :enrollments, only: [] do
+					collection do
+						get :bulk_enrollment
+						post :enroll_users
+						get :requests
+					end
+					get :accept
+					get :decline
+				end
 				resources :chapters, except: [:index] do
 					resources :course_contents, except: [:index]
 					resources :assignments do

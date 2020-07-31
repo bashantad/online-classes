@@ -24,6 +24,14 @@ class ApplicationController < ActionController::Base
 
 	protected
 
+	def set_owned_course
+		@course = current_user.courses.find_by_id(get_course_id)
+	end
+
+	def get_course_id
+		params[:course_id] || params[:id]
+	end
+
 	def serialize(model, options)
 		serializable_resource = ActiveModelSerializers::SerializableResource.new(model, options)
 		serializable_resource.as_json

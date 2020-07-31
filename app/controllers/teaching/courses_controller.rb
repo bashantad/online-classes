@@ -1,6 +1,6 @@
 class Teaching::CoursesController < Teaching::BaseController
   before_action :authenticate_user!, except: [:show, :start_teaching]
-  before_action :set_course, only: [:edit, :update, :destroy, :enrollment, :enroll_users, :enrollment_requests]
+  before_action :set_owned_course, only: [:edit, :update, :destroy]
   before_action :set_categories, only: [:new, :create, :edit, :update]
 
   def index
@@ -59,39 +59,7 @@ class Teaching::CoursesController < Teaching::BaseController
     end
   end
 
-  def enrollment
-
-  end
-
-  def enroll_users
-    records_created = []
-    records_failed = []
-    params[:enroll_request].each do |key, enroll_request_params|
-      enroll_request = @course.enroll_requests.create(allowed_enroll_request_params(enroll_request_params))
-      if enroll_request.persisted?
-        records_created << enroll_request.email
-      else
-        records_failed << enroll_request.email
-      end
-    end
-    created_count = records_created.count
-    flash[:notice] = "#{created_count} #{'request'.pluralize(created_count)} #{created_count == 1 ? 'is' : 'are'} sent(#{records_created.join(", ")}). #{records_failed.count} didn't succeed."
-    redirect_to teaching_course_enrollment_requests_path(@course)
-  end
-
-  def enrollment_requests
-    @enroll_user_requests = @course.enroll_requests
-  end
-
   private
-  def set_course
-    @course = current_user.courses.find(params[:id] || params[:course_id])
-  end
-
-  def allowed_enroll_request_params(enroll_request_params)
-    enroll_request_params.permit(:full_name, :email, :phone)
-  end
-
   def course_params
     params.require(:course).permit(:title, :body, :website, :course_for, :price, :category_id, :cover_image, :short_description, :course_highlights, :duration, :no_of_lessons, :level, :discount_percentage)
   end
