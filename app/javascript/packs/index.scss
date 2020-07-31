@@ -75,7 +75,7 @@ ul.timeline > li:before {
   left: 22px;
   width: 15px;
   height: 15px;
-  margin-top: 8px;
+  margin-top: 10px;
   z-index: 400;
 }
 
@@ -171,7 +171,7 @@ ul.timeline > li:before {
 }
 
 .sidebar {
-  position: relative;
+  //position: relative;
   top: 0;
   right: 0;
   z-index: 1003;
