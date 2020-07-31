@@ -64,7 +64,6 @@ export default class NewQualification extends React.Component {
     submitForm = (event) => {
         const {name_of_institution, year_start, year_end, location, country, title} = this.state;
         const {qualificationType, addQualification} = this.props;
-        console.log(this.state)
             addQualification({
                 type: qualificationType,
                 name_of_institution,

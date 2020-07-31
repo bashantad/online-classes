@@ -6,7 +6,8 @@
         <!-- Title -->
         <div class="mb-5 mb-md-7">
           <h1 class="h2 mb-0">Welcome to VC Room</h1>
-          <p>Fill out the form to get started.
+          <p>
+            Fill out the form to get started.
           </p>
         </div>
         <!-- End Title -->
@@ -45,7 +46,7 @@
         <% end %>
           </span>
           </label>
-          <%= f.password_field :password, autocomplete: "new-password", class: 'form-control', type: 'password', id:'password', placeholder:'********', ariaLabel: '********', dataMsg:'Your password is invalid. Please try again.' %>
+          <%= f.password_field :password, autocomplete: "new-password", class: 'form-control', type: 'password', id:'password', dataMsg:'Your password is invalid. Please try again.' %>
           <% if error_messages[:password] %>
             <div class="field-error">
               <%= error_messages[:password][0] %>
@@ -61,7 +62,7 @@
            <%= f.label :password_confirmation %>
           </span>
           </label>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', type: 'password', id:'password_confirmation', placeholder:'********', ariaLabel: '********', dataMsg:'Your password is invalid. Please try again.' %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', type: 'password', id:'password_confirmation', dataMsg:'Your password is invalid. Please try again.' %>
           <% if error_messages[:password_confirmation] %>
             <div class="field-error">
               <%= error_messages[:password_confirmation][0] %>
