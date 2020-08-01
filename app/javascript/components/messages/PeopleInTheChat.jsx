@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './PeopleInTheChat.scss';
-import Group from "./Group";
-import Person from "./Person";
+import GroupSidebar from "./GroupSidebar";
+import PersonSidebar from "./PersonSidebar";
 
 export default class PeopleInTheChat extends React.Component {
     handleConversationClick = (conversationId) => {
@@ -28,12 +28,12 @@ export default class PeopleInTheChat extends React.Component {
             const {avatar_image_urls, full_name} = enrolledUser;
             const imageUrl = avatar_image_urls["60x40"];
             return (
-                <Person key={`person-${enrolledUser.id}-conversation-${conversationId}`}
-                        activeClass={this.getActiveClass((conversationId))}
-                        imageUrl={imageUrl}
-                        fullName={full_name}
-                        noOfMessages={this._getNumberOfMessages(conversationId)}
-                        handleUserClick={() => this.handleUserClick(mappingPersonToConversation, enrolledUser.id)}/>
+                <PersonSidebar key={`person-${enrolledUser.id}-conversation-${conversationId}`}
+                               activeClass={this.getActiveClass((conversationId))}
+                               imageUrl={imageUrl}
+                               fullName={full_name}
+                               noOfMessages={this._getNumberOfMessages(conversationId)}
+                               handleUserClick={() => this.handleUserClick(mappingPersonToConversation, enrolledUser.id)}/>
             );
         })
     }
@@ -50,11 +50,11 @@ export default class PeopleInTheChat extends React.Component {
     renderGroupConversation = (groupConversations) => {
         return groupConversations.map(conversation => {
             const {title, id} = conversation;
-            return <Group key={`group-conversation-${id}`}
-                          activeClass={this.getActiveClass((id))}
-                          noOfMessages={this._getNumberOfMessages(id)}
-                          title={title}
-                          handleConversationClick={() => this.handleConversationClick(id)} />
+            return <GroupSidebar key={`group-conversation-${id}`}
+                                 activeClass={this.getActiveClass((id))}
+                                 noOfMessages={this._getNumberOfMessages(id)}
+                                 title={title}
+                                 handleConversationClick={() => this.handleConversationClick(id)} />
         });
     }
 

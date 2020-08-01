@@ -39,6 +39,8 @@ class Api::ConversationsController < Api::BaseController
 	def update_members
 		@conversation = @course.conversations.groups.find(params[:conversation_id])
 		@conversation.update_members(params[:user_ids])
+		serialized_data = serialized_hash(@conversation, ConversationSerializer)
+		ActionCable.server.broadcast 'conversations_channel', serialized_data
 		render_conversation
 	end
 

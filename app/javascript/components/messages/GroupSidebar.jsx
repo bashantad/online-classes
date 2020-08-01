@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import MessageNotification from "./MessageNotification";
 
-const Group = ({activeClass, title, handleConversationClick, noOfMessages}) => {
+const GroupSidebar = ({activeClass, title, handleConversationClick, noOfMessages}) => {
     return (
         <div className={activeClass ? "list-group border-bottom people aside-active" : "list-group border-bottom people"}>
             <a type='button' className="ml-2 mr-2 p-2" onClick={handleConversationClick}>
@@ -22,11 +22,11 @@ const Group = ({activeClass, title, handleConversationClick, noOfMessages}) => {
     );
 }
 
-Group.propTypes = {
+GroupSidebar.propTypes = {
     activeClass: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
     noOfMessages: PropTypes.number.isRequired,
     handleConversationClick: PropTypes.func.isRequired,
 };
 
-export default Group;
+export default GroupSidebar;

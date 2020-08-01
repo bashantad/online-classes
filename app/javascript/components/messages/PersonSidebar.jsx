@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import MessageNotification from "./MessageNotification";
 
-const Person = ({activeClass, imageUrl, fullName, noOfMessages, handleUserClick}) => {
+const PersonSidebar = ({activeClass, imageUrl, fullName, noOfMessages, handleUserClick}) => {
     return (
         <div className={activeClass ? "list-group people aside-active" : "list-group people"}>
             <a type='button' className="ml-2 mr-2 p-2"
@@ -27,7 +27,7 @@ const Person = ({activeClass, imageUrl, fullName, noOfMessages, handleUserClick}
     )
 }
 
-Person.propTypes = {
+PersonSidebar.propTypes = {
     activeClass: PropTypes.bool.isRequired,
     fullName: PropTypes.string.isRequired,
     noOfMessages: PropTypes.number.isRequired,
@@ -35,4 +35,4 @@ Person.propTypes = {
     handleUserClick: PropTypes.func.isRequired,
 }
 
-export default Person;
+export default PersonSidebar;

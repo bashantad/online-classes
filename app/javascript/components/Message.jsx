@@ -1,12 +1,12 @@
 import React from 'react';
 import {withRouter} from 'react-router';
+import {ActionCable} from "react-actioncable-provider";
 import './messages/message.scss';
 import PeopleInTheChat from '../components/messages/PeopleInTheChat';
 import ActiveMessageArea from '../components/messages/ActiveMessageArea';
 import NewMessage from '../components/messages/NewMessage';
+import GroupModal from "./groups/GroupModal";
 import Cable from './messages/Cable';
-import NewGroupForm from "./groups/NewGroupForm";
-import UpdateMembers from "./groups/UpdateMembers";
 
 import conversationApi from '../apis/conversationApi';
 import userApi from '../apis/userApi';
@@ -30,8 +30,7 @@ export class Message extends React.Component {
         currentUserId: null,
         enrolledCourses: [],
         messageNotificationMap: {},
-        showNewGroupForm: false,
-        showUpdateMembers: false,
+        showGroupModal: false,
     };
 
     _getCourseId = () => {
@@ -61,7 +60,7 @@ export class Message extends React.Component {
                     enrolledUsers: enrolled_users,
                     courseName: title,
                 })
-                this.fetchActiveConversation();
+                this.fetchActiveMessages();
             });
     }
 
@@ -82,39 +81,20 @@ export class Message extends React.Component {
         this.setState({conversations, messageNotificationMap});
     }
 
-    handleSuccessGroupCreate = (conversation) => {
-        let newAttributes = {
-            conversations: [...this.state.conversations, conversation],
-            showUpdateMembers: true,
-            showNewGroupForm: false,
-            activeConversationId: conversation.id,
-        };
-        if (conversation.is_group) {
-            newAttributes.groupConversations = {...this.state.groupConversations, conversation};
-        } else {
-            newAttributes.individualConversations = {...this.state.individualConversations, conversation};
-        }
-        this.setState(newAttributes);
+    handleGroupUpdate = () => {
+        this.setState({showGroupModal: true, groupUpdate: true});
     }
 
-    handleGroupUpdate = (conversation) => {
-        this.setState({
-            showUpdateMembers: true,
-            showNewGroupForm: false,
-        });
+    closeGroupModal = () => {
+        this.setState({showGroupModal: false});
     }
 
-    handleCancelGroupCreate = () => {
-        this.setState({
-            showUpdateMembers: false,
-            showNewGroupForm: false,
-        })
+    openGroupModal = () => {
+        this.setState({showGroupModal: true});
     }
 
-    handleUpdateMembersSuccess = (conversation) => {
-        this.setState({
-            showUpdateMembers: false,
-        });
+    closeModalAndNavigateToConversation = (conversation) => {
+        this.closeGroupModal();
         this.navigateToConversation(conversation.id);
     }
 
@@ -128,7 +108,7 @@ export class Message extends React.Component {
         const {activeConversationId, showUpdateMembers} = this.state;
         if(activeConversationId === null || showUpdateMembers === true) return;
         if(activeConversationId !== this._getConversationId()) {
-            this.fetchActiveConversation();
+            this.fetchActiveMessages();
         }
     }
 
@@ -136,18 +116,14 @@ export class Message extends React.Component {
         this.props.history.push(`/courses/${this._getCourseId()}/conversations/${conversationId}/messages`);
     }
 
-    fetchActiveConversation = () => {
+    fetchActiveMessages = () => {
         const conversationId = this._getConversationId();
         conversationApi.getMessages(this._getCourseId(), conversationId)
             .then(res => res.json())
             .then(response => {
                 const {conversation_enrolled_users, messages} = response;
                 const activeConversation = this.state.conversations.find(conversation => conversation.id === this._getConversationId());
-                const updateAttributes = {
-                    activeConversationId: activeConversation.id,
-                    showNewGroupForm: false,
-                    showUpdateMembers: false
-                };
+                const updateAttributes = { activeConversationId: activeConversation.id };
                 activeConversation.messages = messages;
                 activeConversation.conversation_enrolled_uers = conversation_enrolled_users;
                 this._assignConversation(updateAttributes, activeConversation);
@@ -173,10 +149,17 @@ export class Message extends React.Component {
         hasUnreadMessages && userApi.markMessagesRead(conversationId);
     }
 
-    handleCreateCourseGroup = () => {
-        this.setState({
-            showNewGroupForm: true
-        })
+    handleReceivedConversation = (response) => {
+        const {conversation} = response;
+        const newAttributes = {
+            conversations: [...this.state.conversations, conversation]
+        };
+        if (conversation.is_group) {
+            newAttributes.groupConversations = [...this.state.groupConversations, conversation];
+        } else {
+            newAttributes.individualConversations = [...this.state.individualConversations, conversation];
+        }
+        this.setState(newAttributes);
     }
 
     handleUserClick = (userId) => {
@@ -197,8 +180,7 @@ export class Message extends React.Component {
             messageNotificationMap,
             currentUserId,
             individualConversations,
-            showNewGroupForm,
-            showUpdateMembers
+            showGroupModal,
         } = this.state;
         const sidebarProps = {
             conversations: conversations,
@@ -209,7 +191,7 @@ export class Message extends React.Component {
             messageNotificationMap: messageNotificationMap,
             handleConversationClick: this.navigateToConversation,
             handleUserClick: this.handleUserClick,
-            handleCreateCourseGroup: this.handleCreateCourseGroup,
+            handleCreateCourseGroup: this.openGroupModal,
         };
         const activeConversation = this.findActiveConversation();
         return (
@@ -222,44 +204,38 @@ export class Message extends React.Component {
                         <div className="chats">
                             <div className="chat-body">
                                 <div>
-                                    {conversations.length ?
-                                        <Cable
-                                            conversations={conversations}
-                                            handleReceivedMessage={this.handleReceivedMessage}
-                                        />
-                                        : null
+                                    <ActionCable
+                                        channel={{ channel: 'ConversationsChannel' }}
+                                        onReceived={this.handleReceivedConversation}
+                                    />
+                                    {
+                                        conversations.length ?
+                                            <Cable
+                                                conversations={conversations}
+                                                handleReceivedMessage={this.handleReceivedMessage}
+                                            />
+                                            : null
                                     }
                                     {
-                                        showNewGroupForm || showUpdateMembers ?
-                                            <div>
-                                                {
-                                                    showNewGroupForm ?
-                                                        <NewGroupForm
-                                                            courseId={this._getCourseId()}
-                                                            handleSuccessGroupCreate={this.handleSuccessGroupCreate}
-                                                            handleCancelGroupCreate={this.handleCancelGroupCreate}/>
-                                                        : <UpdateMembers
-                                                            courseId={this._getCourseId()}
-                                                            currentUserId={currentUserId}
-                                                            allUsers={enrolledUsers}
-                                                            conversation={activeConversation}
-                                                            handleUpdateMembersSuccess={this.handleUpdateMembersSuccess}/>
-                                                }
-                                            </div>
-                                            : <div>
-                                                <div className="chat-content">
-                                                    <ActiveMessageArea
-                                                        activeConversation={activeConversation}
-                                                        currentUserId={currentUserId}
-                                                        userIdToNameMapping={userIdToNameMapping(enrolledUsers)}
-                                                        handleGroupUpdate={this.handleGroupUpdate}
-                                                    />
-                                                </div>
-                                                <div className="chat-footer border-top">
-                                                    <NewMessage conversationId={activeConversationId}/>
-                                                </div>
-                                            </div>
+                                        showGroupModal && <GroupModal courseId={this._getCourseId()}
+                                                                      currentUserId={currentUserId}
+                                                                      showGroupModal={showGroupModal}
+                                                                      activeConversation={activeConversation}
+                                                                      enrolledUsers={enrolledUsers}
+                                                                      closeGroupModal={this.closeGroupModal}
+                                                                      closeModalAndNavigateToConversation={this.closeModalAndNavigateToConversation}/>
                                     }
+                                    <div className="chat-content">
+                                        <ActiveMessageArea
+                                            activeConversation={activeConversation}
+                                            currentUserId={currentUserId}
+                                            userIdToNameMapping={userIdToNameMapping(enrolledUsers)}
+                                            handleGroupUpdate={this.handleGroupUpdate}
+                                        />
+                                    </div>
+                                    <div className="chat-footer border-top">
+                                        <NewMessage conversationId={activeConversationId}/>
+                                    </div>
                                 </div>
                             </div>
                         </div>
