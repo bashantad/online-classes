@@ -86,7 +86,8 @@ Rails.application.routes.draw do
 				get :current_user_info
 				get '/:conversation_id/mark_messages_read', to: 'users#mark_messages_read'
 			end
-		end
+    end
+    resources :enquiries, only: [:create]
 	end
 	root :to => 'home_page#index'
 	mount ActionCable.server => '/cable'

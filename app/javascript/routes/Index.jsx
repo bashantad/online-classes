@@ -12,9 +12,7 @@ const ClassRoom = lazy(() => import("../components/courses/ClassRoom"));
 const Qualification = lazy(() => import("../components/users/Qualification"));
 const NotFoundPage = lazy(() => import("../components/NotFoundPage"));
 const Courses = lazy(() => import("../components/Courses"));
-const EngineeringManagerLandingPage = lazy(() => import("../components/landing/EngineeringManager"));
-const SeniorSoftwareEngineerLandingPage = lazy(() => import("../components/landing/SeniorSoftwareEngineer"));
-const SoftwareEngineerLandingPage = lazy(() => import("../components/landing/SoftwareEngineer"));
+import LandingRoutes from "./LandingRoutes";
 
 export default (
   <Router>
@@ -23,10 +21,8 @@ export default (
         // Public routes
         <Route path="/" exact component={Home}/>
         <Route path="/calls/:userId/join/:callingCode" exact component={VideoCallWrapper}/>
-        <Route path="/become-software-engineer" exact component={SoftwareEngineerLandingPage}/>
-        <Route path="/become-senior-software-engineer" exact component={SeniorSoftwareEngineerLandingPage}/>
-        <Route path="/become-software-engineering-manager" exact component={EngineeringManagerLandingPage}/>
         <Route path="/courses" exact component={Courses}/>
+        <LandingRoutes />
 
         //Private routes
         <Route path="/users/qualifications" exact component={Qualification}/>

@@ -1,9 +1,12 @@
 import React from 'react';
+import StudentEnquiry from "./StudentEnquiry";
+import Header from "./Header";
 
 const SoftwareEngineer = () => {
     return (
         <div>
-            Become a software engineer
+            <Header />
+            <StudentEnquiry />
         </div>
     )
 }
