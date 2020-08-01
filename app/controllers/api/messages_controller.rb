@@ -5,7 +5,7 @@ class Api::MessagesController < Api::BaseController
 		if message.save
 			message.add_notification_to_its_readers
 			serialized_data = serialized_hash(message, MessageSerializer)
-			MessagesChannel.broadcast_to conversation, serialized_data
+			MessageChannel.broadcast_to conversation, serialized_data
 			head :ok
 		else
 			render json: message.errors

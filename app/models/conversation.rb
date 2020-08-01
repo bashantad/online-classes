@@ -38,8 +38,10 @@ class Conversation < ApplicationRecord
 		user_ids_to_be_enrolled = course.enrolled_users.where(id: user_ids).collect(&:id)
 		existing_conversation_enrolled_user_ids = self.conversation_enrolled_users.collect(&:user_id)
 		user_ids_to_be_removed = existing_conversation_enrolled_user_ids - user_ids_to_be_enrolled
-		user_ids_to_be_enrolled.each do |user_id_to_be_enrolled|
-			self.conversation_enrolled_users.create(user_id: user_id_to_be_enrolled)
+		user_ids_to_be_enrolled.each do |user_id|
+			unless self.conversation_enrolled_users.exists?(user_id: user_id)
+				self.conversation_enrolled_users.create(user_id: user_id)
+			end
 		end
 		self.conversation_enrolled_users.where(user_id: user_ids_to_be_removed).destroy_all
 	end

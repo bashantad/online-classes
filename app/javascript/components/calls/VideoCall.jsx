@@ -42,7 +42,7 @@ export default class VideoCall extends React.Component {
     }
 
     joinCall = () => {
-        consumer.subscriptions.create({channel: "CallsChannel"},
+        consumer.subscriptions.create({channel: "CallChannel"},
             {
                 connected: () => this.connectCall(),
                 received: (data) => this.handleReceived(data),

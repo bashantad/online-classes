@@ -67,7 +67,8 @@ export class Message extends React.Component {
     handleReceivedMessage = (response) => {
         const {message} = response;
         const {user_message_notifications} = message;
-        const {conversations, messageNotificationMap, activeConversationId} = this.state;
+        const {messageNotificationMap, activeConversationId} = this.state;
+        const conversations = [...this.state.conversations];
         const conversation = conversations.find(
             item => item.id === message.conversation_id
         );
@@ -205,7 +206,7 @@ export class Message extends React.Component {
                             <div className="chat-body">
                                 <div>
                                     <ActionCable
-                                        channel={{ channel: 'ConversationsChannel' }}
+                                        channel={{ channel: 'ConversationChannel' }}
                                         onReceived={this.handleReceivedConversation}
                                     />
                                     {

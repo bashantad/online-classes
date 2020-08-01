@@ -32,7 +32,7 @@ class Api::CallsController < Api::BaseController
         render json: {}
       else
         head :no_content
-        ActionCable.server.broadcast("calls_channel", call_params)
+        ActionCable.server.broadcast("call_channel", call_params)
       end
     end
   end

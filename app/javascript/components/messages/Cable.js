@@ -7,8 +7,8 @@ const Cable = ({ conversations, handleReceivedMessage }) => {
       		{
       			conversations.map(conversation => (
           			<ActionCableConsumer
-            			key={conversation.id}
-            			channel={{ channel: 'MessagesChannel', conversation_id: conversation.id }}
+            			key={`${conversation.id}-conversation-id`}
+            			channel={{ channel: 'MessageChannel', conversation_id: conversation.id }}
             			onReceived={handleReceivedMessage}
           			/>
           		))
