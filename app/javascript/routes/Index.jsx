@@ -22,7 +22,6 @@ export default (
         <Route path="/" exact component={Home}/>
         <Route path="/calls/:userId/join/:callingCode" exact component={VideoCallWrapper}/>
         <Route path="/courses" exact component={Courses}/>
-        <LandingRoutes />
 
         //Private routes
         <Route path="/users/qualifications" exact component={Qualification}/>
@@ -35,6 +34,7 @@ export default (
         <Route path="/courses/:courseId" exact component={CourseDetail}/>
         <Route path="/call_history" exact component={CallHistory}/>
         <Route path="/courses/:course_id/conversations/:conversation_id/messages" exact component={MessageWrapper}/>
+        <LandingRoutes />
         <Route path="/*" exact component={NotFoundPage}/>
       </Switch>
     </Suspense>

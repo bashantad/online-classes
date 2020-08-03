@@ -13,10 +13,6 @@ export class EnrolledCourses extends React.Component {
         loading: true,
     }
 
-    handleClose = () => {
-        this.setState({errNotification: false});
-    };
-
     gotoClassRoom = (courseId) => {
         this.props.history.push(`/classrooms/courses/${courseId}`);
     };
