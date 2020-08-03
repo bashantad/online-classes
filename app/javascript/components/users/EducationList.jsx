@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import EditForm from "./EditForm";
-import DeleteModal from "./DeleteModal";
+import EditQualification from "./EditQualification";
+import DeleteQualification from "./DeleteQualification";
 
 export default class EducationList extends React.Component {
     state = {
         index: null,
+        data: {},
+        id:''
     }
 
     endLabel = ({year_end}) => {
@@ -13,11 +15,10 @@ export default class EducationList extends React.Component {
     }
 
     render() {
-        const {education, type} = this.props;
-        const passIndex = (index) => {
-            this.setState({index: index})
+        const {education, type, formErrors} = this.props;
+        const handleClick = (index) => {
+            this.setState({index: index, data: education[index]})
         }
-
         return (
             <div className='education-list'>
                 <ul className='timeline'>
@@ -34,12 +35,12 @@ export default class EducationList extends React.Component {
                                 <span>
                                     <button type="button" className="btn btn-ghost-info btn-icon btn-xs"
                                             data-toggle="modal" data-target="#editModal"
-                                            onClick={() => passIndex(index)}>
+                                            onClick={() => handleClick(index)}>
                                       <i className="fas fa-pen"></i>
                                     </button>
                                     <button type="button" className="btn btn-ghost-danger btn-icon btn-xs ml-2"
                                             data-toggle="modal" data-target="#deleteModal"
-                                            onClick={() => passIndex(index)}>
+                                            onClick={() => handleClick(index)}>
                                       <i className="fas fa-trash"></i>
                                     </button>
                                 </span>
@@ -47,10 +48,8 @@ export default class EducationList extends React.Component {
                         ))
                     }
                 </ul>
-                {this.state.index !== null ? <EditForm data={education[this.state.index]} type={type}/>
-                    : ''}
-                <DeleteModal data={education[this.state.index]}/>
-
+                <EditQualification data={this.state.data} type={type} index={this.state.index} formErrors={formErrors}/>
+                <DeleteQualification data={this.state.data} type={type} index={this.state.index}/>
             </div>
         )
     }

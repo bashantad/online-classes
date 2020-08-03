@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import EditForm from "./EditForm";
-import DeleteModal from "./DeleteModal";
+import EditQualification from "./EditQualification";
+import DeleteQualification from "./DeleteQualification";
 
 export default class ExperienceList extends React.Component {
     state = {
         index: null,
+        data: {},
+        id:''
     }
 
     endLabel = ({year_end}) => {
@@ -13,9 +15,9 @@ export default class ExperienceList extends React.Component {
     }
 
     render() {
-        const {experiences, type} = this.props;
-        const passIndex = (index) => {
-            this.setState({index: index})
+        const {experiences, type, formErrors} = this.props;
+        const handleClick = (index) => {
+            this.setState({index: index, data: experiences[index]})
         }
         return (
             <div className='experience-list'>
@@ -32,13 +34,13 @@ export default class ExperienceList extends React.Component {
                                 </span>
                                 <span>
                                     <button type="button" className="btn btn-ghost-info btn-icon btn-xs"
-                                            onClick={() => passIndex(index)}
+                                            onClick={() => handleClick(index)}
                                             data-toggle="modal" data-target="#editModal">
                                       <i className="fas fa-pen"></i>
                                     </button>
                                     <button type="button" className="btn btn-ghost-danger btn-icon btn-xs ml-2"
                                             data-toggle="modal" data-target="#deleteModal"
-                                            onClick={() => passIndex(index)}>
+                                            onClick={() => handleClick(index)}>
                                       <i className="fas fa-trash"></i>
                                     </button>
                                 </span>
@@ -46,9 +48,8 @@ export default class ExperienceList extends React.Component {
                         ))
                     }
                 </ul>
-                {this.state.index !== null ? <EditForm data={experiences[this.state.index]} type={type}/>
-                    : ''}
-                <DeleteModal data={experiences[this.state.index]}/>
+                <EditQualification data={this.state.data} type={type} index={this.state.index} formErrors={formErrors}/>
+                <DeleteQualification data={this.state.data} type={type} index={this.state.index}/>
             </div>
         )
     }

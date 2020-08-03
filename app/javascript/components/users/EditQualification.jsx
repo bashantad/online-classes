@@ -1,42 +1,30 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import qualificationApi from "../../apis/qualificationApi";
+import {mappingLabels} from './NewQualification'
 
-const commonLabels = {
-    year_start: 'Start Year',
-    location: 'Location',
-    country: 'Country',
-}
-
-const mappingLabels = {
-    Education: {
-        ...commonLabels,
-        name_of_institution: 'Name of the institution',
-        type: 'Education',
-        year_end: 'End Year (leave blank if you are still studying)',
-        title: 'Name of the Degree'
-    },
-    Experience: {
-        ...commonLabels,
-        name_of_institution: 'Name of the Company',
-        year_end: 'End Year (leave blank if you are still working)',
-        type: 'Experience',
-        title: 'Job Title',
-    }
-}
-
-const EditForm = ({data, type}) => {
-    const id = data.id;
-    const [name_of_institution, setName_of_institution] = useState(data.name_of_institution);
-    const [title, setTitle] = useState(data.title);
-    const [year_start, setYear_start] = useState(data.year_start);
-    const [year_end, setYear_end] = useState(data.year_end);
-    const [country, setCountry] = useState(data.country);
-    const [location, setLocation] = useState(data.location);
+const EditQualification = ({data, type, index, formErrors}) => {
+    const [name_of_institution, setName_of_institution] = useState('');
+    const [title, setTitle] = useState('');
+    const [year_start, setYear_start] = useState('');
+    const [year_end, setYear_end] = useState('');
+    const [country, setCountry] = useState('');
+    const [location, setLocation] = useState('');
+    const [id, setId] = useState('');
     const [education, setEducation] = useState([]);
     const [experience, setExperience] = useState([]);
+    console.log(data, type)
+
+    useEffect(() => {
+        setName_of_institution(data?.name_of_institution);
+        setTitle(data?.title);
+        setYear_start(data?.year_start);
+        setYear_end(data?.year_end);
+        setCountry(data?.country);
+        setLocation(data?.location)
+        setId(data?.id)
+    }, [data])
 
     const labels = mappingLabels[type];
-
 
     const editQualification = (data) => {
         const updateObj = {};
@@ -92,70 +80,70 @@ const EditForm = ({data, type}) => {
                             <div className='row'>
                                 <div className="form-group qualification-input col-md-6 col-sm-12">
                                     <input type="text" name="name_of_institution"
-                                           value={name_of_institution}
+                                           value={name_of_institution && name_of_institution}
                                            className="form-control"
                                            onChange={e => setName_of_institution(e.target.value)}
                                            placeholder={labels.name_of_institution}/>
-                                    {/*        {*/}
-                                    {/*            formErrors.name_of_institution && <span>*/}
-                                    {/*    {formErrors.name_of_institution}*/}
-                                    {/*</span>*/}
-                                    {/*        }*/}
+                                            {
+                                                formErrors?.name_of_institution && <span>
+                                        {formErrors.name_of_institution}
+                                    </span>
+                                            }
                                 </div>
                                 <div className="form-group qualification-input col-md-6 col-sm-12">
                                     <input type="text" name="title" value={title}
                                            className="form-control"
                                            onChange={e => setTitle(e.target.value)}
                                            placeholder={labels.title}/>
-                                    {/*        {*/}
-                                    {/*            formErrors.title && <span>*/}
-                                    {/*    {formErrors.title}*/}
-                                    {/*</span>*/}
-                                    {/*        }*/}
+                                            {
+                                                formErrors?.title && <span>
+                                        {formErrors.title}
+                                    </span>
+                                            }
                                 </div>
                                 <div className="form-group qualification-input col-md-6 col-sm-12">
                                     <input type="text" name="year_start"
                                            value={year_start} className="form-control"
                                            onChange={e => setYear_start(e.target.value)}
                                            placeholder={labels.year_start}/>
-                                    {/*        {*/}
-                                    {/*            formErrors.year_start && <span>*/}
-                                    {/*    {formErrors.year_start}*/}
-                                    {/*</span>*/}
-                                    {/*        }*/}
+                                            {
+                                                formErrors?.year_start && <span>
+                                        {formErrors.year_start}
+                                    </span>
+                                            }
                                 </div>
                                 <div className="form-group qualification-input col-md-6 col-sm-12">
                                     <input type="text" name="year_end" value={year_end}
                                            className="form-control"
                                            onChange={e => setYear_end(e.target.value)}
                                            placeholder={labels.year_end}/>
-                                    {/*        {*/}
-                                    {/*            formErrors.year_end && <span>*/}
-                                    {/*    {formErrors.year_end}*/}
-                                    {/*</span>*/}
-                                    {/*        }*/}
+                                            {
+                                                formErrors?.year_end && <span>
+                                        {formErrors.year_end}
+                                    </span>
+                                            }
                                 </div>
                                 <div className="form-group qualification-input col-md-6 col-sm-12">
                                     <input type="text" name="location" value={location}
                                            className="form-control"
                                            onChange={e => setLocation(e.target.value)}
                                            placeholder={labels.location}/>
-                                    {/*        {*/}
-                                    {/*            formErrors.location && <span>*/}
-                                    {/*    {formErrors.location}*/}
-                                    {/*</span>*/}
-                                    {/*        }*/}
+                                            {
+                                                formErrors?.location && <span>
+                                        {formErrors.location}
+                                    </span>
+                                            }
                                 </div>
                                 <div className="form-group qualification-input col-md-6 col-sm-12">
                                     <input type="text" name="country" value={country}
                                            className="form-control"
                                            onChange={e => setCountry(e.target.value)}
                                            placeholder={labels.country}/>
-                                    {/*        {*/}
-                                    {/*            formErrors.country && <span>*/}
-                                    {/*    {formErrors.country}*/}
-                                    {/*</span>*/}
-                                    {/*        }*/}
+                                            {
+                                                formErrors?.country && <span>
+                                        {formErrors.country}
+                                    </span>
+                                            }
                                 </div>
                             </div>
                         </div>
@@ -174,4 +162,4 @@ const EditForm = ({data, type}) => {
     );
 };
 
-export default EditForm;
+export default EditQualification;

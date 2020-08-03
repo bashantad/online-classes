@@ -1,28 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-
-const commonLabels = {
-    year_start: 'Start Year',
-    location: 'Location',
-    country: 'Country',
-}
-
-const mappingLabels = {
-    Education: {
-        ...commonLabels,
-        name_of_institution: 'Name of the institution',
-        type: 'Education',
-        year_end: 'End Year (leave blank if you are still studying)',
-        title: 'Name of the Degree'
-    },
-    Experience: {
-        ...commonLabels,
-        name_of_institution: 'Name of the Company',
-        year_end: 'End Year (leave blank if you are still working)',
-        type: 'Experience',
-        title: 'Job Title',
-    }
-}
+import React, {Component} from 'react';
+import qualificationApi from "../../apis/qualificationApi";
+import NewQualification, {mappingLabels} from './NewQualification'
+import PropTypes from "prop-types";
 
 const initialState = {
     name_of_institution: '',
@@ -34,14 +13,10 @@ const initialState = {
     country: '',
 };
 
-export default class NewForm extends React.Component {
+export default class EditQualificationClass extends Component {
     state = {
         ...initialState,
     };
-
-    resetForm = () => {
-        this.setState({...initialState});
-    }
 
     handleValueChange = (event) => {
         const target = event.target;
@@ -55,11 +30,35 @@ export default class NewForm extends React.Component {
         )
     }
 
+    editQualification = (data) => {
+        const updateObj = {};
+        qualificationApi.update(id, data)
+            .then(res => res.json())
+            .then(response => {
+                const {errors} = response;
+                if (!!errors) {
+                    if (data.type === 'Education') {
+                        updateObj.educationFormErrors = errors;
+                    } else {
+                        updateObj.experienceFormErrors = errors;
+                    }
+                } else {
+                    if (response.type === 'Education') {
+                        updateObj.education = [response, ...setEducation];
+                    } else {
+                        updateObj.experiences = [response, ...setExperience];
+                    }
+                }
+                this.setState(updateObj);
+            });
+    }
+
     submitForm = (event) => {
         const {name_of_institution, year_start, year_end, location, country, title} = this.state;
-        const {qualificationType, addQualification} = this.props;
-        addQualification({
-            type: qualificationType,
+        const type = this.props;
+
+        this.editQualification({
+            type: type,
             name_of_institution,
             year_start,
             year_end,
@@ -73,15 +72,16 @@ export default class NewForm extends React.Component {
 
     render() {
         const {name_of_institution, year_start, year_end, location, country, title} = this.state;
-        const {qualificationType, formErrors} = this.props;
-        const labels = mappingLabels[qualificationType];
+        const {type, formErrors} = this.props;
+        const labels = mappingLabels[type];
         return (
-            <div className="modal fade " id="formModal" tabIndex="-1" role="dialog"
+            <div className="modal fade " id="editModal" tabIndex="-1" role="dialog"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-lg" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel"><i className='fas fa-plus fa-md mr-1'></i> Add New</h5>
+                            <h5 className="modal-title" id="exampleModalLabel"><i
+                                className='fas fa-plus fa-md mr-1'></i> Add New</h5>
                             <button type="button" className="btn btn-xs btn-icon btn-soft-secondary"
                                     data-dismiss="modal" aria-label="Close">
                                 <i className='fas fa-times fa-sm'></i>
@@ -160,12 +160,11 @@ export default class NewForm extends React.Component {
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 }
 
-NewForm.propTypes = {
-    addQualification: PropTypes.func.isRequired,
-    qualificationType: PropTypes.string.isRequired,
+EditQualificationClass.propTypes = {
+    type: PropTypes.string.isRequired,
     formErrors: PropTypes.object.isRequired,
 };

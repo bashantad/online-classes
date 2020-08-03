@@ -1,5 +1,5 @@
 import React from 'react';
-import NewForm from './NewForm';
+import NewQualification from './NewQualification';
 import EducationList from './EducationList';
 import ExperienceList from './ExperienceList';
 import qualificationApi from '../../apis/qualificationApi';
@@ -64,6 +64,7 @@ export default class Qualification extends React.Component {
 
     render() {
         const {error, errNotification, education, experiences, loading, showEducationForm, showExperienceForm} = this.state;
+        console.log(education,experiences)
         const {educationFormErrors, experienceFormErrors} = this.state;
         return (
             <>
@@ -157,7 +158,7 @@ export default class Qualification extends React.Component {
                                                     </figure>
                                                     <div className="text-center mt-2">Qualification not added!</div>
                                                 </div> : <EducationList education={education}
-                                                                        type={QUALIFICATION_TYPES.education}/>
+                                                                        type={QUALIFICATION_TYPES.education}  formErrors={educationFormErrors}/>
                                             }
                                         </div>
                                     </div>
@@ -191,7 +192,7 @@ export default class Qualification extends React.Component {
                                                     </figure>
                                                     <div className="text-center mt-2">Experience not added!</div>
                                                 </div> : <ExperienceList experiences={experiences}
-                                                                         type={QUALIFICATION_TYPES.experience}/>
+                                                                         type={QUALIFICATION_TYPES.experience} formErrors={experienceFormErrors}/>
                                             }
                                         </div>
                                     </div>
@@ -201,12 +202,12 @@ export default class Qualification extends React.Component {
                     </div>
                 </div>
                 {
-                    this.state.modelId === 'Experience' ? <NewForm
+                    this.state.modelId === 'Experience' ? <NewQualification
                             addQualification={this.addQualification}
                             qualificationType={QUALIFICATION_TYPES.experience}
                             key='education-new-form'
                             formErrors={experienceFormErrors}/> :
-                        <NewForm
+                        <NewQualification
                             addQualification={this.addQualification}
                             qualificationType={QUALIFICATION_TYPES.education}
                             key='education-new-form'
