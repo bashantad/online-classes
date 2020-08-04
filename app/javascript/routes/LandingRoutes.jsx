@@ -6,18 +6,15 @@ const TeachingEngineeringManagerLandingPage = lazy(() => import("../components/l
 const SoftwareEngineerLandingPage = lazy(() => import("../components/landing/SoftwareEngineer"));
 const TeachingSoftwareEngineerLandingPage = lazy(() => import("../components/landing/TeachingSoftwareEngineer"));
 
-const LandingRoutes = () => {
-    return (
-        <>
-            {
-                process.env.NODE_ENV === "development" && <Route path="/landings" exact component={LandingPages} />
-            }
-            <Route path="/become-a-software-engineer" exact component={SoftwareEngineerLandingPage}/>
-            <Route path="/teach-software-engineering-course" exact component={TeachingSoftwareEngineerLandingPage}/>
-            <Route path="/become-a-software-engineering-manager" exact component={EngineeringManagerLandingPage}/>
-            <Route path="/teach-software-engineering-manager-course" exact component={TeachingEngineeringManagerLandingPage}/>
-        </>
-    );
-};
-
-export default LandingRoutes;
+const landingRoutes = (
+    <>
+        {
+            process.env.NODE_ENV === "development" && <Route path="/landings" exact component={LandingPages} />
+        }
+        <Route path="/become-a-software-engineer" exact component={SoftwareEngineerLandingPage}/>
+        <Route path="/teach-software-engineering-course" exact component={TeachingSoftwareEngineerLandingPage}/>
+        <Route path="/become-a-software-engineering-manager" exact component={EngineeringManagerLandingPage}/>
+        <Route path="/teach-software-engineering-manager-course" exact component={TeachingEngineeringManagerLandingPage}/>
+    </>
+);
+export default landingRoutes;

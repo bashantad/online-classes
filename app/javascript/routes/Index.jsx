@@ -12,7 +12,7 @@ const ClassRoom = lazy(() => import("../components/courses/ClassRoom"));
 const Qualification = lazy(() => import("../components/users/Qualification"));
 const NotFoundPage = lazy(() => import("../components/NotFoundPage"));
 const Courses = lazy(() => import("../components/Courses"));
-import LandingRoutes from "./LandingRoutes";
+import landingRoutes from "./LandingRoutes";
 
 export default (
   <Router>
@@ -34,7 +34,7 @@ export default (
         <Route path="/courses/:courseId" exact component={CourseDetail}/>
         <Route path="/call_history" exact component={CallHistory}/>
         <Route path="/courses/:course_id/conversations/:conversation_id/messages" exact component={MessageWrapper}/>
-        <LandingRoutes />
+        {landingRoutes}
         <Route path="/*" exact component={NotFoundPage}/>
       </Switch>
     </Suspense>
