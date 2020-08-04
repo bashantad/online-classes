@@ -21,7 +21,8 @@ export default class Qualification extends React.Component {
         showExperienceForm: false,
         educationFormErrors: {},
         experienceFormErrors: {},
-        modelId: ''
+        modelId: '',
+        editModal: false
     }
 
     componentDidMount() {
@@ -58,13 +59,62 @@ export default class Qualification extends React.Component {
             });
     }
 
+    editQualification = (id, data) => {
+        const updateObj = {};
+        qualificationApi.update(id, data)
+            .then(res => res.json())
+            .then(response => {
+                console.log(response)
+                const {errors} = response;
+                if (!!errors) {
+                    if (data.type === QUALIFICATION_TYPES.education) {
+                        updateObj.educationFormErrors = errors;
+                    } else {
+                        updateObj.experienceFormErrors = errors;
+                    }
+                } else {
+                    if (response.type === QUALIFICATION_TYPES.education) {
+                        const temp = this.state.education.filter(item => item.id !== id);
+                        updateObj.education = [response, ...temp];
+                    } else {
+                        const temp = this.state.experiences.filter(item => item.id !== id);
+                        updateObj.experiences = [response, ...temp];
+                    }
+                }
+                this.setState(updateObj);
+            });
+    }
+
+    deleteItem = (id, type) => {
+        const updateObj = {};
+        qualificationApi.delete(id)
+            .then(res => res.json())
+            .then(response => {
+                const {errors} = response;
+                if (!!errors) {
+                    if (type === QUALIFICATION_TYPES.education) {
+                        updateObj.educationFormErrors = errors;
+                    } else {
+                        updateObj.experienceFormErrors = errors;
+                    }
+                } else {
+                    if (type === QUALIFICATION_TYPES.education) {
+                        updateObj.education = this.state.education.filter(item => item.id !== id);
+                    } else {
+                        updateObj.experiences = this.state.experiences.filter(item => item.id !== id);
+                    }
+                }
+                this.setState(updateObj);
+            })
+    }
+
+
     showQualificationForm = (qualificationType) => () => {
         this.setState({modelId: qualificationType})
     }
 
     render() {
-        const {error, errNotification, education, experiences, loading, showEducationForm, showExperienceForm} = this.state;
-        console.log(education,experiences)
+        const {education, experiences, loading} = this.state;
         const {educationFormErrors, experienceFormErrors} = this.state;
         return (
             <>
@@ -158,7 +208,10 @@ export default class Qualification extends React.Component {
                                                     </figure>
                                                     <div className="text-center mt-2">Qualification not added!</div>
                                                 </div> : <EducationList education={education}
-                                                                        type={QUALIFICATION_TYPES.education}  formErrors={educationFormErrors}/>
+                                                                        editQualification={this.editQualification}
+                                                                        deleteItem={this.deleteItem}
+                                                                        formErrors={educationFormErrors}
+                                                                        qualificationType={QUALIFICATION_TYPES.education}/>
                                             }
                                         </div>
                                     </div>
@@ -192,7 +245,10 @@ export default class Qualification extends React.Component {
                                                     </figure>
                                                     <div className="text-center mt-2">Experience not added!</div>
                                                 </div> : <ExperienceList experiences={experiences}
-                                                                         type={QUALIFICATION_TYPES.experience} formErrors={experienceFormErrors}/>
+                                                                         editQualification={this.editQualification}
+                                                                         formErrors={experienceFormErrors}
+                                                                         deleteItem={this.deleteItem}
+                                                                         qualificationType={QUALIFICATION_TYPES.experience}/>
                                             }
                                         </div>
                                     </div>
@@ -212,7 +268,6 @@ export default class Qualification extends React.Component {
                             qualificationType={QUALIFICATION_TYPES.education}
                             key='education-new-form'
                             formErrors={educationFormErrors}/>
-
                 }
             </>
         )

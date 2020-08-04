@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import EditQualification from "./EditQualification";
-import DeleteQualification from "./DeleteQualification";
+import EditExperienceQualification from "./EditExperienceQualification";
+import DeleteExperienceQualification from "./DeleteExperienceQualification";
+
 
 export default class ExperienceList extends React.Component {
     state = {
         index: null,
         data: {},
-        id:''
+        id: ''
     }
 
     endLabel = ({year_end}) => {
@@ -15,7 +16,7 @@ export default class ExperienceList extends React.Component {
     }
 
     render() {
-        const {experiences, type, formErrors} = this.props;
+        const {experiences} = this.props;
         const handleClick = (index) => {
             this.setState({index: index, data: experiences[index]})
         }
@@ -35,11 +36,11 @@ export default class ExperienceList extends React.Component {
                                 <span>
                                     <button type="button" className="btn btn-ghost-info btn-icon btn-xs"
                                             onClick={() => handleClick(index)}
-                                            data-toggle="modal" data-target="#editModal">
+                                            data-toggle="modal" data-target="#editModalExp">
                                       <i className="fas fa-pen"></i>
                                     </button>
                                     <button type="button" className="btn btn-ghost-danger btn-icon btn-xs ml-2"
-                                            data-toggle="modal" data-target="#deleteModal"
+                                            data-toggle="modal" data-target="#deleteExperienceModal"
                                             onClick={() => handleClick(index)}>
                                       <i className="fas fa-trash"></i>
                                     </button>
@@ -48,8 +49,8 @@ export default class ExperienceList extends React.Component {
                         ))
                     }
                 </ul>
-                <EditQualification data={this.state.data} type={type} index={this.state.index} formErrors={formErrors}/>
-                <DeleteQualification data={this.state.data} type={type} index={this.state.index}/>
+                <EditExperienceQualification data={this.state.data} index={this.state.index} {...this.props}/>
+                <DeleteExperienceQualification data={this.state.data} index={this.state.index} {...this.props}/>
             </div>
         )
     }
@@ -57,4 +58,8 @@ export default class ExperienceList extends React.Component {
 
 ExperienceList.propTypes = {
     experiences: PropTypes.array.isRequired,
+    editQualification: PropTypes.func.isRequired,
+    deleteItem: PropTypes.func.isRequired,
+    formErrors: PropTypes.object.isRequired,
+    qualificationType: PropTypes.string.isRequired,
 };

@@ -1,27 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import qualificationApi from "../../apis/qualificationApi";
+import React from 'react';
+import PropTypes from "prop-types";
 
-const DeleteQualification = ({data, index}) => {
-    const [id, setId] = useState('');
-    const deleteItem = () => {
-        qualificationApi.delete(id)
-            .then(res => res.json())
-            .then(response => {
-                const {errors} = response;
-                if (!!errors) {
-                    console.log(error)
-                } else {
-                    location.reload()
-                }
-            })
-    }
-
-    useEffect(() => {
-        setId(data.id)
-    }, [index])
+const DeleteExperienceQualification = ({data, type, deleteItem}) => {
 
     return (
-        <div className="modal fade" id="deleteModal" tabIndex="-1" role="dialog" aria-labelledby="delete"
+        <div className="modal fade" id="deleteExperienceModal" tabIndex="-1" role="dialog" aria-labelledby="delete"
              aria-hidden="true">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
@@ -38,7 +21,9 @@ const DeleteQualification = ({data, index}) => {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-white" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary" onClick={deleteItem}>Yes</button>
+                        <button type="button" className="btn btn-primary" data-dismiss="modal"
+                                onClick={() => deleteItem(data.id, type)}>Yes
+                        </button>
                     </div>
                 </div>
             </div>
@@ -46,4 +31,10 @@ const DeleteQualification = ({data, index}) => {
     );
 };
 
-export default DeleteQualification;
+DeleteExperienceQualification.propTypes = {
+    deleteItem: PropTypes.func.isRequired,
+    formErrors: PropTypes.object.isRequired,
+    qualificationType: PropTypes.string.isRequired,
+};
+
+export default DeleteExperienceQualification;

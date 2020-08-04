@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {isEmpty} from "../../utils/utils";
 
 const commonLabels = {
     year_start: 'Start Year',

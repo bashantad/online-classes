@@ -8,7 +8,7 @@ const qualificationApi = {
         return baseApi.post('/qualifications', data);
     },
     update: (qualificationId, data) => {
-    	return baseApi.post(`/qualifications/${qualificationId}`, data);
+    	return baseApi.put(`/qualifications/${qualificationId}`, data);
     },
     delete: (qualificationId) => {
         return baseApi.delete(`/qualifications/${qualificationId}`);

@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import EditQualification from "./EditQualification";
-import DeleteQualification from "./DeleteQualification";
+import EditEducationQualification from "./EditEducationQualification";
+import DeleteEducationQualification from "./DeleteEducationQualification";
 
 export default class EducationList extends React.Component {
     state = {
         index: null,
         data: {},
-        id:''
+        id: ''
     }
 
     endLabel = ({year_end}) => {
@@ -15,7 +15,7 @@ export default class EducationList extends React.Component {
     }
 
     render() {
-        const {education, type, formErrors} = this.props;
+        const {education} = this.props;
         const handleClick = (index) => {
             this.setState({index: index, data: education[index]})
         }
@@ -48,8 +48,9 @@ export default class EducationList extends React.Component {
                         ))
                     }
                 </ul>
-                <EditQualification data={this.state.data} type={type} index={this.state.index} formErrors={formErrors}/>
-                <DeleteQualification data={this.state.data} type={type} index={this.state.index}/>
+
+                <EditEducationQualification data={this.state.data} index={this.state.index} {...this.props}/>
+                <DeleteEducationQualification data={this.state.data} index={this.state.index} {...this.props}/>
             </div>
         )
     }
@@ -57,4 +58,8 @@ export default class EducationList extends React.Component {
 
 EducationList.propTypes = {
     education: PropTypes.array.isRequired,
+    editQualification: PropTypes.func.isRequired,
+    deleteItem: PropTypes.func.isRequired,
+    formErrors: PropTypes.object.isRequired,
+    qualificationType: PropTypes.string.isRequired,
 };
