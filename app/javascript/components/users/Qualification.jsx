@@ -64,7 +64,6 @@ export default class Qualification extends React.Component {
         qualificationApi.update(id, data)
             .then(res => res.json())
             .then(response => {
-                console.log(response)
                 const {errors} = response;
                 if (!!errors) {
                     if (data.type === QUALIFICATION_TYPES.education) {
