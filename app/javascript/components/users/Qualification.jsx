@@ -5,6 +5,8 @@ import ExperienceList from './ExperienceList';
 import qualificationApi from '../../apis/qualificationApi';
 import {isEmpty} from "../../utils/utils";
 
+import avatar from '../../../assets/images/components/160x160/img1.jpg'
+
 const QUALIFICATION_TYPES = {
     education: 'Education',
     experience: 'Experience',
@@ -119,7 +121,7 @@ export default class Qualification extends React.Component {
                                                 height: '160px'
                                             }}>
                                                 <img className="img-fluid rounded-circle"
-                                                     src="../../assets/components/160x160/img1.jpg"
+                                                     src={avatar}
                                                      alt="Image Description" width="160" height="160"/>
                                                 <img
                                                     className="bg-white position-absolute bottom-0 right-0 rounded-circle p-1"
