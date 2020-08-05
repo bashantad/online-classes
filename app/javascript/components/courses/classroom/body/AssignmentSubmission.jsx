@@ -39,16 +39,15 @@ export default class AssignmentSubmission extends React.Component {
     render() {
         const {description} = this.state;
         return (
-            <div className='assignment-submission'>
-                <div>
-                    <textarea onChange={this.handleChange} value={description}></textarea>
+            <div className='assignment-submission pl-4 pr-4 pb-4'>
+                <div className="form-group">
+                    <label className="input-label" htmlFor="exampleFormControlTextarea1">Answer:</label>
+                    <textarea id="answer" className="form-control"  onChange={this.handleChange} value={description} placeholder="Answer"
+                              rows="4"></textarea>
                 </div>
-                <button onClick={this.saveAsDraft}>
-                    Save as a draft
-                </button>
-
-                <button onClick={this.submitAssignment}>
-                    Submit
+                <button type="button" className="btn btn-sm btn-primary  float-right" onClick={this.submitAssignment}>Submit</button>
+                <button type="button" className="btn btn-sm btn-soft-primary mr-2 float-right"  onClick={this.saveAsDraft}>
+                     Save as a draft <i className="fas fa-save ml-1"></i>
                 </button>
             </div>
         );
