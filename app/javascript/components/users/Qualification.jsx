@@ -21,6 +21,8 @@ export default class Qualification extends React.Component {
         showExperienceForm: false,
         educationFormErrors: {},
         experienceFormErrors: {},
+        modelId: '',
+        editModal: false
     }
 
     componentDidMount() {
@@ -34,7 +36,7 @@ export default class Qualification extends React.Component {
         });
     }
 
-    addQualification = (data) => {
+    createQualification = (data) => {
         const updateObj = {};
         qualificationApi.create(data)
             .then(res => res.json())
@@ -57,15 +59,51 @@ export default class Qualification extends React.Component {
             });
     }
 
+    updateQualification = (id, data) => {
+        const updateObj = {};
+        qualificationApi.update(id, data)
+            .then(res => res.json())
+            .then(response => {
+                const {errors} = response;
+                if (!!errors) {
+                    if (data.type === QUALIFICATION_TYPES.education) {
+                        updateObj.educationFormErrors = errors;
+                    } else {
+                        updateObj.experienceFormErrors = errors;
+                    }
+                } else {
+                    if (response.type === QUALIFICATION_TYPES.education) {
+                        const temp = this.state.education.filter(item => item.id !== id);
+                        updateObj.education = [response, ...temp];
+                    } else {
+                        const temp = this.state.experiences.filter(item => item.id !== id);
+                        updateObj.experiences = [response, ...temp];
+                    }
+                }
+                this.setState(updateObj);
+            });
+    }
+
+    deleteQualification = (id, type) => {
+        const updateObj = {};
+        qualificationApi.delete(id)
+            .then(res => res.json())
+            .then(_ => {
+                if (type === QUALIFICATION_TYPES.education) {
+                    updateObj.education = this.state.education.filter(item => item.id !== id);
+                } else {
+                    updateObj.experiences = this.state.experiences.filter(item => item.id !== id);
+                }
+                this.setState(updateObj);
+            })
+    }
+
     showQualificationForm = (qualificationType) => () => {
-        const formObj = {};
-        const formKey = `show${qualificationType}Form`;
-        formObj[formKey] = true;
-        this.setState(formObj);
+        this.setState({modelId: qualificationType})
     }
 
     render() {
-        const {error, errNotification, education, experiences, loading, showEducationForm, showExperienceForm} = this.state;
+        const {education, experiences, loading} = this.state;
         const {educationFormErrors, experienceFormErrors} = this.state;
         return (
             <>
@@ -74,7 +112,7 @@ export default class Qualification extends React.Component {
                         <div className="col-sm-12 col-lg-12 mb-2 mb-lg-0">
                             <div className="card">
                                 <div className="container space-1">
-                                    <div className="border-bottom w-md-75 w-lg-85 space-bottom-1 mx-md-auto">
+                                    <div className="w-md-75 w-lg-85 space-bottom-1 mx-md-auto">
                                         <div className="media d-block d-sm-flex">
                                             <div className="position-relative mx-auto mb-3 mb-sm-0 mr-sm-4" style={{
                                                 width: '160px',
@@ -138,25 +176,13 @@ export default class Qualification extends React.Component {
                                         <div className="card-header">
                                             <h5 className="card-title">Education</h5>
                                             <span>
-                                            <button type="button" data-toggle="collapse"
-                                                    data-target="#qualificationForm" aria-expanded="false"
+                                            <button type="button" data-toggle="modal" data-target="#formModal"
                                                     aria-controls="qualificationForm"
                                                     onClick={this.showQualificationForm(QUALIFICATION_TYPES.education)}
                                                     className="btn btn-xs btn-outline-primary font-weight-bold text-nowrap ml-1">
                                                 <i className='fas fa-plus mr-1'></i> Add New
                                             </button>
                                         </span>
-                                        </div>
-                                        <div className="collapse" id="qualificationForm">
-                                            <div className="card card-body shadow-none">
-                                                {
-                                                    showEducationForm && <NewQualification
-                                                        addQualification={this.addQualification}
-                                                        qualificationType={QUALIFICATION_TYPES.education}
-                                                        key='education-new-form'
-                                                        formErrors={educationFormErrors}/>
-                                                }
-                                            </div>
                                         </div>
                                         <div className="card-body">
                                             {
@@ -170,7 +196,11 @@ export default class Qualification extends React.Component {
                                                              alt="SVG"/>
                                                     </figure>
                                                     <div className="text-center mt-2">Qualification not added!</div>
-                                                </div> : <EducationList education={education}/>
+                                                </div> : <EducationList education={education}
+                                                                        updateQualification={this.updateQualification}
+                                                                        deleteQualification={this.deleteQualification}
+                                                                        formErrors={educationFormErrors}
+                                                                        qualificationType={QUALIFICATION_TYPES.education}/>
                                             }
                                         </div>
                                     </div>
@@ -183,24 +213,13 @@ export default class Qualification extends React.Component {
                                         <div className="card-header">
                                             <h5 className="card-title">Experience</h5>
                                             <span>
-                                             <button type="button" data-toggle="collapse" data-target="#educationForm"
-                                                     aria-expanded="false" aria-controls="educationForm"
+                                             <button type="button" data-toggle="modal" data-target="#formModal"
+                                                     aria-controls="educationForm"
                                                      onClick={this.showQualificationForm(QUALIFICATION_TYPES.experience)}
                                                      className="btn btn-xs btn-outline-primary font-weight-bold text-nowrap ml-1"
                                              ><i className='fas fa-plus mr-1'></i> Add New
                                             </button>
                                         </span>
-                                        </div>
-                                        <div className="collapse" id="educationForm">
-                                            <div className="card card-body shadow-none">
-                                                {
-                                                    showExperienceForm && <NewQualification
-                                                        addQualification={this.addQualification}
-                                                        qualificationType={QUALIFICATION_TYPES.experience}
-                                                        key='education-new-form'
-                                                        formErrors={experienceFormErrors}/>
-                                                }
-                                            </div>
                                         </div>
                                         <div className="card-body">
                                             {
@@ -214,7 +233,11 @@ export default class Qualification extends React.Component {
                                                              alt="SVG"/>
                                                     </figure>
                                                     <div className="text-center mt-2">Experience not added!</div>
-                                                </div> : <ExperienceList experiences={experiences}/>
+                                                </div> : <ExperienceList experiences={experiences}
+                                                                         updateQualification={this.updateQualification}
+                                                                         formErrors={experienceFormErrors}
+                                                                         deleteQualification={this.deleteQualification}
+                                                                         qualificationType={QUALIFICATION_TYPES.experience}/>
                                             }
                                         </div>
                                     </div>
@@ -223,6 +246,18 @@ export default class Qualification extends React.Component {
                         </div>
                     </div>
                 </div>
+                {
+                    this.state.modelId === 'Experience' ? <NewQualification
+                            addQualification={this.createQualification}
+                            qualificationType={QUALIFICATION_TYPES.experience}
+                            key='education-new-form'
+                            formErrors={experienceFormErrors}/> :
+                        <NewQualification
+                            addQualification={this.createQualification}
+                            qualificationType={QUALIFICATION_TYPES.education}
+                            key='education-new-form'
+                            formErrors={educationFormErrors}/>
+                }
             </>
         )
     }
