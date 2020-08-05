@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from "prop-types";
 
-const DeleteExperienceQualification = ({data, type, deleteItem}) => {
-
+const DeleteEducationModal = ({data, deleteQualification, qualificationType}) => {
     return (
-        <div className="modal fade" id="deleteExperienceModal" tabIndex="-1" role="dialog" aria-labelledby="delete"
+        <div className="modal fade" id="deleteModal" tabIndex="-1" role="dialog" aria-labelledby="delete"
              aria-hidden="true">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
@@ -21,9 +20,7 @@ const DeleteExperienceQualification = ({data, type, deleteItem}) => {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-white" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary" data-dismiss="modal"
-                                onClick={() => deleteItem(data.id, type)}>Yes
-                        </button>
+                        <button type="button" className="btn btn-primary" onClick={() => deleteQualification(data.id,qualificationType)} data-dismiss="modal">Yes</button>
                     </div>
                 </div>
             </div>
@@ -31,10 +28,10 @@ const DeleteExperienceQualification = ({data, type, deleteItem}) => {
     );
 };
 
-DeleteExperienceQualification.propTypes = {
-    deleteItem: PropTypes.func.isRequired,
+DeleteEducationModal.propTypes = {
+    deleteQualification: PropTypes.func.isRequired,
     formErrors: PropTypes.object.isRequired,
     qualificationType: PropTypes.string.isRequired,
 };
 
-export default DeleteExperienceQualification;
+export default DeleteEducationModal;

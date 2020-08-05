@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import EditExperienceQualification from "./EditExperienceQualification";
-import DeleteExperienceQualification from "./DeleteExperienceQualification";
+import EditExperienceModal from "./EditExperienceModal";
+import DeleteExperienceModal from "./DeleteExperienceModal";
 
 
 export default class ExperienceList extends React.Component {
@@ -49,8 +49,8 @@ export default class ExperienceList extends React.Component {
                         ))
                     }
                 </ul>
-                <EditExperienceQualification data={this.state.data} index={this.state.index} {...this.props}/>
-                <DeleteExperienceQualification data={this.state.data} index={this.state.index} {...this.props}/>
+                <EditExperienceModal data={this.state.data} index={this.state.index} {...this.props}/>
+                <DeleteExperienceModal data={this.state.data} index={this.state.index} {...this.props}/>
             </div>
         )
     }
@@ -58,8 +58,8 @@ export default class ExperienceList extends React.Component {
 
 ExperienceList.propTypes = {
     experiences: PropTypes.array.isRequired,
-    editQualification: PropTypes.func.isRequired,
-    deleteItem: PropTypes.func.isRequired,
+    updateQualification: PropTypes.func.isRequired,
+    deleteQualification: PropTypes.func.isRequired,
     formErrors: PropTypes.object.isRequired,
     qualificationType: PropTypes.string.isRequired,
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import EditEducationQualification from "./EditEducationQualification";
-import DeleteEducationQualification from "./DeleteEducationQualification";
+import EditEducationModal from "./EditEducationModal";
+import DeleteEducationModal from "./DeleteEducationModal";
 
 export default class EducationList extends React.Component {
     state = {
@@ -49,8 +49,8 @@ export default class EducationList extends React.Component {
                     }
                 </ul>
 
-                <EditEducationQualification data={this.state.data} index={this.state.index} {...this.props}/>
-                <DeleteEducationQualification data={this.state.data} index={this.state.index} {...this.props}/>
+                <EditEducationModal data={this.state.data} index={this.state.index} {...this.props}/>
+                <DeleteEducationModal data={this.state.data} index={this.state.index} {...this.props}/>
             </div>
         )
     }
@@ -58,8 +58,8 @@ export default class EducationList extends React.Component {
 
 EducationList.propTypes = {
     education: PropTypes.array.isRequired,
-    editQualification: PropTypes.func.isRequired,
-    deleteItem: PropTypes.func.isRequired,
+    updateQualification: PropTypes.func.isRequired,
+    deleteQualification: PropTypes.func.isRequired,
     formErrors: PropTypes.object.isRequired,
     qualificationType: PropTypes.string.isRequired,
 };

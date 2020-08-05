@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {mappingLabels} from './NewQualification'
 import PropTypes from "prop-types";
 
-const EditExperienceQualification = ({data, qualificationType,formErrors, editQualification}) => {
+const EditExperienceModal = ({data, qualificationType, formErrors, updateQualification}) => {
     const [name_of_institution, setName_of_institution] = useState('');
     const [title, setTitle] = useState('');
     const [year_start, setYear_start] = useState('');
@@ -24,7 +24,7 @@ const EditExperienceQualification = ({data, qualificationType,formErrors, editQu
     const labels = mappingLabels[qualificationType];
 
     const submitForm = (event) => {
-        editQualification(id, {
+        updateQualification(id, {
             type: qualificationType,
             name_of_institution,
             year_start,
@@ -139,10 +139,10 @@ const EditExperienceQualification = ({data, qualificationType,formErrors, editQu
     );
 };
 
-EditExperienceQualification.propTypes = {
-    editQualification: PropTypes.func.isRequired,
+EditExperienceModal.propTypes = {
+    updateQualification: PropTypes.func.isRequired,
     formErrors: PropTypes.object.isRequired,
     qualificationType: PropTypes.string.isRequired,
 };
 
-export default EditExperienceQualification;
+export default EditExperienceModal;
