@@ -5,6 +5,12 @@ import ExperienceList from './ExperienceList';
 import qualificationApi from '../../apis/qualificationApi';
 import {isEmpty} from "../../utils/utils";
 
+import avatar from '../../../assets/images/components/160x160/img1.jpg'
+import topVendor from '../../../assets/images/illustrations/top-vendor.svg'
+import svgDots from '../../../assets/images/components/dots-3.svg'
+import emptyEducation from '../../../assets/images/icons/icon-21.svg'
+import emptyExp from '../../../assets/images/icons/icon-42.svg'
+
 const QUALIFICATION_TYPES = {
     education: 'Education',
     experience: 'Experience',
@@ -119,11 +125,11 @@ export default class Qualification extends React.Component {
                                                 height: '160px'
                                             }}>
                                                 <img className="img-fluid rounded-circle"
-                                                     src="../../assets/components/160x160/img1.jpg"
-                                                     alt="Image Description" width="160" height="160"/>
+                                                     src={avatar}
+                                                     alt="Avatar" width="160" height="160"/>
                                                 <img
                                                     className="bg-white position-absolute bottom-0 right-0 rounded-circle p-1"
-                                                    src="../../assets/illustrations/top-vendor.svg" alt="Icon"
+                                                    src={topVendor} alt="Top Vendor"
                                                     width="36" height="36" title="Top Writer"/>
                                             </div>
 
@@ -158,8 +164,8 @@ export default class Qualification extends React.Component {
                                 <figure
                                     className="max-w-13rem w-100 position-absolute bottom-0 right-0 z-index-n1 hide-svg">
                                     <div className="mb-n7 mr-n7">
-                                        <img className="img-fluid" src="../../assets/components/dots-3.svg"
-                                             alt="Image Description"/>
+                                        <img className="img-fluid" src={svgDots}
+                                             alt="Dots"/>
                                     </div>
                                 </figure>
                             </div>
@@ -192,8 +198,8 @@ export default class Qualification extends React.Component {
                                                     </div>
                                                 </div> : isEmpty(education) ? <div>
                                                     <figure className="max-w-10rem mx-auto mt-4">
-                                                        <img className="img-fluid" src="../../assets/icons/icon-21.svg"
-                                                             alt="SVG"/>
+                                                        <img className="img-fluid" src={emptyEducation}
+                                                             alt="Empty"/>
                                                     </figure>
                                                     <div className="text-center mt-2">Qualification not added!</div>
                                                 </div> : <EducationList education={education}
@@ -229,8 +235,8 @@ export default class Qualification extends React.Component {
                                                     </div>
                                                 </div> : isEmpty(experiences) ? <div>
                                                     <figure className="max-w-10rem mx-auto mt-4">
-                                                        <img className="img-fluid" src="../../assets/icons/icon-42.svg"
-                                                             alt="SVG"/>
+                                                        <img className="img-fluid" src={emptyExp}
+                                                             alt="Empty"/>
                                                     </figure>
                                                     <div className="text-center mt-2">Experience not added!</div>
                                                 </div> : <ExperienceList experiences={experiences}
