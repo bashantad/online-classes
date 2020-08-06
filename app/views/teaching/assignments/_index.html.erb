@@ -1,7 +1,7 @@
 <div class="border mb-2">
   <div class="card-header">
     <div class="media-body">
-      <h5 class="mb-0"> <i class="fas fa-pencil-alt pt-1 mr-2 text-body"></i>Assignments</h5>
+      <h5 class="mb-0"><i class="fas fa-pencil-alt pt-1 mr-2 text-body"></i>Assignments</h5>
     </div>
     <span>
       <%= link_to "Add New Assignment", new_teaching_course_chapter_assignment_path(@course, chapter), class: 'btn btn-xs btn-soft-primary mr-2' %></span>
@@ -41,8 +41,7 @@
     <% else %>
       <div class="space-1">
         <figure class="max-w-8rem mx-auto">
-          <img class="img-fluid" src="
-          <%= asset_path("icons/icon-67.svg") %>" alt="SVG">
+          <img class="img-fluid" src="<%= asset_path("icons/icon-67.svg") %>" alt="SVG">
         </figure>
         <div class="text-center mt-2">No Assignments</div>
       </div>

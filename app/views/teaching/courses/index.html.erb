@@ -62,7 +62,7 @@
               <td>
                 <%= link_to 'View', teaching_course_path(course), class: 'btn btn-xs btn-outline-success' %>&nbsp;&nbsp;
                 <%= link_to 'Edit', edit_teaching_course_path(course), class: 'btn btn-xs btn-outline-success' %>&nbsp;&nbsp;
-                <%= link_to 'Delete',  teaching_course_path(course), method: :delete, data: {confirm: 'Are you sure you want to delete this course?'}, class: 'btn btn-xs btn-outline-danger' %>
+                <%= link_to 'Delete', teaching_course_path(course), method: :delete, data: {confirm: 'Are you sure you want to delete this course?'}, class: 'btn btn-xs btn-outline-danger' %>
               </td>
             </tr>
           <% end %>
@@ -86,7 +86,7 @@
         <div class="row justify-content-md-between align-items-md-center pl-4 pr-4">
           <div class="col-md-5 mb-3 mb-md-0 text-align-middle">
             <figure class="max-w-8rem mx-auto">
-              <img class="img-fluid" src="/assets/icons/icon-36.svg" alt="SVG">
+              <img class="img-fluid" src="<%= asset_path("icons/icon-36.svg") %>" alt="SVG">
             </figure>
           </div>
 
