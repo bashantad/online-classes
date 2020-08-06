@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import avatar from '../../../assets/images/components/160x160/img1.jpg'
+
 const AboutInstructor = ({avatar_image_urls, educations, experiences, full_name, linkedin_url, short_bio, twitter_url}) => {
     return (
         <div className="border-top pt-7 mt-7">
@@ -10,7 +12,7 @@ const AboutInstructor = ({avatar_image_urls, educations, experiences, full_name,
                 <div className="col-lg-4 mb-4 mb-lg-0">
                     <div className="avatar avatar-xl avatar-circle mb-3">
                         <img className="avatar-img"
-                             src="../../assets/components/160x160/img1.jpg"
+                             src={avatar}
                              alt="Image Description"/>
                     </div>
 
