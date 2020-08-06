@@ -34,7 +34,7 @@ export const ClassRoomContent = ({course, params, navigateToCourseContent, navig
                             <div id="sidebarNav" className="collapse navbar-collapse navbar-vertical">
                                 <div className="card">
                                     <div className="card-body">
-                                        <div className='border-bottom pb-2 mb-3'>
+                                        <div className='border-bottom pb-1 mb-3'>
                                             <button type="button" className="btn btn-primary btn-pill btn-xs mr-3"
                                                     onClick={joinMessages}>
                                                 Live Chat

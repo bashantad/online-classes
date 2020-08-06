@@ -1,9 +1,27 @@
-Assignment submission
+<!-- Hero Section -->
+<div class="bg-navy bg-img-hero">
+  <div class="container space-1 ">
+    <div class="w-lg-65 text-center mx-lg-auto">
+      <span class="badge badge-soft-light badge-pill font-size-1 py-3 px-4 mb-3">
+       <nav aria-label="breadcrumb">
+         Assignment Submissions
+        </nav>
+      </span>
+    </div>
+  </div>
+</div>
+<!-- End Hero Section -->
+
+<div class="container space-1">
 
 <% @submissions.each do |submission|  %>
-  <div>
-    <%= submission.submission_date %>
-    <%= submission.user.full_name %>
-    <%= submission.description %>
+  <div class="card card-frame mb-4">
+    <div class="card-body">
+      <h5 class="card-title"> <%= submission.user.full_name %></h5>
+      <p class="card-text"><%= submission.description %></p>
+      <p class="card-text"><small class="text-muted">Submitted on: <%= submission.submission_date %></small></p>
+    </div>
   </div>
 <% end %>
+
+</div>

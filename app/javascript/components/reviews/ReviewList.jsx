@@ -28,7 +28,7 @@ const ReviewList = ({reviews, submitReview}) => {
                     }
                 </div>
 
-                <div className="col-md-5">
+                <div className="col-md-5  mt-sm-0 mt-4">
                     <form className="input-group input-group-sm">
                         <input type="search" className="form-control" placeholder="Search reviews"
                                aria-label="Search reviews"/>
