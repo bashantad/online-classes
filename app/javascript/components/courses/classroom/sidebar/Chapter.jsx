@@ -6,14 +6,19 @@ import Assignment from "./Assignment";
 const Chapter = ({chapterTitle, chapterId, courseContents, assignments, navigateToCourseContent, navigateToAssignmentContent}) => {
     return (
         <>
-            <h6 className="text-cap small">{chapterTitle}</h6>
-            <span className='small'>
-                  <i className="fas fa-chalkboard mr-2"></i>{courseContents.length} lectures
-                </span>
-            <span className='ml-1 mr-1'>|</span>
-            <span className='small'>
-                  <i className="fas fa-clock mr-2"></i>duration
+            <div className='d-flex justify-content-between mb-2'>
+                <span className="text-cap text-dark small">{chapterTitle} </span>
+                <span className="text-body small">
+              <span>
+              <i className="fas fa-chalkboard mr-2"></i>{courseContents.length} lectures
             </span>
+            <span className='ml-1 mr-1'>|</span>
+            <span>
+                  <i className="fas fa-clock mr-2"></i>Duration
+            </span>
+            </span>
+            </div>
+
             <ul className="nav nav-sub nav-sm nav-tabs nav-list-y-2 mt-1">
                 {
                     courseContents.map((course_content) => {

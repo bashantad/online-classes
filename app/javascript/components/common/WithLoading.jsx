@@ -7,7 +7,7 @@ function WithLoading(Component) {
     return class extends React.Component {
         render() {
             const {isLoading, errorMessage, ...props} = this.props;
-            if(isLoading) return <Loading className='mt-5'/>;
+            if(isLoading) return <Loading className='mt-1'/>;
             if(!!errorMessage) return <ErrorMessage message={errorMessage} />;
             return <Component {...props} />;
         }

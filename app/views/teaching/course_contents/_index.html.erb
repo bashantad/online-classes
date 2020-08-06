@@ -4,7 +4,9 @@
       <h5 class="mb-0"><i class="fas fa-book pt-1 mr-2 text-body"></i>Course Contents</h5>
     </div>
     <span>
-      <%= link_to "Add New Content", new_teaching_course_chapter_course_content_path(@course, chapter), class: 'btn btn-xs btn-soft-primary' %>
+       <a href="<%= new_teaching_course_chapter_course_content_path(@course, chapter) %>" class="btn btn-xs btn-soft-primary"  data-toggle="tooltip" data-html="true" title="Add New Content">
+          <i class="fas fa-plus"></i>
+        </a>
  </span>
   </div>
 
@@ -30,9 +32,13 @@
                   <td><%= course_content.duration %></td>
                   <td><%= course_content.preview? ? 'Yes' : 'No' %></td>
                   <td>
-                    <%= link_to 'View', teaching_course_chapter_course_content_path(@course, chapter, course_content), class: 'btn btn-xs btn-soft-success' %>&nbsp;&nbsp;
-                    <%= link_to 'Edit', edit_teaching_course_chapter_course_content_path(@course, chapter, course_content), class: 'btn btn-xs btn-soft-success' %>&nbsp;&nbsp;
-                    <%= link_to 'Delete', teaching_course_chapter_course_content_path(@course, chapter, course_content), method: :delete, data: {confirm: 'Are you sure delete course content?'}, class: 'btn btn-xs btn-soft-danger' %>
+                    <a href="<%= teaching_course_chapter_course_content_path(@course, chapter, course_content) %>" class="btn btn-ghost-info btn-xs" data-toggle="tooltip" data-html="true" title="View" data-placement="top">
+                      <i class="fas fa-eye"></i>
+                    </a>
+                    <a href="<%= edit_teaching_course_chapter_course_content_path(@course, chapter, course_content) %>" class="btn btn-ghost-info btn-xs mr-1" data-toggle="tooltip" data-html="true" title="Edit" data-placement="top">
+                      <i class="fas fa-pen"></i>
+                    </a>
+                    <%= link_to 'Delete', teaching_course_chapter_course_content_path(@course, chapter, course_content), method: :delete, data: {confirm: 'Are you sure delete course content?'}, class: 'btn btn-xs btn-ghost-danger' %>
                   </td>
                 </tr>
               <% end %>

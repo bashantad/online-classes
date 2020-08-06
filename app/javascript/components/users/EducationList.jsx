@@ -33,16 +33,21 @@ export default class EducationList extends React.Component {
                                     <p className="mb-1">{education.title}, {education.location}, {education.country} </p>
                                 </span>
                                 <span>
-                                    <button type="button" className="btn btn-ghost-info btn-icon btn-xs"
-                                            data-toggle="modal" data-target="#editModal"
-                                            onClick={() => handleClick(index)}>
+                                    <span data-toggle="modal" data-target="#editModal">
+                                        <button type="button" className="btn btn-ghost-info btn-icon btn-xs"
+                                                data-toggle='tooltip' title='Edit' data-placement="top"
+                                                onClick={() => handleClick(index)}>
                                       <i className="fas fa-pen"></i>
                                     </button>
+                                    </span>
+
+                                    <span data-toggle="modal" data-target="#deleteModal">
                                     <button type="button" className="btn btn-ghost-danger btn-icon btn-xs ml-2"
-                                            data-toggle="modal" data-target="#deleteModal"
+                                            data-toggle="tooltip"  title='Delete' data-placement="top"
                                             onClick={() => handleClick(index)}>
                                       <i className="fas fa-trash"></i>
                                     </button>
+                                    </span>
                                 </span>
                             </li>
                         ))

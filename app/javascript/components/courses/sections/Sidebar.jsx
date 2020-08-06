@@ -8,22 +8,20 @@ const Sidebar = ({course, handleEnroll, showEnrollmentForm}) => {
     return (
         <div className="container space-top-md-2 position-md-absolute top-0 right-0 left-0">
             <div className="row justify-content-end">
-                <div id="stickyBlockStartPoint"
+                <div
                      className="col-md-5 col-lg-4 position-relative z-index-2">
-                    <div className="js-sticky-block card border"
-                         data-hs-sticky-block-options='{
-                                       "parentSelector": "#stickyBlockStartPoint",
-                                       "breakpoint": "md",
-                                       "startPoint": "#stickyBlockStartPoint",
-                                       "endPoint": "#stickyBlockEndPoint",
-                                       "stickyOffsetTop": 12,
-                                       "stickyOffsetBottom": 12
-                                     }'>
+                    <div className="card border">
                         {
                             showEnrollmentForm ?
                                 <>
-                                    <EnrollmentSummary {...course} />
-                                    <EnrollmentConfirmation courseId={course.id}/>
+                                    <div>
+                                        <div className="card h-100">
+                                            <EnrollmentSummary {...course} />
+                                            <div className='card-footer '>
+                                                <EnrollmentConfirmation courseId={course.id}/>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </>
                                 : <CourseSidebar {...course} handleEnroll={handleEnroll}/>
                         }
