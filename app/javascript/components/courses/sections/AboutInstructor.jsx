@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import avatar from '../../../assets/images/components/160x160/img1.jpg'
+import avatar from '../../../../assets/images/components/160x160/img1.jpg'
 
 const AboutInstructor = ({avatar_image_urls, educations, experiences, full_name, linkedin_url, short_bio, twitter_url}) => {
     return (

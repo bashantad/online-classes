@@ -52,7 +52,7 @@ export default class NewReview extends React.Component {
                                 <Avatar />
                                 <span className='text-body font-weight-bold ml-3'>User Name</span>
                             </label>
-                            <div className="form-group d-flex">
+                            <div className="form-group d-flex mt-2">
                                 <StarRating
                                     numberOfStars="5"
                                     currentRating="0"

@@ -185,12 +185,6 @@ ul.timeline > li:before {
   height: 100%;
 }
 
-#main-container {
-  height: 100%;
-  display: flex;
-  flex-flow: column;
-}
-
 @media (min-width: 1200px) {
   .main-layout {
     flex-direction: row;

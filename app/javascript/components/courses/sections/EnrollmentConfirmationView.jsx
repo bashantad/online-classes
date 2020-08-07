@@ -2,16 +2,22 @@ import React from "react";
 import PropTypes from "prop-types";
 import WithLoading from "../../common/WithLoading";
 
-const EnrollmentConfirmationView = ({successMessage, sendEnrollmentRequest, courseId}) => {
+const EnrollmentConfirmationView = ({successMessage, sendEnrollmentRequest, courseId, errorMessage}) => {
     return (
-        <div>
+        <div class='text-center'>
             {
                 successMessage ?
-                    <div>
+                    <div className="alert alert-soft-success" role="alert">
                         {successMessage}
                     </div>
                     :
-                    <button onClick={() => sendEnrollmentRequest(courseId)}>
+                    errorMessage ?
+                        <div className="alert alert-soft-alert" role="alert">
+                            {errorMessage}
+                        </div>
+                        :
+                    <button className='btn btn-soft-primary btn-block transition-3d-hover' onClick={() => sendEnrollmentRequest(courseId)}>
+                        <i className='fa fa-check mr-2'></i>
                         Confirm
                     </button>
             }

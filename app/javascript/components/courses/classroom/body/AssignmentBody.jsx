@@ -8,7 +8,7 @@ import assignmentSvg from '../../../../../assets/images/illustrations/support-ma
 const AssignmentBody = ({chapterTitle, question, points, dueDate, instructionsHtml}) => {
     return <>
         <div className="card-header">
-            <h4 className="card-title">{chapterTitle} - Assignment</h4>
+            <h4 className="card-title mb-2">{chapterTitle} - Assignment</h4>
         </div>
         <div className="card-body">
             <div className="card card-bordered h-100 overflow-hidden p-5">

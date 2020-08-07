@@ -34,16 +34,21 @@ export default class ExperienceList extends React.Component {
                                     <p className="mb-1">{experience.title}, {experience.location}, {experience.country} </p>
                                 </span>
                                 <span>
-                                    <button type="button" className="btn btn-ghost-info btn-icon btn-xs"
-                                            onClick={() => handleClick(index)}
-                                            data-toggle="modal" data-target="#editModalExp">
+                                     <span data-toggle="modal" data-target="#editModalExp">
+                                        <button type="button" className="btn btn-ghost-info btn-icon btn-xs"
+                                                data-toggle='tooltip' title='Edit' data-placement="top"
+                                                onClick={() => handleClick(index)}>
                                       <i className="fas fa-pen"></i>
                                     </button>
+                                    </span>
+
+                                    <span data-toggle="modal" data-target="#deleteExperienceModal">
                                     <button type="button" className="btn btn-ghost-danger btn-icon btn-xs ml-2"
-                                            data-toggle="modal" data-target="#deleteExperienceModal"
+                                            data-toggle="tooltip"  title='Delete' data-placement="top"
                                             onClick={() => handleClick(index)}>
                                       <i className="fas fa-trash"></i>
                                     </button>
+                                    </span>
                                 </span>
                             </li>
                         ))

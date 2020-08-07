@@ -13,7 +13,7 @@ import Sidebar from "./sections/Sidebar";
 export const CourseDetailBody = ({course, showEnrollmentForm, handleEnroll}) => {
     const {reviews, teacher, chapters, body_html, lecture_count, duration, reviews_count} = course;
     return <>
-        <div className="position-relative">
+        <div className="position-relative" id="stickyBlockStartPoint">
             <CourseHeader {...course}
                           reviewCount={reviews_count} />
             <Sidebar course={course}
