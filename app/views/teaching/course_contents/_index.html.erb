@@ -38,7 +38,9 @@
                     <a href="<%= edit_teaching_course_chapter_course_content_path(@course, chapter, course_content) %>" class="btn btn-ghost-info btn-xs mr-1" data-toggle="tooltip" data-html="true" title="Edit" data-placement="top">
                       <i class="fas fa-pen"></i>
                     </a>
-                    <%= link_to 'Delete', teaching_course_chapter_course_content_path(@course, chapter, course_content), method: :delete, data: {confirm: 'Are you sure delete course content?'}, class: 'btn btn-xs btn-ghost-danger' %>
+                    <a href="<%= teaching_course_chapter_course_content_path(@course, chapter, course_content) %>" data-method="delete" data-confirm="Are you sure you want to delete this content?" class="btn btn-ghost-danger btn-xs" data-toggle="tooltip" data-html="true" title="Delete" data-placement="top">
+                      <i class="fas fa-trash"></i>
+                    </a>
                   </td>
                 </tr>
               <% end %>

@@ -180,7 +180,7 @@ export default class Qualification extends React.Component {
                                 <div className=" w-lg-85 mx-auto">
                                     <div aria-labelledby="qualifications-tab">
                                         <div className="card-header">
-                                            <h5 className="card-title">Education</h5>
+                                            <h5 className="card-title">Qualification</h5>
                                             <span>
                                             <button type="button" data-toggle="modal" data-target="#formModal"
                                                     aria-controls="qualificationForm"
