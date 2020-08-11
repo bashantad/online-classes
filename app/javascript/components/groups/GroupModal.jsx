@@ -26,7 +26,7 @@ class GroupModal extends React.Component {
         const {updateMembers, conversation} = this.state;
         const conversationToBeUpdated = conversation === null ? activeConversation : conversation;
         return (
-            <div className='start-modal-from-here'>
+            <div className='position-absolute w-100 mx-auto card-img-overlay message-modal'>
                 {
                     updateMembers ?
                         <UpdateMembers

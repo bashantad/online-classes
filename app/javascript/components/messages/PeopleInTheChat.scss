@@ -70,15 +70,18 @@ ul.people-list {
     justify-content: space-between;
     height: 60px;
 }
-
+.people{
+    margin: 5px;
+    border-radius: 10px;
+}
 .people:hover{
-    background-color: #ebf2ff;
-    border-radius: 0;
-    border-right: 2px solid rgba(55, 125, 255, 0.36);
+    background-color: rgba(0, 0, 0, 0.03);
+    border-radius: 10px;
 }
 
 .aside-active{
-    background-color: #ebf2ff;
+    background-color: rgba(0, 0, 0, .05);
     border-radius: 0;
-    border-right: 2px solid $primary-color !important;
+    transition: all 0.3s ease;
+    border-right: 2px solid $primary-color;
 }

@@ -34,11 +34,21 @@ export class CourseList extends React.Component {
     render() {
         const {errorMessage, courses, loading} = this.state;
 
-        return <CourseListWithLoading isLoading={loading}
+        return (
+            <>
+                <div className="container space-sm-2 space-bottom-lg-3">
+                    <div className="w-md-80 text-center mx-md-auto mb-9">
+                        <h2>Featured courses</h2>
+                        <p>Discover your perfect program in our courses.</p>
+                    </div>
+            <CourseListWithLoading isLoading={loading}
                                       errorMessage={errorMessage}
                                       courses={courses}
                                       handleDetails={this.handleDetails}
-                                      handleEnroll={this.handleEnroll} />
+                                      handleEnroll={this.handleEnroll} />s
+                </div>
+                                      </>
+        )
     }
 }
 

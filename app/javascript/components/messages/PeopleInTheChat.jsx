@@ -100,6 +100,7 @@ export default class PeopleInTheChat extends React.Component {
                             {
                                 this.renderGroupConversation(groupConversations)
                             }
+                            <hr className='m-0'/>
                             {
                                 this.renderIndividualConversation(enrolledUsers, mappingPersonToConversation)
                             }
