@@ -15,11 +15,27 @@
 </div>
 <!-- End Hero Section -->
 <div class="container space-1">
-  <!-- Card -->
-  <div class="card mb-3 mb-lg-5">
-    <div class="card-header">
-      <h5 class="card-title">Course Details</h5>
-      <span>
+  <!-- Nav -->
+  <div class="text-center">
+    <ul class="nav nav-segment nav-pills scrollbar-horizontal mb-7" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="pills-one-code-features-example1-tab" data-toggle="pill" href="#details" role="tab" aria-controls="details" aria-selected="true">Details</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-two-code-features-example1-tab" data-toggle="pill" href="#contents" role="tab" aria-controls="contents" aria-selected="false">Course Contents</a>
+      </li>
+    </ul>
+  </div>
+  <!-- End Nav -->
+
+  <!-- Tab Content -->
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="pills-one-code-features-example1-tab">
+      <!-- Card -->
+      <div class="card mb-3 mb-lg-5">
+        <div class="card-header">
+          <h5 class="card-title">Course Details</h5>
+          <span>
         <a href="<%= @course.show_url %>" target="_blank"  class="btn btn-soft-primary btn-xs">
           <i class="fas fa-newspaper mr-1"></i>Preview landing page
         </a>&nbsp;&nbsp;
@@ -34,131 +50,137 @@
           Back
         </a>
       </span>
-    </div>
-
-    <!-- Body -->
-    <div class="card-body">
-      <form>
-        <!-- Form Group -->
-        <div class="row form-group">
-          <label for="image" class="col-sm-3 col-form-label input-label">Image</label>
-
-          <div class="col-sm-9">
-            <%= image_tag @course.image_urls["460x308"] if @course.cover_image.attached? %>
-          </div>
-        </div>
-        <!-- End Form Group -->
-
-        <!-- Form Group -->
-        <div class="row form-group">
-          <label for="title" class="col-sm-3 col-form-label input-label">Title</label>
-
-          <div class="col-sm-9">
-            <input type="text" class="form-control-plaintext" name="title" id="title" value="<%= @course.title %>" readonly>
-          </div>
-        </div>
-        <!-- End Form Group -->
-
-        <!-- Form Group -->
-        <div class="row form-group">
-          <label for="Body" class="col-sm-3 col-form-label input-label">Body</label>
-
-          <div class="col-sm-9">
-            <%= @course.body %>
-          </div>
-        </div>
-        <!-- End Form Group -->
-
-        <!-- Form Group -->
-        <div class="row form-group">
-          <label for="Body" class="col-sm-3 col-form-label input-label">Course highlights</label>
-
-          <div class="col-sm-9">
-            <%= @course.course_highlights %>
-          </div>
         </div>
 
-        <!-- Form Group -->
-        <div class="row form-group">
-          <label for="creator" class="col-sm-3 col-form-label input-label">Creator</label>
+        <!-- Body -->
+        <div class="card-body">
+          <form>
+            <!-- Form Group -->
+            <div class="row form-group">
+              <label for="image" class="col-sm-3 col-form-label input-label">Image</label>
 
-          <div class="col-sm-9">
-            <input type="text" class="form-control-plaintext" name="creator" id="creator" value="<%= @course.teacher.full_name %>" readonly>
-          </div>
+              <div class="col-sm-9">
+                <%= image_tag @course.image_urls["460x308"] if @course.cover_image.attached? %>
+              </div>
+            </div>
+            <!-- End Form Group -->
+
+            <!-- Form Group -->
+            <div class="row form-group">
+              <label for="title" class="col-sm-3 col-form-label input-label">Title</label>
+
+              <div class="col-sm-9">
+                <input type="text" class="form-control-plaintext" name="title" id="title" value="<%= @course.title %>" readonly>
+              </div>
+            </div>
+            <!-- End Form Group -->
+
+            <!-- Form Group -->
+            <div class="row form-group">
+              <label for="Body" class="col-sm-3 col-form-label input-label">Body</label>
+
+              <div class="col-sm-9">
+                <%= @course.body %>
+              </div>
+            </div>
+            <!-- End Form Group -->
+
+            <!-- Form Group -->
+            <div class="row form-group">
+              <label for="Body" class="col-sm-3 col-form-label input-label">Course highlights</label>
+
+              <div class="col-sm-9">
+                <%= @course.course_highlights %>
+              </div>
+            </div>
+
+            <!-- Form Group -->
+            <div class="row form-group">
+              <label for="creator" class="col-sm-3 col-form-label input-label">Creator</label>
+
+              <div class="col-sm-9">
+                <input type="text" class="form-control-plaintext" name="creator" id="creator" value="<%= @course.teacher.full_name %>" readonly>
+              </div>
+            </div>
+            <!-- End Form Group -->
+
+            <!-- Form Group -->
+            <div class="row form-group">
+              <label for="website" class="col-sm-3 col-form-label input-label">Website</label>
+
+              <div class="col-sm-9">
+                <input type="text" class="form-control-plaintext" name="website" id="website" value="<%= @course.website %>" readonly>
+              </div>
+            </div>
+            <!-- End Form Group -->
+
+            <!-- Form Group -->
+            <div class="row form-group">
+              <label for="course" class="col-sm-3 col-form-label input-label">Course</label>
+
+              <div class="col-sm-9">
+                <input type="text" class="form-control-plaintext" name="course" id="course" value="<%= @course.course_for %>" readonly>
+              </div>
+            </div>
+            <!-- End Form Group -->
+
+            <!-- Form Group -->
+            <div class="row form-group">
+              <label for="price" class="col-sm-3 col-form-label input-label">Price</label>
+
+              <div class="col-sm-9">
+                <input type="number" class="form-control-plaintext" name="price" id="price" value="<%= @course.price %>" readonly>
+              </div>
+            </div>
+            <!-- End Form Group -->
+
+            <div class="row form-group">
+              <label for="price" class="col-sm-3 col-form-label input-label">Discount</label>
+
+              <div class="col-sm-9">
+                <input type="text" class="form-control-plaintext" name="price" id="price" value="<%= @course.discount_percentage %>%" readonly>
+              </div>
+            </div>
+            <!-- End Form Group -->
+
+            <!-- Form Group -->
+            <div class="row form-group">
+              <label for="category" class="col-sm-3 col-form-label input-label">Category</label>
+
+              <div class="col-sm-9">
+                <input type="text" class="form-control-plaintext" name="category" id="category" value="<%= @course.category.title %>" readonly>
+              </div>
+            </div>
+            <!-- End Form Group -->
+
+            <!-- Form Group -->
+            <div class="row form-group">
+              <label for="approved" class="col-sm-3 col-form-label input-label">Approved</label>
+
+              <div class="col-sm-9">
+                <input type="text" class="form-control-plaintext" name="approved" id="approved" value="<%= @course.approved_text %>" readonly>
+              </div>
+            </div>
+            <!-- End Form Group -->
+          </form>
         </div>
-        <!-- End Form Group -->
-
-        <!-- Form Group -->
-        <div class="row form-group">
-          <label for="website" class="col-sm-3 col-form-label input-label">Website</label>
-
-          <div class="col-sm-9">
-            <input type="text" class="form-control-plaintext" name="website" id="website" value="<%= @course.website %>" readonly>
+        <!-- End Body -->
+        <!-- SVG Elements -->
+        <figure class="max-w-19rem w-100 position-absolute bottom-0 right-0 z-index-n1 hide-svg">
+          <div class="mb-n7 mr-n7">
+            <img class="img-fluid" src="<%= asset_path("components/dots-3.svg") %>" alt="Image Description">
           </div>
-        </div>
-        <!-- End Form Group -->
-
-        <!-- Form Group -->
-        <div class="row form-group">
-          <label for="course" class="col-sm-3 col-form-label input-label">Course</label>
-
-          <div class="col-sm-9">
-            <input type="text" class="form-control-plaintext" name="course" id="course" value="<%= @course.course_for %>" readonly>
-          </div>
-        </div>
-        <!-- End Form Group -->
-
-        <!-- Form Group -->
-        <div class="row form-group">
-          <label for="price" class="col-sm-3 col-form-label input-label">Price</label>
-
-          <div class="col-sm-9">
-            <input type="number" class="form-control-plaintext" name="price" id="price" value="<%= @course.price %>" readonly>
-          </div>
-        </div>
-        <!-- End Form Group -->
-
-        <div class="row form-group">
-          <label for="price" class="col-sm-3 col-form-label input-label">Discount</label>
-
-          <div class="col-sm-9">
-            <input type="text" class="form-control-plaintext" name="price" id="price" value="<%= @course.discount_percentage %>%" readonly>
-          </div>
-        </div>
-        <!-- End Form Group -->
-
-        <!-- Form Group -->
-        <div class="row form-group">
-          <label for="category" class="col-sm-3 col-form-label input-label">Category</label>
-
-          <div class="col-sm-9">
-            <input type="text" class="form-control-plaintext" name="category" id="category" value="<%= @course.category.title %>" readonly>
-          </div>
-        </div>
-        <!-- End Form Group -->
-
-        <!-- Form Group -->
-        <div class="row form-group">
-          <label for="approved" class="col-sm-3 col-form-label input-label">Approved</label>
-
-          <div class="col-sm-9">
-            <input type="text" class="form-control-plaintext" name="approved" id="approved" value="<%= @course.approved_text %>" readonly>
-          </div>
-        </div>
-        <!-- End Form Group -->
-      </form>
-    </div>
-    <!-- End Body -->
-    <!-- SVG Elements -->
-    <figure class="max-w-19rem w-100 position-absolute bottom-0 right-0 z-index-n1 hide-svg">
-      <div class="mb-n7 mr-n7">
-        <img class="img-fluid" src="<%= asset_path("components/dots-3.svg") %>" alt="Image Description">
+        </figure>
+        <!-- End SVG Elements -->
       </div>
-    </figure>
-    <!-- End SVG Elements -->
+      <!-- End Card -->
+    </div>
+
+    <div class="tab-pane fade" id="contents" role="tabpanel" aria-labelledby="pills-two-code-features-example1-tab">
+      <%= render "teaching/chapters/index" %>
+    </div>
   </div>
-  <!-- End Card -->
-  <%= render "teaching/chapters/index" %>
+  <!-- End Tab Content -->
 </div>
 <% content_for :javascript_includes do %>
   <%= javascript_include_tag "jquery_ujs" %>
