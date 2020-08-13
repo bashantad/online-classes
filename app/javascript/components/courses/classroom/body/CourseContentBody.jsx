@@ -6,7 +6,7 @@ import courseSvg from "../../../../../assets/images/illustrations/flowers.svg";
 const CourseContentBody = ({chapterTitle, title, description_html, duration}) => {
     return (
         <>
-            <div className="card-header">
+            <div className="card-header pb-4">
                 <h4 className="card-title"> {chapterTitle}</h4>
             </div>
             <div className="card-body">

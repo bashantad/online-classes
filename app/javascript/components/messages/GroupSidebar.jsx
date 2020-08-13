@@ -4,7 +4,7 @@ import MessageNotification from "./MessageNotification";
 
 const GroupSidebar = ({activeClass, title, handleConversationClick, noOfMessages}) => {
     return (
-        <div className={activeClass ? "list-group border-bottom people aside-active" : "list-group border-bottom people"}>
+        <div className={activeClass ? "list-group people aside-active" : "list-group people"}>
             <a type='button' className="ml-2 mr-2 p-2" onClick={handleConversationClick}>
                 <div className="p-2 row align-items-center">
                     <div className="col-2">

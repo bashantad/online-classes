@@ -181,6 +181,11 @@ ul.timeline > li:before {
   box-shadow: -5px 0px 12px rgba(103, 119, 136, 0.1);
 }
 
+.message-modal{
+  background: rgba(255, 255, 255, 0.45);
+  transition: opacity 0.3s ease;
+}
+
 #core-root {
   height: 100%;
 }

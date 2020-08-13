@@ -24,12 +24,12 @@ const EnquiryFormView = ({formErrors, fullName, phone, message, email, handleInp
                                 <input type="email" className="form-control" name="email"
                                        placeholder="Please enter a valid email address." required value={email}
                                        onChange={handleInputChange}/>
-                            </div>
-                            {
-                                formErrors.email && <span className='field-error'>
+                                {
+                                    formErrors.email && <span className='field-error'>
                                                     {formErrors.email}
                                                 </span>
-                            }
+                                }
+                            </div>
                         </div>
 
                         <div className="col-sm-12">
