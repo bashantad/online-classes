@@ -15,18 +15,130 @@
 </div>
 <!-- End Hero Section -->
 <div class="container space-1">
-  <!-- Card -->
-  <div class="card mx-auto">
-    <!-- Form -->
-    <%= render 'form', course: @course %>
-    <!-- SVG Elements -->
-    <figure class="max-w-19rem w-100 position-absolute bottom-0 right-0 z-index-n1 hide-svg">
-      <div class="mb-n7 mr-n7">
-        <img class="img-fluid" src="<%= asset_path("components/dots-3.svg") %>" alt="Image Description">
+  <!-- Step Form -->
+  <form class="js-step-form"
+        data-hs-step-form-options='{
+        "progressSelector": "#basicStepFormProgress",
+        "stepsSelector": "#basicStepFormContent"
+      }'>
+    <!-- Step -->
+    <ul id="basicStepFormProgress" class="js-step-progress step step-md step-inline space-bottom-1">
+      <li class="step-item">
+        <div class="step-content-wrapper">
+          <span class="step-icon step-icon-soft-primary">1</span>
+          <div class="step-content">
+            <span class="step-inline-title">Course</span>
+          </div>
+        </div>
+      </li>
+
+      <li class="step-item">
+        <div class="step-content-wrapper">
+          <span class="step-icon step-icon-soft-primary">2</span>
+          <div class="step-content">
+            <span class="step-inline-title">Chapters</span>
+          </div>
+        </div>
+      </li>
+
+      <li class="step-item">
+        <div class="step-content-wrapper">
+          <span class="step-icon step-icon-soft-primary">3</span>
+          <div class="step-content">
+            <span class="step-inline-title">Course Contents</span>
+          </div>
+        </div>
+      </li>
+
+      <li class="step-item">
+        <div class="step-content-wrapper">
+          <span class="step-icon step-icon-soft-primary">4</span>
+          <div class="step-content">
+            <span class="step-inline-title">Confirmation</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <!-- End Step -->
+
+    <!-- Content Step Form -->
+    <div id="basicStepFormContent" class="rounded p-4">
+      <div id="basicSelectStepOne" class="active">
+        <!-- Card -->
+        <div class="card mx-auto">
+          <!-- Form -->
+          <%= render 'form', course: @course %>
+          <!-- End Card -->
+        </div>
       </div>
-    </figure>
-    <!-- End SVG Elements -->
-    <!-- End Search -->
-    <!-- End Card -->
-  </div>
+
+      <div id="basicSelectStepTwo" style="display: none;">
+        Chapters
+        <!-- Card -->
+        <div class="card mx-auto w-lg-60">
+          <!-- Form -->
+          <%#= render 'form', chapter: @chapter %>
+          <!-- End Card -->
+        </div>
+
+        <div class="d-flex justify-content-end">
+          <a class="btn btn-sm btn-soft-secondary transition-3d-hover mr-1" href="javascript:;"
+             data-hs-step-form-prev-options='{
+             "targetSelector": "#basicSelectStepOne"
+           }'>Back</a>
+          <button type="button" class="btn btn-sm btn-primary transition-3d-hover"
+                  data-hs-step-form-next-options='{
+                  "targetSelector": "#basicSelectStepThree"
+                }'>Next</button>
+        </div>
+      </div>
+
+      <div id="basicSelectStepThree" style="display: none;">
+        Course Contents
+        <div class="card mx-auto ">
+          <!-- Form -->
+          <%#= render 'form', course_content: @course_content %>
+          <!-- End Card -->
+        </div>
+
+        <div class="d-flex justify-content-end">
+          <a class="btn btn-sm btn-soft-secondary transition-3d-hover mr-1" href="javascript:;"
+             data-hs-step-form-prev-options='{
+             "targetSelector": "#basicSelectStepTwo"
+           }'>Back</a>
+          <button type="button" class="btn btn-sm btn-primary transition-3d-hover"
+                  data-hs-step-form-next-options='{
+                  "targetSelector": "#basicSelectStepFour"
+                }'>Next</button>
+        </div>
+      </div>
+
+      <div id="basicSelectStepFour" style="display: none;">
+        Press 'Create' to save this course.
+
+        <div class="d-flex justify-content-end">
+          <a class="btn btn-sm btn-soft-secondary transition-3d-hover mr-1" href="javascript:;"
+             data-hs-step-form-prev-options='{
+             "targetSelector": "#basicSelectStepThree"
+           }'>Back</a>
+          <button type="button" class="btn btn-sm btn-primary transition-3d-hover">Save</button>
+        </div>
+      </div>
+    </div>
+    <!-- End Content Step Form -->
+  </form>
+  <!-- End Step Form -->
 </div>
+
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "/hs-step-form.min" %>
+  <script>
+      $(document).on('ready', function () {
+          // initialization of step form
+          $('.js-step-form').each(function () {
+              var stepForm = new HSStepForm($(this)).init();
+          });
+      });
+  </script>
+<% end %>
+
