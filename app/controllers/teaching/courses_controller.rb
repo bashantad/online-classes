@@ -30,7 +30,7 @@ class Teaching::CoursesController < Teaching::BaseController
 
     respond_to do |format|
       if @course.save
-        format.html { redirect_to teaching_courses_path, notice: 'Course was successfully created.' }
+        format.html { redirect_to new_teaching_course_chapter_path(@course), notice: 'Course was successfully created.' }
         format.json { render json: @course, status: :created }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class Teaching::CoursesController < Teaching::BaseController
   def update
     respond_to do |format|
       if @course.update(course_params)
-        format.html { redirect_to teaching_courses_path, notice: 'Course was successfully updated.' }
+        format.html { redirect_to new_teaching_course_chapter_path(@course), notice: 'Course was successfully updated.' }
         format.json { render json: @course, status: :updated }
       else
         format.html { render :edit }

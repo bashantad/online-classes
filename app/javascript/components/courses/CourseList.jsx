@@ -41,13 +41,13 @@ export class CourseList extends React.Component {
                         <h2>Featured courses</h2>
                         <p>Discover your perfect program in our courses.</p>
                     </div>
-            <CourseListWithLoading isLoading={loading}
-                                      errorMessage={errorMessage}
-                                      courses={courses}
-                                      handleDetails={this.handleDetails}
-                                      handleEnroll={this.handleEnroll} />s
+                    <CourseListWithLoading isLoading={loading}
+                                              errorMessage={errorMessage}
+                                              courses={courses}
+                                              handleDetails={this.handleDetails}
+                                              handleEnroll={this.handleEnroll} />
                 </div>
-                                      </>
+            </>
         )
     }
 }
