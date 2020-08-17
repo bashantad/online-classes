@@ -132,22 +132,15 @@
         <% end %>
       </div>
 
+      <div class="col-12 row align-items-center mb-5 mt-4">
+        <div class="col-6 mb-sm-0 pl-4">
+          <%= link_to "Back", teaching_courses_path, class: 'font-size-1 font-weight-bold text-muted content-centered' %>
+        </div>
+        <div class="col-6 text-right">
+          <%= form.submit "Save", class: "btn btn-sm btn-primary" %>
+        </div>
+      </div>
 
-<!--      <div class="col-12 row align-items-center mb-5 mt-4">-->
-<!--        <div class="col-6 mb-sm-0 pl-4">-->
-          <%#= link_to "Back", teaching_courses_path, class: 'font-size-1 font-weight-bold text-muted content-centered' %>
-<!--        </div>-->
-<!--        <div class="col-6 text-right">-->
-          <%#= form.submit "Save", class: "btn btn-sm btn-primary" %>
-<!--        </div>-->
-<!--      </div>-->
-
-    </div>
-    <div class="d-flex justify-content-end space-bottom-1">
-      <button type="button" class="btn btn-sm btn-primary transition-3d-hover mr-1"
-              data-hs-step-form-next-options='{
-                  "targetSelector": "#basicSelectStepTwo"
-                }'>Next</button>
     </div>
   </div>
   <!-- End Button -->
