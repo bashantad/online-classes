@@ -16,7 +16,7 @@ class Teaching::ChaptersController < Teaching::BaseController
     @chapter = @course.chapters.new(chapter_params)
 
     if @chapter.save
-      redirect_to teaching_course_path(@course), notice: 'Chapter was successfully created.'
+      redirect_to new_teaching_course_chapter_course_content_path(@course, @chapter), notice: 'Chapter was successfully created.'
     else
       render :new
     end
@@ -24,7 +24,7 @@ class Teaching::ChaptersController < Teaching::BaseController
 
   def update
     if @chapter.update(chapter_params)
-      redirect_to teaching_course_path(@course), notice: 'Chapter was successfully updated.'
+      redirect_to new_teaching_course_chapter_course_content_path(@course, @chapter), notice: 'Chapter was successfully updated.'
     else
       render :edit
     end
