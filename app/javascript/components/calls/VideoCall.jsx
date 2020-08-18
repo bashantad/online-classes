@@ -18,8 +18,6 @@ export default class VideoCall extends React.Component {
             hasJoinedRemotely: false,
             audio: true,
             video: true,
-            vertical: 'bottom',
-            horizontal: 'right'
         }
     }
 
@@ -30,8 +28,8 @@ export default class VideoCall extends React.Component {
             audio: true,
             video: {
                 facingMode: 'user',
-                width: { ideal: 1280 },
-                height: {  ideal: 720 },
+                width: {ideal: 1280},
+                height: {ideal: 720},
             },
         }).then(stream => {
             this.localStream = stream;
@@ -203,7 +201,7 @@ export default class VideoCall extends React.Component {
     }
 
     render() {
-        const {hasJoinedLocally, hasJoinedRemotely, audio, video, vertical, horizontal} = this.state;
+        const {hasJoinedLocally, hasJoinedRemotely, audio, video} = this.state;
         const callProps = {
             isAudioOn: audio,
             isVideoOn: video,
