@@ -72,10 +72,7 @@ export default class PeopleInTheChat extends React.Component {
                             aria-controls="sidebarNavExample1"
                             data-toggle="collapse"
                             data-target="#peopleInChat">
-                            <span className="d-flex justify-content-between align-items-center">
-                                <span className="h5 mb-0">
-                                    Chat
-                                </span>
+                            <span className="d-flex justify-content-end align-items-center">
                                 <span className="navbar-toggler-default mr-3">
                                     <i className="fas fa-xs fa-bars"></i>
                                 </span>
@@ -89,11 +86,10 @@ export default class PeopleInTheChat extends React.Component {
                         <div>
                             <div>
                                 <div className='border-bottom aside-header'>
-                                    <span className='h5 text-dark ml-4'>Messages</span>
-                                    <button type="button" className="btn btn-xs btn-outline-primary mt-2 mb-2 mr-4 "
-                                            onClick={() => this.props.handleCreateCourseGroup()}>
-                                        <i className="fas fa-user-plus mr-2"></i>
-                                        Create New Group
+                                    <span className='h3 text-dark font-weight-bold ml-4 mt-2'>Chats</span>
+                                    <button type="button" className="btn btn-xs btn-pill btn-outline-primary mt-2 mb-2 mr-4 "
+                                            onClick={() => this.props.handleCreateCourseGroup()} data-toggle="tooltip" data-placement="right" title="Create New Group" >
+                                        <i className="fas fa-users"></i>
                                     </button>
                                 </div>
                             </div>

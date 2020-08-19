@@ -33,20 +33,20 @@
     <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="pills-one-code-features-example1-tab">
       <!-- Card -->
       <div class="card mb-3 mb-lg-5">
-        <div class="card-header">
+        <div class="card-header d-flex flex-wrap">
           <h5 class="card-title">Course Details</h5>
-          <span>
-        <a href="<%= @course.show_url %>" target="_blank"  class="btn btn-soft-primary btn-xs">
+          <span class="mt-md-0">
+        <a href="<%= @course.show_url %>" target="_blank"  class="btn btn-soft-primary btn-xs mt-3">
           <i class="fas fa-newspaper mr-1"></i>Preview landing page
         </a>&nbsp;&nbsp;
-        <a href="<%= @course.enrolled_page_url %>" target="_blank" class="btn btn-soft-primary btn-xs">
+        <a href="<%= @course.enrolled_page_url %>" target="_blank" class="btn btn-soft-primary btn-xs mt-3">
           <i class="fas fa-eye mr-1"></i>Preview course
         </a>&nbsp;&nbsp;
-        <a href="<%= edit_teaching_course_path(@course) %>" class="btn btn-soft-primary btn-xs">
+        <a href="<%= edit_teaching_course_path(@course) %>" class="btn btn-soft-primary btn-xs mt-3">
           <i class="fas fa-pen mr-1"></i>
            Edit Course
         </a>&nbsp;&nbsp;
-        <a href="<%= teaching_courses_path %>" class="btn btn-ghost-primary btn-xs">
+        <a href="<%= teaching_courses_path %>" class="btn btn-ghost-primary btn-xs mt-3">
           Back
         </a>
       </span>
@@ -59,7 +59,7 @@
             <div class="row form-group">
               <label for="image" class="col-sm-3 col-form-label input-label">Image</label>
 
-              <div class="col-sm-9">
+              <div class="col-sm-9 course-cover">
                 <%= image_tag @course.image_urls["460x308"] if @course.cover_image.attached? %>
               </div>
             </div>

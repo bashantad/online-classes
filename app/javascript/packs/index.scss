@@ -16,7 +16,6 @@ body {
   width: 100%;
   height: inherit;
   z-index: 2;
-  background-color: $bg-color;
 }
 
 .svg-bottom {
@@ -159,13 +158,12 @@ ul.timeline > li:before {
   overflow-x: hidden;
 }
 
-@media (min-width: 768px) {
-  .chat-body .chat-footer {
-    padding: .75rem 2.25rem;
-  }
+.chat-body .chat-footer {
+  padding: 10px 40px;
 }
 
-.course-cards{
+
+.course-cards {
   display: flex;
   flex-flow: row wrap;
 }
@@ -181,7 +179,7 @@ ul.timeline > li:before {
   box-shadow: -5px 0px 12px rgba(103, 119, 136, 0.1);
 }
 
-.message-modal{
+.message-modal {
   background: rgba(255, 255, 255, 0.45);
   transition: opacity 0.3s ease;
 }
