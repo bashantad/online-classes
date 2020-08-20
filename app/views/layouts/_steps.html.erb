@@ -1,0 +1,61 @@
+<!-- Step Form -->
+<form class="js-step-form space-bottom-1 ml-xl-8 ml-lg-0">
+  <!-- Step -->
+  <ul id="basicStepFormProgress" class="js-step-progress step step-md step-inline">
+    <li class="step-item
+      <% if params[:controller] == "teaching/courses" %>active
+      <% end %>">
+      <div class="step-content-wrapper">
+        <span class="step-icon step-icon-soft-primary"><i class="fas fa-user-graduate"></i></span>
+        <div class="step-content">
+          <span class="step-inline-title">Course</span>
+        </div>
+      </div>
+    </li>
+
+    <li class="step-item
+      <% if params[:controller] == "teaching/chapters" %>active
+      <% end %>">
+      <div class="step-content-wrapper">
+        <span class="step-icon step-icon-soft-primary"><i class="fas fa-book-open"></i></span>
+        <div class="step-content">
+          <span class="step-inline-title">Chapters</span>
+        </div>
+      </div>
+    </li>
+
+    <li class="step-item
+      <% if params[:controller] == "teaching/assignments" || params[:controller] == "teaching/course_contents" %>active
+      <% end %>">
+      <div class="step-content-wrapper">
+        <span class="step-icon step-icon-soft-primary"><i class="fas fa-book"></i></span>
+        <div class="step-content">
+          <span class="step-inline-title">Course Contents</span>
+        </div>
+      </div>
+    </li>
+
+    <li class="step-item">
+      <div class="step-content-wrapper">
+        <span class="step-icon step-icon-soft-primary"><i class="fas fa-check"></i></span>
+        <div class="step-content">
+          <span class="step-inline-title">Confirmation</span>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <!-- End Step -->
+</form>
+<!-- End Step Form -->
+
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "hs-step-form.min" %>
+  <script>
+      $(document).on('ready', function () {
+          // initialization of step form
+          $('.js-step-form').each(function () {
+              var stepForm = new HSStepForm($(this)).init();
+          });
+      });
+  </script>
+<% end %>

@@ -13,7 +13,7 @@ const PersonSidebar = ({activeClass, imageUrl, fullName, noOfMessages, handleUse
                             {
                                 imageUrl ?
                                     <img className="avatar-img" src={imageUrl} alt="Profile picture"/>
-                                    : <i className="fas fa-user-circle fa-2x list-group-icon mr-4"></i>
+                                    : <i className="fas fa-user-circle fa-3x list-group-icon mr-4"></i>
                             }
                         </span>
                     </div>

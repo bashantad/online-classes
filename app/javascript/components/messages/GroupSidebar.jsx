@@ -9,7 +9,7 @@ const GroupSidebar = ({activeClass, title, handleConversationClick, noOfMessages
                 <div className="p-2 row align-items-center">
                     <div className="col-2">
                         <span>
-                            <i className="fas fa-users fa-2x mr-2"></i>
+                            <i className="fas fa-user-circle fa-3x mr-2"></i>
                         </span>
                     </div>
                     <div className="col-10">

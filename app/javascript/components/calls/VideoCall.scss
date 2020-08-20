@@ -106,7 +106,7 @@
 }
 
 .remote-video-participant {
-  height: 20rem;
+  height: 30rem;
   width: auto;
 }
 
@@ -122,6 +122,13 @@
   }
   .local-video-container, #remote-calls-container {
     width: 100%;
+    flex-flow: column;
   }
 
+}
+
+@media only screen and (max-width: 990px) {
+  .remote-video-participant{
+    width: 100%;
+  }
 }

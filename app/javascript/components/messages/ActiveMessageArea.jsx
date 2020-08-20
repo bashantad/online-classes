@@ -60,8 +60,8 @@ export default class ActiveMessageArea extends React.Component {
                                 <span className='group-option'>
                                     <ul>
                                         <li className="dropdown">
-                                             <button type="button" className="hs-mega-menu-invoker btn btn-primary btn-icon btn-xs" id="dropdownSubMenu" role="button" data-toggle="dropdown"
-                                                     aria-haspopup="true" aria-expanded="false">
+                                             <button type="button" className="hs-mega-menu-invoker btn btn-xs btn-pill btn-outline-primary " id="dropdownSubMenu" role="button" data-toggle="dropdown"
+                                                     aria-haspopup="true" aria-expanded="false" >
                                               <i className="fas fa-info"></i>
                                             </button>
                                             <div className="dropdown-menu" aria-labelledby="dropdownSubMenu">
@@ -99,7 +99,7 @@ export default class ActiveMessageArea extends React.Component {
                                     </div>
                                     : <div className='message-card no-message'>
                                         <div className='no-message-card'>
-                                            <figure className="max-w-8rem mx-auto mb-2">
+                                            <figure className="max-w-11rem mx-auto space-top-4">
                                                 <img className="img-fluid" src={NoMsgImage} alt="No message"/>
                                             </figure>
                                             <div className='text-body'>No Messages</div>
