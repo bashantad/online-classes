@@ -20,6 +20,10 @@ export default class UpdateMembers extends React.Component {
         });
     }
 
+    handleCancelClick = () => {
+        this.props.handleCancelGroupCreate();
+    }
+
     renderUser = (user, enrolledUsersMap) => {
         return (
             <div className="form-group" key={`add-members-${user.id}`}>
@@ -63,17 +67,19 @@ export default class UpdateMembers extends React.Component {
         const {allUsers, currentUserId} = this.props;
         const {enrolledUsersMap} = this.state;
         return (
-            <div className="card card-bordered create-group-form" style={{width: '300px'}}>
-                <div className="card-header text-dark">
-                    Members
-                </div>
+            <div>
                 <div className="card-body">
                     <ul>
                         {
                             allUsers.filter(user => user.id !== currentUserId).map(user => this.renderUser(user, enrolledUsersMap))
                         }
                     </ul>
-                    <button type="button" className="btn btn-primary" onClick={this.handleSave}>Save</button>
+                    <div className="float-right">
+                        {/*<button type="button" className="btn btn-white mr-3" data-dismiss="modal" onClick={this.handleCancelClick}>Cancel</button>*/}
+                        <button type="button" className="btn btn-primary"
+                                data-dismiss="modal" onClick={this.handleSave}>Save
+                        </button>
+                    </div>
                 </div>
             </div>
         )
@@ -86,4 +92,5 @@ UpdateMembers.propTypes = {
     currentUserId: PropTypes.number.isRequired,
     allUsers: PropTypes.array.isRequired,
     handleUpdateMembersSuccess: PropTypes.func.isRequired,
+    handleCancelGroupCreate: PropTypes.func.isRequired,
 };

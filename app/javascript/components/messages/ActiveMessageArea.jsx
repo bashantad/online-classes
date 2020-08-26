@@ -65,9 +65,9 @@ export default class ActiveMessageArea extends React.Component {
                                               <i className="fas fa-info"></i>
                                             </button>
                                             <div className="dropdown-menu" aria-labelledby="dropdownSubMenu">
-                                                <a type='button' className="dropdown-item" href="#" onClick={this.handleUpdate}>Update Members</a>
-                                                <a type='button' className="dropdown-item" href="#" onClick={this.handleUpdate}>Details</a>
-                                                <a type='button' className="dropdown-item text-danger" href="#" onClick={this.handleUpdate}>Delete</a>
+                                                <a type='button' className="dropdown-item" data-toggle="modal" data-target="#groupModal" onClick={this.handleUpdate}>Update Members</a>
+                                                <a type='button' className="dropdown-item">Details</a>
+                                                <a type='button' className="dropdown-item text-danger">Delete</a>
                                             </div>
                                         </li>
                                     </ul>

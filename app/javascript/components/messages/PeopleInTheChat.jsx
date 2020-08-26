@@ -40,7 +40,7 @@ export default class PeopleInTheChat extends React.Component {
 
     _getNumberOfMessages = (conversationId) => {
         const num = this.props.messageNotificationMap[conversationId];
-        if(!!num) {
+        if (!!num) {
             return num.length;
         } else {
             return 0;
@@ -54,7 +54,7 @@ export default class PeopleInTheChat extends React.Component {
                                  activeClass={this.getActiveClass((id))}
                                  noOfMessages={this._getNumberOfMessages(id)}
                                  title={title}
-                                 handleConversationClick={() => this.handleConversationClick(id)} />
+                                 handleConversationClick={() => this.handleConversationClick(id)}/>
         });
     }
 
@@ -87,8 +87,10 @@ export default class PeopleInTheChat extends React.Component {
                             <div>
                                 <div className='border-bottom aside-header'>
                                     <span className='h3 text-dark font-weight-bold ml-4 mt-2'>Chats</span>
-                                    <button type="button" className="btn btn-xs btn-pill btn-outline-primary mt-2 mb-2 mr-4 "
-                                            onClick={() => this.props.handleCreateCourseGroup()} data-toggle="tooltip" data-placement="right" title="Create New Group" >
+                                    <button type="button"
+                                            className="btn btn-xs btn-pill btn-outline-primary mt-2 mb-2 mr-4 "
+                                            onClick={() => this.props.handleCreateCourseGroup()} data-toggle="modal"
+                                            data-target="#groupModal" title="Create New Group">
                                         <i className="fas fa-users"></i>
                                     </button>
                                 </div>

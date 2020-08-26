@@ -19,12 +19,12 @@ export default class NewGroupForm extends React.Component {
 
     handleSendClick = () => {
         const {title} = this.state;
-        if(!!title) {
+        if (!!title) {
             conversationApi.createGroup(this.props.courseId, title)
                 .then(res => res.json())
                 .then(response => {
                     const errors = response.errors
-                    if(errors) {
+                    if (errors) {
                         this.setState({errors: errors})
                     } else {
                         this.setState({title: ''});
@@ -51,24 +51,20 @@ export default class NewGroupForm extends React.Component {
         const disabled = !title.trim();
         const hasError = !!errors;
         return (
-            <div className='card card-bordered create-group-form'>
+            <div>
                 <div className="form-group">
-                    <label className="input-label" htmlFor="groupName">Enter a group name</label>
-                    <input type="text" id="groupName" className="form-control" placeholder="Homework group" onChange={this.handleTitleChange} value={title} />
+                    <input type="text" id="groupName" className="form-control" placeholder="Enter a group name"
+                           onChange={this.handleTitleChange} value={title}/>
                     {
                         hasError && this.renderError()
                     }
                 </div>
-                <div className="flex-row">
-                    <button className='btn btn-primary btn-sm'
-                            color="primary"
-                            disabled={disabled}
-                            onClick={this.handleSendClick}>
-                        Create
+                <div className="float-right">
+                    <button type="button" className="btn btn-white mr-3" data-dismiss="modal"
+                            onClick={this.handleCancelClick}>Cancel
                     </button>
-                    <button className='btn btn-ghost-danger btn-sm group-cancel justify-content-end'
-                            onClick={this.handleCancelClick}>
-                        Cancel
+                    <button type="button" className="btn btn-primary" disabled={disabled}
+                            onClick={this.handleSendClick}>Create
                     </button>
                 </div>
             </div>
