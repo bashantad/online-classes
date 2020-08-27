@@ -7,12 +7,12 @@ const GroupSidebar = ({activeClass, title, handleConversationClick, noOfMessages
         <div className={activeClass ? "list-group people aside-active" : "list-group people"}>
             <a type='button' className="ml-2 mr-2 p-2" onClick={handleConversationClick}>
                 <div className="p-2 row align-items-center">
-                    <div className="col-2">
+                    <div className="col-4 col-lg-4 col-xl-2">
                         <span>
                             <i className="fas fa-user-circle fa-3x mr-2"></i>
                         </span>
                     </div>
-                    <div className="col-10">
+                    <div className="col-8 col-lg-8 col-xl-10">
                         <span className='mt-2 text-dark'>{title}</span>
                         <MessageNotification noOfMessages={noOfMessages} />
                     </div>

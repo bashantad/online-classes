@@ -30,7 +30,6 @@ export class Message extends React.Component {
         currentUserId: null,
         enrolledCourses: [],
         messageNotificationMap: {},
-        showGroupModal: false,
     };
 
     _getCourseId = () => {
@@ -82,18 +81,6 @@ export class Message extends React.Component {
         this.setState({conversations, messageNotificationMap});
     }
 
-    handleGroupUpdate = () => {
-        this.setState({showGroupModal: true, groupUpdate: true});
-    }
-
-    closeGroupModal = () => {
-        this.setState({showGroupModal: false});
-    }
-
-    openGroupModal = () => {
-        this.setState({showGroupModal: true});
-    }
-
     closeModalAndNavigateToConversation = (conversation) => {
         this.closeGroupModal();
         this.navigateToConversation(conversation.id);
@@ -107,8 +94,8 @@ export class Message extends React.Component {
 
     componentDidUpdate(prevProps) {
         const {activeConversationId, showUpdateMembers} = this.state;
-        if(activeConversationId === null || showUpdateMembers === true) return;
-        if(activeConversationId !== this._getConversationId()) {
+        if (activeConversationId === null || showUpdateMembers === true) return;
+        if (activeConversationId !== this._getConversationId()) {
             this.fetchActiveMessages();
         }
     }
@@ -124,7 +111,7 @@ export class Message extends React.Component {
             .then(response => {
                 const {conversation_enrolled_users, messages} = response;
                 const activeConversation = this.state.conversations.find(conversation => conversation.id === this._getConversationId());
-                const updateAttributes = { activeConversationId: activeConversation.id };
+                const updateAttributes = {activeConversationId: activeConversation.id};
                 activeConversation.messages = messages;
                 activeConversation.conversation_enrolled_uers = conversation_enrolled_users;
                 this._assignConversation(updateAttributes, activeConversation);
@@ -181,7 +168,6 @@ export class Message extends React.Component {
             messageNotificationMap,
             currentUserId,
             individualConversations,
-            showGroupModal,
         } = this.state;
         const sidebarProps = {
             conversations: conversations,
@@ -192,7 +178,6 @@ export class Message extends React.Component {
             messageNotificationMap: messageNotificationMap,
             handleConversationClick: this.navigateToConversation,
             handleUserClick: this.handleUserClick,
-            handleCreateCourseGroup: this.openGroupModal,
         };
         const activeConversation = this.findActiveConversation();
         return (
@@ -206,7 +191,7 @@ export class Message extends React.Component {
                             <div className="chat-body">
                                 <div>
                                     <ActionCable
-                                        channel={{ channel: 'ConversationChannel' }}
+                                        channel={{channel: 'ConversationChannel'}}
                                         onReceived={this.handleReceivedConversation}
                                     />
                                     {
@@ -217,21 +202,17 @@ export class Message extends React.Component {
                                             />
                                             : null
                                     }
-                                    {
-                                        showGroupModal && <GroupModal courseId={this._getCourseId()}
-                                                                      currentUserId={currentUserId}
-                                                                      showGroupModal={showGroupModal}
-                                                                      activeConversation={activeConversation}
-                                                                      enrolledUsers={enrolledUsers}
-                                                                      closeGroupModal={this.closeGroupModal}
-                                                                      closeModalAndNavigateToConversation={this.closeModalAndNavigateToConversation}/>
-                                    }
+                                    <GroupModal courseId={this._getCourseId()}
+                                                currentUserId={currentUserId}
+                                                activeConversation={activeConversation}
+                                                enrolledUsers={enrolledUsers}
+                                                closeModalAndNavigateToConversation={this.closeModalAndNavigateToConversation}/>
                                     <div className="chat-content">
                                         <ActiveMessageArea
                                             activeConversation={activeConversation}
                                             currentUserId={currentUserId}
                                             userIdToNameMapping={userIdToNameMapping(enrolledUsers)}
-                                            handleGroupUpdate={this.handleGroupUpdate}
+                                            handleMemberUpdate={this.handleMemberUpdate}
                                         />
                                     </div>
                                     <div className="chat-footer border-top">

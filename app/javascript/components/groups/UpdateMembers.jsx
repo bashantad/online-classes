@@ -68,7 +68,6 @@ export default class UpdateMembers extends React.Component {
         const {enrolledUsersMap} = this.state;
         return (
             <div>
-                <div className="card-body">
                     <ul>
                         {
                             allUsers.filter(user => user.id !== currentUserId).map(user => this.renderUser(user, enrolledUsersMap))
@@ -80,7 +79,6 @@ export default class UpdateMembers extends React.Component {
                                 data-dismiss="modal" onClick={this.handleSave}>Save
                         </button>
                     </div>
-                </div>
             </div>
         )
     }
@@ -92,5 +90,4 @@ UpdateMembers.propTypes = {
     currentUserId: PropTypes.number.isRequired,
     allUsers: PropTypes.array.isRequired,
     handleUpdateMembersSuccess: PropTypes.func.isRequired,
-    handleCancelGroupCreate: PropTypes.func.isRequired,
 };

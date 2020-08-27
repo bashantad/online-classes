@@ -14,7 +14,7 @@ class GroupModal extends React.Component {
     }
 
     handleCancelGroupCreate = () => {
-        this.props.closeGroupModal();
+        this.setState({updateMembers: false});
     }
 
     handleUpdateMembersSuccess = (conversation) => {
@@ -71,7 +71,6 @@ GroupModal.propTypes = {
     currentUserId: PropTypes.number.isRequired,
     activeConversation: PropTypes.object.isRequired,
     enrolledUsers: PropTypes.array.isRequired,
-    closeGroupModal: PropTypes.func.isRequired,
     closeModalAndNavigateToConversation: PropTypes.func.isRequired,
 }
 

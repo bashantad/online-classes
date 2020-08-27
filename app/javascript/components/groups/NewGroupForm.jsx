@@ -60,8 +60,7 @@ export default class NewGroupForm extends React.Component {
                     }
                 </div>
                 <div className="float-right">
-                    <button type="button" className="btn btn-white mr-3" data-dismiss="modal"
-                            onClick={this.handleCancelClick}>Cancel
+                    <button type="button" className="btn btn-white mr-3" data-dismiss="modal">Cancel
                     </button>
                     <button type="button" className="btn btn-primary" disabled={disabled}
                             onClick={this.handleSendClick}>Create
@@ -75,5 +74,4 @@ export default class NewGroupForm extends React.Component {
 NewGroupForm.propTypes = {
     courseId: PropTypes.string.isRequired,
     handleSuccessGroupCreate: PropTypes.func.isRequired,
-    handleCancelGroupCreate: PropTypes.func.isRequired,
 };

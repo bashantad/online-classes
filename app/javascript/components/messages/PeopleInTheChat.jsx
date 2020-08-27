@@ -95,13 +95,15 @@ export default class PeopleInTheChat extends React.Component {
                                     </button>
                                 </div>
                             </div>
-                            {
-                                this.renderGroupConversation(groupConversations)
-                            }
-                            <hr className='m-0'/>
-                            {
-                                this.renderIndividualConversation(enrolledUsers, mappingPersonToConversation)
-                            }
+                            <div>
+                                {
+                                    this.renderGroupConversation(groupConversations)
+                                }
+                                <hr className='m-0'/>
+                                {
+                                    this.renderIndividualConversation(enrolledUsers, mappingPersonToConversation)
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
