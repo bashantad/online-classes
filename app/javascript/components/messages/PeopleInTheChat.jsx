@@ -65,7 +65,7 @@ export default class PeopleInTheChat extends React.Component {
 
         return (
             <>
-                <div className="navbar-expand-lg navbar-expand-lg-collapse-block navbar-light">
+                <div className="navbar-expand-lg navbar-expand-lg-collapse-block navbar-light" style={{overflow: 'auto'}}>
                     <button type="button" className="navbar-toggler btn btn-block border py-3"
                             aria-label="Toggle navigation"
                             aria-expanded="false"
@@ -84,26 +84,13 @@ export default class PeopleInTheChat extends React.Component {
 
                     <div id="peopleInChat" className="collapse navbar-collapse">
                         <div>
-                            <div>
-                                <div className='border-bottom aside-header'>
-                                    <span className='h3 text-dark font-weight-bold ml-4 mt-2'>Chats</span>
-                                    <button type="button"
-                                            className="btn btn-xs btn-pill btn-outline-primary mt-2 mb-2 mr-4 "
-                                            onClick={() => this.props.handleCreateCourseGroup()} data-toggle="modal"
-                                            data-target="#groupModal" title="Create New Group">
-                                        <i className="fas fa-users"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div>
-                                {
-                                    this.renderGroupConversation(groupConversations)
-                                }
-                                <hr className='m-0'/>
-                                {
-                                    this.renderIndividualConversation(enrolledUsers, mappingPersonToConversation)
-                                }
-                            </div>
+                            {
+                                this.renderGroupConversation(groupConversations)
+                            }
+                            <hr className='m-0'/>
+                            {
+                                this.renderIndividualConversation(enrolledUsers, mappingPersonToConversation)
+                            }
                         </div>
                     </div>
                 </div>
