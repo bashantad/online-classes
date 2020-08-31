@@ -15,6 +15,7 @@ class GroupModal extends React.Component {
 
     handleCancelGroupCreate = () => {
         this.setState({updateMembers: false});
+       this.props.handleModalClose();
     }
 
     handleUpdateMembersSuccess = (conversation) => {
@@ -22,7 +23,7 @@ class GroupModal extends React.Component {
     }
 
     render() {
-        const {currentUserId, enrolledUsers, courseId, activeConversation} = this.props;
+        const {currentUserId, enrolledUsers, courseId, activeConversation,handleModalClose, showUpdateMembers, showNewGroupForm} = this.props;
         const {updateMembers, conversation} = this.state;
         const conversationToBeUpdated = conversation === null ? activeConversation : conversation;
         return (
@@ -45,17 +46,19 @@ class GroupModal extends React.Component {
                         </div>
                         <div className="modal-body">
                             {
-                                updateMembers ?
+                                !showNewGroupForm || updateMembers ?
                                     <UpdateMembers
                                         courseId={courseId}
                                         currentUserId={currentUserId}
                                         allUsers={enrolledUsers}
                                         conversation={conversationToBeUpdated}
                                         handleCancelGroupCreate={this.handleCancelGroupCreate}
+                                        handleModalClose={handleModalClose}
                                         handleUpdateMembersSuccess={this.handleUpdateMembersSuccess}/>
                                     : <NewGroupForm
                                         courseId={courseId}
                                         handleSuccessGroupCreate={this.handleSuccessGroupCreate}
+                                        handleModalClose={handleModalClose}
                                         handleCancelGroupCreate={this.handleCancelGroupCreate}/>
                             }
                         </div>

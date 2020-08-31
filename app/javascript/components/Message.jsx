@@ -164,6 +164,13 @@ export class Message extends React.Component {
         });
     }
 
+    handleModalClose = () => {
+        this.setState({
+            showUpdateMembers: false,
+            showNewGroupForm: false,
+        });
+    }
+
     handleUserClick = (userId) => {
         conversationApi.create(this._getCourseId(), userId)
             .then(res => res.json())
@@ -182,6 +189,8 @@ export class Message extends React.Component {
             messageNotificationMap,
             currentUserId,
             individualConversations,
+            showUpdateMembers,
+            showNewGroupForm
         } = this.state;
         const sidebarProps = {
             conversations: conversations,
@@ -220,14 +229,17 @@ export class Message extends React.Component {
                                     <GroupModal courseId={this._getCourseId()}
                                                 currentUserId={currentUserId}
                                                 activeConversation={activeConversation}
+                                                showNewGroupForm={showNewGroupForm}
+                                                showUpdateMembers={showUpdateMembers}
                                                 enrolledUsers={enrolledUsers}
-                                                closeModalAndNavigateToConversation={this.closeModalAndNavigateToConversation}/>
+                                                closeModalAndNavigateToConversation={this.closeModalAndNavigateToConversation}
+                                                handleModalClose={this.handleModalClose}
+                                    />
                                     <div>
                                         <div className="chat-content">
                                             <ActiveMessageArea
                                                 activeConversation={activeConversation}
                                                 currentUserId={currentUserId}
-                                                handleDrawerToggle={this.handleDrawerToggle}
                                                 userIdToNameMapping={userIdToNameMapping(enrolledUsers)}
                                                 handleGroupUpdate={this.handleGroupUpdate}
                                             />

@@ -38,12 +38,8 @@ export default class ActiveMessageArea extends React.Component {
         }
     }
 
-    handleUpdate = () => {
-        this.props.handleGroupUpdate();
-    }
-
     render() {
-        const {activeConversation, handleMemberUpdate} = this.props;
+        const {activeConversation} = this.props;
         return (
             <Fragment>
                 <div className="chat-header">
@@ -65,7 +61,7 @@ export default class ActiveMessageArea extends React.Component {
                                               <i className="fas fa-info"></i>
                                             </button>
                                             <div className="dropdown-menu" aria-labelledby="dropdownSubMenu">
-                                                <a type='button' className="dropdown-item" data-toggle="modal" data-target="#groupModal" onClick={handleMemberUpdate}>Update Members</a>
+                                                <a type='button' className="dropdown-item" data-toggle="modal" data-target="#groupModal" onClick={() => this.props.handleGroupUpdate()}>Update Members</a>
                                                 <a type='button' className="dropdown-item">Details</a>
                                                 <a type='button' className="dropdown-item text-danger">Delete</a>
                                             </div>
