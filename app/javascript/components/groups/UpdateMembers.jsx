@@ -74,7 +74,6 @@ export default class UpdateMembers extends React.Component {
                         }
                     </ul>
                     <div className="float-right">
-                        {/*<button type="button" className="btn btn-white mr-3" data-dismiss="modal" onClick={this.handleCancelClick}>Cancel</button>*/}
                         <button type="button" className="btn btn-primary"
                                 data-dismiss="modal" onClick={this.handleSave}>Save
                         </button>

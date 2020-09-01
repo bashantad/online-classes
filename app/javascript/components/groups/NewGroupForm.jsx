@@ -53,6 +53,7 @@ export default class NewGroupForm extends React.Component {
         return (
             <div>
                 <div className="form-group">
+                    <label className="input-label" htmlFor="groupName">Create a group</label>
                     <input type="text" id="groupName" className="form-control" placeholder="Enter a group name"
                            onChange={this.handleTitleChange} value={title}/>
                     {

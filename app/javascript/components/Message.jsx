@@ -153,7 +153,8 @@ export class Message extends React.Component {
 
     handleCreateCourseGroup = () => {
         this.setState({
-            showNewGroupForm: true
+            showNewGroupForm: true,
+            showUpdateMembers: false,
         })
     }
 
