@@ -35,7 +35,7 @@ class GroupModal extends React.Component {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title"
-                                id="exampleModalLabel">{updateMembers ? 'Members' : 'New Group'}</h5>
+                                id="exampleModalLabel">{updateMembers ? 'Members' : 'Create New Group'}</h5>
                             <button type="button" className="btn btn-xs btn-icon btn-soft-secondary"
                                     data-dismiss="modal"
                                     onClick={this.handleCancelGroupCreate}>

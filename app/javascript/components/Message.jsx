@@ -213,8 +213,8 @@ export class Message extends React.Component {
                             <button type="button"
                                     className="btn btn-xs btn-pill btn-outline-primary mt-2 mb-2 mr-4 "
                                     onClick={() => this.handleCreateCourseGroup()} data-toggle="modal"
-                                    data-target="#groupModal" title="Create New Group">
-                                <i className="fas fa-users"></i>
+                                    data-target="#groupModal">
+                                <i className="fas fa-users mr-1"></i>Create New Group
                             </button>
                         </div>
                         <PeopleInTheChat {...sidebarProps}/>
