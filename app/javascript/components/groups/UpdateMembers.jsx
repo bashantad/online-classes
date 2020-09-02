@@ -63,7 +63,7 @@ export default class UpdateMembers extends React.Component {
         const {allUsers, currentUserId} = this.props;
         const {enrolledUsersMap} = this.state;
         return (
-            <div className="card card-bordered create-group-form">
+            <div>
                 <div className="card-header text-dark">
                     Select people you want to include in this group
                 </div>
