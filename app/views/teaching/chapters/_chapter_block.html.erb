@@ -1,4 +1,17 @@
 <div class="p-3">
   <%= render "teaching/course_contents/index", :course_contents => chapter.course_contents, :chapter => chapter %>
   <%= render "teaching/assignments/index", :assignments => chapter.assignments, :chapter => chapter %>
+  <div class="border mb-2">
+    <div class="card-header">
+      <div class="media-body">
+        <h5 class="mb-0"><i class="fas fa-pencil-alt pt-1 mr-2 text-body"></i>Quiz</h5>
+      </div>
+      <span>
+       <a href="/quiz/teachers" class="btn btn-xs btn-soft-primary"  data-toggle="tooltip" data-html="true" title="Add New Quiz">
+          <i class="fas fa-plus"></i>
+        </a>
+    </span>
+    </div>
+  </div>
+
 </div>

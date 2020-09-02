@@ -27,7 +27,14 @@
       <%= render "layouts/footer" unless @is_message_url %>
     </div>
     <%= javascript_include_tag 'theme', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag "libraries/hs-sticky-block.min" %>
     <%= yield :javascript_includes %>
+    <script>
+        $(document).on('ready', function () {
+            // initialization of hs-add-field
+            $('.js-add-field').each(function () {
+                new HSAddField($(this)).init();
+            });
+        });
+    </script>
 </body>
 </html>

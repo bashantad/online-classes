@@ -62,6 +62,7 @@ export const ClassRoomContent = ({course, params, navigateToCourseContent, navig
                                                              navigateToCourseContent={navigateToCourseContent}
                                                              navigateToAssignmentContent={navigateToAssignmentContent}
                                                 />
+
                                         }
 
                                     </div>

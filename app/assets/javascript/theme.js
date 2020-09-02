@@ -6,6 +6,7 @@
  *= require hs-unfold.min.js
  *= require hs-header.min.js
  *= require hs-mega-menu.min.js
+ *= require hs-add-field.min.js
  *= require_self
  */
 // initialization of header component
@@ -16,3 +17,4 @@ const megaMenu = new HSMegaMenu($('.js-mega-menu')).init();
 
 // initialization of unfold
 var unfold = new HSUnfold('.js-hs-unfold-invoker').init();
+l

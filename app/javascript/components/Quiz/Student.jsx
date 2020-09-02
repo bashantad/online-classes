@@ -1,7 +1,6 @@
 import React from 'react';
 
 import svg from '../../../assets/images/illustrations/knowledgebase-community-2.svg'
-import QuizModal from "./quizModal";
 
 const Student = () => {
     return (
@@ -11,7 +10,8 @@ const Student = () => {
                     <div class="col-lg-4">
                         <div class="mb-4">
                             <h2 class="h1">Online Quiz</h2>
-                            <p>Quizzes can help you assess your knowledge in a fun way. Complete the quiz of your current course and earn extra credits.</p>
+                            <p>Quizzes can help you assess your knowledge in a fun way. Complete the quiz of your
+                                current course and earn extra credits.</p>
                         </div>
                         <a class="btn btn-primary btn-wide transition-3d-hover" data-toggle="modal"
                            data-target="#quizModal" href='#'>Take Quiz</a>
@@ -23,7 +23,6 @@ const Student = () => {
                 </div>
             </div>
 
-            <QuizModal role='student'/>
         </div>
     );
 };
