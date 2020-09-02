@@ -63,9 +63,9 @@ export default class UpdateMembers extends React.Component {
         const {allUsers, currentUserId} = this.props;
         const {enrolledUsersMap} = this.state;
         return (
-            <div className="card card-bordered create-group-form" style={{width: '300px'}}>
+            <div className="card card-bordered create-group-form">
                 <div className="card-header text-dark">
-                    Members
+                    Select people you want to include in this group
                 </div>
                 <div className="card-body">
                     <ul>
@@ -73,7 +73,7 @@ export default class UpdateMembers extends React.Component {
                             allUsers.filter(user => user.id !== currentUserId).map(user => this.renderUser(user, enrolledUsersMap))
                         }
                     </ul>
-                    <button type="button" className="btn btn-primary" onClick={this.handleSave}>Save</button>
+                    <button type="button" className="btn btn-primary" onClick={this.handleSave} data-dismiss="modal">Save</button>
                 </div>
             </div>
         )

@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import NewGroupForm from "./NewGroupForm";
 import UpdateMembers from "./UpdateMembers";
+import closeIcon from '../../../assets/images/illustrations/closeIcon.svg'
 
 class GroupModal extends React.Component {
     state = {
@@ -18,6 +19,7 @@ class GroupModal extends React.Component {
     }
 
     handleUpdateMembersSuccess = (conversation) => {
+        this.setState({updateMembers: false});
         this.props.closeModalAndNavigateToConversation(conversation)
     }
 
@@ -26,29 +28,46 @@ class GroupModal extends React.Component {
         const {updateMembers, conversation} = this.state;
         const conversationToBeUpdated = conversation === null ? activeConversation : conversation;
         return (
-            <div className='position-absolute w-100 mx-auto card-img-overlay message-modal space-top-2'>
-                {
-                    updateMembers ?
-                        <UpdateMembers
-                            courseId={courseId}
-                            currentUserId={currentUserId}
-                            allUsers={enrolledUsers}
-                            conversation={conversationToBeUpdated}
-                            handleUpdateMembersSuccess={this.handleUpdateMembersSuccess}/>
-                        :<NewGroupForm
-                            courseId={courseId}
-                            handleSuccessGroupCreate={this.handleSuccessGroupCreate}
-                            handleCancelGroupCreate={this.handleCancelGroupCreate}/>
-                }
-            </div>
-        );
-    }
+               <div className="modal fade" id="groupModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLabel">
+                                    {updateMembers ? 'Update Members' : 'Create New Group'}
+                                </h5>
+                                <button type="button" className="btn btn-xs btn-icon btn-soft-secondary"
+                                    data-dismiss="modal"
+                                    onClick={this.handleCancelGroupCreate}>
+                                    <img src={closeIcon} alt="Close"/>
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                {
+                                    updateMembers ?
+                                        <UpdateMembers
+                                            courseId={courseId}
+                                            currentUserId={currentUserId}
+                                            allUsers={enrolledUsers}
+                                            conversation={conversationToBeUpdated}
+                                            handleUpdateMembersSuccess={this.handleUpdateMembersSuccess}/>
+                                        :<NewGroupForm
+                                            courseId={courseId}
+                                            handleSuccessGroupCreate={this.handleSuccessGroupCreate}
+                                            handleCancelGroupCreate={this.handleCancelGroupCreate}/>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
 }
 
 GroupModal.propTypes = {
+    currentUserId: PropTypes.number,
+    activeConversation: PropTypes.object,
+    showGroupModal: PropTypes.bool.isRequired,
     courseId: PropTypes.string.isRequired,
-    currentUserId: PropTypes.number.isRequired,
-    activeConversation: PropTypes.object.isRequired,
     enrolledUsers: PropTypes.array.isRequired,
     closeGroupModal: PropTypes.func.isRequired,
     closeModalAndNavigateToConversation: PropTypes.func.isRequired,

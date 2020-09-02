@@ -83,16 +83,7 @@ export default class PeopleInTheChat extends React.Component {
                     </button>
 
                     <div id="peopleInChat" className="collapse navbar-collapse">
-                        <div>
-                            <div>
-                                <div className='border-bottom aside-header'>
-                                    <span className='h3 text-dark font-weight-bold ml-4 mt-2'>Chats</span>
-                                    <button type="button" className="btn btn-xs btn-pill btn-outline-primary mt-2 mb-2 mr-4 "
-                                            onClick={() => this.props.handleCreateCourseGroup()} data-toggle="tooltip" data-placement="right" title="Create New Group" >
-                                        <i className="fas fa-users"></i>
-                                    </button>
-                                </div>
-                            </div>
+                        <div>                            
                             {
                                 this.renderGroupConversation(groupConversations)
                             }
@@ -108,8 +99,7 @@ export default class PeopleInTheChat extends React.Component {
     }
 }
 
-PeopleInTheChat.propTypes = {
-    handleCreateCourseGroup: PropTypes.func.isRequired,
+PeopleInTheChat.propTypes = {    
     handleConversationClick: PropTypes.func.isRequired,
     handleUserClick: PropTypes.func.isRequired,
     conversations: PropTypes.array.isRequired,

@@ -191,14 +191,22 @@ export class Message extends React.Component {
             currentUserId: currentUserId,
             messageNotificationMap: messageNotificationMap,
             handleConversationClick: this.navigateToConversation,
-            handleUserClick: this.handleUserClick,
-            handleCreateCourseGroup: this.openGroupModal,
+            handleUserClick: this.handleUserClick,            
         };
         const activeConversation = this.findActiveConversation();
         return (
             <>
                 <div className="main-layout">
-                    <aside className='col-lg-3 col-xl-3 border-right border-top p-0 bg-white'>
+                    <aside className='col-lg-3 col-xl-3 border-right border-top p-0 bg-white people-in-chat chat-body'>
+                        <div className='border-bottom aside-header'>
+                            <span className='h3 text-dark font-weight-bold ml-4 mt-2'>Chats</span>
+                            <button type="button"
+                                    className="btn btn-xs btn-pill btn-outline-primary mt-2 mb-2 mr-4 "
+                                    onClick={() => this.openGroupModal()} data-toggle="modal"
+                                    data-target="#groupModal">
+                                <i className="fas fa-users mr-1"></i>Create New Group
+                            </button>
+                        </div>
                         <PeopleInTheChat {...sidebarProps}/>
                     </aside>
                     <main className='col-lg-9 col-xl-9 main-content border-top p-0'>
@@ -218,13 +226,13 @@ export class Message extends React.Component {
                                             : null
                                     }
                                     {
-                                        showGroupModal && <GroupModal courseId={this._getCourseId()}
-                                                                      currentUserId={currentUserId}
-                                                                      showGroupModal={showGroupModal}
-                                                                      activeConversation={activeConversation}
-                                                                      enrolledUsers={enrolledUsers}
-                                                                      closeGroupModal={this.closeGroupModal}
-                                                                      closeModalAndNavigateToConversation={this.closeModalAndNavigateToConversation}/>
+                                        <GroupModal courseId={this._getCourseId()}
+                                                  currentUserId={currentUserId}
+                                                  showGroupModal={showGroupModal}
+                                                  activeConversation={activeConversation}
+                                                  enrolledUsers={enrolledUsers}
+                                                  closeGroupModal={this.closeGroupModal}
+                                                  closeModalAndNavigateToConversation={this.closeModalAndNavigateToConversation}/>
                                     }
                                     <div className="chat-content">
                                         <ActiveMessageArea
