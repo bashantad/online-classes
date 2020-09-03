@@ -65,7 +65,7 @@ export default class PeopleInTheChat extends React.Component {
 
         return (
             <>
-                <div className="navbar-expand-lg navbar-expand-lg-collapse-block navbar-light">
+                <div className="navbar-expand-lg navbar-expand-lg-collapse-block navbar-light" style={{overflow: 'auto'}}>
                     <button type="button" className="navbar-toggler btn btn-block border py-3"
                             aria-label="Toggle navigation"
                             aria-expanded="false"

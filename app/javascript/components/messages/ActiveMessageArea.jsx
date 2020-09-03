@@ -51,7 +51,8 @@ export default class ActiveMessageArea extends React.Component {
                         activeConversation && <div>
                              <span className='message-header-icon'>
                                  {
-                                     !activeConversation.title ?  <i className="fas fa-user-circle mr-2 fa-lg"></i> :  <i className="fas fa-users mr-2 fa-lg"></i>
+                                     !activeConversation.title ? <i className="fas fa-user-circle mr-2 fa-lg"></i> :
+                                         <i className="fas fa-users mr-2 fa-lg"></i>
                                  }
                             </span>
                             {this.displayTitle()}
@@ -60,14 +61,20 @@ export default class ActiveMessageArea extends React.Component {
                                 <span className='group-option'>
                                     <ul>
                                         <li className="dropdown">
-                                             <button type="button" className="hs-mega-menu-invoker btn btn-xs btn-pill btn-outline-primary " id="dropdownSubMenu" role="button" data-toggle="dropdown"
-                                                     aria-haspopup="true" aria-expanded="false" >
+                                             <button type="button"
+                                                     className="hs-mega-menu-invoker btn btn-xs btn-pill btn-outline-primary "
+                                                     id="dropdownSubMenu" role="button" data-toggle="dropdown"
+                                                     aria-haspopup="true" aria-expanded="false">
                                               <i className="fas fa-info"></i>
                                             </button>
                                             <div className="dropdown-menu" aria-labelledby="dropdownSubMenu">
-                                                <a type='button' className="dropdown-item" href="#" onClick={this.handleUpdate}>Update Members</a>
-                                                <a type='button' className="dropdown-item" href="#" onClick={this.handleUpdate}>Details</a>
-                                                <a type='button' className="dropdown-item text-danger" href="#" onClick={this.handleUpdate}>Delete</a>
+                                                <a type='button' className="dropdown-item" href="#"
+                                                   onClick={() => this.props.handleGroupUpdate()} data-toggle="modal"
+                                                   data-target="#groupModal">Update Members</a>
+                                                <a type='button' className="dropdown-item" href="#"
+                                                   onClick={this.handleUpdate}>Details</a>
+                                                <a type='button' className="dropdown-item text-danger" href="#"
+                                                   onClick={this.handleUpdate}>Delete</a>
                                             </div>
                                         </li>
                                     </ul>
@@ -93,7 +100,7 @@ export default class ActiveMessageArea extends React.Component {
                                                 return <MessageItem message={message}
                                                                     key={messageKey}
                                                                     lastSenderId={lastSenderId}
-                                                                    currentUserId={this.props.currentUserId} />
+                                                                    currentUserId={this.props.currentUserId}/>
                                             })
                                         }
                                     </div>

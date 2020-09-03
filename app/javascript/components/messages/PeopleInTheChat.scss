@@ -69,6 +69,7 @@ ul.people-list {
     align-items: center;
     justify-content: space-between;
     height: 60px;
+    padding: 10px 0;
 }
 .people{
     margin: 5px;
@@ -76,6 +77,11 @@ ul.people-list {
 }
 .people:hover{
     border-right: 1px solid $primary-color;
+}
+
+#peopleInChat{
+    overflow: auto;
+    height: 85vh;
 }
 
 .aside-active{

@@ -51,7 +51,7 @@ export default class NewGroupForm extends React.Component {
         const disabled = !title.trim();
         const hasError = !!errors;
         return (
-            <div className='card card-bordered create-group-form'>
+            <div>
                 <div className="form-group">
                     <label className="input-label" htmlFor="groupName">Enter a group name</label>
                     <input type="text" id="groupName" className="form-control" placeholder="Homework group" onChange={this.handleTitleChange} value={title} />
