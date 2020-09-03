@@ -24,7 +24,7 @@ class GroupModal extends React.Component {
     }
 
     render() {
-        const {currentUserId, enrolledUsers, courseId, activeConversation,groupUpdate} = this.props;
+        const {currentUserId, enrolledUsers, courseId, activeConversation, groupUpdate} = this.props;
         const {updateMembers, conversation} = this.state;
         const conversationToBeUpdated = conversation === null ? activeConversation : conversation;
         return (
