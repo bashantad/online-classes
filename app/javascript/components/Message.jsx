@@ -85,7 +85,6 @@ export class Message extends React.Component {
 
     handleGroupUpdate = () => {
         this.setState({showGroupModal: true, groupUpdate: true});
-        console.log('asdsa')
     }
 
     closeGroupModal = () => {
