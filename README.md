@@ -107,6 +107,21 @@ To filter the routes, you can `grep` multiple times. As an example if I need to 
     # Now, in order to find the view file(erb) for this, you need to look into app/views/teaching/courses/start_teaching.html.erb
 ```
 
+### Adding new Routes
+In order to add new page, add your route in config/routes.rb
+```
+    eg: resources :quizzes, this creates CRUD routes for quiz.
+```
+Then create a controller for quiz:
+```
+    rails generate controller quizzes index # This creates a quizzes controller and index action and creates a file in quizzes/index.html.erb
+```
+To check your routes do followings:
+```
+    rails routes | grep quiz # this prints the route for you.
+```
+
+
 ### Including js and css
 You can include the necessary js and styles at app/assets/javascript and app/assets/stylesheets. But don't include them globally at `theme.css` or `theme.js` unless it's a global thing. You can use javascript_include_tag and stylesheet_link_tag in the view file if you need to include particular javascript or stylesheet file. Below is the example for view includes
 
