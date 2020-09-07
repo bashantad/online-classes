@@ -4,14 +4,16 @@
       <div class="js-validate w-md-75 w-lg-50 mx-md-auto">
         <!-- Title -->
         <div class="mb-5 mb-md-7">
-          <h1 class="h2 mb-0">Welcome back</h1>
+          <h1 class="h2 mb-0">Sign in to Updrake</h1>
           <p>Login to manage your account.</p>
         </div>
         <!-- End Title -->
 
         <!-- Form Group -->
         <div class="js-form-message form-group">
-          <label class="input-label" for="email"><%= f.label :email %></label>
+          <label class="input-label" for="email">
+            <%= f.label :email %>              
+          </label>
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: "Email address", type: 'email', id: 'email', ariaLabel: 'Email address', dataMsg: 'Please enter a valid email address.' %>
         </div>
         <!-- End Form Group -->
