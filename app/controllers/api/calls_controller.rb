@@ -18,7 +18,7 @@ class Api::CallsController < Api::BaseController
         render json: {error: 'Call can not be initiated.'}
       end
     else
-      render json: {error: 'You have already reached the call limit. Contact us at support@thevcroom.com to increase the limit.'}
+      render json: {error: 'You have already reached the call limit. Contact us at support@updrake.com to increase the limit.'}
     end
   end
 

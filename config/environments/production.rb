@@ -39,8 +39,8 @@ Rails.application.configure do
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
-  config.action_cable.url = 'wss://thevcroom.com/cable'
-  config.action_cable.allowed_request_origins = [ 'https://thevcroom.com',  /https:\/\/thevcroom.com\/*/ ]
+  config.action_cable.url = 'wss://updrake.com/cable'
+  config.action_cable.allowed_request_origins = [ 'https://updrake.com',  /https:\/\/updrake.com\/*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
@@ -60,7 +60,7 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "virtual_classroom_production"
 
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { host: 'https://thevcroom.com', from: 'support@thevcroom.com'}
+  config.action_mailer.default_url_options = { host: 'https://updrake.com', from: 'support@updrake.com'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {

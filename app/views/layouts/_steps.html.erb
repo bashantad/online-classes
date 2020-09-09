@@ -2,9 +2,7 @@
 <form class="js-step-form space-bottom-1 ml-xl-8 ml-lg-0">
   <!-- Step -->
   <ul id="basicStepFormProgress" class="js-step-progress step step-md step-inline">
-    <li class="step-item
-      <% if params[:controller] == "teaching/courses" %>active
-      <% end %>">
+    <li class="step-item <%= params[:controller] == "teaching/courses" ? 'active' : '' %>">
       <div class="step-content-wrapper">
         <span class="step-icon step-icon-soft-primary"><i class="fas fa-user-graduate"></i></span>
         <div class="step-content">
@@ -13,9 +11,7 @@
       </div>
     </li>
 
-    <li class="step-item
-      <% if params[:controller] == "teaching/chapters" %>active
-      <% end %>">
+    <li class="step-item <%= params[:controller] == "teaching/chapters" ? 'active' : '' %>">
       <div class="step-content-wrapper">
         <span class="step-icon step-icon-soft-primary"><i class="fas fa-book-open"></i></span>
         <div class="step-content">
@@ -24,9 +20,7 @@
       </div>
     </li>
 
-    <li class="step-item
-      <% if params[:controller] == "teaching/assignments" || params[:controller] == "teaching/course_contents" %>active
-      <% end %>">
+    <li class="step-item <%= params[:controller] == "teaching/assignments" || params[:controller] == "teaching/course_contents" ? 'active' : '' %>">
       <div class="step-content-wrapper">
         <span class="step-icon step-icon-soft-primary"><i class="fas fa-book"></i></span>
         <div class="step-content">

@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
 	CALL_JOIN_URL_PATTERN = /^calls\/\d+\/join\/\w+$/
 	MESSAGE_URL_PATTERN = /^courses\/\d+\/conversations\/\d+\/messages$/
 	COURSE_DETAIL_URL_PATTERN = /^courses\/\d+$/
+	COURSES_URL = /^courses$/
 	REACT_ROUTES = {
 		qualifications: '/users/qualifications',
 		home: '/',
@@ -49,11 +50,15 @@ class ApplicationController < ActionController::Base
 	end
 
 	def unprotected_routes?
-		request.path == root_path || is_call_join_url? || course_detail_page?
+		request.path == root_path || is_call_join_url? || course_detail_page? || courses_url?
 	end
 
 	def is_call_join_url?
 		params[:path]&.match(CALL_JOIN_URL_PATTERN).present?
+	end
+
+	def courses_url?
+		params[:path]&.match(COURSES_URL).present?
 	end
 
 	def is_message_url?

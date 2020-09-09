@@ -26,7 +26,7 @@ RSpec.describe Api::CallsController, type: :controller do
       end
       get :create
       error = response.parsed_body['error']
-      expect(error).to eq('You have already reached the call limit. Contact us at support@thevcroom.com to increase the limit.')
+      expect(error).to eq('You have already reached the call limit. Contact us at support@updrake.com to increase the limit.')
     end
 
     it "does not go into infinite loop when trying to create a call with valid calling code" do
