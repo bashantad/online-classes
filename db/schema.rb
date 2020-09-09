@@ -142,12 +142,6 @@ ActiveRecord::Schema.define(version: 2020_08_01_205939) do
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
-  create_table "dialogs", force: :cascade do |t|
-    t.string "title"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "enquiries", force: :cascade do |t|
     t.string "full_name"
     t.string "email"

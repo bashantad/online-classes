@@ -83,7 +83,7 @@ const TeachingSoftwareEngineer = () => {
                      src={pointers} alt="SVG Arrow"/>
 
                 <div className="w-md-60 w-lg-50 text-center mx-auto mb-7 space-bottom-3">
-                    <p className="text-dark"><span className="font-weight-bold">Fun and Effective. </span>Join our community and teach with VC Room</p>
+                    <p className="text-dark"><span className="font-weight-bold">Fun and Effective. </span>Join our community and teach with Updrake</p>
                 </div>
             </div>
 

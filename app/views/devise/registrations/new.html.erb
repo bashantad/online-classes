@@ -5,7 +5,7 @@
         <% error_messages = resource.errors.messages %>
         <!-- Title -->
         <div class="mb-5 mb-md-7">
-          <h1 class="h2 mb-0">Welcome to VC Room</h1>
+          <h1 class="h2 mb-0">Welcome to Updrake</h1>
           <p>
             Fill out the form to get started.
           </p>
@@ -14,7 +14,9 @@
 
         <!-- Form Group -->
         <div class="js-form-message form-group">
-          <label class="input-label" for="email"><%= f.label :full_name %></label>
+          <label class="input-label" for="email">
+            <%= f.label :full_name %>              
+          </label>
           <%= f.text_field :full_name, autofocus: true, autocomplete: "full_name", class: 'form-control', placeholder: "Full Name", type: 'text', id: 'full_name', ariaLabel: 'Full Name', dataMsg: 'Please enter a valid full name.' %>
           <% if error_messages[:full_name] %>
             <div class="field-error">

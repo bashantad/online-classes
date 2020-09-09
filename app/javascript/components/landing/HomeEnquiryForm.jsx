@@ -75,7 +75,8 @@ export default class EnquiryForm extends React.Component {
                                         <div className="w-lg-50 text-center text-white mx-lg-auto mb-7">
                                          <span
                                              className="d-block small text-white-70 font-weight-bold text-cap mb-2">Enquiry</span>
-                                            <h2 className="text-white text-lh-lg">Want to know more about us?
+                                            <h2 className="text-white text-lh-lg">
+                                                Learn more about our offerings
                                                 <div
                                                     className="text-warning">Send us a message.
                                                 </div>

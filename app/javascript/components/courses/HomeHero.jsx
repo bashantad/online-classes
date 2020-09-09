@@ -10,13 +10,14 @@ const HomeHero = () => {
 
             <div className="col-lg-6">
                 <div className="mb-5">
-                    <h1 className="display-4 mb-3">
-                        Unlock your
+                    <h2 className="display-4 mb-3">
+                        Learn skills to
                         <br/>
-                        Potential
-                    </h1>
-                    <p className="lead">With our platform, you can quantify your skills, grow in your
-                        role and stay relevant on critical topics.</p>
+                        build your career
+                    </h2>
+                    <p className="lead">
+                        With our platform, you only learn what matters i.e things needed for you to get a job or get promoted.
+                    </p>
                 </div>
 
                 <div className="d-sm-flex align-items-sm-center flex-sm-wrap">

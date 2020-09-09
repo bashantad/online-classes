@@ -83,7 +83,7 @@ const EngineeringManager = () => {
                      src={pointers} alt="SVG Arrow"/>
 
                     <div className="w-md-60 w-lg-50 text-center mx-auto mb-7 space-bottom-3">
-                        <p className="text-dark"><span className="font-weight-bold">Fun and Effective.</span>Join our courses and move along the tech ladder with VC Room</p>
+                        <p className="text-dark"><span className="font-weight-bold">Fun and Effective.</span>Join our courses and move along the tech ladder with Updrake</p>
                     </div>
             </div>
 

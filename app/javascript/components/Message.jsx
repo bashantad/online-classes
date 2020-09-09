@@ -43,6 +43,10 @@ export class Message extends React.Component {
     }
 
     componentDidMount = () => {
+        const footer = document.getElementById("footer-content");
+        if(!!footer) {
+            footer.remove();
+        }
         conversationApi.getAllByCourseId(this._getCourseId())
             .then(res => res.json())
             .then(response => {
