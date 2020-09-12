@@ -7,7 +7,7 @@ const Chapter = ({chapterTitle, chapterId, courseContents, assignments, navigate
     return (
         <>
             <div className='d-flex justify-content-between mb-2'>
-                <span className="text-cap text-dark small">{chapterTitle} </span>
+                <h5 className="text-cap text-dark">{chapterTitle} </h5>
                 <span className="text-body small">
               <span>
               <i className="fas fa-chalkboard mr-2"></i>{courseContents.length} lectures
@@ -32,14 +32,15 @@ const Chapter = ({chapterTitle, chapterId, courseContents, assignments, navigate
                     })
                 }
             </ul>
+            <div className='text-dark text-bold small'>Assignments</div>
             <ul className="nav nav-sub nav-sm nav-tabs nav-list-y-2 mb-4">
                 {
                     assignments.map((assignment) => {
-                        const {question, points, id, due_date} = assignment;
+                        const {question, points, id, due_date_str} = assignment;
                         return <Assignment key={`content-${chapterId}-${id}`}
                                            question={question}
                                            points={points}
-                                           dueDate={due_date}
+                                           dueDate={due_date_str}
                                            navigateToAssignmentContent={navigateToAssignmentContent}
                                            chapterId={chapterId}
                                            assignmentId={id}/>

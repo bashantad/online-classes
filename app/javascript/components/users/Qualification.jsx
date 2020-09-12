@@ -155,8 +155,7 @@ export default class Qualification extends React.Component {
 
                                                 <p className="mb-0">Nataly is a freelance journalist who's been
                                                     published by Popular Science, The Washington Post, USA Today, Slate,
-                                                    and many more. Read more at <a className="font-weight-bold"
-                                                                                   href="#">hannawolfe.com</a></p>
+                                                    and many more.<a className="font-weight-bold" href="#">Read more</a></p>
                                             </div>
                                         </div>
                                     </div>

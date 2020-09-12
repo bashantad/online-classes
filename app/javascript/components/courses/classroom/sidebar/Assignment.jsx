@@ -6,7 +6,12 @@ const Assignment = ({question, assignmentId, points, dueDate, chapterId, navigat
         <li className="nav-item">
             <a type='button' className="nav-link" onClick={() => navigateToAssignmentContent(chapterId, assignmentId)}>
                 <i className="fas fa-pencil-alt nav-icon"></i>
-                {question} - {points} - {dueDate}
+                <div>
+                    <div>
+                        {question}
+                    </div>
+                    <div>Total Marks: {points}, Due date- {dueDate}</div>
+                </div>
             </a>
         </li>
     );

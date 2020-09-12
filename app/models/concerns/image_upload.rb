@@ -12,6 +12,7 @@ module ImageUpload
 		]
 
 		def resized_images(image)
+			return {}
 			return {} unless image.attached?
 			STANDARD_SIZES.inject({}) do |memo, size|
 				key = "#{size[0]}x#{size[1]}"

@@ -72,7 +72,7 @@ const AboutInstructor = ({avatar_image_urls, educations, experiences, full_name,
                         <span className="media-body">
                                     <h5 className="mb-1">
                                         {education.name_of_institution}, <span
-                                        className='text-body h6'>{education.year_start} - {endLabel(education.year_end)}</span>
+                                        className='text-body h6'>{education.year_start} - {endLabel(education)}</span>
                                     </h5>
                                     <p className="mb-1">{education.title}, {education.location}, {education.country} </p>
                                 </span>
@@ -82,7 +82,7 @@ const AboutInstructor = ({avatar_image_urls, educations, experiences, full_name,
                         <span className="media-body">
                                     <h5 className="mb-1">
                                         {experience.name_of_institution}, <span
-                                        className='text-body h6'>{experience.year_start} - {endLabel(experience.year_end)}</span>
+                                        className='text-body h6'>{experience.year_start} - {endLabel(experience)}</span>
                                     </h5>
                                     <p className="mb-1">{experience.title}, {experience.location}, {experience.country} </p>
                                 </span>

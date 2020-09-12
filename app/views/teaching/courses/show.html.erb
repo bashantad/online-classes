@@ -60,7 +60,7 @@
               <label for="image" class="col-sm-3 col-form-label input-label">Image</label>
 
               <div class="col-sm-9 course-cover">
-                <%= image_tag @course.image_urls["460x308"] if @course.cover_image.attached? %>
+                <%= image_tag @course.image_urls["460x308"] if @course.image_urls["460x308"].present? %>
               </div>
             </div>
             <!-- End Form Group -->

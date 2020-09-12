@@ -29,7 +29,7 @@ export default class ExperienceList extends React.Component {
                                 <span className="media-body mb-2">
                                     <h3 className="mt-1 mb-1">
                                         {experience.name_of_institution}, <span
-                                        className='text-body h4'>{experience.year_start} - {this.endLabel(experience.year_end)}</span>
+                                        className='text-body h4'>{experience.year_start} - {this.endLabel(experience)}</span>
                                     </h3>
                                     <p className="mb-1">{experience.title}, {experience.location}, {experience.country} </p>
                                 </span>

@@ -53,7 +53,7 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     category.courses.create!(
       title: 'Engineering Management',
       body: 'Become an engineering manager',
-      short_description: 'Learn what it takes to be a manager from leaders',
+      short_description: 'Learn what it takes to be a leader',
       course_highlights: 'This is for people who wants to get into management.',
       duration: '4 months',
       no_of_lessons: 15,

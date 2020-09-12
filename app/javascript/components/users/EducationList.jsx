@@ -28,7 +28,7 @@ export default class EducationList extends React.Component {
                                 <span className="media-body mb-2">
                                     <h3 className="mt-1 mb-1">
                                         {education.name_of_institution}, <span
-                                        className='text-body h4'>{education.year_start} - {this.endLabel(education.year_end)}</span>
+                                        className='text-body h4'>{education.year_start} - {this.endLabel(education)}</span>
                                     </h3>
                                     <p className="mb-1">{education.title}, {education.location}, {education.country} </p>
                                 </span>

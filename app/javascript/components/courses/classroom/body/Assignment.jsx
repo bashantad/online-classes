@@ -33,7 +33,7 @@ export default class Assignment extends React.Component {
     }
 
     render() {
-        const {chapterTitle, question, instructions_html, points, due_date, courseId, chapterId, id} = this.props;
+        const {chapterTitle, question, instructions_html, points, due_date_str, courseId, chapterId, id} = this.props;
         const {loading, errorMessage, assignmentSubmission} = this.state;
         return (
             <>
@@ -42,7 +42,7 @@ export default class Assignment extends React.Component {
                                 chapterTitle={chapterTitle}
                                 question={question}
                                 points={points}
-                                dueDate={due_date}
+                                dueDate={due_date_str}
                                 instructionsHtml={instructions_html}/>
 
                 {
@@ -65,6 +65,6 @@ Assignment.propTypes = {
     chapterId: PropTypes.number.isRequired,
     instructions_html: PropTypes.string.isRequired,
     points: PropTypes.number.isRequired,
-    due_date: PropTypes.string.isRequired,
+    due_date_str: PropTypes.string.isRequired,
     chapterTitle: PropTypes.string.isRequired,
 }
