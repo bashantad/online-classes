@@ -27,7 +27,6 @@
       <%= render "layouts/footer" unless @is_message_url %>
     </div>
     <%= javascript_include_tag 'theme', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag "libraries/hs-sticky-block.min" %>
     <%= yield :javascript_includes %>
 </body>
 </html>

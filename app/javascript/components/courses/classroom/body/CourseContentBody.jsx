@@ -8,6 +8,10 @@ const CourseContentBody = ({chapterTitle, title, description_html, duration}) =>
         <>
             <div className="card-header pb-4">
                 <h4 className="card-title"> {chapterTitle}</h4>
+                <a type="button" className="btn btn-ghost-primary btn-xs" href='/quiz/students'>
+                   Take Quiz
+                    <i className="fas fa-calculator ml-2"></i>
+                </a>
             </div>
             <div className="card-body">
                 <div className="card card-bordered overflow-hidden p-5">

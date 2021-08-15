@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'quizzes/index'
   # Routes for admin pages
 	namespace :admin do
 		resources :courses, only: [:index, :show] do
@@ -29,7 +30,8 @@ Rails.application.routes.draw do
 						get :answers
 					end
         end
-  		end
+      end
+			resources :quizzes
   end
 
   match "zohoverify/verifyforzoho", to: 'home_page#verify', :via => [:get]
