@@ -10,51 +10,68 @@ Rails.application.routes.draw do
 
 	# Routes for on-boarding Rails pages
 	namespace :teaching do
-  		resources :courses do
-  			collection do
-  				get :start_teaching
-        end
-				resources :enrollments, only: [] do
-					collection do
-						get :bulk_enrollment
-						post :enroll_users
-						get :requests
-					end
-					get :accept
-					get :decline
+  	resources :courses do
+  		collection do
+  			get :start_teaching
+      end
+			resources :enrollments, only: [] do
+				collection do
+					get :bulk_enrollment
+					post :enroll_users
+					get :requests
 				end
-				resources :chapters, except: [:index] do
-					resources :course_contents, except: [:index]
-					resources :assignments do
-						get :answers
-					end
-        end
-  		end
+				get :accept
+				get :decline
+			end
+			resources :chapters, except: [:index] do
+				resources :course_contents, except: [:index]
+				resources :assignments do
+					get :answers
+				end
+      end
+  	end
   end
 
   match "zohoverify/verifyforzoho", to: 'home_page#verify', :via => [:get]
 
   devise_for :users, controllers: {
-  		registrations: 'registrations',
-  		sessions: 'sessions',
-  		passwords: 'passwords',
-  		confirmations: 'confirmations'
+  	registrations: 'registrations',
+  	sessions: 'sessions',
+  	passwords: 'passwords',
+  	confirmations: 'confirmations'
   }
   resources :users, only: [] do
-  		collection do
-        get :edit_password
-        put :update_password
-  			get :cancel_account
-  			get :details
-  			get :upload
-  			put :do_upload
-  		end
+  	collection do
+      get :edit_password
+      put :update_password
+  		get :cancel_account
+  		get :details
+  		get :upload
+  		put :do_upload
+  	end
   end
 	resources :notebooks, except: [:show] do
 		resources :notes, except: [:show]
 	end
 
   # Routes for API
+  namespace :trading do
+  	resources :stocks, :only => [:index] do
+  		collection do
+  			get :import_earning_date_history
+  			post :import_earning_date_history
+  			get :import_price_history
+  			get :import_price_history
+  		end
+
+  		get :quaterly_change_graph
+
+  		resources :sites do
+  			resources :site_histories
+  		end
+  	end
+  end
+
 	namespace :api, constraints: { format: 'json' } do
 		resources :courses, only: [:index, :show] do
 			resources :conversations do

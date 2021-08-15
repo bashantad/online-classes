@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_01_205939) do
+ActiveRecord::Schema.define(version: 2021_08_15_225551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,6 +142,10 @@ ActiveRecord::Schema.define(version: 2020_08_01_205939) do
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
+  create_table "earning_histories", force: :cascade do |t|
+    t.date "earning_date"
+  end
+
   create_table "enquiries", force: :cascade do |t|
     t.string "full_name"
     t.string "email"
@@ -231,6 +235,52 @@ ActiveRecord::Schema.define(version: 2020_08_01_205939) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
+  create_table "site_histories", force: :cascade do |t|
+    t.string "company_url"
+    t.bigint "site_id"
+    t.string "engagement_string"
+    t.string "country"
+    t.integer "country_rank"
+    t.integer "start_rank"
+    t.integer "end_rank"
+    t.float "daily_page_views"
+    t.float "daily_page_views_percentage"
+    t.float "daily_time_on_site"
+    t.float "daily_time_on_site_percentage"
+    t.float "bounce_rate"
+    t.float "bounce_rate_percentage"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["site_id"], name: "index_site_histories_on_site_id"
+  end
+
+  create_table "sites", force: :cascade do |t|
+    t.string "company_url"
+    t.bigint "stock_id"
+    t.integer "global_rank"
+    t.float "page_views_per_million"
+    t.float "page_views_per_user"
+    t.integer "country_rank"
+    t.float "reach_per_million"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["stock_id"], name: "index_sites_on_stock_id"
+  end
+
+  create_table "stocks", force: :cascade do |t|
+    t.string "ticker"
+    t.string "name"
+    t.string "website"
+    t.float "market_cap"
+    t.string "country"
+    t.string "ipo_year"
+    t.string "sector"
+    t.integer "volume"
+    t.string "industry"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "user_message_notifications", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "message_id", null: false
@@ -303,6 +353,8 @@ ActiveRecord::Schema.define(version: 2020_08_01_205939) do
   add_foreign_key "notes", "users"
   add_foreign_key "qualifications", "users"
   add_foreign_key "reviews", "users"
+  add_foreign_key "site_histories", "sites"
+  add_foreign_key "sites", "stocks"
   add_foreign_key "user_message_notifications", "messages"
   add_foreign_key "user_message_notifications", "users"
 end
