@@ -1,0 +1,26 @@
+<table class="table">
+	<tr>
+		<th> Ticker</th>
+		<th> Name </th>
+		<th> Website </th>
+		<th> Market Cap </th>
+		<th> Country </th>
+		<th> IPO Year </th>
+		<th> Sector </th>
+		<th> Volume </th>
+		<th> Industry </th>
+	</tr>
+	<% @stocks.each do |stock| %>
+		<tr>
+			<td><%= stock.ticker %></td>
+			<td><%= stock.name %></td>
+			<td><%= stock.website %></td>
+			<td><%= stock.market_cap %></td>
+			<td><%= stock.country %></td>
+			<td><%= stock.ipo_year %></td>
+			<td><%= stock.sector %></td>
+			<td><%= stock.volume %></td>
+			<td><%= stock.industry %></td>
+		</tr>
+	<% end %>
+</table>
