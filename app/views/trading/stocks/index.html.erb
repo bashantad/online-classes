@@ -1,26 +1,55 @@
-<table class="table">
-	<tr>
-		<th> Ticker</th>
-		<th> Name </th>
-		<th> Website </th>
-		<th> Market Cap </th>
-		<th> Volume </th>
-		<th> Earning history</th>
-		<th> Stock price</th>
-	</tr>
-	<% @stocks.each do |stock| %>
-		<tr>
-			<td><%= stock.ticker %></td>
-			<td><%= stock.name %></td>
-			<td><%= stock.website %></td>
-			<td><%= stock.market_cap %></td>
-			<td><%= stock.volume %></td>
-			<td>
-				<%= link_to "Earning date history", trading_stock_import_earning_date_history_path(stock) %> (<%= stock.earning_histories.count %>)
-			</td>
-			<td>
-				<%= link_to "Stock price history", trading_stock_import_price_history_path(stock) %> (<%= stock.stock_prices.count %>)
-			</td>
-		</tr>
+<!-- Hero Section -->
+<div class="bg-navy bg-img-hero">
+  <div class="container space-1 ">
+    <div class="w-lg-65 text-center mx-lg-auto">
+      <span class="badge badge-soft-light badge-pill font-size-1 py-3 px-4 mb-3">
+       All Stocks
+      </span>
+    </div>
+  </div>
+</div>
+<!-- End Hero Section -->
+<div class="container space-1">
+ 	<div class="text-right mx-lg-auto space-bottom-1">
+    	<button type="button" class="btn btn-xs btn-primary">
+	      	<i class="fas fa-plus mr-1"></i>
+	      	<%= link_to 'Add New Stock', "#", class: 'text-white font-weight-bold' %>
+    	</button>
+  	</div>  <!-- Card -->
+  
+  	<% if @stocks.present? %>
+	    <div class="card">
+	      <!-- Table -->
+	      	<div class="table-responsive">
+	        	<table class="table table-thead-bordered table-nowrap table-align-middle">
+	          		<thead class="thead-light">
+						<tr>
+							<th> Ticker</th>
+							<th> Name </th>
+							<th> Website </th>
+							<th> Market Cap </th>
+							<th> Volume </th>
+							<th> Earning history</th>
+							<th> Stock price</th>
+						</tr>
+					</thead>
+					<% @stocks.each do |stock| %>
+						<tr>
+							<td><%= stock.ticker %></td>
+							<td><%= stock.name %></td>
+							<td><%= stock.website %></td>
+							<td><%= stock.market_cap %></td>
+							<td><%= stock.volume %></td>
+							<td>
+								<%= link_to "Earning date history", trading_stock_earning_date_history_path(stock) %> (<%= stock.earning_histories.count %>)
+							</td>
+							<td>
+								<%= link_to "Stock price history", trading_stock_price_history_path(stock) %> (<%= stock.stock_prices.count %>)
+							</td>
+						</tr>
+					<% end %>
+				</table>
+			</div>
+		</div>
 	<% end %>
-</table>
+</div>

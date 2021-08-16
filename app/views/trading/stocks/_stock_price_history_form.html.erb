@@ -1,0 +1,27 @@
+<%= form_for(@stock, url: trading_stock_import_price_history_path(@stock), html: {method: :post}) do |form| %>
+  <% error_messages = @stock.errors.messages %>
+  <div class="pl-4 pr-4 space-top-1">
+    <div class="row">      
+      <div class="col-md-6 col-sm-12 form-group">
+        <label class="input-label" for="full_name">
+          <%= form.label :file_field %>
+        </label>
+        <%= form.file_field :file_field %>
+        <% if error_messages[:file_field] %>
+          <div class="field-error">
+            <%= error_messages[:file_field][0] %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="col-12 row align-items-center mb-5 mt-4">
+        <div class="col-6 mb-sm-0 pl-4">
+          <%= link_to "Back", trading_stocks_path, class: 'font-size-1 font-weight-bold text-muted content-centered' %>
+        </div>
+        <div class="col-6 text-right">
+          <%= form.submit "Save", class: "btn btn-sm btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -56,12 +56,11 @@ Rails.application.routes.draw do
 
   # Routes for API
   namespace :trading do
-  	resources :stocks, :only => [:index] do
-  		get :import_earning_date_history
-  		post :import_earning_date_history
-  		get :import_price_history
-  		post :import_price_history
-  		get :quaterly_change_graph
+  	resources :stocks, :only => [:index, :show] do
+  		get :earning_date_history
+  		get :price_history
+  		post :import_earning_date_history  		
+  		post :import_price_history  	
 
   		resources :sites do
   			resources :site_histories
