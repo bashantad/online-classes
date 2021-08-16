@@ -4,11 +4,9 @@
 		<th> Name </th>
 		<th> Website </th>
 		<th> Market Cap </th>
-		<th> Country </th>
-		<th> IPO Year </th>
-		<th> Sector </th>
 		<th> Volume </th>
-		<th> Industry </th>
+		<th> Earning history</th>
+		<th> Stock price</th>
 	</tr>
 	<% @stocks.each do |stock| %>
 		<tr>
@@ -16,11 +14,13 @@
 			<td><%= stock.name %></td>
 			<td><%= stock.website %></td>
 			<td><%= stock.market_cap %></td>
-			<td><%= stock.country %></td>
-			<td><%= stock.ipo_year %></td>
-			<td><%= stock.sector %></td>
 			<td><%= stock.volume %></td>
-			<td><%= stock.industry %></td>
+			<td>
+				<%= link_to "Earning date history", trading_stock_import_earning_date_history_path(stock) %> (<%= stock.earning_histories.count %>)
+			</td>
+			<td>
+				<%= link_to "Stock price history", trading_stock_import_price_history_path(stock) %> (<%= stock.stock_prices.count %>)
+			</td>
 		</tr>
 	<% end %>
 </table>
