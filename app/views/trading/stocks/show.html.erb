@@ -6,6 +6,17 @@
        <nav aria-label="breadcrumb">
          <ol class="breadcrumb breadcrumb-light breadcrumb-no-margin">
           <li class="breadcrumb-item"><a href="<%= trading_stocks_path %>" class="text-light text-highlight-light">All Stocks</a></li>
+          <li class="breadcrumb-item">
+            <% if params[:all].present? %>
+              <a href="<%= trading_stock_path(@stock) %>" class="text-light text-highlight-light">
+                Near earning prices                
+              </a>
+            <% else %>
+              <a href="<%= trading_stock_path(@stock, :all => true) %>" class="text-light text-highlight-light">
+                All Dates
+              </a>
+            <% end %>
+          </li>
           <li class="breadcrumb-item active" aria-current="page">
           	Details <%= @stock.ticker_with_name %>
           </li>

@@ -13,7 +13,7 @@
 			</tr>
 		</thead>
 		<% @stock_history_records.each do |stock_price| %>
-			<tr>
+			<tr class="<%= @earning_dates[stock_price.date.strftime("%Y-%m-%d")] ? "earning-date" : "normal-day" %>">
 				<td> <%= stock_price.date %></td>
 				<td> <%= stock_price.open_price %></td>
 				<td> <%= stock_price.high_price %></td>
