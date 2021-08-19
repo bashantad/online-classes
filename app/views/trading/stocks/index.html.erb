@@ -9,47 +9,52 @@
   </div>
 </div>
 <!-- End Hero Section -->
-<div class="container space-1">
+<div class=" space-1">
  	<div class="text-right mx-lg-auto space-bottom-1">
-    	<button type="button" class="btn btn-xs btn-primary">
-	      	<i class="fas fa-plus mr-1"></i>
-	      	<%= link_to 'Add New Stock', "#", class: 'text-white font-weight-bold' %>
-    	</button>
-  	</div>  <!-- Card -->
+  	<button type="button" class="btn btn-xs btn-primary">
+      	<i class="fas fa-plus mr-1"></i>
+      	<%= link_to 'Add New Stock', "#", class: 'text-white font-weight-bold' %>
+  	</button>
+	</div>
   
-  	<% if @stocks.present? %>
-	    <div class="card">
-	      <!-- Table -->
-	      	<div class="table-responsive">
-	        	<table class="table table-thead-bordered table-nowrap table-align-middle">
-	          		<thead class="thead-light">
-						<tr>
-							<th> Ticker</th>
-							<th> Name </th>
-							<th> Website </th>
-							<th> Market Cap </th>
-							<th> Volume </th>
-							<th> Earning history</th>
-							<th> Stock price</th>
-						</tr>
-					</thead>
-					<% @stocks.each do |stock| %>
-						<tr>
-							<td><%= stock.ticker %></td>
-							<td><%= stock.name %></td>
-							<td><%= stock.website %></td>
-							<td><%= stock.market_cap %></td>
-							<td><%= stock.volume %></td>
-							<td>
-								<%= link_to "Earning date history", trading_stock_earning_date_history_path(stock) %> (<%= stock.earning_histories.count %>)
-							</td>
-							<td>
-								<%= link_to "Stock price history", trading_stock_price_history_path(stock) %> (<%= stock.stock_prices.count %>)
-							</td>
-						</tr>
-					<% end %>
-				</table>
-			</div>
+	<% if @stocks.present? %>
+    <div class="card">
+      <!-- Table -->
+      	<div class="table-responsive">
+      		<%= will_paginate @stocks, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+        	<table class="table table-thead-bordered table-nowrap table-align-middle">
+          		<thead class="thead-light">
+								<tr>
+									<th> Ticker</th>
+									<th> Name </th>
+									<th> Earning dates</th>
+									<th> Stock price</th>
+									<th> Website </th>
+									<th> External Links</th>
+								</tr>
+							</thead>
+							<% @stocks.each do |stock| %>
+								<tr>
+									<td><%= stock.ticker %></td>
+									<td><%= link_to stock.name, trading_stock_path(stock) %></td>
+									<td>
+										<%= link_to stock.earning_histories.first.present? ? "View dates" : "Upload dates", trading_stock_earning_date_history_path(stock) %> (<%= display_yes_no(stock.earning_histories.first.present?) %>)
+									</td>
+									<td>
+										<%= link_to stock.stock_prices.first.present? ?  "View price" : "Upload price", trading_stock_price_history_path(stock) %> (<%= display_yes_no(stock.stock_prices.first.present?) %>)
+									</td>
+									<td><%= stock.display_website %></td>
+									<td>
+										<%= link_to "price", "https://finance.yahoo.com/quote/#{stock.ticker}/history?p=#{stock.ticker}", :target => "_blank" %>
+										&nbsp;&nbsp;|&nbsp;&nbsp;
+										<%= link_to "Earning", "https://www.marketbeat.com/stocks/NASDAQ/#{stock.ticker}/earnings/", :target => "_blank" %>
+										&nbsp;&nbsp;|&nbsp;&nbsp;
+										<%= link_to "Website", "https://www.google.com/search?q=#{stock.name}", :target => "_blank" %>
+									</td>
+							</tr>
+						<% end %>
+					</table>
+				</div>
 		</div>
 	<% end %>
 </div>

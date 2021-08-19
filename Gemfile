@@ -12,6 +12,7 @@ gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 gem 'react-rails'
+gem 'will_paginate-bootstrap4'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.x'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -23,6 +24,7 @@ gem 'redis', '~> 4.0'
 gem 'jquery-rails'
 gem 'active_model_serializers'
 gem 'devise'
+gem 'csv'
 gem 'image_processing'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

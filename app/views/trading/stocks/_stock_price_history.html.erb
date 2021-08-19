@@ -1,0 +1,27 @@
+<div class="table-responsive">
+	<%= will_paginate @stock_history_records, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+	<table class="table table-thead-bordered table-nowrap table-align-middle">
+  		<thead class="thead-light">
+			<tr>
+				<th>Date</th>
+				<th>Open</th>
+				<th>High</th>
+				<th>Close</th>
+				<th>Low</th>
+				<th>Adj Close</th>
+				<th>Volume</th>				
+			</tr>
+		</thead>
+		<% @stock_history_records.each do |stock_price| %>
+			<tr>
+				<td> <%= stock_price.date %></td>
+				<td> <%= stock_price.open_price %></td>
+				<td> <%= stock_price.high_price %></td>
+				<td> <%= stock_price.close_price %></td>
+				<td> <%= stock_price.low_price %></td>
+				<td> <%= stock_price.adjusted_close_price %></td>
+				<td> <%= stock_price.volume %></td>
+			</tr>
+		<% end %>
+	</table>
+</div>

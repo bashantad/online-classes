@@ -12,6 +12,6 @@ class CreateStocks < ActiveRecord::Migration[6.0]
       t.string :industry
 
       t.timestamps
-    end
+    end    
   end
 end
