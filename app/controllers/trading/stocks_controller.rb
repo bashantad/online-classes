@@ -17,7 +17,7 @@ class Trading::StocksController < Trading::BaseController
                 @stock.earning_histories.create(:earning_date => "#{year}-#{month}-#{day}")
             end
             flash[:notice] = "Saved Earning history for #{@stock.ticker_with_name}"
-            redirect_to trading_stock_path(@stock)
+            redirect_to trading_stocks_path
         rescue => e
             flash[:alert] = e.message
             redirect_to trading_stock_earning_date_history_path(@stock)
@@ -30,7 +30,7 @@ class Trading::StocksController < Trading::BaseController
                 @stock.create_stock_price(row.to_h)
             end
             flash[:notice] = "Saved stock price history for #{@stock.ticker_with_name}"
-            redirect_to trading_stock_path(@stock)
+            redirect_to trading_stocks_path
         rescue => e
             flash[:alert] = e.message
             redirect_to trading_stock_price_history_path(@stock)
