@@ -141,6 +141,11 @@ Javascript
 <% end %>
 ```
 
+Seed dump
+#####
+```
+    rake db:seed:dump MODELS=Stock APPEND=true
+```
 
 Happy coding!!
 ```
