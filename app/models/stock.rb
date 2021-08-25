@@ -13,7 +13,8 @@ class Stock < ApplicationRecord
 
 	def create_stock_price(csv_row)
 		parsed_data = _format_csv_to_db_row(csv_row)
-		self.stock_prices.create(parsed_data)
+		new_stock = self.stock_prices.new(parsed_data)
+		new_stock.save
 	end	
 
 	def _format_csv_to_db_row(csv_row)
@@ -30,8 +31,7 @@ class Stock < ApplicationRecord
 
    def near_by_earning_dates(range_in_days)
    	all_dates = get_available_dates
-		self.formatted_earning_dates
-		.collect do |date|
+		self.formatted_earning_dates.collect do |date|
 			index = all_dates.index(date)
 			next if index.nil?
 			from = index - range_in_days
@@ -47,10 +47,8 @@ class Stock < ApplicationRecord
    end
 
    def get_available_dates
-   	@dates ||= self.stock_prices
-   	.select("date")
-   	.order("date")
-   	.collect(&:date)
-   	.collect { |date| date.strftime("%Y-%m-%d") }
+   	@dates ||= self.stock_prices.select("date").order("date").collect do |row|
+   		row.date.strftime("%Y-%m-%d")
+   	end
    end
 end

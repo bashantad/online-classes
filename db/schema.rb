@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_16_053210) do
+ActiveRecord::Schema.define(version: 2021_08_20_064742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -280,6 +280,9 @@ ActiveRecord::Schema.define(version: 2021_08_16_053210) do
     t.bigint "stock_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "day_of_the_week"
+    t.integer "week_number"
+    t.float "price_change_percentage"
     t.index ["stock_id", "date"], name: "index_stock_prices_on_stock_id_and_date", unique: true
     t.index ["stock_id"], name: "index_stock_prices_on_stock_id"
   end
