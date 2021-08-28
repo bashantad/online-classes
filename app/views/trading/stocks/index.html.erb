@@ -3,7 +3,13 @@
   <div class="container space-1 ">
     <div class="w-lg-65 text-center mx-lg-auto">
       <span class="badge badge-soft-light badge-pill font-size-1 py-3 px-4 mb-3">
-       All Stocks
+      	<nav aria-label="breadcrumb">
+         <ol class="breadcrumb breadcrumb-light breadcrumb-no-margin">
+          <li class="breadcrumb-item">
+       			<a href="<%= trading_stocks_path %>" class="text-light text-highlight-light">All Stocks</a>
+       		</li>
+       	</ol>
+       </nav>
       </span>
     </div>
   </div>
@@ -69,7 +75,7 @@
 										&nbsp;&nbsp;|&nbsp;&nbsp;
 										<%= link_to "Earning", "https://www.marketbeat.com/stocks/NASDAQ/#{stock.ticker}/earnings/", :target => "_blank" %>
 										&nbsp;&nbsp;|&nbsp;&nbsp;
-										<%= link_to "Website", "https://www.google.com/search?q=#{stock.name}", :target => "_blank" %>
+										<%= link_to "Website", "https://www.google.com/search?q=#{stock.name} website", :target => "_blank" %>
 										&nbsp;&nbsp;|&nbsp;&nbsp;
 										<%= link_to "Edit", edit_trading_stock_path(stock) %>
 									</td>

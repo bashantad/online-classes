@@ -5,7 +5,9 @@
       <span class="badge badge-soft-light badge-pill font-size-1 py-3 px-4 mb-3">
        <nav aria-label="breadcrumb">
          <ol class="breadcrumb breadcrumb-light breadcrumb-no-margin">
-          <li class="breadcrumb-item"><a href="<%= trading_stocks_path %>" class="text-light text-highlight-light">All Stocks</a></li>
+          <li class="breadcrumb-item">
+            <a href="<%= trading_stocks_path %>" class="text-light text-highlight-light">All Stocks</a>
+          </li>
           <li class="breadcrumb-item">
             <% if params[:all].present? %>
               <a href="<%= trading_stock_path(@stock) %>" class="text-light text-highlight-light">
