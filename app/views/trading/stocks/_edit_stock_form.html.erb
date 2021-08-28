@@ -21,7 +21,7 @@
 		        <%= form.label :subsidiaries %>
 		      </label>
 		      <div class="col-sm-9">
-		        <%= form.text_area :subsidiaries %>
+		        <%= form.text_area :subsidiaries, :class => "form-control" %>
 		        <% if error_messages[:subsidiaries] %>
 		          <div class="field-error">
 		            <%= error_messages[:subsidiaries][0] %>
