@@ -56,7 +56,7 @@ Rails.application.routes.draw do
 
   # Routes for API
   namespace :trading do
-  	resources :stocks, :only => [:index, :show] do
+  	resources :stocks, :only => [:index, :show, :edit, :update] do
   		get :earning_date_history
   		get :price_history
   		post :import_earning_date_history

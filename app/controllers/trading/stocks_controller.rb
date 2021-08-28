@@ -3,6 +3,14 @@ class Trading::StocksController < Trading::BaseController
     def index
         if params[:search].present?
             stocks = Stock.where("ticker ilike ?", "%#{params[:search]}%")
+        elsif params[:incomplete_price].present?
+            stock_ids = StockPrice.select("stock_id").distinct("stock_id").collect(&:stock_id).uniq
+            stocks = Stock.where.not(:id => stock_ids)
+        elsif params[:incomplete_dates].present?
+            stock_ids = EarningHistory.select("stock_id").distinct("stock_id").collect(&:stock_id).uniq
+            stocks = Stock.where.not(:id => stock_ids)
+        elsif params[:incomplete_website].present?
+            stocks = Stock.where(:main_website => nil)
         else
             stocks = Stock.all
         end
@@ -61,7 +69,17 @@ class Trading::StocksController < Trading::BaseController
         @stock_history_records = stock_prices.paginate(page: params[:page], per_page: PER_PAGE)
     end
 
+    def update
+        @stock.update(stock_params)
+        flash[:notice] = "Updated the stock."
+        redirect_to trading_stocks_path
+    end
+
     private
+
+    def stock_params
+        params.require(:stock).permit(:main_website, :subsidiaries)
+    end
 
     def read_csv_data
         file = params[:stock][:file_field]

@@ -1,0 +1,40 @@
+<div class="card">
+	<div class="card-body">
+		<%= form_with(model: [:trading, @stock], local: true) do |form| %>
+		  <% error_messages = @stock.errors.messages %>
+		  <div class="row form-group">
+		      <label class="col-sm-3 col-form-label input-label">
+		        <%= form.label :main_website %>
+		      </label>
+		      <div class="col-sm-9">
+		        <%= form.text_field :main_website, autofocus: true, autocomplete: "new-title", class: 'form-control' %>
+		        <% if error_messages[:main_website] %>
+		          <div class="field-error">
+		            <%= error_messages[:main_website][0] %>
+		          </div>
+		        <% end %>
+		      </div>
+		  </div>
+
+		  <div class="row form-group">
+		      <label class="col-sm-3 col-form-label input-label">
+		        <%= form.label :subsidiaries %>
+		      </label>
+		      <div class="col-sm-9">
+		        <%= form.text_area :subsidiaries %>
+		        <% if error_messages[:subsidiaries] %>
+		          <div class="field-error">
+		            <%= error_messages[:subsidiaries][0] %>
+		          </div>
+		        <% end %>
+		      </div>
+		  </div>
+
+		  <div class="row align-items-center mb-2 ">
+		    <div class="col-12 text-right">
+		      <%= form.submit "Save", class: "btn btn-sm btn-primary" %>
+		    </div>
+		  </div>
+		<% end %>
+	</div>
+</div>

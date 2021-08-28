@@ -7,8 +7,15 @@ class Stock < ApplicationRecord
 		"#{ticker} (#{name})"
 	end
 
+	def display_website_diff
+		return unless main_website.present?
+		return if main_website.downcase.include?(display_website)
+		"manual: #{main_website}, automated: #{display_website}"
+	end
+
+
 	def display_website
-		website.to_s.gsub("https://", "").gsub("www.", "").split("/").first
+		website.to_s.gsub("https://", "").gsub("www.", "").split("/").first.try(:downcase)
 	end
 
 	def create_stock_price(csv_row)
