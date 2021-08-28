@@ -59,8 +59,9 @@ Rails.application.routes.draw do
   	resources :stocks, :only => [:index, :show] do
   		get :earning_date_history
   		get :price_history
-  		post :import_earning_date_history  		
-  		post :import_price_history  	
+  		post :import_earning_date_history
+  		post :import_price_history
+  		resources :analysis, only: [:index]
 
   		resources :sites do
   			resources :site_histories

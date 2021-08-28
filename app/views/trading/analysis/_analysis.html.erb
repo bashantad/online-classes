@@ -1,0 +1,72 @@
+<form style="padding: 10px;" action="/trading/stocks/<%= @stock.id %>/analysis">
+	<div class="row align-items-center mb-5 mt-4">
+	  <div class="col-6 mb-sm-0 pl-4">
+	    Continous down days
+	    <input type="text" name="continous_down_days" value="<%= @continous_down_days %>" class="form-control"/>
+	  </div>
+	  <div class="col-6 text-right">
+	  	Percentage Change in a day
+	  	<input type="text" name="perchange_change_in_a_day" value="<%= @perchange_change_in_a_day %>" class="form-control"/>	    
+	  </div>
+	</div>
+	<div class="row align-items-center mb-5 mt-4">
+	  <div class="col-6 mb-sm-0 pl-4">
+	    Start day decline started
+	    <select name="decline_start_day" class="form-control">
+	    	<% @days_in_a_week.each do |day| %>
+	    		<option value="<%= day %>" <%= @decline_start_day == day ? "selected": "" %> >
+	    			<%= day %>
+	    		</option>
+	    	<% end %>
+	    </select>	    
+	  </div>
+	  <div class="col-6 text-right">
+	  	Day of the sale
+	  	<select name="day_of_the_sale" class="form-control">
+	  		<% @days_in_a_week.each do |day| %>
+	    		<option value="<%= day %>" <%= @day_of_the_sale == day ? "selected": "" %> >
+	    			<%= day %>
+	    		</option>
+	    	<% end %>
+	    </select>	  	
+	  </div>
+	</div>
+	<input type="submit" value="Search" class="btn btn-primary"/>
+</form>
+<div>Purchase date: <span style='color: red;'><%= @actual_perchase_day %></span></div>
+Grouped table
+<table class="table">
+	<tr>
+		<th>Category</th>
+		<th>Change</th>		
+	</tr>
+	<% @group_by_percentage_change.sort_by {|key, val| key }.each do |category, changes| %>
+		<tr>
+			<td> <%= category %> </td>
+			<td> <%= changes %> (<%= changes.count %>) </td>
+		</tr>
+	<% end %>
+</table>
+<br />
+<br />
+<br />
+<br />
+<br />
+<table class="table">
+	<tr>
+		<th>Week</th>
+		<th>Cost price</th>
+		<th>Sale price</th>
+		<th>Change</th>
+	</tr>
+	<% @week_numbers.each do |week_number| %>
+		<tr>
+			<td> <%= link_to week_number, trading_stock_path(@stock, :week_number => week_number), :target => "_blank" %> </td>
+			<td> <%= @buy_price_hash[week_number] %> </td>
+			<td> <%= @sell_price_hash[week_number] %> </td>
+			<td>
+				<%= @percentage_changes[week_number] %>
+			</td>
+		</tr>
+	<% end %>
+</table>

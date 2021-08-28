@@ -4,23 +4,21 @@
   		<thead class="thead-light">
 			<tr>
 				<th>Date</th>
+				<th>Day</th>
 				<th>Open</th>
-				<th>High</th>
 				<th>Close</th>
-				<th>Low</th>
-				<th>Adj Close</th>
-				<th>Volume</th>				
+				<th>Volume</th>
+				<th>Change Percentage</th>
 			</tr>
 		</thead>
 		<% @stock_history_records.each do |stock_price| %>
 			<tr class="<%= @earning_dates[stock_price.date.strftime("%Y-%m-%d")] ? "earning-date" : "normal-day" %>">
 				<td> <%= stock_price.date %></td>
+				<td> <%= stock_price.day_of_the_week %></td>
 				<td> <%= stock_price.open_price %></td>
-				<td> <%= stock_price.high_price %></td>
 				<td> <%= stock_price.close_price %></td>
-				<td> <%= stock_price.low_price %></td>
-				<td> <%= stock_price.adjusted_close_price %></td>
 				<td> <%= stock_price.volume %></td>
+				<td> <%= stock_price.price_change_percentage&.round(2) %></td>
 			</tr>
 		<% end %>
 	</table>

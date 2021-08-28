@@ -21,6 +21,10 @@
     <div class="card">
       <!-- Table -->
       	<div class="table-responsive">
+      		<form style="padding: 10px;">
+      			Search by ticker<input type="text" name="search" placeholder="eg: AMZN" />
+      			<input type="submit" value="Search" />
+      		</form>
       		<%= will_paginate @stocks, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
         	<table class="table table-thead-bordered table-nowrap table-align-middle">
           		<thead class="thead-light">

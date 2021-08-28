@@ -1,10 +1,9 @@
-<%= render "view_menu", :title => "Details #{@stock.ticker_with_name}" %>
+<%= render "trading/stocks/view_menu", :title => "Analyse #{@stock.ticker_with_name}" %>
 <div class="container space-1">
   <!-- Card -->
   <div class="card mx-auto">
     <!-- Form -->
-    <h3><%= @stock.ticker_with_name %> (<%= @stock.display_website %>) </h3>
-    <%= render "stock_price_history" %>
+    <%= render "analysis" %>
     <!-- End Card -->
     <!-- SVG Elements -->
     <figure class="max-w-19rem w-100 position-absolute bottom-0 right-0 z-index-n1 hide-svg">
@@ -16,3 +15,6 @@
     <!-- End Search -->
   </div>
 </div>
+
+
+

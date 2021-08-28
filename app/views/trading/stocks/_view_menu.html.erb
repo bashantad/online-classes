@@ -1,0 +1,39 @@
+<!-- Hero Section -->
+<div class="bg-navy bg-img-hero">
+  <div class="container space-1 ">
+    <div class="w-lg-65 text-center mx-lg-auto">
+      <span class="badge badge-soft-light badge-pill font-size-1 py-3 px-4 mb-3">
+       <nav aria-label="breadcrumb">
+         <ol class="breadcrumb breadcrumb-light breadcrumb-no-margin">
+          <li class="breadcrumb-item"><a href="<%= trading_stocks_path %>" class="text-light text-highlight-light">All Stocks</a></li>
+          <li class="breadcrumb-item">
+            <% if params[:all].present? %>
+              <a href="<%= trading_stock_path(@stock) %>" class="text-light text-highlight-light">
+                Near earning prices                
+              </a>
+            <% else %>
+              <a href="<%= trading_stock_path(@stock, :all => true) %>" class="text-light text-highlight-light">
+                All Dates
+              </a>
+            <% end %>
+          </li>
+          <li class="breadcrumb-item">
+          	<% if params[:controller] == "trading/stocks" %>
+          		<a href="<%= trading_stock_analysis_index_path(@stock, :all => true) %>" class="text-light text-highlight-light">
+                	Analyse
+              	</a>
+            <% else %>
+              <a href="<%= trading_stock_path(@stock) %>" class="text-light text-highlight-light">
+                Details
+              </a>
+            <% end %>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+          	<%= title %>          	
+          </li>
+        </ol>
+        </nav>
+      </span>
+    </div>
+  </div>
+</div>
