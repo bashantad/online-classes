@@ -149,21 +149,19 @@ Seed dump
 
 Update the website name:
 #####
-````
-Download from Yahoo Finance and put into this file spec/files/software-companies.csv
-run rspec spec/requests/fetch_website_name_spec.rb
-Run UpdateWebsiteMapping.update_website_for_stocks
-
+```
+    Download from Yahoo Finance and put into this file spec/files/software-companies.csv
+    run rspec spec/requests/fetch_website_name_spec.rb
+    Run UpdateWebsiteMapping.update_website_for_stocks
 ```
 
 Import site history:
 #####
 ````
-change the sitenames at sites_to_import in located at spec/requests/record_traffic_site_spec.rb
-run rspec spec/requests/record_traffic_site_spec.rb
-Run RecordTrafficSiteService.import_data
-
-```
+    change the sitenames at sites_to_import in located at spec/requests/record_traffic_site_spec.rb
+    run rspec spec/requests/record_traffic_site_spec.rb
+    Run RecordTrafficSiteService.import_data
+````
 
 Happy coding!!
 ```
