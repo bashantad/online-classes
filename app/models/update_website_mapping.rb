@@ -1,7 +1,28 @@
+require 'csv'
 class UpdateWebsiteMapping
-  def self.update_websites
-    Stock.find_by(:ticker => 'MSFT').update(:website => 'https://www.microsoft.com')
-    Stock.find_by(:ticker => 'ADBE').update(:website => 'https://www.adobe.com')
-    Stock.find_by(:ticker => 'CRM').update(:website => 'https://www.salesforce.com')
-  end
+	class << self
+		def update_website_for_stocks
+			file_path = "spec/files/website_mapping.txt"
+			data = websites(file_path)
+			data.each do |row|
+				stock = Stock.find_by(ticker: row[:ticker])
+				if stock.present?
+					stock.update(:website => row[:website])
+				end
+			end
+		end
+
+		private
+
+		def websites(file_path)
+			return @websites if defined?@websites
+			websites = []
+			File.open(file_path, "r") do |f|
+			  f.each_line do |line|
+			  	websites << JSON.parse(line).with_indifferent_access
+			  end
+			end
+			@websites = websites
+		end
+	end
 end
