@@ -63,11 +63,11 @@ Rails.application.routes.draw do
   		post :import_price_history
   		resources :analysis, only: [:index]
   		resources :traffics, only: [:index]
-
-  		resources :sites do
-  			resources :site_histories
-  		end
   	end
+
+  	resources :sites do
+  		resources :site_histories
+  	end  	
   end
 
 	namespace :api, constraints: { format: 'json' } do

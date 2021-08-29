@@ -1,0 +1,36 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Company</th>
+      <th>Links</th>
+      <th>Stock </th>
+      <th>Start rank</th>
+      <th>End rank</th>
+      <th>Country rank</th>
+      <th>Change %</th>      
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @histories.each do |history| %>
+      <% stock = history.site.stock %>
+      <tr>
+        <td>
+            <%= history.company_url %>
+        </td>
+        <td>
+          <%= link_to "Alexa", "https://alexa.com/siteinfo/#{history.company_url}#section_traffic", target: '_blank' %>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <%= link_to "Similarweb", "https://www.similarweb.com/website/#{history.company_url}", :target => "_blank" %>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <%= link_to "Google trends", "https://trends.google.com/trends/explore?q=#{stock.display_name}", :target => "_blank" %>
+        </td>
+        <td><%= link_to stock.ticker, trading_stock_path(stock), :target => "_blank" %></td>
+        <td><%= history.start_rank %></td>
+        <td><%= history.end_rank %></td>
+        <td><%= history.country_rank %>: <%= history.country %></td>
+        <td><%= history.abs_percentage.round(2) %></td>        
+      </tr>
+    <% end %>
+  </tbody>
+</table>

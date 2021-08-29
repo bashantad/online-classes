@@ -28,7 +28,23 @@
         <!-- Navigation -->
         <div id="nav" class="collapse navbar-collapse">
           <ul class="navbar-nav">
-            <% if current_user.is_admin? %>
+            <% if current_user.is_admin?  && current_user.is_trader? %>
+             <!-- Dropdown trading menu-->
+              <li class="hs-has-sub-menu navbar-nav-item"
+                  data-hs-mega-menu-item-options='{
+                  "desktop": {
+                    "position": "left"
+                  }
+                }'>
+                <a id="admin" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Trading</a>
+
+                <div id="pagesSubMenu" class="hs-sub-menu dropdown-menu" aria-labelledby="pagesMegaMenu" style="min-width: 230px;">
+                  <a class="dropdown-item" href="<%= trading_stocks_path %>">Stocks</a>
+                  <a class="dropdown-item" href="<%= trading_sites_path %>">Sites</a>                  
+                </div>
+              </li>
+              <!-- End Dropdown trading menu -->
+
               <!-- Dropdown admin menu-->
               <li class="hs-has-sub-menu navbar-nav-item"
                   data-hs-mega-menu-item-options='{

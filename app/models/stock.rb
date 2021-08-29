@@ -18,6 +18,10 @@ class Stock < ApplicationRecord
 		website.to_s.gsub("https://", "").gsub("www.", "").split("/").first.try(:downcase)
 	end
 
+	def display_name
+		name.gsub("Inc.", "").gsub("Company", "").gsub("Series 1", "").gsub("Holdings", "")
+	end
+
 	def create_stock_price(csv_row)
 		parsed_data = _format_csv_to_db_row(csv_row)
 		new_stock = self.stock_prices.new(parsed_data)
