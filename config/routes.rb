@@ -62,6 +62,7 @@ Rails.application.routes.draw do
   		post :import_earning_date_history
   		post :import_price_history
   		resources :analysis, only: [:index]
+  		resources :traffics, only: [:index]
 
   		resources :sites do
   			resources :site_histories
