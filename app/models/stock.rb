@@ -9,13 +9,13 @@ class Stock < ApplicationRecord
 
 	def display_website_diff
 		return unless main_website.present?
-		return if main_website.downcase.include?(display_website)
+		return if display_website.present? && main_website.downcase.include?(display_website)
 		"manual: #{main_website}, automated: #{display_website}"
 	end
 
 
 	def display_website
-		website.to_s.gsub("https://", "").gsub("www.", "").split("/").first.try(:downcase)
+		website.to_s.gsub("https://", "").gsub("www.", "").split("/").first.try(:downcase).to_s
 	end
 
 	def display_name
