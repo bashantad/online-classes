@@ -24,7 +24,7 @@ class StockImportService
 		end
 
 		def get_full_path(file_name)
-			Rails.root.join("stocks/#{file_name}")
+			Rails.root.join("spec/files/#{file_name}")
 		end
 
 		def get_stock_csv_data(name)
