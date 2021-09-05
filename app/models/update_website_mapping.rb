@@ -6,7 +6,7 @@ class UpdateWebsiteMapping
 			data = websites(file_path)
 			data.each do |row|
 				stock = Stock.find_by(ticker: row[:ticker])
-				if stock.present?
+				if stock.present? && row[:website].present?
 					stock.update(:website => row[:website])
 				end
 			end

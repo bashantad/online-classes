@@ -1,3 +1,16 @@
+<% if params[:negative] == "true" %>
+  <%= link_to "Positive Change", trading_sites_path %>
+<% else %>
+  <%= link_to "Negative Change", trading_sites_path(:negative => true) %>
+<% end %>
+
+&nbsp;&nbsp;|&nbsp;&nbsp;
+
+<% if params[:is_main] == "true" %>
+  <%= link_to "All sites", trading_sites_path %>
+<% else %>
+  <%= link_to "Main site", trading_sites_path(:is_main => true) %>
+<% end %>
 <table class="table">
   <thead>
     <tr>

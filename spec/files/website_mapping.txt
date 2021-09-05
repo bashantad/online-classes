@@ -1,292 +1,114 @@
-{"ticker":"ADBE","website":"https://www.adobe.com"}
-{"ticker":"CRM","website":"https://www.salesforce.com"}
-{"ticker":"ORCL","website":"https://www.oracle.com"}
-{"ticker":"ACN","website":"https://www.accenture.com"}
-{"ticker":"SHOP","website":"https://www.shopify.com"}
-{"ticker":"SAP","website":"https://www.sap.com/about/company.html"}
-{"ticker":"SAPGF","website":"https://www.sap.com/about/company.html"}
-{"ticker":"INTU","website":"https://www.intuit.com"}
-{"ticker":"NOW","website":"https://www.servicenow.com"}
-{"ticker":"IBM","website":"https://www.ibm.com"}
-{"ticker":"SQ","website":"https://squareup.com"}
-{"ticker":"ZM","website":"https://zoom.us"}
-{"ticker":"INFY","website":"https://www.infosys.com"}
-{"ticker":"ADYYF","website":"https://www.adyen.com"}
-{"ticker":"ADYEY","website":"https://www.adyen.com"}
-{"ticker":"TEAM","website":"https://www.atlassian.com"}
-{"ticker":"SNOW","website":"https://www.snowflake.com"}
-{"ticker":"FIS","website":"https://www.fisglobal.com/en/about-us/company-history"}
-{"ticker":"FISV","website":"https://www.fiserv.com"}
-{"ticker":"UBER","website":"https://www.uber.com/us/en/about"}
-{"ticker":"ADSK","website":"https://www.autodesk.com"}
-{"ticker":"DASTY","website":"https://www.3ds.com"}
-{"ticker":"COIN","website":"https://www.coinbase.com"}
-{"ticker":"WDAY","website":"https://www.workday.com"}
-{"ticker":"CRWD","website":"https://www.crowdstrike.com"}
-{"ticker":"VMW","website":"https://www.vmware.com"}
-{"ticker":"DOCU","website":"https://www.docusign.com"}
-{"ticker":"FTNT","website":"www.fortinet.com"}
-{"ticker":"SNPS","website":"https://www.synopsys.com"}
-{"ticker":"PLTR","website":"https://www.palantir.com"}
-{"ticker":"WIT","website":"https://www.wipro.com"}
-{"ticker":"CDNS","website":"https://www.cadence.com"}
-{"ticker":"PANW","website":"https://www.paloaltonetworks.com"}
-{"ticker":"DDOG","website":"https://www.datadoghq.com"}
-{"ticker":"CTSH","website":"https://www.cognizant.com"}
-{"ticker":"OKTA","website":"https://www.okta.com"}
-{"ticker":"DIDI","website":"https://ir.didiglobal.com"}
-{"ticker":"NET","website":"https://www.cloudflare.com"}
-{"ticker":"HOOD","website":"https://robinhood.com"}
-{"ticker":"TTD","website":"https://www.thetradedesk.com"}
-{"ticker":"CGEMY","website":"https://www.capgemini.com/se-en"}
-{"ticker":"ZS","website":"https://www.zscaler.com"}
-{"ticker":"CAPMF","website":"https://www.capgemini.com/se-en"}
-{"ticker":"CNSWF","website":"https://www.csisoftware.com"}
-{"ticker":"FJTSY","website":"https://www.fujitsu.com/us"}
-{"ticker":"EPAM","website":"https://www.epam.com"}
-{"ticker":"U","website":"https://unity.com"}
-{"ticker":"PATH","website":"https://www.uipath.com"}
-{"ticker":"HUBS","website":"https://www.hubspot.com"}
-{"ticker":"ANSS","website":"https://www.ansys.com"}
-{"ticker":"PAYC","website":"https://paycom.com"}
-{"ticker":"AFTPY","website":"https://www.afterpay.com/index"}
-{"ticker":"AFTPF","website":"https://www.afterpay.com/index"}
-{"ticker":"APP","website":"https://www.applovin.com"}
-{"ticker":"CDW","website":"https://www.cdw.com"}
-{"ticker":"AMADY","website":"https://www.amadeus.com"}
-{"ticker":"AMADF","website":"https://www.amadeus.com"}
-{"ticker":"BILL","website":"https://www.bill.com"}
-{"ticker":"IT","website":"https://www.gartner.com"}
-{"ticker":"MDB","website":"https://www.mongodb.com"}
-{"ticker":"SPLK","website":"https://www.splunk.com"}
-{"ticker":"NTDTY","website":"https://www.nttdata.com"}
-{"ticker":"ZI","website":"https://www.zoominfo.com"}
-{"ticker":"VRSN","website":"https://www.verisign.com"}
-{"ticker":"RNG","website":"https://www.ringcentral.com"}
-{"ticker":"XM","website":"https://www.qualtrics.com"}
-{"ticker":"NRILY","website":"https://www.nri.com/en"}
-{"ticker":"GIB","website":"https://www.cgi.com"}
-{"ticker":"FLT","website":"https://www.fleetcor.com"}
-{"ticker":"NEXXY","website":"https://www.nexi.it"}
-{"ticker":"PAGS","website":"https://investors.pagseguro.com"}
-{"ticker":"BR","website":"https://www.broadridge.com"}
-{"ticker":"DLO","website":"dlocal.com"}
-{"ticker":"SSNC","website":"https://www.ssa.gov"}
-{"ticker":"TYL","website":"https://www.tylertech.com"}
-{"ticker":"DT","website":"https://www.dynatrace.com"}
-{"ticker":"NICE","website":"https://www.nice.com"}
-{"ticker":"BSY","website":"https://www.bentley.com"}
-{"ticker":"AKAM","website":"https://www.akamai.com"}
-{"ticker":"AFRM","website":"https://investors.affirm.com"}
-{"ticker":"NUVCF","website":"https://nuvei.com/en-us"}
-{"ticker":"COUP","website":"https://www.coupa.com"}
-{"ticker":"NUAN","website":"https://www.nuance.com"}
-{"ticker":"CHKP","website":"https://www.checkpoint.com"}
-{"ticker":"S","website":"https://www.sentinelone.com"}
-{"ticker":"CDAY","website":"https://www.ceridian.com"}
-{"ticker":"XROLF","website":"https://www.xero.com"}
-{"ticker":"LYFT","website":"https://www.lyft.com"}
-{"ticker":"CLVT","website":"https://clarivate.com"}
-{"ticker":"STNE","website":"https://www.stone.co"}
-{"ticker":"YMM","website":"https://www.permira.com/portfolio/full-truck-alliance"}
-{"ticker":"MNDY","website":"https://monday.com"}
-{"ticker":"NLOK","website":"https://www.nortonlifelock.com"}
-{"ticker":"AVLR","website":"https://www.avalara.com"}
-{"ticker":"PTC","website":"https://www.ptc.com"}
-{"ticker":"LSPD","website":"https://www.lightspeedhq.com/ecommerce"}
-{"ticker":"WTCHF","website":"https://www.wisetechglobal.com"}
-{"ticker":"ZEN","website":"https://www.zendesk.com"}
-{"ticker":"OTEX","website":"https://www.opentext.com"}
-{"ticker":"PCTY","website":"https://www.paylocity.com"}
-{"ticker":"CFLT","website":"https://www.confluent.io"}
-{"ticker":"ESTC","website":"https://www.elastic.co"}
-{"ticker":"ASAN","website":"https://asana.com"}
-{"ticker":"MQ","website":"https://www.marqeta.com"}
-{"ticker":"LDOS","website":"https://www.leidos.com"}
-{"ticker":"WPLCF","website":"https://wise.com/owners"}
-{"ticker":"GLOB","website":"https://www.globant.com"}
-{"ticker":"FICO","website":"https://www.fico.com"}
-{"ticker":"JKHY","website":"https://www.jackhenry.com"}
-{"ticker":"CTXS","website":"https://www.citrix.com"}
-{"ticker":"WIX","website":"https://www.wix.com"}
-{"ticker":"GDDY","website":"https://www.godaddy.com"}
-{"ticker":"PCOR","website":"https://www.procore.com"}
-{"ticker":"DBX","website":"https://www.dropbox.com"}
-{"ticker":"FIVN","website":"https://www.five9.com"}
-{"ticker":"FFIV","website":"https://www.f5.com"}
-{"ticker":"KGDEY","website":"https://en.kingdee.com/company/overview"}
-{"ticker":"SGGEF","website":"https://www.thesagegroup.com"}
-{"ticker":"BKI","website":"https://www.blackknightinc.com"}
-{"ticker":"TMSNY","website":"https://www.temenos.com"}
-{"ticker":"MCFE","website":"https://www.mcafee.com"}
-{"ticker":"PEGA","website":"https://www.pega.com"}
-{"ticker":"SGPYY","website":"https://www.thesagegroup.com"}
-{"ticker":"WIGBY","website":"https://www.wisetechglobal.com"}
-{"ticker":"MANH","website":"https://www.manh.com"}
-{"ticker":"BMBL","website":"https://bumble.com"}
-{"ticker":"PFPT","website":"https://www.proofpoint.com"}
-{"ticker":"DLB","website":"https://www.dolby.com"}
-{"ticker":"IS","website":"https://www.is.com"}
-{"ticker":"GWRE","website":"https://www.guidewire.com"}
-{"ticker":"SMAR","website":"https://www.smartsheet.com"}
-{"ticker":"DOX","website":"https://www.amdocs.com"}
-{"ticker":"G","website":"https://www.genpact.com"}
-{"ticker":"GDS","website":"https://investors.gds-services.com"}
-{"ticker":"DXC","website":"https://www.dxc.com"}
-{"ticker":"TIXT","website":"https://www.telusinternational.com"}
-{"ticker":"PLAN","website":"https://www.anaplan.com"}
-{"ticker":"CNXC","website":"https://www.concentrix.com"}
-{"ticker":"AZPN","website":"https://www.aspentech.com"}
-{"ticker":"WEX","website":"https://www.wexinc.com"}
-{"ticker":"DAVA","website":"https://www.endava.com"}
-{"ticker":"DNB","website":"https://www.merriam-webster.com/dictionary/dun"}
-{"ticker":"NTNX","website":"https://www.nutanix.com"}
-{"ticker":"APPN","website":"https://appian.com"}
-{"ticker":"TMICY","website":"https://www.trendmicro.com"}
-{"ticker":"CMSQY","website":"www.computershare.com/us"}
-{"ticker":"FOUR","website":"https://www.shift4.com"}
-{"ticker":"EEFT","website":"https://www.euronetworldwide.com"}
-{"ticker":"WK","website":"https://www.workiva.com"}
-{"ticker":"VRNS","website":"https://www.varonis.com"}
-{"ticker":"ITTOY","website":"https://www.ctc-g.co.jp/en"}
-{"ticker":"TISNF","website":"www.tis.com"}
-{"ticker":"CCCS","website":"https://cccis.com"}
-{"ticker":"MSTR","website":"https://www.microstrategy.com"}
-{"ticker":"TMVWY","website":"https://www.teamviewer.com"}
-{"ticker":"TMVWF","website":"https://www.teamviewer.com"}
-{"ticker":"JCOM","website":"https://www.j2global.com"}
-{"ticker":"CYBR","website":"https://www.cyberark.com"}
-{"ticker":"SNX","website":"https://www.synnexcorp.com"}
-{"ticker":"OLO","website":"https://www.olo.com"}
-{"ticker":"SPT","website":"https://sproutsocial.com"}
-{"ticker":"RPD","website":"https://www.rapid7.com"}
-{"ticker":"DSGX","website":"https://www.descartes.com"}
-{"ticker":"PYCR","website":"https://www.paycor.com"}
-{"ticker":"KC","website":"https://en.ksyun.com"}
-{"ticker":"BB","website":"https://www.blackberry.com"}
-{"ticker":"DOCN","website":"https://www.digitalocean.com"}
-{"ticker":"BL","website":"https://www.blackline.com"}
-{"ticker":"SQSP","website":"https://www.squarespace.com"}
-{"ticker":"VMEO","website":"https://vimeo.com"}
-{"ticker":"COMP","website":"https://cmpsinc.com"}
-{"ticker":"LAZR","website":"https://www.luminartech.com"}
-{"ticker":"PSFE","website":"https://www.paysafe.com"}
-{"ticker":"CACI","website":"https://www.caci.com"}
-{"ticker":"DCT","website":"https://www.duckcreek.com"}
-{"ticker":"STMP","website":"https://www.stamps.com"}
-{"ticker":"DRKTF","website":"https://www.darktrace.com"}
-{"ticker":"NCNO","website":"https://www.ncino.com"}
-{"ticker":"TDC","website":"https://www.teradata.com"}
-{"ticker":"SWCH","website":"https://www.switch.com"}
-{"ticker":"EVBG","website":"https://www.everbridge.com"}
-{"ticker":"NCR","website":"https://www.ncr.com"}
-{"ticker":"ALTR","website":"https://www.altair.com"}
-{"ticker":"NATI","website":"https://www.ni.com"}
-{"ticker":"AEXAY","website":"https://atos.net"}
-{"ticker":"AEXAF","website":"https://atos.net"}
-{"ticker":"MDLA","website":"https://www.medallia.com"}
-{"ticker":"TSYHY","website":"https://travelskyir.com/html/about_profile.php"}
-{"ticker":"PWSC","website":"https://investors.powerschool.com/resources/investor-faqs/default.aspx"}
-{"ticker":"TUYA","website":"https://www.tuya.com"}
-{"ticker":"DV","website":"https://doubleverify.com"}
-{"ticker":"TASK","website":"https://www.taskus.com"}
-{"ticker":"AI","website":"https://c3.ai"}
-{"ticker":"TSYHF","website":"https://travelskyir.com/html/about_profile.php"}
-{"ticker":"NEWR","website":"https://newrelic.com"}
-{"ticker":"CDK","website":"https://www.cdkglobal.com"}
-{"ticker":"FSLY","website":"https://www.fastly.com"}
-{"ticker":"TTEC","website":"https://www.ttec.com/about-us"}
-{"ticker":"APPS","website":"https://www.digitalturbine.com"}
-{"ticker":"XRX","website":"https://www.xerox.com"}
-{"ticker":"AYX","website":"https://www.alteryx.com"}
-{"ticker":"QTWO","website":"investors.q2ebanking.com/investor-relations/overview/default.aspx"}
-{"ticker":"ALIT","website":"https://alight.com"}
-{"ticker":"SAIC","website":"https://www.saic.com"}
-{"ticker":"VTEX","website":"https://vtex.com"}
-{"ticker":"SPSC","website":"https://www.spscommerce.com"}
-{"ticker":"TENB","website":"https://www.tenable.com"}
-{"ticker":"CLDR","website":"https://www.cloudera.com"}
-{"ticker":"RSKD","website":"https://www.riskified.com"}
-{"ticker":"SAIL","website":"https://www.sailpoint.com"}
-{"ticker":"MIME","website":"https://www.mimecast.com"}
-{"ticker":"LPSN","website":"https://www.liveperson.com"}
-{"ticker":"DUOL","website":"https://www.duolingo.com"}
-{"ticker":"QLYS","website":"https://www.qualys.com"}
-{"ticker":"FEYE","website":"https://www.fireeye.com"}
-{"ticker":"EVCM","website":"https://www.evercommerce.com"}
-{"ticker":"ENV","website":"https://www.envestnet.com"}
-{"ticker":"KXSCF","website":"https://www.kinaxis.com"}
-{"ticker":"CRNC","website":"https://cerence.com"}
-{"ticker":"FLYW","website":"https://www.flywire.com"}
-{"ticker":"APPF","website":"https://www.appfolio.com"}
-{"ticker":"BIGC","website":"https://www.bigcommerce.com"}
-{"ticker":"MSP","website":"https://www.datto.com"}
-{"ticker":"ALRM","website":"https://alarm.com"}
-{"ticker":"JAMF","website":"https://www.jamf.com"}
-{"ticker":"KNBE","website":"https://www.knowbe4.com"}
-{"ticker":"TOITF","website":"https://topicus.com"}
-{"ticker":"CXM","website":"https://www.sprinklr.com"}
-{"ticker":"EXLS","website":"https://www.exlservice.com"}
-{"ticker":"BOX","website":"https://www.box.com"}
-{"ticker":"RIOT","website":"https://www.riotblockchain.com"}
-{"ticker":"PRFT","website":"https://www.perficient.com"}
-{"ticker":"CSOD","website":"https://www.cornerstoneondemand.com"}
-{"ticker":"CD","website":"www.chindatagroup.com"}
-{"ticker":"ACIW","website":"https://www.aciworldwide.com"}
-{"ticker":"FROG","website":"https://jfrog.com"}
-{"ticker":"STWRY","website":"https://www.softwareag.com"}
-{"ticker":"CVLT","website":"https://www.commvault.com"}
-{"ticker":"SABR","website":"https://www.sabre.com"}
-{"ticker":"YOU","website":"https://ir.clearme.com"}
-{"ticker":"BLND","website":"https://blend.com"}
-{"ticker":"MTTR","website":"https://matterport.com"}
-{"ticker":"SEMR","website":"https://www.semrush.com"}
-{"ticker":"NSIT","website":"https://www.insight.com/en_US/home.html"}
-{"ticker":"PD","website":"https://www.pagerduty.com"}
-{"ticker":"API","website":"https://investor.agora.io"}
-{"ticker":"ALMFF","website":"https://www.altium.com"}
-{"ticker":"PAYO","website":"https://www.payoneer.com"}
-{"ticker":"BLKB","website":"https://www.blackbaud.com"}
-{"ticker":"VERX","website":"https://www.vertexinc.com"}
-{"ticker":"EVTC","website":"https://www.evertecinc.com/en"}
-{"ticker":"STEM","website":"https://www.stem.com"}
-{"ticker":"KNNNF","website":"https://www.kainos.com"}
-{"ticker":"MANT","website":"https://www.mantech.com"}
-{"ticker":"RAMP","website":"https://liveramp.com"}
-{"ticker":"LAW","website":"https://www.csdisco.com"}
-{"ticker":"CALX","website":"https://www.calix.com"}
-{"ticker":"PAY","website":"https://www.paymentus.com"}
-{"ticker":"KHOTF","website":"https://kahoot.com/investor"}
-{"ticker":"ACVA","website":"https://www.acvauctions.com"}
-{"ticker":"MNTV","website":"https://www.momentive.com"}
-{"ticker":"VRNT","website":"https://www.verint.com"}
-{"ticker":"NWITY","website":"https://investors.networkinternational.ae"}
-{"ticker":"DOMO","website":"https://www.domo.com"}
-{"ticker":"RXT","website":"https://www.rackspace.com"}
-{"ticker":"ETWO","website":"https://www.e2open.com"}
-{"ticker":"EGHSF","website":"https://www.enghouse.com"}
-{"ticker":"SWI","website":"https://www.solarwinds.com"}
-{"ticker":"EGHT","website":"https://www.8x8.com"}
-{"ticker":"DCBO","website":"https://www.docebo.com"}
-{"ticker":"BAND","website":"https://www.bandwidth.com"}
-{"ticker":"VNET","website":"ir.21vianet.com"}
-{"ticker":"DYNDF","website":"https://www.merriam-webster.com/dictionary/dye"}
-{"ticker":"SPMYY","website":"https://www.spirent.com"}
-{"ticker":"NABL","website":"https://www.n-able.com"}
-{"ticker":"ALKT","website":"https://www.alkami.com"}
-{"ticker":"MKTW","website":"https://marketwiseinc.com"}
-{"ticker":"INTA","website":"https://www.intapp.com"}
-{"ticker":"SUMO","website":"https://www.sumologic.com"}
-{"ticker":"TLS","website":"https://www.telos.com"}
-{"ticker":"SYKE","website":"https://www.sykes.com"}
-{"ticker":"PING","website":"https://www.pingidentity.com"}
-{"ticker":"WKME","website":"https://www.walkme.com"}
-{"ticker":"MCFUF","website":"https://www.microfocus.com"}
-{"ticker":"MLNK","website":"https://www.meridianlink.com"}
-{"ticker":"DNACF","website":"https://en.wikipedia.org/wiki/DeNA"}
-{"ticker":"NTCT","website":"https://www.netscout.com"}
-{"ticker":"ZUO","website":"https://www.zuora.com"}
-{"ticker":"RPAY","website":"https://www.repay.com"}
-{"ticker":"PRGS","website":"https://www.progress.com"}
-{"ticker":"VYGVF","website":"https://www.investvoyager.com/investorrelations/overview"}
-{"ticker":"MFGP","website":"https://www.microfocus.com"}
+{"ticker":"EPAY","name":"Bottomline Technologies, Inc.","website":"https://bottomline.com"}
+{"ticker":"BASE","name":"Couchbase, Inc.","website":"https://www.couchbase.com"}
+{"ticker":"LTCH","name":"Latch, Inc.","website":"https://www.latch.com"}
+{"ticker":"MFGP","name":"Micro Focus International plc","website":"https://www.microfocus.com"}
+{"ticker":"ESKEF","name":"Esker SA","website":"https://www.esker.com"}
+{"ticker":"AVPT","name":"AvePoint, Inc.","website":"https://www.avepoint.com"}
+{"ticker":"ISMAY","name":"Indra Sistemas, S.A.","website":"https://www.indracompany.com/en"}
+{"ticker":"PRO","name":"PROS Holdings, Inc.","website":"https://ir.pros.com"}
+{"ticker":"ASOZY","name":"Asseco Poland S.A.","website":"https://pl.asseco.com/en"}
+{"ticker":"GDYN","name":"Grid Dynamics Holdings, Inc.","website":"https://www.griddynamics.com"}
+{"ticker":"PAR","name":"PAR Technology Corporation","website":"https://www.partech.com"}
+{"ticker":"QADA","name":"QAD Inc.","website":"https://www.qad.com"}
+{"ticker":"CGNT","name":"Cognyte Software Ltd.","website":"https://www.cognyte.com"}
+{"ticker":"OCFT","name":"OneConnect Financial Technology Co., Ltd.","website":"https://ocft.com/index.php?s=en"}
+{"ticker":"BTRS","name":"BTRS Holdings Inc.","website":"https://investors.billtrust.com/ir-resources/investor-faqs"}
+{"ticker":"AVYA","name":"Avaya Holdings Corp.","website":"https://avaya.com"}
+{"ticker":"YEXT","name":"Yext, Inc.","website":"https://www.yext.com"}
+{"ticker":"RDWR","name":"Radware Ltd.","website":"https://www.radware.com"}
+{"ticker":"KLTR","name":"Kaltura, Inc.","website":"https://corp.kaltura.com"}
+{"ticker":"UIS","name":"Unisys Corporation","website":"https://www.unisys.com"}
+{"ticker":"BPRMF","name":"Blue Prism Group plc","website":"https://www.blueprism.com"}
+{"ticker":"EB","name":"Eventbrite, Inc.","website":"https://www.eventbrite.com"}
+{"ticker":"CSVI","name":"Computer Services, Inc.","website":"https://www.csiweb.com"}
+{"ticker":"CSGS","name":"CSG Systems International, Inc.","website":"https://www.csgi.com"}
+{"ticker":"CNDT","name":"Conduent Incorporated","website":"https://www.conduent.com"}
+{"ticker":"SCWX","name":"SecureWorks Corp.","website":"https://www.secureworks.com"}
+{"ticker":"SPNS","name":"Sapiens International Corporation N.V.","website":"https://www.sapiens.com"}
+{"ticker":"CYXT","name":"Cyxtera Technologies, Inc.","website":"https://www.cyxtera.com"}
+{"ticker":"PLUS","name":"ePlus inc.","website":"https://www.eplus.com"}
+{"ticker":"FORTY","name":"Formula Systems (1985) Ltd.","website":"https://www.formulasystems.com"}
+{"ticker":"PUBM","name":"PubMatic, Inc.","website":"https://pubmatic.com"}
+{"ticker":"GSKY","name":"GreenSky, Inc.","website":"https://www.greensky.com"}
+{"ticker":"YALA","name":"Yalla Group Limited","website":"https://www.yallatech.ae"}
+{"ticker":"CIOXY","name":"Cielo S.A.","website":"www.cielo.co.za"}
+{"ticker":"PHPYF","name":"Pushpay Holdings Limited","website":"https://pushpay.com"}
+{"ticker":"MTLS","name":"Materialise NV","website":"https://www.materialise.com"}
+{"ticker":"ZETA","name":"Zeta Global Holdings Corp.","website":"https://zetaglobal.com"}
+{"ticker":"AGYS","name":"Agilysys, Inc.","website":"https://www.agilysys.com"}
+{"ticker":"PAYA","name":"Paya Holdings Inc.","website":"https://paya.com"}
+{"ticker":"MODN","name":"Model N, Inc.","website":"https://www.modeln.com"}
+{"ticker":"APXYY","name":"Appen Limited","website":"https://appen.com"}
+{"ticker":"WETG","name":"WeTrade Group Inc.","website":"https://www.wetradegroup.com"}
+{"ticker":"EVOP","name":"EVO Payments, Inc.","website":"https://evopayments.com/about"}
+{"ticker":"UPLD","name":"Upland Software, Inc.","website":"https://uplandsoftware.com"}
+{"ticker":"BAINF","name":"BASE, Inc.","website":"https://basehq.com"}
+{"ticker":"GB","name":"Global Blue Group Holding AG","website":"https://www.globalblue.com/corporate"}
+{"ticker":"OPRA","name":"Opera Limited","website":"https://investor.opera.com"}
+{"ticker":"ATEN","name":"A10 Networks, Inc.","website":"https://www.a10networks.com"}
+{"ticker":"ONTF","name":"ON24, Inc.","website":"https://www.on24.com"}
+{"ticker":"MITK","name":"Mitek Systems, Inc.","website":"https://www.miteksystems.com"}
+{"ticker":"MGIC","name":"Magic Software Enterprises Ltd.","website":"https://www.magicsoftware.com"}
+{"ticker":"TMOAY","name":"TomTom N.V.","website":"https://www.tomtom.com/en_gb"}
+{"ticker":"LIFX","name":"Life360, Inc.","website":"https://www.life360.com"}
+{"ticker":"NPACY","name":"Quadient S.A.","website":"https://www.quadient.com"}
+{"ticker":"KARO","name":"Karooooo Ltd.","website":"https://www.karooooo.com"}
+{"ticker":"APPEF","name":"Appen Limited","website":"https://appen.com"}
+{"ticker":"IIIV","name":"i3 Verticals, Inc.","website":"https://www.i3verticals.com"}
+{"ticker":"HMBL","name":"HUMBL, Inc.","website":"https://www.humblpay.com"}
+{"ticker":"RAAS","name":"Cloopen Group Holding Limited","website":"https://ir.yuntongxun.com"}
+{"ticker":"INST","name":"Instructure Holdings, Inc.","website":"https://www.instructure.com"}
+{"ticker":"EBIX","name":"Ebix, Inc.","website":"https://www.ebix.com"}
+{"ticker":"PXPHF","name":"Pexip Holding ASA","website":"https://investor.pexip.com"}
+{"ticker":"DBD","name":"Diebold Nixdorf, Incorporated","website":"https://www.dieboldnixdorf.com/en-us"}
+{"ticker":"RMNI","name":"Rimini Street, Inc.","website":"https://www.riministreet.com"}
+{"ticker":"AMSWA","name":"American Software, Inc.","website":"https://www.amsoftware.com"}
+{"ticker":"PDFS","name":"PDF Solutions, Inc.","website":"https://www.pdf.com"}
+{"ticker":"TCX","name":"Tucows Inc.","website":"https://tucows.com"}
+{"ticker":"ECOM","name":"ChannelAdvisor Corporation","website":"https://www.channeladvisor.com"}
+{"ticker":"OSPN","name":"OneSpan Inc.","website":"https://www.onespan.com"}
+{"ticker":"CTLP","name":"Cantaloupe, Inc.","website":"https://www.cantaloupe.com"}
+{"ticker":"RLLMF","name":"Real Matters Inc.","website":"https://realmatters.com"}
+{"ticker":"SLVFF","name":"Silverlake Axis Ltd","website":"https://silverlakeaxis.com"}
+{"ticker":"ZENV","name":"Zenvia Inc.","website":"https://investors.zenvia.com"}
+{"ticker":"PKKFF","name":"Peak Fintech Group Inc.","website":"peakfintechgroup.com"}
+{"ticker":"BTBT","name":"Bit Digital, Inc.","website":"https://bit-digital.com"}
+{"ticker":"VERI","name":"Veritone, Inc.","website":"https://www.veritone.com"}
+{"ticker":"IMXI","name":"International Money Express, Inc.","website":"https://corporate.intermexonline.com/en"}
+{"ticker":"LVOX","name":"LiveVox Holding, Inc.","website":"https://livevox.com"}
+{"ticker":"TCYSF","name":"Tecsys Inc.","website":"https://www.tecsys.com"}
+{"ticker":"ABST","name":"Absolute Software Corporation","website":"https://www.absolute.com"}
+{"ticker":"KPLT","name":"Katapult Holdings, Inc.","website":"https://www.katapult.com/about-us"}
+{"ticker":"HCKT","name":"The Hackett Group, Inc.","website":"https://www.thehackettgroup.com"}
+{"ticker":"SEEMF","name":"Seeing Machines Limited","website":"https://www.seeingmachines.com"}
+{"ticker":"CISO","name":"Cerberus Cyber Sentinel Corporation","website":"https://www.cerberussentinel.com"}
+{"ticker":"ALLT","name":"Allot Ltd.","website":"https://www.allot.com"}
+{"ticker":"DPLS","name":"DarkPulse, Inc.","website":"https://darkpulse.com"}
+{"ticker":"SFBTF","name":"SB Technology Corp.","website":"https://www.sbtechnology.net"}
+{"ticker":"QIWI","name":"QIWI plc","website":"https://www.investor.qiwi.com"}
+{"ticker":"SPRT","name":"Support.com, Inc.","website":"https://www.support.com"}
+{"ticker":"SOS","name":"SOS Limited","website":"https://service.sosyun.com"}
+{"ticker":"DMRC","name":"Digimarc Corporation","website":"https://www.digimarc.com"}
+{"ticker":"RWWI","name":"Rand Worldwide, Inc.","website":"https://rand.com"}
+{"ticker":"CLSK","name":"CleanSpark, Inc.","website":"https://www.cleanspark.com"}
+{"ticker":"BSKZF","name":"Bambuser AB (publ)","website":"https://bambuser.com"}
+{"ticker":"JFU","name":"9F Inc.","website":"https://ir.9fgroup.com"}
+{"ticker":"OG","name":"Onion Global Limited","website":"https://www.iposcoop.com/ipo/onion-global-limited"}
+{"ticker":"JG","name":"Aurora Mobile Limited","website":"https://ir.jiguang.cn/corporate-profile"}
+{"ticker":"CRGE","name":"Charge Enterprises, Inc.","website":"https://www.charge.enterprises"}
+{"ticker":"SAPGF","name":"SAP SE","website":"https://www.sap.com/about/company.html"}
+{"ticker":"ADYEY","name":"Adyen N.V.","website":"https://www.adyen.com"}
+{"ticker":"WIT","name":"Wipro Limited","website":"https://www.wipro.com"}
+{"ticker":"AMADF","name":"Amadeus IT Group, S.A.","website":"https://www.amadeus.com"}
+{"ticker":"WIGBY","name":"WiseTech Global Limited","website":"https://www.wisetechglobal.com"}
+{"ticker":"SGPYY","name":"The Sage Group plc","website":"https://www.thesagegroup.com"}
+{"ticker":"AVASF","name":"Avast Plc","website":"https://investors.avast.com"}
+{"ticker":"AEXAF","name":"Atos SE","website":"https://atos.net"}
+{"ticker":"TSYHF","name":"TravelSky Technology Limited","website":"https://travelskyir.com/html/index.php"}
+{"ticker":"CFTLF","name":"Chinasoft International Limited","website":"www.chinasofti.com/en"}
+{"ticker":"SPNUF","name":"Spirent Communications plc","website":"https://www.spirent.com"}
+{"ticker":"CHNVF","name":"China Youzan Limited","website":"https://www.chinayouzan.com/companyInfo/en"}
+{"ticker":"RSTAY","name":"RIB Software SE","website":"https://www.rib-software.com/en/home"}
+{"ticker":"PRCH","name":"Porch Group, Inc.","website":"https://porch.com"}
+{"ticker":"YHEKF","name":"Yeahka Limited","website":"https://www.yeahka.com/en"}
+{"ticker":"CTSDF","name":"Converge Technology Solutions Corp.","website":"https://convergetp.com"}

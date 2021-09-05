@@ -13,9 +13,8 @@ class Stock < ApplicationRecord
 		"manual: #{main_website}, automated: #{display_website}"
 	end
 
-
 	def display_website
-		website.to_s.gsub("https://", "").gsub("www.", "").split("/").first.try(:downcase).to_s
+		Site.extract_website(website)
 	end
 
 	def display_name
