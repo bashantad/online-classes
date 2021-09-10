@@ -21,7 +21,7 @@ class Site < ApplicationRecord
 				url = url.strip
 				next if url.include?("http:")
 				next if stock.sites.where(:company_url => url).present?
-				stock.sites.create(:company_url => website, is_main: false)
+				stock.sites.create(:company_url => url, is_main: false)
 			end
 		end
 	end
