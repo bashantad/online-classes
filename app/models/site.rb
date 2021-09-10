@@ -18,6 +18,8 @@ class Site < ApplicationRecord
 			subsidiaries.split(",").each do |url|
 				url = Site.extract_website(url)
 				next if url.blank?
+				url = url.strip
+				next if url.include?("http:")
 				next if stock.sites.where(:company_url => url).present?
 				stock.sites.create(:company_url => website, is_main: false)
 			end
