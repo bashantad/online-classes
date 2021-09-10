@@ -78,7 +78,7 @@ class Trading::StocksController < Trading::BaseController
     private
 
     def stock_params
-        params.require(:stock).permit(:main_website, :subsidiaries)
+        params.require(:stock).permit(:main_website, :subsidiaries, :international_sites)
     end
 
     def read_csv_data
