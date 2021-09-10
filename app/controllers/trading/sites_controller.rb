@@ -2,13 +2,14 @@ class Trading::SitesController < Trading::BaseController
 	def index
 		stock_urls = Stock.all.collect(&:display_website).compact.uniq
 		if params[:is_main] == "true"
-			sites = Site.where(:company_url => stock_urls, :is_main => true)
+			sites = Site.where(:company_url => stock_urls, :is_main => true).order("stock_id")
 		else
-			sites = Site.where(:company_url => stock_urls)
+			sites = Site.where(:company_url => stock_urls).order("stock_id")
 		end
 		
 		abs_percentage = (params[:abs_percentage] || 20).to_i
-		@histories = SiteHistory.where("created_at > ?", 30.days.ago).where(:site_id => sites.collect(&:id)).sort do |a, b|
+		last_number_of_days = (params[:last_number_of_days] || 30).to_i
+		@histories = SiteHistory.where("created_at > ?", last_number_of_days.days.ago).where(:site_id => sites.collect(&:id)).sort do |a, b|
 			a.abs_percentage <=> b.abs_percentage
 		end.select do |site|
 			abs = site.abs_percentage > abs_percentage
