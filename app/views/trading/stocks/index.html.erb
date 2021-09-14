@@ -67,7 +67,7 @@
 										<% if stock.display_website_diff.present? %>
 											<span style='color:red'><%= stock.display_website_diff %>
 										<% else %>
-											<%= link_to stock.main_website, "https://alexa.com/siteinfo/#{stock.main_website}", target: '_blank' if stock.main_website.present? %>
+											<%= stock.main_website %>
 										<% end %>
 									</td>
 									<td>

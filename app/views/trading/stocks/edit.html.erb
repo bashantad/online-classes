@@ -4,6 +4,7 @@
   <div class="card mx-auto">
     <!-- Form -->
     <h3><%= @stock.ticker_with_name %></h3>
+    <%= link_to "Alexa link", "https://alexa.com/siteinfo/#{@stock.main_website}", target: '_blank' if @stock.main_website.present? %>
     <%= render "edit_stock_form" %>
     <!-- End Card -->
     <!-- SVG Elements -->
