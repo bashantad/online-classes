@@ -20,4 +20,43 @@ class Trading::SitesController < Trading::BaseController
 			abs && increasing
 		end.reverse
 	end
+
+	def static
+		@sites = [
+			"lennar.com",
+			"erytech.com",
+			"inventivapharma.com",
+			"autozone.com",
+			"neogen.com",
+			"apogeedigital.com",
+			"fedex.com",
+			"adobe.com",
+			"auroragov.org",
+			"stitchfix.com",
+			"isoray.com",
+			"innovage.com",
+			"generalmills.com",
+			"gmtresearch.com",
+			"blackberry.com",
+			"kbhome.com",
+			"hbfuller.com",
+			"steelcase.com",
+			"vintagewineestates.com",
+			"accenture.com",
+			"darden.com",
+			"riteaid.com",
+			"endava.com",
+			"dynatronics.com",
+			"nike.com",
+			"costco.com",
+			"trip.com",
+			"vail.com",
+			"progress.com",
+			"aar.org",
+			"calamp.com",
+			"agtc.com",
+			"inmedpharma.com",
+			"researchsolutions.com",
+		]
+	end
 end

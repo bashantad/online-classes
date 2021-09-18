@@ -1,0 +1,25 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Company</th>
+      <th>Links</th>      
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sites.each do |site| %>
+      <tr>
+        <td>
+            <%= site %>
+        </td>
+        <td>
+          <%= link_to "Alexa", "https://alexa.com/siteinfo/#{site}#section_traffic", target: '_blank' %>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <%= link_to "Similarweb", "https://www.similarweb.com/website/#{site}", :target => "_blank" %>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <%= link_to "Google trends", "https://trends.google.com/trends/explore?q=#{site.gsub('.com', '')}", :target => "_blank" %>
+        </td>        
+      </tr>
+    <% end %>
+  </tbody>
+</table>

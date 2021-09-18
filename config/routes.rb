@@ -66,6 +66,7 @@ Rails.application.routes.draw do
   	end
 
   	resources :sites do
+  		get :static, on: :collection
   		resources :site_histories
   	end  	
   end
