@@ -54,8 +54,18 @@
 									<td>
 										<%= link_to stock.name, trading_stock_path(stock) %>
 									</td>
-									<td><%= stock.international_sites %></td>
-									<td><%= stock.subsidiaries %></td>
+									<td>
+	                    <% if stock.international_sites.present? %>
+	                    	<% sites = stock.international_sites.split("\r\n") %>
+	                    	<%= sites[0..1].join(", ") %>... (<%= sites.count %>)
+											<% end %>
+									</td>
+									<td>
+  										<% if stock.subsidiaries.present? %>
+												<% sites = stock.subsidiaries.split(",") %>
+	                    	<%= sites[0..1].join(", ") %>... (<%= sites.count %>)
+											<% end %>
+									</td>
 									<td>
 										<%= link_to "Subsidiaries", "https://www.google.com/search?q=#{stock.name} subsidiaries", :target => "_blank" %>
 										&nbsp;&nbsp;|&nbsp;&nbsp;
