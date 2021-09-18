@@ -9,8 +9,10 @@ class Trading::StocksController < Trading::BaseController
         elsif params[:incomplete_dates].present?
             stock_ids = EarningHistory.select("stock_id").distinct("stock_id").collect(&:stock_id).uniq
             stocks = Stock.where.not(:id => stock_ids)
-        elsif params[:incomplete_website].present?
+        elsif params[:incomplete_international_sites].present?
             stocks = Stock.where(:main_website => nil)
+        elsif params[:incomplete_subsidiaries].present?
+            stocks = Stock.where(:subsidiaries => nil)
         else
             stocks = Stock.all
         end
