@@ -461,3 +461,96 @@
 {"ticker":"FWONK","name":"Formula One Group","website":"https://www.formula1.com"}
 {"ticker":"FWONA","name":"Formula One Group","website":"https://www.formula1.com"}
 {"ticker":"MTRAF","name":"Metro Inc.","website":"https://corpo.metro.ca/en"}
+{"ticker":"CRTSF","name":"Chr. Hansen Holding A/S","website":"https://www.chr-hansen.com"}
+{"ticker":"BABWF","name":"International Consolidated Airlines Group, S.A.","website":"https://www.iairgroup.com/en/investors-and-shareholders"}
+{"ticker":"DKS","name":"DICK'S Sporting Goods, Inc.","website":"https://www.dickssportinggoods.com"}
+{"ticker":"IKTSY","name":"Intertek Group plc","website":"https://www.intertek.com"}
+{"ticker":"EBR","name":"Centrais Elétricas Brasileiras S.A. - Eletrobrás","website":"https://eletrobras.com"}
+{"ticker":"CHRW","name":"C.H. Robinson Worldwide, Inc.","website":"https://www.chrobinson.com"}
+{"ticker":"COCSF","name":"Coca-Cola FEMSA, S.A.B. de C.V.","website":"https://www.dnb.com/business-directory/company..."}
+{"ticker":"FIVN","name":"Five9, Inc.","website":"https://www.five9.com"}
+{"ticker":"BZLFY","name":"Bunzl plc","website":"https://www.bunzl.com"}
+{"ticker":"WIX","name":"Wix.com Ltd.","website":"https://www.wix.com"}
+{"ticker":"SIELY","name":"Shanghai Electric Group Company Limited","website":"www.shanghai-electric.com"}
+{"ticker":"ASXFF","name":"ASX Limited","website":"https://www2.asx.com.au"}
+{"ticker":"ASXFY","name":"ASX Limited","website":"https://www2.asx.com.au"}
+{"ticker":"EMRAF","name":"Emera Incorporated","website":"https://www.emera.com"}
+{"ticker":"EBR-B","name":"Centrais Elétricas Brasileiras S.A. - Eletrobrás","website":"https://eletrobras.com"}
+{"ticker":"SNMCY","name":"Suncorp Group Limited","website":"https://www.suncorpgroup.com.au"}
+{"ticker":"CF","name":"CF Industries Holdings, Inc.","website":"https://www.cfindustries.com"}
+{"ticker":"AXON","name":"Axon Enterprise, Inc.","website":"https://www.axon.com"}
+{"ticker":"ALNPY","name":"ANA Holdings Inc.","website":"https://www.ana.co.jp/group/en"}
+{"ticker":"GUNGF","name":"GungHo Online Entertainment, Inc.","website":"https://www.gunghoonline.com"}
+{"ticker":"GNGBF","name":"Getinge AB","website":"https://www.getinge.com/int"}
+{"ticker":"ICAGY","name":"International Consolidated Airlines Group, S.A.","website":"https://www.iairgroup.com/en/investors-and-shareholders"}
+{"ticker":"RMYHY","name":"Ramsay Health Care Limited","website":"https://www.ramsayhealth.com"}
+{"ticker":"SRTTY","name":"ZOZO, Inc.","website":"https://corp.zozo.com/en"}
+{"ticker":"SATLF","name":"ZOZO, Inc.","website":"https://corp.zozo.com/en"}
+{"ticker":"PENN","name":"Penn National Gaming, Inc.","website":"https://www.pngaming.com"}
+{"ticker":"DAR","name":"Darling Ingredients Inc.","website":"https://www.darlingii.com"}
+{"ticker":"LAMR","name":"Lamar Advertising Company (REIT)","website":"https://www.lamar.com"}
+{"ticker":"FICO","name":"Fair Isaac Corporation","website":"https://www.fico.com"}
+{"ticker":"STJPF","name":"St. James's Place plc","website":"https://www.sjp.co.uk"}
+{"ticker":"TS","name":"Tenaris S.A.","website":"www.tenaris.com"}
+{"ticker":"BKHYY","name":"Bank Hapoalim B.M.","website":"https://www.bhiusa.com"}
+{"ticker":"EVRZF","name":"EVRAZ plc","website":"www.evraz.com"}
+{"ticker":"TME","name":"Tencent Music Entertainment Group","website":"https://ir.tencentmusic.com"}
+{"ticker":"MORN","name":"Morningstar, Inc.","website":"https://www.morningstar.com"}
+{"ticker":"IKTSF","name":"Intertek Group plc","website":"https://www.intertek.com"}
+{"ticker":"PSMMY","name":"Persimmon Plc","website":"https://www.persimmonhomes.com/corporate"}
+{"ticker":"CBUMY","name":"China National Building Material Company Limited","website":"https://www.cnbm.com.cn/EN"}
+{"ticker":"UHS","name":"Universal Health Services, Inc.","website":"https://uhs.com/?redirect=www.uhsinc.com"}
+{"ticker":"GDDY","name":"GoDaddy Inc.","website":"https://www.godaddy.com"}
+{"ticker":"ICHGF","name":"InterContinental Hotels Group PLC","website":"https://www.ihgplc.com"}
+{"ticker":"ASGLY","name":"AGC Inc.","website":"https://www.agc.com/en"}
+{"ticker":"ONON","name":"On Holding AG","website":"https://www.on-running.com"}
+{"ticker":"KNNGF","name":"KION GROUP AG","website":"https://www.kiongroup.com/en"}
+{"ticker":"KOF","name":"Coca-Cola FEMSA, S.A.B. de C.V.","website":"https://www.dnb.com/business-directory/company..."}
+{"ticker":"IHG","name":"InterContinental Hotels Group PLC","website":"https://www.ihgplc.com"}
+{"ticker":"HST","name":"Host Hotels \u0026 Resorts, Inc.","website":"https://www.hosthotels.com"}
+{"ticker":"FMC","name":"FMC Corporation","website":"https://www.fmc.com"}
+{"ticker":"EQH","name":"Equitable Holdings, Inc.","website":"equitableholdings.com"}
+{"ticker":"TBVPF","name":"Thai Beverage Public Company Limited","website":"www.thaibev.com"}
+{"ticker":"XYIGF","name":"Xinyi Glass Holdings Limited","website":"https://www.xinyiglass.com/en"}
+{"ticker":"OPHLY","name":"Ono Pharmaceutical Co., Ltd.","website":"https://www.ono-pharma.com"}
+{"ticker":"GNGBY","name":"Getinge AB","website":"https://www.getinge.com/int"}
+{"ticker":"NTCO","name":"Natura \u0026Co Holding S.A.","website":"https://www.natura.io"}
+{"ticker":"STLD","name":"Steel Dynamics, Inc.","website":"https://www.steeldynamics.com"}
+{"ticker":"OPHLF","name":"Ono Pharmaceutical Co., Ltd.","website":"https://www.ono-pharma.com"}
+{"ticker":"SITIY","name":"SITC International Holdings Company Limited","website":"www.sitc.com/en"}
+{"ticker":"OPEN","name":"Opendoor Technologies Inc.","website":"https://investor.opendoor.com"}
+{"ticker":"FFIV","name":"F5 Networks, Inc.","website":"https://www.f5.com"}
+{"ticker":"IS","name":"ironSource Ltd.","website":"https://www.is.com"}
+{"ticker":"ALLE","name":"Allegion plc","website":"https://www.allegion.com"}
+{"ticker":"PHM","name":"PulteGroup, Inc.","website":"https://www.pultegroupinc.com"}
+{"ticker":"AEM","name":"Agnico Eagle Mines Limited","website":"https://www.agnicoeagle.com"}
+{"ticker":"MPW","name":"Medical Properties Trust, Inc.","website":"https://investor-relations.medicalpropertiestrust.com"}
+{"ticker":"STNE","name":"StoneCo Ltd.","website":"https://www.stone.co"}
+{"ticker":"CCHGY","name":"Coca-Cola HBC AG","website":"https://www.coca-colahellenic.com"}
+{"ticker":"QGEN","name":"QIAGEN N.V.","website":"https://www.qiagen.com/us"}
+{"ticker":"TREX","name":"Trex Company, Inc.","website":"https://www.trex.com"}
+{"ticker":"MONDY","name":"Mondi plc","website":"https://www.mondigroup.com"}
+{"ticker":"MONDF","name":"Mondi plc","website":"https://www.mondigroup.com"}
+{"ticker":"MTUAY","name":"MTU Aero Engines AG","website":"https://www.mtu.de"}
+{"ticker":"GFL","name":"GFL Environmental Inc.","website":"https://gflenv.com"}
+{"ticker":"FQVLF","name":"First Quantum Minerals Ltd.","website":"https://first-quantum.com"}
+{"ticker":"GGG","name":"Graco Inc.","website":"https://www.graco.com"}
+{"ticker":"PCOR","name":"Procore Technologies, Inc.","website":"https://www.procore.com"}
+{"ticker":"LPLA","name":"LPL Financial Holdings Inc.","website":"https://www.lpl.com"}
+{"ticker":"RANJY","name":"Randstad N.V.","website":"https://www.randstad.com"}
+{"ticker":"IAC","name":"IAC/InterActiveCorp","website":"https://www.iac.com"}
+{"ticker":"HGKGY","name":"Power Assets Holdings Limited","website":"www.powerassets.com"}
+{"ticker":"ARRPY","name":"Aeroports de Paris SA","website":"https://www.parisaeroport.fr/en"}
+{"ticker":"AEOXF","name":"Aeroports de Paris SA","website":"https://www.parisaeroport.fr/en"}
+{"ticker":"DBX","name":"Dropbox, Inc.","website":"https://www.dropbox.com"}
+{"ticker":"PSMMF","name":"Persimmon Plc","website":"https://www.persimmonhomes.com/corporate"}
+{"ticker":"QBIEY","name":"QBE Insurance Group Limited","website":"https://www.qbe.com"}
+{"ticker":"CVVTF","name":"Covestro AG","website":"https://www.covestro.com"}
+{"ticker":"EUXTF","name":"Euronext N.V.","website":"https://www.euronext.com"}
+{"ticker":"GRBMF","name":"Grupo Bimbo, S.A.B. de C.V.","website":"https://www.grupobimbo.com/en"}
+{"ticker":"YRAIF","name":"Yara International ASA","website":"https://www.yara.com"}
+{"ticker":"ARES","name":"Ares Management Corporation","website":"https://www.aresmgmt.com"}
+{"ticker":"MTUAF","name":"MTU Aero Engines AG","website":"https://www.mtu.de"}
+{"ticker":"JLL","name":"Jones Lang LaSalle Incorporated","website":"https://www.us.jll.com"}
+{"ticker":"DVA","name":"DaVita Inc.","website":"https://www.davita.com"}
+{"ticker":"KIGRY","name":"KION GROUP AG","website":"https://www.kiongroup.com/en"}
