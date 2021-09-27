@@ -17,7 +17,7 @@ class StockImportService
 
 		def read_stock_csv
 			return @stocks if defined?@data
-			file_path = get_full_path("software-companies.csv")
+			file_path = get_full_path("companies-and-their-symbols.csv")
 			data = CSV.read(file_path)
 			data.shift
 			@stocks = data
@@ -43,7 +43,7 @@ class StockImportService
 				:name => name,
 				:market_cap => market_cap,
 				:volume => volume,
-				:industry => "Software",
+				:industry => "",
 			}
 			stock = Stock.new(record)
 			stock.save

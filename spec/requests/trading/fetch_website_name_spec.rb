@@ -15,7 +15,7 @@ type: :request do
 	end	
 
 	def company_names
-		file_path = Rails.root.join("spec/files/software-companies.csv")
+		file_path = Rails.root.join("spec/files/companies-and-their-symbols.csv")
 		companies = []
 		existings = []
 		CSV.foreach(file_path,

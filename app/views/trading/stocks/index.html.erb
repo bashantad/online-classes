@@ -37,12 +37,22 @@
 								<tr>
 									<th> Ticker</th>
 									<th> Name </th>
+									<th> 
+											Stock price (<%= link_to "Incomplete", trading_stocks_path(:incomplete_price => true) %>)
+									</th>
+									<th>
+											Earning dates (<%= link_to "Incomplete", trading_stocks_path(:incomplete_dates => true) %>)
+									</th>
+									<th>
+										Website (<%= link_to "Incomplete", trading_stocks_path(:incomplete_website => true) %>)
+									</th>
+									<!-- 
 									<th>
 										International sites (<%= link_to "Incomplete", trading_stocks_path(:incomplete_international_sites => true) %>)
 									</th>
 									<th>
 										Subsidiaries (<%= link_to "Incomplete", trading_stocks_path(:incomplete_subsidiaries => true) %>)
-									</th>
+									</th> -->
 									<th> External Links</th>
 								</tr>
 							</thead>
@@ -55,18 +65,35 @@
 										<%= link_to stock.name, trading_stock_path(stock) %>
 									</td>
 									<td>
+										<%= link_to stock.earning_histories.first.present? ? "View dates" : "Upload dates", trading_stock_earning_date_history_path(stock) %> (<%= display_yes_no(stock.earning_histories.first.present?) %>)
+									</td>
+									<td>
+										<%= link_to stock.stock_prices.first.present? ? "View price" : "Upload price", trading_stock_price_history_path(stock) %> (<%= display_yes_no(stock.stock_prices.first.present?) %>)
+									</td>
+									<td>
+										<% if stock.display_website_diff.present? %>
+											<span style='color:red'><%= stock.display_website_diff %>
+										<% else %>
+											<%= stock.main_website %>
+										<% end %>
+									</td>
+									<!-- <td>
 	                    <% if stock.international_sites.present? %>
 	                    	<% sites = stock.international_sites.split("\r\n") %>
 	                    	<%= sites[0..1].join(", ") %>... (<%= sites.count %>)
 											<% end %>
-									</td>
+									</td> -->
 									<td>
+											<%= link_to "price", "https://finance.yahoo.com/quote/#{stock.ticker}/history?p=#{stock.ticker}", :target => "_blank" %>
+										&nbsp;&nbsp;|&nbsp;&nbsp;
+										<%= link_to "Earning", "https://www.marketbeat.com/stocks/NASDAQ/#{stock.ticker}/earnings/", :target => "_blank" %>
+										&nbsp;&nbsp;|&nbsp;&nbsp;
+										<%= link_to "Website", "https://www.google.com/search?q=#{stock.name} website", :target => "_blank" %>
+										&nbsp;&nbsp;|&nbsp;&nbsp;
   										<% if stock.subsidiaries.present? %>
 												<% sites = stock.subsidiaries.split(",") %>
 	                    	<%= sites[0..1].join(", ") %>... (<%= sites.count %>)
 											<% end %>
-									</td>
-									<td>
 										<%= link_to "Subsidiaries", "https://www.google.com/search?q=#{stock.name} subsidiaries", :target => "_blank" %>
 										&nbsp;&nbsp;|&nbsp;&nbsp;
 										<%= link_to "Edit", edit_trading_stock_path(stock) %>
