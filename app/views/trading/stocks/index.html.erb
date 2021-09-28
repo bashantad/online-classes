@@ -65,10 +65,10 @@
 										<%= link_to stock.name, trading_stock_path(stock) %>
 									</td>
 									<td>
-										<%= link_to stock.earning_histories.first.present? ? "View dates" : "Upload dates", trading_stock_earning_date_history_path(stock) %> (<%= display_yes_no(stock.earning_histories.first.present?) %>)
+										<%= link_to stock.stock_prices.first.present? ? "View price" : "Upload price", trading_stock_price_history_path(stock) %> (<%= display_yes_no(stock.stock_prices.first.present?) %>)
 									</td>
 									<td>
-										<%= link_to stock.stock_prices.first.present? ? "View price" : "Upload price", trading_stock_price_history_path(stock) %> (<%= display_yes_no(stock.stock_prices.first.present?) %>)
+										<%= link_to stock.earning_histories.first.present? ? "View dates" : "Upload dates", trading_stock_earning_date_history_path(stock) %> (<%= display_yes_no(stock.earning_histories.first.present?) %>)
 									</td>
 									<td>
 										<% if stock.display_website_diff.present? %>
