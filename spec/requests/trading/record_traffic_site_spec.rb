@@ -47,7 +47,7 @@ RSpec.describe "Records traffic", type: :request do
 	end
 
 	def sites_to_import
-		main_sites		
+		international_sites		
 	end
 
 	it "records Alexa history" do
