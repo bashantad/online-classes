@@ -8,7 +8,7 @@ class Trading::SitesController < Trading::BaseController
 		end
 		
 		abs_percentage = (params[:abs_percentage] || 20).to_i
-		last_number_of_days = (params[:last_number_of_days] || 30).to_i
+		last_number_of_days = (params[:last_number_of_days] || 10).to_i
 		@histories = SiteHistory.where("created_at > ?", last_number_of_days.days.ago).where(:site_id => sites.collect(&:id)).sort do |a, b|
 			a.abs_percentage <=> b.abs_percentage
 		end.select do |site|

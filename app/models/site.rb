@@ -1,6 +1,6 @@
 class Site < ApplicationRecord
 	belongs_to :stock
-	has_many :site_histories
+	has_many :site_histories	
 
 	def self.create_default_sites
 		Stock.all.each do |stock|
