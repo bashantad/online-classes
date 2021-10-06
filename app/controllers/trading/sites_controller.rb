@@ -1,10 +1,10 @@
 class Trading::SitesController < Trading::BaseController
 	def index
-		stock_urls = Stock.all.collect(&:display_website).compact.uniq
+		company_urls = Site.all.collect(&:company_url).compact.uniq
 		if params[:is_main] == "true"
-			sites = Site.where(:company_url => stock_urls, :is_main => true).order("stock_id")
+			sites = Site.where(:company_url => company_urls, :is_main => true).order("stock_id")
 		else
-			sites = Site.where(:company_url => stock_urls).order("stock_id")
+			sites = Site.where(:company_url => company_urls).order("stock_id")
 		end
 		
 		abs_percentage = (params[:abs_percentage] || 20).to_i
