@@ -30,12 +30,18 @@ type: :request do
 		companies[1..-1]
 	end
 
+	def companies
+		[
+			
+		].collect { |a| {:company_name => a}}
+	end
+
 	it "records stocks with it's website" do
 		arr = (2..5).to_a
 		file = Rails.root.join("spec/files/website_mapping.txt")
 		open(file,
 			'w') do |file_handle|
-			(company_names.uniq).each do |row|
+			(companies.uniq).each do |row|
 				begin
 					fetch_website_name(row[:ticker], row[:company_name], file_handle)
 				rescue => e
